@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840C4EB618F9A0CB0061C4B6 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EA618F9A0CB0061C4B6 /* Button.m */; };
+		840C4EB718F9A0CB0061C4B6 /* FDLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EA818F9A0CB0061C4B6 /* FDLabelView.m */; };
+		840C4EB818F9A0CB0061C4B6 /* FrameLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EAA18F9A0CB0061C4B6 /* FrameLayout.m */; };
+		840C4EB918F9A0CB0061C4B6 /* IView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EAC18F9A0CB0061C4B6 /* IView.m */; };
+		840C4EBA18F9A0CB0061C4B6 /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EAF18F9A0CB0061C4B6 /* Layout.m */; };
+		840C4EBB18F9A0CB0061C4B6 /* LinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB118F9A0CB0061C4B6 /* LinearLayout.m */; };
+		840C4EBC18F9A0CB0061C4B6 /* RelativeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */; };
+		840C4EBD18F9A0CB0061C4B6 /* ScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */; };
 		84DE5C7518D9A1E30059C5C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7418D9A1E30059C5C9 /* Foundation.framework */; };
 		84DE5C7718D9A1E30059C5C9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7618D9A1E30059C5C9 /* CoreGraphics.framework */; };
 		84DE5C7918D9A1E30059C5C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7818D9A1E30059C5C9 /* UIKit.framework */; };
@@ -36,6 +44,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840C4EA518F9A0CB0061C4B6 /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
+		840C4EA618F9A0CB0061C4B6 /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button.m; sourceTree = "<group>"; };
+		840C4EA718F9A0CB0061C4B6 /* FDLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLabelView.h; sourceTree = "<group>"; };
+		840C4EA818F9A0CB0061C4B6 /* FDLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLabelView.m; sourceTree = "<group>"; };
+		840C4EA918F9A0CB0061C4B6 /* FrameLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLayout.h; sourceTree = "<group>"; };
+		840C4EAA18F9A0CB0061C4B6 /* FrameLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameLayout.m; sourceTree = "<group>"; };
+		840C4EAB18F9A0CB0061C4B6 /* IView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IView.h; sourceTree = "<group>"; };
+		840C4EAC18F9A0CB0061C4B6 /* IView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IView.m; sourceTree = "<group>"; };
+		840C4EAD18F9A0CB0061C4B6 /* IViewEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IViewEvent.h; sourceTree = "<group>"; };
+		840C4EAE18F9A0CB0061C4B6 /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
+		840C4EAF18F9A0CB0061C4B6 /* Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Layout.m; sourceTree = "<group>"; };
+		840C4EB018F9A0CB0061C4B6 /* LinearLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearLayout.h; sourceTree = "<group>"; };
+		840C4EB118F9A0CB0061C4B6 /* LinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearLayout.m; sourceTree = "<group>"; };
+		840C4EB218F9A0CB0061C4B6 /* RelativeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeLayout.h; sourceTree = "<group>"; };
+		840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeLayout.m; sourceTree = "<group>"; };
+		840C4EB418F9A0CB0061C4B6 /* ScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollerView.h; sourceTree = "<group>"; };
+		840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollerView.m; sourceTree = "<group>"; };
 		84DE5C7118D9A1E30059C5C9 /* Ola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ola.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DE5C7418D9A1E30059C5C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84DE5C7618D9A1E30059C5C9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,6 +108,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840C4EA418F9A0CB0061C4B6 /* layout */ = {
+			isa = PBXGroup;
+			children = (
+				840C4EA518F9A0CB0061C4B6 /* Button.h */,
+				840C4EA618F9A0CB0061C4B6 /* Button.m */,
+				840C4EA718F9A0CB0061C4B6 /* FDLabelView.h */,
+				840C4EA818F9A0CB0061C4B6 /* FDLabelView.m */,
+				840C4EA918F9A0CB0061C4B6 /* FrameLayout.h */,
+				840C4EAA18F9A0CB0061C4B6 /* FrameLayout.m */,
+				840C4EAB18F9A0CB0061C4B6 /* IView.h */,
+				840C4EAC18F9A0CB0061C4B6 /* IView.m */,
+				840C4EAD18F9A0CB0061C4B6 /* IViewEvent.h */,
+				840C4EAE18F9A0CB0061C4B6 /* Layout.h */,
+				840C4EAF18F9A0CB0061C4B6 /* Layout.m */,
+				840C4EB018F9A0CB0061C4B6 /* LinearLayout.h */,
+				840C4EB118F9A0CB0061C4B6 /* LinearLayout.m */,
+				840C4EB218F9A0CB0061C4B6 /* RelativeLayout.h */,
+				840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */,
+				840C4EB418F9A0CB0061C4B6 /* ScrollerView.h */,
+				840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */,
+			);
+			path = layout;
+			sourceTree = "<group>";
+		};
 		84DE5C6818D9A1E30059C5C9 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +165,7 @@
 		84DE5C7A18D9A1E30059C5C9 /* Ola */ = {
 			isa = PBXGroup;
 			children = (
+				840C4EA418F9A0CB0061C4B6 /* layout */,
 				84FC733E18F9A04D0032A2CC /* app */,
 				84DE5C8318D9A1E30059C5C9 /* OLAAppDelegate.h */,
 				84DE5C8418D9A1E30059C5C9 /* OLAAppDelegate.m */,
@@ -259,8 +309,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DE5C8118D9A1E30059C5C9 /* main.m in Sources */,
+				840C4EBA18F9A0CB0061C4B6 /* Layout.m in Sources */,
+				840C4EBB18F9A0CB0061C4B6 /* LinearLayout.m in Sources */,
+				840C4EBD18F9A0CB0061C4B6 /* ScrollerView.m in Sources */,
+				840C4EB818F9A0CB0061C4B6 /* FrameLayout.m in Sources */,
+				840C4EB718F9A0CB0061C4B6 /* FDLabelView.m in Sources */,
 				84DE5C8E18D9A1E30059C5C9 /* OLAViewController.m in Sources */,
 				84DE5C8518D9A1E30059C5C9 /* OLAAppDelegate.m in Sources */,
+				840C4EBC18F9A0CB0061C4B6 /* RelativeLayout.m in Sources */,
+				840C4EB618F9A0CB0061C4B6 /* Button.m in Sources */,
+				840C4EB918F9A0CB0061C4B6 /* IView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
