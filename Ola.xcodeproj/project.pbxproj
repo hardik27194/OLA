@@ -22,6 +22,7 @@
 		84DE5C9918D9A1E30059C5C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7818D9A1E30059C5C9 /* UIKit.framework */; };
 		84DE5CA118D9A1E30059C5C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84DE5C9F18D9A1E30059C5C9 /* InfoPlist.strings */; };
 		84DE5CA318D9A1E30059C5C9 /* OlaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DE5CA218D9A1E30059C5C9 /* OlaTests.m */; };
+		84FC733F18F9A04D0032A2CC /* app in Resources */ = {isa = PBXBuildFile; fileRef = 84FC733E18F9A04D0032A2CC /* app */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		84DE5C9E18D9A1E30059C5C9 /* OlaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OlaTests-Info.plist"; sourceTree = "<group>"; };
 		84DE5CA018D9A1E30059C5C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		84DE5CA218D9A1E30059C5C9 /* OlaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OlaTests.m; sourceTree = "<group>"; };
+		84FC733E18F9A04D0032A2CC /* app */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		84DE5C7A18D9A1E30059C5C9 /* Ola */ = {
 			isa = PBXGroup;
 			children = (
+				84FC733E18F9A04D0032A2CC /* app */,
 				84DE5C8318D9A1E30059C5C9 /* OLAAppDelegate.h */,
 				84DE5C8418D9A1E30059C5C9 /* OLAAppDelegate.m */,
 				84DE5C8618D9A1E30059C5C9 /* Main_iPhone.storyboard */,
@@ -234,6 +237,7 @@
 			files = (
 				84DE5C8B18D9A1E30059C5C9 /* Main_iPad.storyboard in Resources */,
 				84DE5C9018D9A1E30059C5C9 /* Images.xcassets in Resources */,
+				84FC733F18F9A04D0032A2CC /* app in Resources */,
 				84DE5C8818D9A1E30059C5C9 /* Main_iPhone.storyboard in Resources */,
 				84DE5C7F18D9A1E30059C5C9 /* InfoPlist.strings in Resources */,
 			);
@@ -475,6 +479,7 @@
 				84DE5CA818D9A1E30059C5C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84DE5CA918D9A1E30059C5C9 /* Build configuration list for PBXNativeTarget "OlaTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +488,7 @@
 				84DE5CAB18D9A1E30059C5C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

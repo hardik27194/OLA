@@ -1,0 +1,15 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body layout="FrameLayout" class="FrameLayout" style="margin:0;">
+	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;align:center;valign:middle">
+		<label style="background-image:url(http://10.0.2.2:8080/test/images/loading.gif)"></label>
+	</div>
+</body>
+</html>

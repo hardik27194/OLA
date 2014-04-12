@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Categories=X-GNUstep;
+Name=HelloWorld
+Comment=Hello World Tutorial
+Exec= HelloWorld
+FilePattern=HelloWorld.app;HelloWorld;

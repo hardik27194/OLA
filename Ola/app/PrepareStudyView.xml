@@ -1,0 +1,33 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body layout="FrameLayout" class="FrameLayout" style="margin:0;">
+	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;">
+		<div layout="LinearLayout" class="LinearLayout" style="width:auto;background-color:#66CCFF">
+			<label id="spell_label" style="width:auto;weight:1px">Spell</label><label id="pron_label" style="width:auto;weight:1px">Pron</label>
+		</div>
+		<scrollview style="weight:1px;">
+			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;">
+				<label id="chinese_label" style="color:#ff0000;width:auto">Chinese</label>
+				<label id="english_label" style="color:#FF9900;width:auto"></label>
+				<label  style="color:#663300;width:auto">Example:</label>
+				<label id="example_label" style="color:#999900;width:auto"></label>
+			</div>
+		</scrollview>
+		<div layout="LinearLayout" class="LinearLayout" style="align:center;background-color:#DAE9FE">
+				<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/blue_velvet_077.png)" onclick="reload()" />
+				<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/blue_velvet_064.png)" onclick="back()" />
+				<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/blue_velvet_065.png)" onclick="previous()" />
+				<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/blue_velvet_029.png)" onclick="next()" />
+				<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/blue_velvet_072.png)" onclick="next()" />
+				<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/blue_velvet_020.png)" onclick="next()" />
+		</div>
+	</div>
+</body>
+</html>
