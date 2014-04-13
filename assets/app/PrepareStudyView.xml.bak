@@ -1,0 +1,33 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body layout="FrameLayout" class="FrameLayout" style="margin:0;">
+	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px">
+		<div layout="LinearLayout" class="LinearLayout" style="width:auto;background-color:#66CCFF">
+			<label id="spell_label" style="width:auto;weight:1px">English</label><label id="pron_label" style="width:auto;weight:1px">Pron</label>
+		</div>
+		<scrollview style="width:auto;height:auto;weight:1px;background-color:#DAE9FE">
+			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px">
+				<label id="chinese_label" style="width:auto;height:auto;weight:1px;color:#0000FF">English</label>
+				<label id="english_label" style="orientation:vertical;height:auto;width:auto;weight:1px;color:#FF9900"></label>
+				<label  style="orientation:vertical;height:auto;width:auto;weight:1px;color:#663300">Example:</label>
+				<label id="example_label" style="orientation:vertical;height:auto;width:auto;weight:1px;color:#999900"></label>
+			</div>
+		</scrollview>
+		<div layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#DAE9FE">
+				<button id="btn1" style="top:1px;width:48px;height:36px;align:center;background-image:url(images/blue_velvet_077.png)" onclick="reload()" />
+				<button id="btn1" style="top:1px;width:48px;height:36px;align:center;background-image:url(images/blue_velvet_064.png)" onclick="back()" />
+				<button id="btn1" style="top:1px;width:48px;height:36px;align:center;background-image:url(images/blue_velvet_065.png)" onclick="previous()" />
+				<button id="btn1" style="top:1px;width:48px;height:36px;align:center;background-image:url(images/blue_velvet_029.png)" onclick="next()" />
+				<button id="btn1" style="top:1px;width:48px;height:36px;align:center;background-image:url(images/blue_velvet_072.png)" onclick="next()" />
+				<button id="btn1" style="top:1px;width:48px;height:36px;align:center;background-image:url(images/blue_velvet_020.png)" onclick="next()" />
+		</div>
+	</div>
+</body>
+</html>

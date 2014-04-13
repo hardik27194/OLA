@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recite>
+  <app-name>Pocket Words</app-name>
+  <global>
+	<script src="http://10.0.2.2:8080/test/lua/db.lua"/>
+	<script src="http://10.0.2.2:8080/test/lua/Global.lua"/>
+	<script src="http://10.0.2.2:8080/test/lua/WordIndex.lua"/>
+	<script src="http://10.0.2.2:8080/test/lua/Word.lua"/>
+	<script src="http://10.0.2.2:8080/test/lua/Study.lua"/>
+  </global>
+  <init>
+	<script src="http://10.0.2.2:8080/test/init.lua"/>
+  </init>
+
+  <views>
+	<view src="http://10.0.2.2:8080/test/MainMenu.xml" title="Main Menu" />
+	<view src="http://10.0.2.2:8080/test/StudyView.xml" title="StudyView" />
+  </views>
+
+  <params>
+	<param name="version" value="1" />
+  </params>
+
+
+</Recite>

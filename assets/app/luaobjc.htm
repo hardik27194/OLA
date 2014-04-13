@@ -1,0 +1,143 @@
+<html>
+	<head>
+		<title>LuaObjCBridge Documentation (v1.4)</title>
+	</head>
+	<body>
+		<h1>Contents</h1>
+		<p>Please note that the documentation in this file refers to LuaObjCBridge v1.4, which is the last version distributed from the original PixelBallistics website (and is out of date with respect to the version available through LuaForge).</p>
+		<ol>
+			<li><a href="#Setting+Up">Setting Up</a>: how to initialise a Lua interpreter which can access Cocoa objects.</li>
+			<li><a href="#Embedding+Lua+in+a+Cocoa+Program">Embedding Lua in a Cocoa Program</a>: how to ensure that your final product correctly links to the Bridge and includes it as an embedded framework within your final build product.</li>
+			<li><a href="#Passing+Objects+to+Lua">Passing Objects to Lua</a>: how to ensure that a instance created within a Cocoa programme is accessible to Lua scripts (and back again).</li>
+			<li><a href="#Passing+Values+to+Lua">Passing Values to Lua</a>: how to pass raw data from a Cocoa programme to Lua scripts (and back again).</li>
+			<li><a href="#Caveats,+Gotchas+and+Known+Bugs">Caveats, Gotchas and Known Bugs</a>: things to watch out for.</li>
+		</ol>
+		
+		<a name="Setting+Up">
+		<h1>Setting Up</h1>
+		<p>It's trivially easy to set up a Lua interpreter within a Cocoa programmeusing the LuaObjCBridge:</p>
+		<p>First, include the LuaObjCBridge framework in your XCode project (<a href="#Embedding+Lua+in+a+Cocoa+Program">see here</a> for further instructions).</p>
+		<p>Second, within your Cocoa programme, set up a valid Lua interpreter using the functions provided by the Bridge:</p>
+		<p><code><pre>lua_State* interpreter;
+interpreter=lua_objc_init(); // interpreter is now available for all lua_* function calls.</pre></code></p>
+		<p>Altenrnatively, it is possible to compile the Bridge as library which can be loaded by any Lua program. This might be useful if you want to distribute a custom Lua programme rather than a Cocoa programme. In this case, you should initialise the library using the following call in the same way as you initialise the standard libraries:</p>
+		<p><code><pre>lua_objc_open(interpreter); // assume "interpreter" is an initialised lua_State*, but not one set up with lua_objc_init() </pre></code></p>
+		<p>Finally, when you're done, you can shut everything down using the standard function call:</p>
+		<p><code><pre>lua_close(interpreter); // the lua_State* we opened above</pre></code></p>
+		
+		<a name="Passing+Objects+to+Lua">
+		<h1>Passing Objects to Lua</h1>
+		<p>The LuaObjCBridge provides two means of passing Objective-C objects into and out of a Lua scripting environment. This page describes how to pass objects so that they appear in Lua scripts as opaque "objects". It is also possible to convert Cocoa property-list data directly into Lua values (see <a href="#Passing+Values+to+Lua">Passing Values to Lua</a>).</p>
+		<p>The <b>lua_objc_pushid()</b> function creates a special table on the Lua stack representing an Objective-C class or instance. This table contains no data; thanks to a bit of black magic on the part of the LuaObjCBridge, however, it is possible to treat this table as if it contained a function for every selector recognised by the object. This means that you can call the methods of Objective-C objects using the syntax for object function calls described in the Lua manual.</p>
+		<p><code><pre>NSApplication theApplication=[NSApplication sharedApplication];
+lua_State* interpreter=lua_objc_init();
+lua_pushstring(interpreter,"application");		// or any other name
+lua_objc_pushid(interpreter,theApplication);
+lua_settable(interpreter,LUA_GLOBALSINDEX);		// note that we're storing it in a global variable so it's easily accessible</pre></code></p>
+		<p>In Lua scripts, you can call an object's methods using the standard Lua object-method calling syntax, namely:</p>
+		<p><code><pre>-- assume the NSApplication is stored in a global variable "application" as per previous example
+application:hide();</pre></code></p>
+		<p>The corresponding function for retrieving ids from the Lua stack is <b>lua_objc_toid()</b>, which functions exactly like its classic Lua counterparts.</p>
+		
+		<a name="Passing+Values+to+Lua">
+		<h1>Passing Values to Lua</h1>
+		<p>The LuaObjCBridge provides two means of passing Objective-C objects into and out of a Lua scripting environment. This page describes how to pass Cocoa property-list instances to Lua so they appear as fully-fledged Lua values (It is also possible to pass objects so that they appear in Lua scripts as opaque "objects"; see <a href="#Passing+Objects+to+Lua">Passing Objects to Lua</a>).</p>
+		<p>The <b>lua_objc_pushpropertylist()</b> function converts the values stored in Cocoa property list instances to Lua values, and pushes them onto the Lua stack. It will automatically work its way down into NSDictionaries and NSArrays, converting the objects they contain as well. If any element at any level of the property list is non-canonical (i.e. not an NSString, NSNumber, NSNull, NSDictionary or an NSArray), then <b>lua_objc_pushpropertylist()</b> will return without altering the Lua stack.</p>
+		<p><code><pre>NSNumber myNumber=[NSNumber numberWithInt:200];
+lua_State* interpreter=lua_objc_init();
+lua_objc_pushpropertylist(interpreter,myNumber);
+// the Lua function will see the number 200 on the stack.</pre></code></p>
+		<p>The corresponding function for retrieving values from the Lua stack as a property list is <b>lua_objc_topropertylist()</b>.</p>
+		<p>The LuaObjCBridge automatically and transparently converts between property list types and Lua values when they are method parameters or results. If it is not possible to convert because an element in a property list is not a canonical property list member, the Bridge will revert to using <b>lua_objc_toid()</b> and <b>lua_objc_pushid()</b>.</p>
+		<p>As of version 1.4, Cocoa property-list data passed to Lua using this function appears in Lua as a sort of hybrid data type, in that it can be treated as a standard Lua value (a number, a string or whatever), and <i>at the same time</i> as an Objective-C id whose methods may be called.</p>
+		
+		<a name="Accessing+Classes+in+Lua">
+		<h1>Accessing Classes in Lua</h1>
+		<p>By default, the LuaObjCBridge creates a global table whenever it is first initialised using <b>lua_objc_init()</b> or <b>lua_obj_open()</b>. This table contains a single function, called <b>class</b> (it also contains some data which the Bridge uses to work its magic, but that need not concern us here). The <b>class</b> function takes a string parameter specifying the name of an Objective-C class object, and it returns that object on the Lua stack using <b>lua_objc_pushid()</b>.</p>
+		<p>This means that you can access any class currently loaded by the Objective-C runtime from within your Lua scripts, as follows:</p>
+		<p><code><pre>applicationClass=objc:class("NSApplication");
+   -- you can now call any NSApplication class methods 
+   -- using applicationClass
+applicationInstance=applicationClass:sharedApplication(); 
+   -- you can now call any NSApplication instance methods
+   -- using applicationInstance...
+applicationInstance:hide();
+   -- ..such as hiding the application </pre></code></p>
+		
+	<a name="Creating+Objective-C+Instances+inside+Lua">
+		<h1>Creating Objective-C Instances inside Lua</h1>
+		<p>You can create an instance of an Objective-C class within a Lua script in exactly the same way as you would create a class in Objective-C: by calling one of its class methods (accessing classes in the first place is described in <a href="#Accessing+Classes+in+Lua">Accessing Classes in Lua</a>).</p>
+		<p><code><pre>notificationCenter=objc.class("NSNotificationCenter"):defaultCenter();
+notificationCenter:postNotificationName_object("SomeRandomNotificationName",nil);</pre></code></p>
+		<p>You should be particularly careful about retaining and releasing objects you create in this way - unless you compile the Bridge with with #LUA_OBJC_RETAIN_AND_RELEASE_INSTANCES defined, absolutely no attempt is made to manage your Objective-C objects for you, and they will not be handled by Lua's internal garbage collection either. Even if you do compile with this option enabled, interactions between Lua's garbage collection and Objective-C's retain-and-release mechanism can be complex and difficult to debug. Here be memory leaks and other dragons! Be warned!</p>
+ 
+		<a name="Caveats,+Gotchas+and+Known+Bugs"><h1>Caveats, Gotchas and Known Bugs</h1>
+		<p>There are a couple of known issues with version 1.4 of LuaObjCBridge:</p>
+		<ul>
+			<li><a href="#Objective-C+Methods+Returning+BOOL">Objective-C Methods Returning BOOL</a></li>
+			<li><a href="#Memory+Management">Memory Management</a></li>
+			<li><a href="#LuaObjCBridge+on+Intel+Macs">LuaObjCBridge on Intel Macs</a></li>
+			<li><a href="#LuaObjCBridge+and+GNUStep">LuaObjCBridge and GNUStep</a></li>
+			<li><a href="#Lua+and+MacOS+X">Lua and MacOS X</a></li>
+		</ul>
+ 
+		<a name="Objective-C+Methods+Returning+BOOL">
+		<h1>Objective-C Methods Returning BOOL</h1>
+		<p>The Objective-C runtime provides a mechanism for dynamically determining at runtime the types of all method parameters and return values. The LuaObjCBridge uses this mechanism to ensure that values are passed correctly between the Objective-C environment and the Lua environment.</p>
+		<p>Unfortunately, Objective-C's type identification mechanism does not distinguish between data of type <b>BOOL</b> and data of type <b>char</b> (this is because - at least in the NeXT runtime - the first is merely a typedef of the second). This is very rarely a problem, because C itself makes no distinction between numerical and boolean values, either: the number zero is considered to be logically false. </p>
+		<p>Unfortunately, Lua <i>does</i> make this distinction: the only values that are considered logically false in a Lua script are <b>nil</b> and <b>false</b>. The LuaObjCBridge cannot tell when a numerical function result should be passed to Lua as boolean or numerical, and only passes BOOLs to Lua scripts as numbers. For this reason, methods returning a BOOL value will always evaluate as <b>true</b> if you treat them as boolean. </p>
+		<p>This is not a bug in the Bridge, it is a shortcoming of the Objective-C runtime. To get around it, your Lua scripts should explicitly compare the results of method calls returning BOOLs with the number 0.</p>
+		<p>Back to <a href="#Caveats,+Gotchas+and+Known+Bugs">Caveats, Gotchas and Known Bugs</a>.</p>
+		
+		<a name="Memory+Management">
+		<h1>Memory Management</h1>
+		<p>As of v1.4, the LuaObjCBridge automatically sends a <b>retain</b> message to every Objective-C instance which is passed into the Lua environment (using lua_obcj_pushid(), lua_objc_pushpropertylist() or lua_objc_setid()), and also automatically sends a <b>release</b> message to every instance which is collected by Lua's automatic garbage collection mechanism. This means that you no longer need to explicitly retain and release objects which you want to keep around inside the Lua environment - there is no danger of them being released or autoreleased out from under you by something in ObjC-world.</p>
+		<p>This memory management feature should be considered "experimental". It can be turned off at compile-time by commenting out the line in LuaObjCBridge.m which #defines the symbol LUA_OBJC_RETAIN_AND_RELEASE_INSTANCES.</p>
+		<p>Back to <a href="#Caveats,+Gotchas+and+Known+Bugs">Caveats, Gotchas and Known Bugs</a>.</p>
+		
+		<a name="LuaObjCBridge+on+Intel+Macs">
+		<h1>LuaObjCBridge on Intel Macs</h1>
+		<p>The LuaObjCBridge compiles quite happily for Intel processors under XCode. Anecdotal evidence suggests that it runs without any problems on Intel Macs, but it has not been extensively tested on this platform.</p>
+		<p>If you have any doubts, compile the bridge with the symbol LUA_OBJC_USE_FOUNDATION_INSTEAD_OF_RUNTIME #defined.</p>
+		<p>Back to <a href="#Caveats,+Gotchas+and+Known+Bugs">Caveats, Gotchas and Known Bugs</a>.</p>
+		
+		<a name="LuaObjCBridge+and+GNUStep">
+		<h1>LuaObjCBridge and GNUStep</h1>
+		<p>The LuaObjCBridge was originally written specifically for MacOS X, and was fairly tightly integrated with the default Objective-C runtime library for that platform (known as the "Apple" or the "NeXT runtime"). The NeXT runtime is not the only one in existence, however: there is also the GNU runtime, which is used by GNUStep (the only other widely-available implementation of the OpenStep standard apart from Apple's Cocoa).</p>
+		<p>In retrospect, this was probably a misfeature: the Bridge was intended not just to provide a bridge between Lua and Objective-C, but to demonstrate how to hack the Objective-C runtime directly. Only after it was written did it occur to the author that the NeXT runtime differs significantly from the GNU Objective-C runtime, and that the LuaObjCBridge would therefore not work with both.</p>
+		<p>As of v1.3, the LuaObjCBridge contains two separate sets of functions for bridging between Objective-C methods and Lua scripts. The default version for MacOS X still calls NeXT runtime functions directly. But if the Bridge is compiled with the symbolic define LUA_OBJC_USE_FOUNDATION_INSTEAD_OF_RUNTIME defined, it will use Foundation Kit methods and functions to accomplish the same tasks (defined by default if the Bridge is not compiled against the NeXT runtime). This means that the Bridge can be compiled for any platform that has a Foundation Kit available on it. In practice, this means that the Bridge should now compile and run on both MacOSX and GNUStep.</p>
+		<p>Anecdotal evidence suggests that this new "portable" approach works, but it has not been extensively tested.</p>
+		<p>Back to <a href="#Caveats,+Gotchas+and+Known+Bugs">Caveats, Gotchas and Known Bugs</a>.</p>
+		
+		<a name="Lua+and+MacOS+X">
+		<h1>Lua and MacOS X</h1>
+		<p>Lua v5.1 added a number of new compilation options which turn on features specific to various operating systems. Among these are a number of options which are specific to MacOS X, and which can be turned on by #defining LUA_USE_MACOSX somewhere (eg. in the <i>Preprocessor Macros</i> section of XCode's <i>Build Settings</i> tab in the project info window). In v5.1, LUA_USE_MACOSX turns on two features:</p>
+		<ul>
+			<li> a MacOS X-specific way of loading shared libraries as specified by the <b>require</b> keyword; and</li>
+			<li> POSIX-specific ways of implementing internal functions more efficiently (eg. creation of uniquely-named temporary files).</li>
+		</ul>
+		<p>LuaObjCBridge does not specify LUA_USE_MACOSX, for the reasons discussed below.</p>
+		<h4>Loading Libraries on MacOS X</h4>
+		<p>LUA_USE_MACOSX forces Lua to load shared libraries using a MacOS X-specific library management mechanism called <i>dyld</i>. MacOS X also includes the common UNIX mechanism for loading shared libraries, called <i>dlopen</i>. Indeed, <i>dlopen</i> is not just fully supported by Apple, it is explicitly recommended instead of <i>dyld</i> because it supports more shared library formats (specifically, <i>dlopen</i> can open standard dynamically-shared .dylib libraries, but <i>dyld</i> can only open bundles). Since Lua can also be compiled to use <i>dlopen</i> by #defining LUA_USE_DLOPEN, the LuaObjCBridge follows Apple's advice.</p>
+		<h4>Enabling POSIX Features on MacOS X</h4>
+		<p>The features enabled by LUA_USE_POSIX don't appear to have any particular benefits; at any rate, their presence or absence certainly doesn't affect the ability of software making use of the Lua engine to call it and get things done. If you do want to turn them on, just #define LUA_USE_POSIX in the <i>Preprocessor Macros</i> section of XCode's <i>Build Settings</i> tab in the project info window.</p>
+		<p>Back to <a href="#Caveats,+Gotchas+and+Known+Bugs">Caveats, Gotchas and Known Bugs</a>.</p>
+ 
+		<a name="Embedding+Lua+in+a+Cocoa+Program">
+		<h1>Embedding Lua in a Cocoa Program</h1>
+		<p>Embedding a Cocoa-aware Lua environment is relatively easy using the LuaObjCBridge, but it does require a bit of tinkering with the build settings and target configuration of the host program:</p>
+		<ol>
+			<li>Open LuaObjCBridge in XCode.</li>
+			<li>Build the bridge using the "Embedding" build style (it is possible to skip this step and use the pre-built LuaObjCBridge.framework included in the distribution disk image, but only if you're not customising either Lua or the Bridge and you're compiling for MacOS X on PowerPC).</li>
+			<li>Open your project in XCode.</li>
+			<li>Add the embedded LuaObjCBridge.framework in the same way you would any other framework (if you've built it yourself, it should be sitting in $(PATH_TO_LUA_OBJC_BRIDGE)/build/Embedding/). It's up to you whether you copy it to your project directory or not.</li>
+			<li>Go to the target which needs to use Lua, and check that LuaObjCBridge.framework appears in the "Link Binary with Libraries" build phase.</li>
+			<li>Add a "Copy Files" build phase and select "Frameworks" from the drop-down box. Add LuaObjCBridge to this build phase by dragging it down from the project contents hierarchy higher up in the same section of the window.</li>
+			<li>Ensure that any source code which uses functions provided by the LuaObjCBridge includes the line <b>#import &lt;LuaObjCBridge/LuaObjCBridge.h&gt;</b> somewhere at the start.</li>
+			<li>Make sure that your code creates a Lua interpreter by calling <b>lua_objc_init()</b> rather than <b>lua_init()</b>.</li>
+			<li>Build and run. With any luck, it should all "just work".</li><li>If you are embedding LuaObjCBridge inside a framework which is itself embedded in the application, you may need to add a <b>-weak_framework LuaObjCBridge</b> directive to the build settings of the other parts of your application which need access to Lua or the bridge.</li>
+		</ol>
+	</body>
+</html>
+ 
+

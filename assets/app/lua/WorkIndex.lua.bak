@@ -1,0 +1,105 @@
+WordIndex = {}
+
+ WordIndex.__index = WordIndex 
+
+ function WordIndex:new() 
+     local temp = {} 
+     setmetatable(temp, WordIndex) 
+     return temp 
+ end 
+
+function WordIndex.open(indexFile)
+	Log:d("File test","read file:"..indexFile)
+	local f = fis:open(indexFile)
+	Log:d("File test","open file successful")
+	bookName=f:readString()
+	Log:d("File test","line="..bookName)
+	version=f:readDouble()
+	Log:d("File test","version="..version)
+	encyptType=f:readByte()
+	Log:d("File test","Encypt type="..encyptType)
+	wordsCount=f:readInt()
+	Log:d("File test","words amount="..wordsCount)
+	--            Global.bookGroupAmount = Global.wordsCount % Global.getGroupSize() > 0 ? Global.wordsCount / Global.getGroupSize() + 1 : Global.wordsCount / Global.getGroupSize();
+	 pos = {}  --new int[wordsCount * 6];
+            for i = 1, wordsCount * 6, 1 do
+            --for i = 1, 20 * 6, 1 do
+                pos[i] = f:readInt();
+		if i<18 then
+		  Log:d("File test",i.."="..pos[i])
+		 end
+            end
+		Log:d("File test","pos length="..#pos)
+	f:close()
+end
+
+function WordIndex.getPos(i)
+	i=i-1
+        local poss = {}  -- new int[6];
+        poss[1] = pos[i * 6 + 1]
+        poss[2] = pos[i * 6 + 3] - pos[i * 6 + 2]
+        poss[3] = pos[i * 6 + 4] - pos[i * 6 + 3]
+        poss[4] = pos[i * 6 + 5] - pos[i * 6 + 4]
+        poss[5] = pos[i * 6 + 6] - pos[i * 6 + 5]
+        poss[6] = pos[i * 6 + 8] - pos[i * 6 + 6]
+        return poss
+end
+
+function WordIndex.getGroupPos( groupIndex)
+
+        return pos[(groupIndex - 1) * Global.getGroupSize() * 6 + 1];
+end
+
+function readWordsState()
+	local bs = {}
+	local fc = fis:open("/sdcard/recite/"..bookName .. "_studyinfo.dbms")
+            for i = 1, fc:available(), 1 do
+                bs[i] = f:readByte();
+            end
+	fc:close();
+        return bs;
+end
+--[[
+    public static byte[] readWordsState() throws IOException
+    {
+        byte[] bs = new byte[Global.wordsCount];
+        FileConnection fc = (FileConnection) Connector.open(fileProtocal + bookName + "_studyinfo.dbms", Connector.READ);
+        if (fc.exists())
+        {
+            InputStream fis = fc.openInputStream();
+            fis.read(bs);
+            fis.close();
+        }
+		fc.close();
+        return bs;
+    }
+]]
+
+function writeWordState(states)
+        local fc = fos:open("/sdcard/recite/"..bookFileName .. "_studyinfo.dbms")
+        if (!fc.exists())
+        {
+            fc.create();
+        }
+        OutputStream fos = fc.openOutputStream();
+        fos.write(states, 0, states.length);
+        fos.flush();
+        fos.close();
+        fc.close();
+end
+
+--[[
+    public static void writeWordState(byte[] states) throws IOException
+    {
+        FileConnection fc = (FileConnection) Connector.open(fileProtocal + bookFileName + "_studyinfo.dbms", Connector.READ_WRITE);
+        if (!fc.exists())
+        {
+            fc.create();
+        }
+        OutputStream fos = fc.openOutputStream();
+        fos.write(states, 0, states.length);
+        fos.flush();
+        fos.close();
+        fc.close();
+    }
+    ]]

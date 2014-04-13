@@ -1,0 +1,88 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body layout="FrameLayout"  style="orientation:vertical;background-color:#0000ff;">
+		<div layout="LinearLayout"  style="orientation:horizontal;width:auto;height:auto;weight:1px;">
+			<scrollview style="margin:5px;weight:3px;height:auto;background-color:#66CCFF;">
+				<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;align:center;width:auto;weight:1px;padding:5px;">
+					<div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;weight:1px;">
+						<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:5px;padding:15px;background-color:#3366FF">
+							<button id="row1" style="width:64px;height:64px;background-image:url(images/ico/1.png);valign:middle;" onclick='showFirstStudyView()'></button>
+							<label style="width:auto;align:center;color:#FFFFFF">预习</label>
+						</div>
+						<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:5px;padding:15px;background-color:#3366FF">
+							<button id="row1" style="width:64px;height:64px;background-image:url(images/ico/2.png);valign:middle"  onclick='showReviewInfo()'></button>
+							<label style="width:auto;align:center;color:#FFFFFF">复习</label>
+						</div>
+					</div>
+					<div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;weight:1px;">
+						<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:5px;padding:15px;background-color:#3366FF">
+							<button id="row1" style="width:64px;height:64px;background-image:url(images/ico/32.png);valign:middle;" onclick='showFirstStudyView()'></button>
+							<label style="width:auto;align:center;color:#FFFFFF">学习情况</label>
+						</div>
+						<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:5px;padding:15px;background-color:#3366FF">
+							<button id="row1" style="width:64px;height:64px;background-image:url(images/ico/5.png);valign:middle"  onclick='showReviewInfo()'></button>
+							<label style="width:auto;align:center;color:#FFFFFF">帮助</label>
+						</div>
+					</div>
+					<div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;weight:1px;">
+						<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:5px;padding:15px;background-color:#3366FF">
+							<button id="row1" style="width:64px;height:64px;background-image:url(images/ico/4.png);valign:middle;" onclick='showFirstStudyView()'></button>
+							<label style="width:auto;align:center;color:#FFFFFF">选择词库</label>
+						</div>
+						<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:5px;padding:15px;background-color:#3366FF">
+							<button id="row1" style="width:64px;height:64px;background-image:url(images/ico/6.png);valign:middle"  onclick='showReviewInfo()'></button>
+							<label style="width:auto;align:center;color:#FFFFFF">真人语音</label>
+						</div>
+					</div>
+					<div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;weight:1px;">
+						<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:5px;padding:15px;background-color:#3366FF">
+							<button id="row1" style="width:64px;height:64px;background-image:url(images/ico/My_Projects.png);valign:middle;" onclick='showFirstStudyView()'></button>
+							<label style="width:auto;align:center;color:#FFFFFF">关于</label>
+						</div>
+						<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:5px;padding:15px;background-color:#3366FF">
+							<button id="row1" style="width:64px;height:64px;background-image:url(images/ico/7-1.png);valign:middle"  onclick='showReviewInfo()'></button>
+							<label style="width:auto;align:center;color:#FFFFFF">设置</label>
+						</div>
+					</div>
+				</div>
+			</scrollview>
+			<div layout="LinearLayout"  style="orientation:vertical;height:auto;weight:1px;width:60px;align:center;">
+				<div layout="LinearLayout"  style="margin:5px;orientation:horizontal;width:auto;align:center;background-color:#00AAEF">
+					<button id="row1" style="width:32px;height:32px;background-image:url(images/ico/exit-32.png);valign:middle"></button>
+				</div>
+				<div layout="LinearLayout"  style="margin:5px;orientation:horizontal;width:auto;align:center;valign:middle;background-color:#00CC00">
+					<button id="row1" style="width:48px;height:48px;background-image:url(images/ico/G11.png);valign:middle" onclick="reload()"></button>
+				</div>
+				<div layout="LinearLayout"  style="margin:5px;orientation:horizontal;width:auto;align:center;valign:middle;background-color:#00CC00">
+					<button id="row1" style="width:48px;height:48px;background-image:url(images/ico/G12.png);valign:middle"></button>
+				</div>
+				<div layout="LinearLayout"  style="margin:5px;orientation:horizontal;width:auto;align:center;valign:middle;background-color:#00CC00">
+					<button id="row1" style="width:48px;height:48px;background-image:url(images/ico/G13.png);valign:middle"></button>
+				</div>
+				<div layout="LinearLayout"  style="margin:5px;orientation:horizontal;width:auto;align:center;valign:middle;background-color:#00CC00">
+					<button id="row1" style="width:48px;height:48px;background-image:url(images/ico/G4.png);valign:middle"></button>
+				</div>
+				<div layout="LinearLayout"  style="margin:5px;orientation:horizontal;width:auto;weight:1px;align:center;valign:middle;background-color:#0000ff">
+				</div>
+				<div layout="LinearLayout"  style="margin:5px;orientation:horizontal;width:auto;align:center;background-color:#00AAEF">
+					<button id="row1" style="width:32px;height:32px;background-image:url(images/ico/exit-32.png);valign:middle"></button>
+				</div>
+			</div>
+		</div>
+	<!--
+	<div layout="LinearLayout" style="orientation:vertical;weight:1px;width:auto;height:auto;background-color:#cccccc">
+		<div layout="LinearLayout"  style="orientation:vertical;weight:1px;width:auto;height:auto;margin:10px;valign:middle;align:center;background-image:url(images/pic-1.gif);">
+				<button id="row1" style="valign:middle;align:center">Exit</button>
+
+		</div>
+	</div>
+	-->
+</body>
+</html>

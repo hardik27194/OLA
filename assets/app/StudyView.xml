@@ -1,0 +1,42 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body layout="FrameLayout" class="FrameLayout" style="margin:0;">
+	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;">
+			<div layout="LinearLayout" class="LinearLayout" >
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_077.png)" onclick="reload()" />
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_065.png)" onclick="back()" />
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_029.png)" onclick="testIO()" />
+			</div>
+	<div layout="LinearLayout" class="LinearLayout" style="width:auto;weight:1px;">
+	<button id="row1" style="background-image:url(images/10.gif);width:auto;weight:1px;valign:middle;" onclick='back()'>Return</button>
+	<button id="row1" style="background-image:url(images/10.gif);width:auto;weight:1px;text-align:right;valign:middle" onclick="start()">Start</button>
+	</div>
+	<label>Current Vocabulary:</label>
+	<label id="Book_Name" style="width:auto;weight:1px;text-align:left;valign:middle">23</label>
+	<TABLE style="width:auto;weight:1px;">
+	<TR>
+		<TD><label style="width:120px;text-align:left;valign:middle">Group Amount:</label></TD>
+		<TD><label id="Group_Amount" style="width:auto;weight:1px;text-align:left;valign:middle">23</label></TD>
+	</TR>
+	<TR>
+		<TD><label style="width:120px;text-align:left;valign:middle">Last Group Studied:</label></TD>
+		<TD><label id="Last_Group" style="width:auto;weight:1px;text-align:left;valign:middle">8</label></TD>
+	</TR>
+	<TR>
+		<TD><label style="width:120px;text-align:left;valign:middle">Next Group Studied:</label></TD>
+		<TD><textfield  id="Next_Group" style="width:auto;weight:1px;text-align:left;valign:middle">9</textfield></TD>
+	</TR>
+	</TABLE>
+
+	<label>Buy new vocabularies, please contact lohool@hotmail.com</label>
+	<label id="error_mesg"></label>
+	</div>
+</body>
+</html>
