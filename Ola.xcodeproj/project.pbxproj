@@ -15,6 +15,123 @@
 		840C4EBB18F9A0CB0061C4B6 /* LinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB118F9A0CB0061C4B6 /* LinearLayout.m */; };
 		840C4EBC18F9A0CB0061C4B6 /* RelativeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */; };
 		840C4EBD18F9A0CB0061C4B6 /* ScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */; };
+		849745CB18FADD0F007A8D5C /* Log.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EA18FADD0E007A8D5C /* Log.lua */; };
+		849745CC18FADD0F007A8D5C /* luac.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EB18FADD0E007A8D5C /* luac.lua */; };
+		849745CD18FADD0F007A8D5C /* OLA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EC18FADD0E007A8D5C /* OLA.lua */; };
+		849745CE18FADD0F007A8D5C /* OLABodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849744EE18FADD0E007A8D5C /* OLABodyView.m */; };
+		849745CF18FADD0F007A8D5C /* OLALuaContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 849744F018FADD0E007A8D5C /* OLALuaContext.m */; };
+		849745D018FADD0F007A8D5C /* OLAProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 849744F218FADD0E007A8D5C /* OLAProperties.m */; };
+		849745D118FADD0F007A8D5C /* OLAUIFactory.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744F418FADD0F007A8D5C /* OLAUIFactory.lua */; };
+		849745D218FADD0F007A8D5C /* OLAUIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 849744F518FADD0F007A8D5C /* OLAUIFactory.m */; };
+		849745D318FADD0F007A8D5C /* OLADatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 849744F818FADD0F007A8D5C /* OLADatabase.m */; };
+		849745D418FADD0F007A8D5C /* OLADES3Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 849744FA18FADD0F007A8D5C /* OLADES3Encrypt.m */; };
+		849745D518FADD0F007A8D5C /* OLAFileInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 849744FC18FADD0F007A8D5C /* OLAFileInputStream.m */; };
+		849745D618FADD0F007A8D5C /* OLAFileOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 849744FE18FADD0F007A8D5C /* OLAFileOutputStream.m */; };
+		849745D718FADD0F007A8D5C /* OLALog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497450118FADD0F007A8D5C /* OLALog.m */; };
+		849745D818FADD0F007A8D5C /* OLAStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497450318FADD0F007A8D5C /* OLAStringUtil.m */; };
+		849745D918FADD0F007A8D5C /* compile-stdlib.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8497450618FADD0F007A8D5C /* compile-stdlib.sh */; };
+		849745DA18FADD0F007A8D5C /* copy-scripts.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8497450718FADD0F007A8D5C /* copy-scripts.sh */; };
+		849745DB18FADD0F007A8D5C /* luac.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497450818FADD0F007A8D5C /* luac.lua */; };
+		849745DC18FADD0F007A8D5C /* wax_CGTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497450C18FADD0F007A8D5C /* wax_CGTransform.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		849745DD18FADD0F007A8D5C /* wax_CGContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497450F18FADD0F007A8D5C /* wax_CGContext.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		849745DE18FADD0F007A8D5C /* wax_filesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497451218FADD0F007A8D5C /* wax_filesystem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		849745DF18FADD0F007A8D5C /* wax_http.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497451518FADD0F007A8D5C /* wax_http.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		849745E018FADD0F007A8D5C /* wax_http_connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497451718FADD0F007A8D5C /* wax_http_connection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		849745E118FADD0F007A8D5C /* Rakefile in Resources */ = {isa = PBXBuildFile; fileRef = 8497451918FADD0F007A8D5C /* Rakefile */; };
+		849745E218FADD0F007A8D5C /* wax_json.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497451A18FADD0F007A8D5C /* wax_json.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		849745E318FADD0F007A8D5C /* yajl.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497452118FADD0F007A8D5C /* yajl.c */; };
+		849745E418FADD0F007A8D5C /* yajl_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497452218FADD0F007A8D5C /* yajl_alloc.c */; };
+		849745E518FADD0F007A8D5C /* yajl_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497452418FADD0F007A8D5C /* yajl_buf.c */; };
+		849745E618FADD0F007A8D5C /* yajl_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497452818FADD0F007A8D5C /* yajl_encode.c */; };
+		849745E718FADD0F007A8D5C /* yajl_gen.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497452A18FADD0F007A8D5C /* yajl_gen.c */; };
+		849745E818FADD0F007A8D5C /* yajl_lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497452C18FADD0F007A8D5C /* yajl_lex.c */; };
+		849745E918FADD0F007A8D5C /* yajl_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497452F18FADD0F007A8D5C /* yajl_parser.c */; };
+		849745EA18FADD0F007A8D5C /* yajl-1.0.9.tar.gz in Resources */ = {isa = PBXBuildFile; fileRef = 8497453118FADD0F007A8D5C /* yajl-1.0.9.tar.gz */; };
+		849745EE18FADD0F007A8D5C /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497453B18FADD0F007A8D5C /* lapi.c */; };
+		849745EF18FADD0F007A8D5C /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497453D18FADD0F007A8D5C /* lauxlib.c */; };
+		849745F018FADD0F007A8D5C /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497453F18FADD0F007A8D5C /* lbaselib.c */; };
+		849745F118FADD0F007A8D5C /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454018FADD0F007A8D5C /* lcode.c */; };
+		849745F218FADD0F007A8D5C /* ldblib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454218FADD0F007A8D5C /* ldblib.c */; };
+		849745F318FADD0F007A8D5C /* ldebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454318FADD0F007A8D5C /* ldebug.c */; };
+		849745F418FADD0F007A8D5C /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454518FADD0F007A8D5C /* ldo.c */; };
+		849745F518FADD0F007A8D5C /* ldump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454718FADD0F007A8D5C /* ldump.c */; };
+		849745F618FADD0F007A8D5C /* lfunc.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454818FADD0F007A8D5C /* lfunc.c */; };
+		849745F718FADD0F007A8D5C /* lgc.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454A18FADD0F007A8D5C /* lgc.c */; };
+		849745F818FADD0F007A8D5C /* linit.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454C18FADD0F007A8D5C /* linit.c */; };
+		849745F918FADD0F007A8D5C /* liolib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454D18FADD0F007A8D5C /* liolib.c */; };
+		849745FA18FADD0F007A8D5C /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497454E18FADD0F007A8D5C /* llex.c */; };
+		849745FB18FADD0F007A8D5C /* lmathlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497455118FADD0F007A8D5C /* lmathlib.c */; };
+		849745FC18FADD0F007A8D5C /* lmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497455218FADD0F007A8D5C /* lmem.c */; };
+		849745FD18FADD0F007A8D5C /* loadlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497455418FADD0F007A8D5C /* loadlib.c */; };
+		849745FE18FADD0F007A8D5C /* lobject.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497455518FADD0F007A8D5C /* lobject.c */; };
+		849745FF18FADD0F007A8D5C /* lopcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497455718FADD0F007A8D5C /* lopcodes.c */; };
+		8497460018FADD0F007A8D5C /* loslib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497455918FADD0F007A8D5C /* loslib.c */; };
+		8497460118FADD0F007A8D5C /* lparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497455A18FADD0F007A8D5C /* lparser.c */; };
+		8497460218FADD0F007A8D5C /* lstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497455C18FADD0F007A8D5C /* lstate.c */; };
+		8497460318FADD0F007A8D5C /* lstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497455E18FADD0F007A8D5C /* lstring.c */; };
+		8497460418FADD0F007A8D5C /* lstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497456018FADD0F007A8D5C /* lstrlib.c */; };
+		8497460518FADD0F007A8D5C /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497456118FADD0F007A8D5C /* ltable.c */; };
+		8497460618FADD0F007A8D5C /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497456318FADD0F007A8D5C /* ltablib.c */; };
+		8497460718FADD0F007A8D5C /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497456418FADD0F007A8D5C /* ltm.c */; };
+		8497460818FADD0F007A8D5C /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497456918FADD0F007A8D5C /* lundump.c */; };
+		8497460918FADD0F007A8D5C /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497456B18FADD0F007A8D5C /* lvm.c */; };
+		8497460A18FADD0F007A8D5C /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497456D18FADD0F007A8D5C /* lzio.c */; };
+		8497460B18FADD0F007A8D5C /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = 8497456F18FADD0F007A8D5C /* print.c */; };
+		8497460C18FADD0F007A8D5C /* project.rake in Resources */ = {isa = PBXBuildFile; fileRef = 8497457018FADD0F007A8D5C /* project.rake */; };
+		8497460D18FADD0F007A8D5C /* enums.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457218FADD0F007A8D5C /* enums.lua */; };
+		8497460E18FADD0F007A8D5C /* http.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457418FADD0F007A8D5C /* http.lua */; };
+		8497460F18FADD0F007A8D5C /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457518FADD0F007A8D5C /* init.lua */; };
+		8497461018FADD0F007A8D5C /* number.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457618FADD0F007A8D5C /* number.lua */; };
+		8497461118FADD0F007A8D5C /* string.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457718FADD0F007A8D5C /* string.lua */; };
+		8497461218FADD0F007A8D5C /* table.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457818FADD0F007A8D5C /* table.lua */; };
+		8497461318FADD0F007A8D5C /* autoload.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457A18FADD0F007A8D5C /* autoload.lua */; };
+		8497461418FADD0F007A8D5C /* base64.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457B18FADD0F007A8D5C /* base64.lua */; };
+		8497461518FADD0F007A8D5C /* bit.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457C18FADD0F007A8D5C /* bit.lua */; };
+		8497461618FADD0F007A8D5C /* cache.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457D18FADD0F007A8D5C /* cache.lua */; };
+		8497461718FADD0F007A8D5C /* callback.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457E18FADD0F007A8D5C /* callback.lua */; };
+		8497461818FADD0F007A8D5C /* frame.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497457F18FADD0F007A8D5C /* frame.lua */; };
+		8497461918FADD0F007A8D5C /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458018FADD0F007A8D5C /* init.lua */; };
+		8497461A18FADD0F007A8D5C /* pickView.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458118FADD0F007A8D5C /* pickView.lua */; };
+		8497461B18FADD0F007A8D5C /* time.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458218FADD0F007A8D5C /* time.lua */; };
+		8497461C18FADD0F007A8D5C /* WaxServer.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458318FADD0F007A8D5C /* WaxServer.lua */; };
+		8497461D18FADD0F007A8D5C /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458418FADD0F007A8D5C /* init.lua */; };
+		8497461E18FADD0F007A8D5C /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458618FADD0F007A8D5C /* init.lua */; };
+		8497461F18FADD0F007A8D5C /* luamock.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458718FADD0F007A8D5C /* luamock.lua */; };
+		8497462018FADD0F007A8D5C /* luaspec.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458818FADD0F007A8D5C /* luaspec.lua */; };
+		8497462118FADD0F007A8D5C /* repl.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458918FADD0F007A8D5C /* repl.lua */; };
+		8497462218FADD0F007A8D5C /* structs.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458A18FADD0F007A8D5C /* structs.lua */; };
+		8497462318FADD0F007A8D5C /* waxClass.lua in Resources */ = {isa = PBXBuildFile; fileRef = 8497458B18FADD0F007A8D5C /* waxClass.lua */; };
+		8497462418FADD0F007A8D5C /* wax.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497458D18FADD0F007A8D5C /* wax.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8497462518FADD0F007A8D5C /* wax_class.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497458F18FADD0F007A8D5C /* wax_class.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8497462618FADD0F007A8D5C /* wax_gc.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497459118FADD0F007A8D5C /* wax_gc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8497462718FADD0F007A8D5C /* wax_helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497459318FADD0F007A8D5C /* wax_helpers.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8497462818FADD0F007A8D5C /* wax_instance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497459518FADD0F007A8D5C /* wax_instance.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8497462918FADD0F007A8D5C /* wax_server.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497459718FADD0F007A8D5C /* wax_server.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8497462A18FADD0F007A8D5C /* wax_struct.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497459A18FADD0F007A8D5C /* wax_struct.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8497462B18FADD0F007A8D5C /* CSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497459D18FADD0F007A8D5C /* CSS.m */; };
+		8497462C18FADD0F007A8D5C /* OLAButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497459F18FADD0F007A8D5C /* OLAButton.m */; };
+		8497462D18FADD0F007A8D5C /* OLAContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745A118FADD0F007A8D5C /* OLAContainer.m */; };
+		8497462E18FADD0F007A8D5C /* OLAFrameLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745A318FADD0F007A8D5C /* OLAFrameLayout.m */; };
+		8497462F18FADD0F007A8D5C /* OLALabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745A518FADD0F007A8D5C /* OLALabel.m */; };
+		8497463018FADD0F007A8D5C /* OLALayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745A718FADD0F007A8D5C /* OLALayout.m */; };
+		8497463118FADD0F007A8D5C /* OLALinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745A918FADD0F007A8D5C /* OLALinearLayout.m */; };
+		8497463218FADD0F007A8D5C /* OLALongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745AB18FADD0F007A8D5C /* OLALongPressGestureRecognizer.m */; };
+		8497463318FADD0F007A8D5C /* OLARelativeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745AD18FADD0F007A8D5C /* OLARelativeLayout.m */; };
+		8497463418FADD0F007A8D5C /* OLAScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745AF18FADD0F007A8D5C /* OLAScrollView.m */; };
+		8497463518FADD0F007A8D5C /* OLATable.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745B118FADD0F007A8D5C /* OLATable.m */; };
+		8497463618FADD0F007A8D5C /* OLATableRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745B318FADD0F007A8D5C /* OLATableRow.m */; };
+		8497463718FADD0F007A8D5C /* OLATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745B518FADD0F007A8D5C /* OLATextField.m */; };
+		8497463818FADD0F007A8D5C /* OLATextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745B718FADD0F007A8D5C /* OLATextView.m */; };
+		8497463918FADD0F007A8D5C /* OLAView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745B918FADD0F007A8D5C /* OLAView.m */; };
+		8497463A18FADD0F007A8D5C /* OLAWedgit.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745BB18FADD0F007A8D5C /* OLAWedgit.m */; };
+		8497463B18FADD0F007A8D5C /* UILabelEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745BD18FADD0F007A8D5C /* UILabelEx.m */; };
+		8497463C18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745BF18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m */; };
+		8497463D18FADD0F007A8D5C /* LOStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745C218FADD0F007A8D5C /* LOStack.m */; };
+		8497463E18FADD0F007A8D5C /* XMLAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745C418FADD0F007A8D5C /* XMLAttribute.m */; };
+		8497463F18FADD0F007A8D5C /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745C618FADD0F007A8D5C /* XMLDocument.m */; };
+		8497464018FADD0F007A8D5C /* XMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745C818FADD0F007A8D5C /* XMLElement.m */; };
+		8497464118FADD0F007A8D5C /* XMLText.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745CA18FADD0F007A8D5C /* XMLText.m */; };
+		8497464318FADD53007A8D5C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8497464218FADD53007A8D5C /* libsqlite3.0.dylib */; };
 		84DE5C7518D9A1E30059C5C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7418D9A1E30059C5C9 /* Foundation.framework */; };
 		84DE5C7718D9A1E30059C5C9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7618D9A1E30059C5C9 /* CoreGraphics.framework */; };
 		84DE5C7918D9A1E30059C5C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7818D9A1E30059C5C9 /* UIKit.framework */; };
@@ -61,6 +178,206 @@
 		840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeLayout.m; sourceTree = "<group>"; };
 		840C4EB418F9A0CB0061C4B6 /* ScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollerView.h; sourceTree = "<group>"; };
 		840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollerView.m; sourceTree = "<group>"; };
+		849744EA18FADD0E007A8D5C /* Log.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Log.lua; path = ../Log.lua; sourceTree = "<group>"; };
+		849744EB18FADD0E007A8D5C /* luac.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = luac.lua; path = Ola/luac.lua; sourceTree = "<group>"; };
+		849744EC18FADD0E007A8D5C /* OLA.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OLA.lua; path = Ola/OLA.lua; sourceTree = "<group>"; };
+		849744ED18FADD0E007A8D5C /* OLABodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLABodyView.h; path = Ola/OLABodyView.h; sourceTree = "<group>"; };
+		849744EE18FADD0E007A8D5C /* OLABodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLABodyView.m; path = Ola/OLABodyView.m; sourceTree = "<group>"; };
+		849744EF18FADD0E007A8D5C /* OLALuaContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLALuaContext.h; path = Ola/OLALuaContext.h; sourceTree = "<group>"; };
+		849744F018FADD0E007A8D5C /* OLALuaContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLALuaContext.m; path = Ola/OLALuaContext.m; sourceTree = "<group>"; };
+		849744F118FADD0E007A8D5C /* OLAProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLAProperties.h; path = Ola/OLAProperties.h; sourceTree = "<group>"; };
+		849744F218FADD0E007A8D5C /* OLAProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLAProperties.m; path = Ola/OLAProperties.m; sourceTree = "<group>"; };
+		849744F318FADD0F007A8D5C /* OLAUIFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLAUIFactory.h; path = Ola/OLAUIFactory.h; sourceTree = "<group>"; };
+		849744F418FADD0F007A8D5C /* OLAUIFactory.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OLAUIFactory.lua; path = Ola/OLAUIFactory.lua; sourceTree = "<group>"; };
+		849744F518FADD0F007A8D5C /* OLAUIFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLAUIFactory.m; path = Ola/OLAUIFactory.m; sourceTree = "<group>"; };
+		849744F718FADD0F007A8D5C /* OLADatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLADatabase.h; sourceTree = "<group>"; };
+		849744F818FADD0F007A8D5C /* OLADatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLADatabase.m; sourceTree = "<group>"; };
+		849744F918FADD0F007A8D5C /* OLADES3Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLADES3Encrypt.h; sourceTree = "<group>"; };
+		849744FA18FADD0F007A8D5C /* OLADES3Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLADES3Encrypt.m; sourceTree = "<group>"; };
+		849744FB18FADD0F007A8D5C /* OLAFileInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAFileInputStream.h; sourceTree = "<group>"; };
+		849744FC18FADD0F007A8D5C /* OLAFileInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAFileInputStream.m; sourceTree = "<group>"; };
+		849744FD18FADD0F007A8D5C /* OLAFileOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAFileOutputStream.h; sourceTree = "<group>"; };
+		849744FE18FADD0F007A8D5C /* OLAFileOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAFileOutputStream.m; sourceTree = "<group>"; };
+		849744FF18FADD0F007A8D5C /* OLAFileStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAFileStream.h; sourceTree = "<group>"; };
+		8497450018FADD0F007A8D5C /* OLALog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLALog.h; sourceTree = "<group>"; };
+		8497450118FADD0F007A8D5C /* OLALog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLALog.m; sourceTree = "<group>"; };
+		8497450218FADD0F007A8D5C /* OLAStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAStringUtil.h; sourceTree = "<group>"; };
+		8497450318FADD0F007A8D5C /* OLAStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAStringUtil.m; sourceTree = "<group>"; };
+		8497450618FADD0F007A8D5C /* compile-stdlib.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "compile-stdlib.sh"; sourceTree = "<group>"; };
+		8497450718FADD0F007A8D5C /* copy-scripts.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "copy-scripts.sh"; sourceTree = "<group>"; };
+		8497450818FADD0F007A8D5C /* luac.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = luac.lua; sourceTree = "<group>"; };
+		8497450B18FADD0F007A8D5C /* wax_CGTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_CGTransform.h; sourceTree = "<group>"; };
+		8497450C18FADD0F007A8D5C /* wax_CGTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_CGTransform.m; sourceTree = "<group>"; };
+		8497450E18FADD0F007A8D5C /* wax_CGContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_CGContext.h; sourceTree = "<group>"; };
+		8497450F18FADD0F007A8D5C /* wax_CGContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_CGContext.m; sourceTree = "<group>"; };
+		8497451118FADD0F007A8D5C /* wax_filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_filesystem.h; sourceTree = "<group>"; };
+		8497451218FADD0F007A8D5C /* wax_filesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_filesystem.m; sourceTree = "<group>"; };
+		8497451418FADD0F007A8D5C /* wax_http.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_http.h; sourceTree = "<group>"; };
+		8497451518FADD0F007A8D5C /* wax_http.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_http.m; sourceTree = "<group>"; };
+		8497451618FADD0F007A8D5C /* wax_http_connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_http_connection.h; sourceTree = "<group>"; };
+		8497451718FADD0F007A8D5C /* wax_http_connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_http_connection.m; sourceTree = "<group>"; };
+		8497451918FADD0F007A8D5C /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
+		8497451A18FADD0F007A8D5C /* wax_json.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wax_json.c; sourceTree = "<group>"; };
+		8497451B18FADD0F007A8D5C /* wax_json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_json.h; sourceTree = "<group>"; };
+		8497451E18FADD0F007A8D5C /* yajl_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_common.h; sourceTree = "<group>"; };
+		8497451F18FADD0F007A8D5C /* yajl_gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_gen.h; sourceTree = "<group>"; };
+		8497452018FADD0F007A8D5C /* yajl_parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parse.h; sourceTree = "<group>"; };
+		8497452118FADD0F007A8D5C /* yajl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl.c; sourceTree = "<group>"; };
+		8497452218FADD0F007A8D5C /* yajl_alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_alloc.c; sourceTree = "<group>"; };
+		8497452318FADD0F007A8D5C /* yajl_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_alloc.h; sourceTree = "<group>"; };
+		8497452418FADD0F007A8D5C /* yajl_buf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_buf.c; sourceTree = "<group>"; };
+		8497452518FADD0F007A8D5C /* yajl_buf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_buf.h; sourceTree = "<group>"; };
+		8497452618FADD0F007A8D5C /* yajl_bytestack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_bytestack.h; sourceTree = "<group>"; };
+		8497452718FADD0F007A8D5C /* yajl_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_common.h; sourceTree = "<group>"; };
+		8497452818FADD0F007A8D5C /* yajl_encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_encode.c; sourceTree = "<group>"; };
+		8497452918FADD0F007A8D5C /* yajl_encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_encode.h; sourceTree = "<group>"; };
+		8497452A18FADD0F007A8D5C /* yajl_gen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_gen.c; sourceTree = "<group>"; };
+		8497452B18FADD0F007A8D5C /* yajl_gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_gen.h; sourceTree = "<group>"; };
+		8497452C18FADD0F007A8D5C /* yajl_lex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_lex.c; sourceTree = "<group>"; };
+		8497452D18FADD0F007A8D5C /* yajl_lex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_lex.h; sourceTree = "<group>"; };
+		8497452E18FADD0F007A8D5C /* yajl_parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parse.h; sourceTree = "<group>"; };
+		8497452F18FADD0F007A8D5C /* yajl_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_parser.c; sourceTree = "<group>"; };
+		8497453018FADD0F007A8D5C /* yajl_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parser.h; sourceTree = "<group>"; };
+		8497453118FADD0F007A8D5C /* yajl-1.0.9.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "yajl-1.0.9.tar.gz"; sourceTree = "<group>"; };
+		8497453B18FADD0F007A8D5C /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
+		8497453C18FADD0F007A8D5C /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
+		8497453D18FADD0F007A8D5C /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
+		8497453E18FADD0F007A8D5C /* lauxlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lauxlib.h; sourceTree = "<group>"; };
+		8497453F18FADD0F007A8D5C /* lbaselib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lbaselib.c; sourceTree = "<group>"; };
+		8497454018FADD0F007A8D5C /* lcode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lcode.c; sourceTree = "<group>"; };
+		8497454118FADD0F007A8D5C /* lcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lcode.h; sourceTree = "<group>"; };
+		8497454218FADD0F007A8D5C /* ldblib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldblib.c; sourceTree = "<group>"; };
+		8497454318FADD0F007A8D5C /* ldebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldebug.c; sourceTree = "<group>"; };
+		8497454418FADD0F007A8D5C /* ldebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ldebug.h; sourceTree = "<group>"; };
+		8497454518FADD0F007A8D5C /* ldo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldo.c; sourceTree = "<group>"; };
+		8497454618FADD0F007A8D5C /* ldo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ldo.h; sourceTree = "<group>"; };
+		8497454718FADD0F007A8D5C /* ldump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldump.c; sourceTree = "<group>"; };
+		8497454818FADD0F007A8D5C /* lfunc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lfunc.c; sourceTree = "<group>"; };
+		8497454918FADD0F007A8D5C /* lfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lfunc.h; sourceTree = "<group>"; };
+		8497454A18FADD0F007A8D5C /* lgc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lgc.c; sourceTree = "<group>"; };
+		8497454B18FADD0F007A8D5C /* lgc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lgc.h; sourceTree = "<group>"; };
+		8497454C18FADD0F007A8D5C /* linit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = linit.c; sourceTree = "<group>"; };
+		8497454D18FADD0F007A8D5C /* liolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = liolib.c; sourceTree = "<group>"; };
+		8497454E18FADD0F007A8D5C /* llex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = llex.c; sourceTree = "<group>"; };
+		8497454F18FADD0F007A8D5C /* llex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = llex.h; sourceTree = "<group>"; };
+		8497455018FADD0F007A8D5C /* llimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = llimits.h; sourceTree = "<group>"; };
+		8497455118FADD0F007A8D5C /* lmathlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lmathlib.c; sourceTree = "<group>"; };
+		8497455218FADD0F007A8D5C /* lmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lmem.c; sourceTree = "<group>"; };
+		8497455318FADD0F007A8D5C /* lmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lmem.h; sourceTree = "<group>"; };
+		8497455418FADD0F007A8D5C /* loadlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loadlib.c; sourceTree = "<group>"; };
+		8497455518FADD0F007A8D5C /* lobject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lobject.c; sourceTree = "<group>"; };
+		8497455618FADD0F007A8D5C /* lobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lobject.h; sourceTree = "<group>"; };
+		8497455718FADD0F007A8D5C /* lopcodes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lopcodes.c; sourceTree = "<group>"; };
+		8497455818FADD0F007A8D5C /* lopcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lopcodes.h; sourceTree = "<group>"; };
+		8497455918FADD0F007A8D5C /* loslib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loslib.c; sourceTree = "<group>"; };
+		8497455A18FADD0F007A8D5C /* lparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lparser.c; sourceTree = "<group>"; };
+		8497455B18FADD0F007A8D5C /* lparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lparser.h; sourceTree = "<group>"; };
+		8497455C18FADD0F007A8D5C /* lstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lstate.c; sourceTree = "<group>"; };
+		8497455D18FADD0F007A8D5C /* lstate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lstate.h; sourceTree = "<group>"; };
+		8497455E18FADD0F007A8D5C /* lstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lstring.c; sourceTree = "<group>"; };
+		8497455F18FADD0F007A8D5C /* lstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lstring.h; sourceTree = "<group>"; };
+		8497456018FADD0F007A8D5C /* lstrlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lstrlib.c; sourceTree = "<group>"; };
+		8497456118FADD0F007A8D5C /* ltable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltable.c; sourceTree = "<group>"; };
+		8497456218FADD0F007A8D5C /* ltable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltable.h; sourceTree = "<group>"; };
+		8497456318FADD0F007A8D5C /* ltablib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltablib.c; sourceTree = "<group>"; };
+		8497456418FADD0F007A8D5C /* ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltm.c; sourceTree = "<group>"; };
+		8497456518FADD0F007A8D5C /* ltm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltm.h; sourceTree = "<group>"; };
+		8497456618FADD0F007A8D5C /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
+		8497456718FADD0F007A8D5C /* luaconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luaconf.h; sourceTree = "<group>"; };
+		8497456818FADD0F007A8D5C /* lualib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lualib.h; sourceTree = "<group>"; };
+		8497456918FADD0F007A8D5C /* lundump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lundump.c; sourceTree = "<group>"; };
+		8497456A18FADD0F007A8D5C /* lundump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lundump.h; sourceTree = "<group>"; };
+		8497456B18FADD0F007A8D5C /* lvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lvm.c; sourceTree = "<group>"; };
+		8497456C18FADD0F007A8D5C /* lvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lvm.h; sourceTree = "<group>"; };
+		8497456D18FADD0F007A8D5C /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
+		8497456E18FADD0F007A8D5C /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
+		8497456F18FADD0F007A8D5C /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print.c; sourceTree = "<group>"; };
+		8497457018FADD0F007A8D5C /* project.rake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = project.rake; sourceTree = "<group>"; };
+		8497457218FADD0F007A8D5C /* enums.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enums.lua; sourceTree = "<group>"; };
+		8497457418FADD0F007A8D5C /* http.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = http.lua; sourceTree = "<group>"; };
+		8497457518FADD0F007A8D5C /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		8497457618FADD0F007A8D5C /* number.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = number.lua; sourceTree = "<group>"; };
+		8497457718FADD0F007A8D5C /* string.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = string.lua; sourceTree = "<group>"; };
+		8497457818FADD0F007A8D5C /* table.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = table.lua; sourceTree = "<group>"; };
+		8497457A18FADD0F007A8D5C /* autoload.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = autoload.lua; sourceTree = "<group>"; };
+		8497457B18FADD0F007A8D5C /* base64.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = base64.lua; sourceTree = "<group>"; };
+		8497457C18FADD0F007A8D5C /* bit.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bit.lua; sourceTree = "<group>"; };
+		8497457D18FADD0F007A8D5C /* cache.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cache.lua; sourceTree = "<group>"; };
+		8497457E18FADD0F007A8D5C /* callback.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = callback.lua; sourceTree = "<group>"; };
+		8497457F18FADD0F007A8D5C /* frame.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = frame.lua; sourceTree = "<group>"; };
+		8497458018FADD0F007A8D5C /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		8497458118FADD0F007A8D5C /* pickView.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pickView.lua; sourceTree = "<group>"; };
+		8497458218FADD0F007A8D5C /* time.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time.lua; sourceTree = "<group>"; };
+		8497458318FADD0F007A8D5C /* WaxServer.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WaxServer.lua; sourceTree = "<group>"; };
+		8497458418FADD0F007A8D5C /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		8497458618FADD0F007A8D5C /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		8497458718FADD0F007A8D5C /* luamock.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = luamock.lua; sourceTree = "<group>"; };
+		8497458818FADD0F007A8D5C /* luaspec.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = luaspec.lua; sourceTree = "<group>"; };
+		8497458918FADD0F007A8D5C /* repl.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repl.lua; sourceTree = "<group>"; };
+		8497458A18FADD0F007A8D5C /* structs.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = structs.lua; sourceTree = "<group>"; };
+		8497458B18FADD0F007A8D5C /* waxClass.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = waxClass.lua; sourceTree = "<group>"; };
+		8497458C18FADD0F007A8D5C /* wax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax.h; sourceTree = "<group>"; };
+		8497458D18FADD0F007A8D5C /* wax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax.m; sourceTree = "<group>"; };
+		8497458E18FADD0F007A8D5C /* wax_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_class.h; sourceTree = "<group>"; };
+		8497458F18FADD0F007A8D5C /* wax_class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_class.m; sourceTree = "<group>"; };
+		8497459018FADD0F007A8D5C /* wax_gc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_gc.h; sourceTree = "<group>"; };
+		8497459118FADD0F007A8D5C /* wax_gc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_gc.m; sourceTree = "<group>"; };
+		8497459218FADD0F007A8D5C /* wax_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_helpers.h; sourceTree = "<group>"; };
+		8497459318FADD0F007A8D5C /* wax_helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_helpers.m; sourceTree = "<group>"; };
+		8497459418FADD0F007A8D5C /* wax_instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_instance.h; sourceTree = "<group>"; };
+		8497459518FADD0F007A8D5C /* wax_instance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_instance.m; sourceTree = "<group>"; };
+		8497459618FADD0F007A8D5C /* wax_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_server.h; sourceTree = "<group>"; };
+		8497459718FADD0F007A8D5C /* wax_server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_server.m; sourceTree = "<group>"; };
+		8497459818FADD0F007A8D5C /* wax_stdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_stdlib.h; sourceTree = "<group>"; };
+		8497459918FADD0F007A8D5C /* wax_struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_struct.h; sourceTree = "<group>"; };
+		8497459A18FADD0F007A8D5C /* wax_struct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_struct.m; sourceTree = "<group>"; };
+		8497459C18FADD0F007A8D5C /* CSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSS.h; sourceTree = "<group>"; };
+		8497459D18FADD0F007A8D5C /* CSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSS.m; sourceTree = "<group>"; };
+		8497459E18FADD0F007A8D5C /* OLAButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAButton.h; sourceTree = "<group>"; };
+		8497459F18FADD0F007A8D5C /* OLAButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAButton.m; sourceTree = "<group>"; };
+		849745A018FADD0F007A8D5C /* OLAContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAContainer.h; sourceTree = "<group>"; };
+		849745A118FADD0F007A8D5C /* OLAContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAContainer.m; sourceTree = "<group>"; };
+		849745A218FADD0F007A8D5C /* OLAFrameLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAFrameLayout.h; sourceTree = "<group>"; };
+		849745A318FADD0F007A8D5C /* OLAFrameLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAFrameLayout.m; sourceTree = "<group>"; };
+		849745A418FADD0F007A8D5C /* OLALabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLALabel.h; sourceTree = "<group>"; };
+		849745A518FADD0F007A8D5C /* OLALabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLALabel.m; sourceTree = "<group>"; };
+		849745A618FADD0F007A8D5C /* OLALayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLALayout.h; sourceTree = "<group>"; };
+		849745A718FADD0F007A8D5C /* OLALayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLALayout.m; sourceTree = "<group>"; };
+		849745A818FADD0F007A8D5C /* OLALinearLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLALinearLayout.h; sourceTree = "<group>"; };
+		849745A918FADD0F007A8D5C /* OLALinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLALinearLayout.m; sourceTree = "<group>"; };
+		849745AA18FADD0F007A8D5C /* OLALongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLALongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		849745AB18FADD0F007A8D5C /* OLALongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLALongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		849745AC18FADD0F007A8D5C /* OLARelativeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLARelativeLayout.h; sourceTree = "<group>"; };
+		849745AD18FADD0F007A8D5C /* OLARelativeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLARelativeLayout.m; sourceTree = "<group>"; };
+		849745AE18FADD0F007A8D5C /* OLAScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAScrollView.h; sourceTree = "<group>"; };
+		849745AF18FADD0F007A8D5C /* OLAScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAScrollView.m; sourceTree = "<group>"; };
+		849745B018FADD0F007A8D5C /* OLATable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLATable.h; sourceTree = "<group>"; };
+		849745B118FADD0F007A8D5C /* OLATable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLATable.m; sourceTree = "<group>"; };
+		849745B218FADD0F007A8D5C /* OLATableRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLATableRow.h; sourceTree = "<group>"; };
+		849745B318FADD0F007A8D5C /* OLATableRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLATableRow.m; sourceTree = "<group>"; };
+		849745B418FADD0F007A8D5C /* OLATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLATextField.h; sourceTree = "<group>"; };
+		849745B518FADD0F007A8D5C /* OLATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLATextField.m; sourceTree = "<group>"; };
+		849745B618FADD0F007A8D5C /* OLATextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLATextView.h; sourceTree = "<group>"; };
+		849745B718FADD0F007A8D5C /* OLATextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLATextView.m; sourceTree = "<group>"; };
+		849745B818FADD0F007A8D5C /* OLAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAView.h; sourceTree = "<group>"; };
+		849745B918FADD0F007A8D5C /* OLAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAView.m; sourceTree = "<group>"; };
+		849745BA18FADD0F007A8D5C /* OLAWedgit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAWedgit.h; sourceTree = "<group>"; };
+		849745BB18FADD0F007A8D5C /* OLAWedgit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAWedgit.m; sourceTree = "<group>"; };
+		849745BC18FADD0F007A8D5C /* UILabelEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILabelEx.h; sourceTree = "<group>"; };
+		849745BD18FADD0F007A8D5C /* UILabelEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILabelEx.m; sourceTree = "<group>"; };
+		849745BE18FADD0F007A8D5C /* UIView+WhenTappedBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WhenTappedBlocks.h"; sourceTree = "<group>"; };
+		849745BF18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WhenTappedBlocks.m"; sourceTree = "<group>"; };
+		849745C118FADD0F007A8D5C /* LOStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOStack.h; sourceTree = "<group>"; };
+		849745C218FADD0F007A8D5C /* LOStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOStack.m; sourceTree = "<group>"; };
+		849745C318FADD0F007A8D5C /* XMLAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAttribute.h; sourceTree = "<group>"; };
+		849745C418FADD0F007A8D5C /* XMLAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAttribute.m; sourceTree = "<group>"; };
+		849745C518FADD0F007A8D5C /* XMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDocument.h; sourceTree = "<group>"; };
+		849745C618FADD0F007A8D5C /* XMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDocument.m; sourceTree = "<group>"; };
+		849745C718FADD0F007A8D5C /* XMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLElement.h; sourceTree = "<group>"; };
+		849745C818FADD0F007A8D5C /* XMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLElement.m; sourceTree = "<group>"; };
+		849745C918FADD0F007A8D5C /* XMLText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLText.h; sourceTree = "<group>"; };
+		849745CA18FADD0F007A8D5C /* XMLText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLText.m; sourceTree = "<group>"; };
+		8497464218FADD53007A8D5C /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		84DE5C7118D9A1E30059C5C9 /* Ola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ola.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DE5C7418D9A1E30059C5C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84DE5C7618D9A1E30059C5C9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,6 +406,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8497464318FADD53007A8D5C /* libsqlite3.0.dylib in Frameworks */,
 				84DE5C7718D9A1E30059C5C9 /* CoreGraphics.framework in Frameworks */,
 				84DE5C7918D9A1E30059C5C9 /* UIKit.framework in Frameworks */,
 				84DE5C7518D9A1E30059C5C9 /* Foundation.framework in Frameworks */,
@@ -132,9 +450,356 @@
 			path = layout;
 			sourceTree = "<group>";
 		};
+		849744F618FADD0F007A8D5C /* sharedobj */ = {
+			isa = PBXGroup;
+			children = (
+				849744F718FADD0F007A8D5C /* OLADatabase.h */,
+				849744F818FADD0F007A8D5C /* OLADatabase.m */,
+				849744F918FADD0F007A8D5C /* OLADES3Encrypt.h */,
+				849744FA18FADD0F007A8D5C /* OLADES3Encrypt.m */,
+				849744FB18FADD0F007A8D5C /* OLAFileInputStream.h */,
+				849744FC18FADD0F007A8D5C /* OLAFileInputStream.m */,
+				849744FD18FADD0F007A8D5C /* OLAFileOutputStream.h */,
+				849744FE18FADD0F007A8D5C /* OLAFileOutputStream.m */,
+				849744FF18FADD0F007A8D5C /* OLAFileStream.h */,
+				8497450018FADD0F007A8D5C /* OLALog.h */,
+				8497450118FADD0F007A8D5C /* OLALog.m */,
+				849744EA18FADD0E007A8D5C /* Log.lua */,
+				8497450218FADD0F007A8D5C /* OLAStringUtil.h */,
+				8497450318FADD0F007A8D5C /* OLAStringUtil.m */,
+			);
+			name = sharedobj;
+			path = Ola/sharedobj;
+			sourceTree = "<group>";
+		};
+		8497450418FADD0F007A8D5C /* wax */ = {
+			isa = PBXGroup;
+			children = (
+				8497450518FADD0F007A8D5C /* build-scripts */,
+				8497450918FADD0F007A8D5C /* extensions */,
+				8497453A18FADD0F007A8D5C /* lua */,
+				8497457018FADD0F007A8D5C /* project.rake */,
+				8497457118FADD0F007A8D5C /* stdlib */,
+				8497458C18FADD0F007A8D5C /* wax.h */,
+				8497458D18FADD0F007A8D5C /* wax.m */,
+				8497458E18FADD0F007A8D5C /* wax_class.h */,
+				8497458F18FADD0F007A8D5C /* wax_class.m */,
+				8497459018FADD0F007A8D5C /* wax_gc.h */,
+				8497459118FADD0F007A8D5C /* wax_gc.m */,
+				8497459218FADD0F007A8D5C /* wax_helpers.h */,
+				8497459318FADD0F007A8D5C /* wax_helpers.m */,
+				8497459418FADD0F007A8D5C /* wax_instance.h */,
+				8497459518FADD0F007A8D5C /* wax_instance.m */,
+				8497459618FADD0F007A8D5C /* wax_server.h */,
+				8497459718FADD0F007A8D5C /* wax_server.m */,
+				8497459818FADD0F007A8D5C /* wax_stdlib.h */,
+				8497459918FADD0F007A8D5C /* wax_struct.h */,
+				8497459A18FADD0F007A8D5C /* wax_struct.m */,
+			);
+			name = wax;
+			path = Ola/wax;
+			sourceTree = "<group>";
+		};
+		8497450518FADD0F007A8D5C /* build-scripts */ = {
+			isa = PBXGroup;
+			children = (
+				8497450618FADD0F007A8D5C /* compile-stdlib.sh */,
+				8497450718FADD0F007A8D5C /* copy-scripts.sh */,
+				8497450818FADD0F007A8D5C /* luac.lua */,
+			);
+			path = "build-scripts";
+			sourceTree = "<group>";
+		};
+		8497450918FADD0F007A8D5C /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8497450A18FADD0F007A8D5C /* CGAffine */,
+				8497450D18FADD0F007A8D5C /* CGContext */,
+				8497451018FADD0F007A8D5C /* filesystem */,
+				8497451318FADD0F007A8D5C /* HTTP */,
+				8497451818FADD0F007A8D5C /* json */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		8497450A18FADD0F007A8D5C /* CGAffine */ = {
+			isa = PBXGroup;
+			children = (
+				8497450B18FADD0F007A8D5C /* wax_CGTransform.h */,
+				8497450C18FADD0F007A8D5C /* wax_CGTransform.m */,
+			);
+			path = CGAffine;
+			sourceTree = "<group>";
+		};
+		8497450D18FADD0F007A8D5C /* CGContext */ = {
+			isa = PBXGroup;
+			children = (
+				8497450E18FADD0F007A8D5C /* wax_CGContext.h */,
+				8497450F18FADD0F007A8D5C /* wax_CGContext.m */,
+			);
+			path = CGContext;
+			sourceTree = "<group>";
+		};
+		8497451018FADD0F007A8D5C /* filesystem */ = {
+			isa = PBXGroup;
+			children = (
+				8497451118FADD0F007A8D5C /* wax_filesystem.h */,
+				8497451218FADD0F007A8D5C /* wax_filesystem.m */,
+			);
+			path = filesystem;
+			sourceTree = "<group>";
+		};
+		8497451318FADD0F007A8D5C /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				8497451418FADD0F007A8D5C /* wax_http.h */,
+				8497451518FADD0F007A8D5C /* wax_http.m */,
+				8497451618FADD0F007A8D5C /* wax_http_connection.h */,
+				8497451718FADD0F007A8D5C /* wax_http_connection.m */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		8497451818FADD0F007A8D5C /* json */ = {
+			isa = PBXGroup;
+			children = (
+				8497451918FADD0F007A8D5C /* Rakefile */,
+				8497451A18FADD0F007A8D5C /* wax_json.c */,
+				8497451B18FADD0F007A8D5C /* wax_json.h */,
+				8497451C18FADD0F007A8D5C /* yajl */,
+				8497453118FADD0F007A8D5C /* yajl-1.0.9.tar.gz */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		8497451C18FADD0F007A8D5C /* yajl */ = {
+			isa = PBXGroup;
+			children = (
+				8497451D18FADD0F007A8D5C /* api */,
+				8497452118FADD0F007A8D5C /* yajl.c */,
+				8497452218FADD0F007A8D5C /* yajl_alloc.c */,
+				8497452318FADD0F007A8D5C /* yajl_alloc.h */,
+				8497452418FADD0F007A8D5C /* yajl_buf.c */,
+				8497452518FADD0F007A8D5C /* yajl_buf.h */,
+				8497452618FADD0F007A8D5C /* yajl_bytestack.h */,
+				8497452718FADD0F007A8D5C /* yajl_common.h */,
+				8497452818FADD0F007A8D5C /* yajl_encode.c */,
+				8497452918FADD0F007A8D5C /* yajl_encode.h */,
+				8497452A18FADD0F007A8D5C /* yajl_gen.c */,
+				8497452B18FADD0F007A8D5C /* yajl_gen.h */,
+				8497452C18FADD0F007A8D5C /* yajl_lex.c */,
+				8497452D18FADD0F007A8D5C /* yajl_lex.h */,
+				8497452E18FADD0F007A8D5C /* yajl_parse.h */,
+				8497452F18FADD0F007A8D5C /* yajl_parser.c */,
+				8497453018FADD0F007A8D5C /* yajl_parser.h */,
+			);
+			path = yajl;
+			sourceTree = "<group>";
+		};
+		8497451D18FADD0F007A8D5C /* api */ = {
+			isa = PBXGroup;
+			children = (
+				8497451E18FADD0F007A8D5C /* yajl_common.h */,
+				8497451F18FADD0F007A8D5C /* yajl_gen.h */,
+				8497452018FADD0F007A8D5C /* yajl_parse.h */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		8497453A18FADD0F007A8D5C /* lua */ = {
+			isa = PBXGroup;
+			children = (
+				8497453B18FADD0F007A8D5C /* lapi.c */,
+				8497453C18FADD0F007A8D5C /* lapi.h */,
+				8497453D18FADD0F007A8D5C /* lauxlib.c */,
+				8497453E18FADD0F007A8D5C /* lauxlib.h */,
+				8497453F18FADD0F007A8D5C /* lbaselib.c */,
+				8497454018FADD0F007A8D5C /* lcode.c */,
+				8497454118FADD0F007A8D5C /* lcode.h */,
+				8497454218FADD0F007A8D5C /* ldblib.c */,
+				8497454318FADD0F007A8D5C /* ldebug.c */,
+				8497454418FADD0F007A8D5C /* ldebug.h */,
+				8497454518FADD0F007A8D5C /* ldo.c */,
+				8497454618FADD0F007A8D5C /* ldo.h */,
+				8497454718FADD0F007A8D5C /* ldump.c */,
+				8497454818FADD0F007A8D5C /* lfunc.c */,
+				8497454918FADD0F007A8D5C /* lfunc.h */,
+				8497454A18FADD0F007A8D5C /* lgc.c */,
+				8497454B18FADD0F007A8D5C /* lgc.h */,
+				8497454C18FADD0F007A8D5C /* linit.c */,
+				8497454D18FADD0F007A8D5C /* liolib.c */,
+				8497454E18FADD0F007A8D5C /* llex.c */,
+				8497454F18FADD0F007A8D5C /* llex.h */,
+				8497455018FADD0F007A8D5C /* llimits.h */,
+				8497455118FADD0F007A8D5C /* lmathlib.c */,
+				8497455218FADD0F007A8D5C /* lmem.c */,
+				8497455318FADD0F007A8D5C /* lmem.h */,
+				8497455418FADD0F007A8D5C /* loadlib.c */,
+				8497455518FADD0F007A8D5C /* lobject.c */,
+				8497455618FADD0F007A8D5C /* lobject.h */,
+				8497455718FADD0F007A8D5C /* lopcodes.c */,
+				8497455818FADD0F007A8D5C /* lopcodes.h */,
+				8497455918FADD0F007A8D5C /* loslib.c */,
+				8497455A18FADD0F007A8D5C /* lparser.c */,
+				8497455B18FADD0F007A8D5C /* lparser.h */,
+				8497455C18FADD0F007A8D5C /* lstate.c */,
+				8497455D18FADD0F007A8D5C /* lstate.h */,
+				8497455E18FADD0F007A8D5C /* lstring.c */,
+				8497455F18FADD0F007A8D5C /* lstring.h */,
+				8497456018FADD0F007A8D5C /* lstrlib.c */,
+				8497456118FADD0F007A8D5C /* ltable.c */,
+				8497456218FADD0F007A8D5C /* ltable.h */,
+				8497456318FADD0F007A8D5C /* ltablib.c */,
+				8497456418FADD0F007A8D5C /* ltm.c */,
+				8497456518FADD0F007A8D5C /* ltm.h */,
+				8497456618FADD0F007A8D5C /* lua.h */,
+				8497456718FADD0F007A8D5C /* luaconf.h */,
+				8497456818FADD0F007A8D5C /* lualib.h */,
+				8497456918FADD0F007A8D5C /* lundump.c */,
+				8497456A18FADD0F007A8D5C /* lundump.h */,
+				8497456B18FADD0F007A8D5C /* lvm.c */,
+				8497456C18FADD0F007A8D5C /* lvm.h */,
+				8497456D18FADD0F007A8D5C /* lzio.c */,
+				8497456E18FADD0F007A8D5C /* lzio.h */,
+				8497456F18FADD0F007A8D5C /* print.c */,
+			);
+			path = lua;
+			sourceTree = "<group>";
+		};
+		8497457118FADD0F007A8D5C /* stdlib */ = {
+			isa = PBXGroup;
+			children = (
+				8497457218FADD0F007A8D5C /* enums.lua */,
+				8497457318FADD0F007A8D5C /* ext */,
+				8497457918FADD0F007A8D5C /* helpers */,
+				8497458418FADD0F007A8D5C /* init.lua */,
+				8497458518FADD0F007A8D5C /* luaspec */,
+				8497458918FADD0F007A8D5C /* repl.lua */,
+				8497458A18FADD0F007A8D5C /* structs.lua */,
+				8497458B18FADD0F007A8D5C /* waxClass.lua */,
+			);
+			path = stdlib;
+			sourceTree = "<group>";
+		};
+		8497457318FADD0F007A8D5C /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				8497457418FADD0F007A8D5C /* http.lua */,
+				8497457518FADD0F007A8D5C /* init.lua */,
+				8497457618FADD0F007A8D5C /* number.lua */,
+				8497457718FADD0F007A8D5C /* string.lua */,
+				8497457818FADD0F007A8D5C /* table.lua */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
+		8497457918FADD0F007A8D5C /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8497457A18FADD0F007A8D5C /* autoload.lua */,
+				8497457B18FADD0F007A8D5C /* base64.lua */,
+				8497457C18FADD0F007A8D5C /* bit.lua */,
+				8497457D18FADD0F007A8D5C /* cache.lua */,
+				8497457E18FADD0F007A8D5C /* callback.lua */,
+				8497457F18FADD0F007A8D5C /* frame.lua */,
+				8497458018FADD0F007A8D5C /* init.lua */,
+				8497458118FADD0F007A8D5C /* pickView.lua */,
+				8497458218FADD0F007A8D5C /* time.lua */,
+				8497458318FADD0F007A8D5C /* WaxServer.lua */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		8497458518FADD0F007A8D5C /* luaspec */ = {
+			isa = PBXGroup;
+			children = (
+				8497458618FADD0F007A8D5C /* init.lua */,
+				8497458718FADD0F007A8D5C /* luamock.lua */,
+				8497458818FADD0F007A8D5C /* luaspec.lua */,
+			);
+			path = luaspec;
+			sourceTree = "<group>";
+		};
+		8497459B18FADD0F007A8D5C /* wedgit */ = {
+			isa = PBXGroup;
+			children = (
+				8497459C18FADD0F007A8D5C /* CSS.h */,
+				8497459D18FADD0F007A8D5C /* CSS.m */,
+				8497459E18FADD0F007A8D5C /* OLAButton.h */,
+				8497459F18FADD0F007A8D5C /* OLAButton.m */,
+				849745A018FADD0F007A8D5C /* OLAContainer.h */,
+				849745A118FADD0F007A8D5C /* OLAContainer.m */,
+				849745A218FADD0F007A8D5C /* OLAFrameLayout.h */,
+				849745A318FADD0F007A8D5C /* OLAFrameLayout.m */,
+				849745A418FADD0F007A8D5C /* OLALabel.h */,
+				849745A518FADD0F007A8D5C /* OLALabel.m */,
+				849745A618FADD0F007A8D5C /* OLALayout.h */,
+				849745A718FADD0F007A8D5C /* OLALayout.m */,
+				849745A818FADD0F007A8D5C /* OLALinearLayout.h */,
+				849745A918FADD0F007A8D5C /* OLALinearLayout.m */,
+				849745AA18FADD0F007A8D5C /* OLALongPressGestureRecognizer.h */,
+				849745AB18FADD0F007A8D5C /* OLALongPressGestureRecognizer.m */,
+				849745AC18FADD0F007A8D5C /* OLARelativeLayout.h */,
+				849745AD18FADD0F007A8D5C /* OLARelativeLayout.m */,
+				849745AE18FADD0F007A8D5C /* OLAScrollView.h */,
+				849745AF18FADD0F007A8D5C /* OLAScrollView.m */,
+				849745B018FADD0F007A8D5C /* OLATable.h */,
+				849745B118FADD0F007A8D5C /* OLATable.m */,
+				849745B218FADD0F007A8D5C /* OLATableRow.h */,
+				849745B318FADD0F007A8D5C /* OLATableRow.m */,
+				849745B418FADD0F007A8D5C /* OLATextField.h */,
+				849745B518FADD0F007A8D5C /* OLATextField.m */,
+				849745B618FADD0F007A8D5C /* OLATextView.h */,
+				849745B718FADD0F007A8D5C /* OLATextView.m */,
+				849745B818FADD0F007A8D5C /* OLAView.h */,
+				849745B918FADD0F007A8D5C /* OLAView.m */,
+				849745BA18FADD0F007A8D5C /* OLAWedgit.h */,
+				849745BB18FADD0F007A8D5C /* OLAWedgit.m */,
+				849745BC18FADD0F007A8D5C /* UILabelEx.h */,
+				849745BD18FADD0F007A8D5C /* UILabelEx.m */,
+				849745BE18FADD0F007A8D5C /* UIView+WhenTappedBlocks.h */,
+				849745BF18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m */,
+			);
+			name = wedgit;
+			path = Ola/wedgit;
+			sourceTree = "<group>";
+		};
+		849745C018FADD0F007A8D5C /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				849745C118FADD0F007A8D5C /* LOStack.h */,
+				849745C218FADD0F007A8D5C /* LOStack.m */,
+				849745C318FADD0F007A8D5C /* XMLAttribute.h */,
+				849745C418FADD0F007A8D5C /* XMLAttribute.m */,
+				849745C518FADD0F007A8D5C /* XMLDocument.h */,
+				849745C618FADD0F007A8D5C /* XMLDocument.m */,
+				849745C718FADD0F007A8D5C /* XMLElement.h */,
+				849745C818FADD0F007A8D5C /* XMLElement.m */,
+				849745C918FADD0F007A8D5C /* XMLText.h */,
+				849745CA18FADD0F007A8D5C /* XMLText.m */,
+			);
+			name = xml;
+			path = Ola/xml;
+			sourceTree = "<group>";
+		};
 		84DE5C6818D9A1E30059C5C9 = {
 			isa = PBXGroup;
 			children = (
+				849744EB18FADD0E007A8D5C /* luac.lua */,
+				849744EC18FADD0E007A8D5C /* OLA.lua */,
+				849744ED18FADD0E007A8D5C /* OLABodyView.h */,
+				849744EE18FADD0E007A8D5C /* OLABodyView.m */,
+				849744EF18FADD0E007A8D5C /* OLALuaContext.h */,
+				849744F018FADD0E007A8D5C /* OLALuaContext.m */,
+				849744F118FADD0E007A8D5C /* OLAProperties.h */,
+				849744F218FADD0E007A8D5C /* OLAProperties.m */,
+				849744F318FADD0F007A8D5C /* OLAUIFactory.h */,
+				849744F418FADD0F007A8D5C /* OLAUIFactory.lua */,
+				849744F518FADD0F007A8D5C /* OLAUIFactory.m */,
+				849744F618FADD0F007A8D5C /* sharedobj */,
+				8497450418FADD0F007A8D5C /* wax */,
+				8497459B18FADD0F007A8D5C /* wedgit */,
+				849745C018FADD0F007A8D5C /* xml */,
 				84DE5C7A18D9A1E30059C5C9 /* Ola */,
 				84DE5C9C18D9A1E30059C5C9 /* OlaTests */,
 				84DE5C7318D9A1E30059C5C9 /* Frameworks */,
@@ -154,6 +819,7 @@
 		84DE5C7318D9A1E30059C5C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8497464218FADD53007A8D5C /* libsqlite3.0.dylib */,
 				84DE5C7418D9A1E30059C5C9 /* Foundation.framework */,
 				84DE5C7618D9A1E30059C5C9 /* CoreGraphics.framework */,
 				84DE5C7818D9A1E30059C5C9 /* UIKit.framework */,
@@ -285,11 +951,44 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8497461018FADD0F007A8D5C /* number.lua in Resources */,
+				8497462018FADD0F007A8D5C /* luaspec.lua in Resources */,
+				849745DA18FADD0F007A8D5C /* copy-scripts.sh in Resources */,
+				8497460D18FADD0F007A8D5C /* enums.lua in Resources */,
+				849745DB18FADD0F007A8D5C /* luac.lua in Resources */,
 				84DE5C8B18D9A1E30059C5C9 /* Main_iPad.storyboard in Resources */,
+				8497461718FADD0F007A8D5C /* callback.lua in Resources */,
+				8497462118FADD0F007A8D5C /* repl.lua in Resources */,
 				84DE5C9018D9A1E30059C5C9 /* Images.xcassets in Resources */,
+				8497461518FADD0F007A8D5C /* bit.lua in Resources */,
+				8497462218FADD0F007A8D5C /* structs.lua in Resources */,
+				8497461C18FADD0F007A8D5C /* WaxServer.lua in Resources */,
+				849745EA18FADD0F007A8D5C /* yajl-1.0.9.tar.gz in Resources */,
 				84FC733F18F9A04D0032A2CC /* app in Resources */,
+				849745CD18FADD0F007A8D5C /* OLA.lua in Resources */,
+				8497461D18FADD0F007A8D5C /* init.lua in Resources */,
+				8497460C18FADD0F007A8D5C /* project.rake in Resources */,
+				849745CB18FADD0F007A8D5C /* Log.lua in Resources */,
+				8497461218FADD0F007A8D5C /* table.lua in Resources */,
+				8497461418FADD0F007A8D5C /* base64.lua in Resources */,
+				8497461A18FADD0F007A8D5C /* pickView.lua in Resources */,
+				849745CC18FADD0F007A8D5C /* luac.lua in Resources */,
 				84DE5C8818D9A1E30059C5C9 /* Main_iPhone.storyboard in Resources */,
+				8497461118FADD0F007A8D5C /* string.lua in Resources */,
 				84DE5C7F18D9A1E30059C5C9 /* InfoPlist.strings in Resources */,
+				849745D918FADD0F007A8D5C /* compile-stdlib.sh in Resources */,
+				8497461918FADD0F007A8D5C /* init.lua in Resources */,
+				8497461318FADD0F007A8D5C /* autoload.lua in Resources */,
+				8497461F18FADD0F007A8D5C /* luamock.lua in Resources */,
+				8497461618FADD0F007A8D5C /* cache.lua in Resources */,
+				8497462318FADD0F007A8D5C /* waxClass.lua in Resources */,
+				8497460E18FADD0F007A8D5C /* http.lua in Resources */,
+				8497461B18FADD0F007A8D5C /* time.lua in Resources */,
+				8497461818FADD0F007A8D5C /* frame.lua in Resources */,
+				849745E118FADD0F007A8D5C /* Rakefile in Resources */,
+				8497460F18FADD0F007A8D5C /* init.lua in Resources */,
+				8497461E18FADD0F007A8D5C /* init.lua in Resources */,
+				849745D118FADD0F007A8D5C /* OLAUIFactory.lua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,15 +1007,98 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849745DD18FADD0F007A8D5C /* wax_CGContext.m in Sources */,
+				849745F018FADD0F007A8D5C /* lbaselib.c in Sources */,
+				8497464018FADD0F007A8D5C /* XMLElement.m in Sources */,
+				8497463618FADD0F007A8D5C /* OLATableRow.m in Sources */,
+				849745E618FADD0F007A8D5C /* yajl_encode.c in Sources */,
+				8497463E18FADD0F007A8D5C /* XMLAttribute.m in Sources */,
+				849745E418FADD0F007A8D5C /* yajl_alloc.c in Sources */,
+				8497462F18FADD0F007A8D5C /* OLALabel.m in Sources */,
 				84DE5C8118D9A1E30059C5C9 /* main.m in Sources */,
+				849745E818FADD0F007A8D5C /* yajl_lex.c in Sources */,
+				8497460218FADD0F007A8D5C /* lstate.c in Sources */,
+				849745F218FADD0F007A8D5C /* ldblib.c in Sources */,
+				8497462418FADD0F007A8D5C /* wax.m in Sources */,
+				849745E718FADD0F007A8D5C /* yajl_gen.c in Sources */,
+				849745E518FADD0F007A8D5C /* yajl_buf.c in Sources */,
+				8497464118FADD0F007A8D5C /* XMLText.m in Sources */,
+				849745F718FADD0F007A8D5C /* lgc.c in Sources */,
+				8497460318FADD0F007A8D5C /* lstring.c in Sources */,
+				849745D818FADD0F007A8D5C /* OLAStringUtil.m in Sources */,
+				849745D718FADD0F007A8D5C /* OLALog.m in Sources */,
+				8497463418FADD0F007A8D5C /* OLAScrollView.m in Sources */,
+				8497460718FADD0F007A8D5C /* ltm.c in Sources */,
+				849745FE18FADD0F007A8D5C /* lobject.c in Sources */,
+				8497462C18FADD0F007A8D5C /* OLAButton.m in Sources */,
+				8497460A18FADD0F007A8D5C /* lzio.c in Sources */,
 				840C4EBA18F9A0CB0061C4B6 /* Layout.m in Sources */,
 				840C4EBB18F9A0CB0061C4B6 /* LinearLayout.m in Sources */,
+				8497463B18FADD0F007A8D5C /* UILabelEx.m in Sources */,
+				8497462918FADD0F007A8D5C /* wax_server.m in Sources */,
 				840C4EBD18F9A0CB0061C4B6 /* ScrollerView.m in Sources */,
 				840C4EB818F9A0CB0061C4B6 /* FrameLayout.m in Sources */,
+				8497462E18FADD0F007A8D5C /* OLAFrameLayout.m in Sources */,
+				8497463118FADD0F007A8D5C /* OLALinearLayout.m in Sources */,
+				849745EE18FADD0F007A8D5C /* lapi.c in Sources */,
+				8497460418FADD0F007A8D5C /* lstrlib.c in Sources */,
+				849745FA18FADD0F007A8D5C /* llex.c in Sources */,
+				8497463918FADD0F007A8D5C /* OLAView.m in Sources */,
+				849745D518FADD0F007A8D5C /* OLAFileInputStream.m in Sources */,
+				849745D018FADD0F007A8D5C /* OLAProperties.m in Sources */,
+				8497463D18FADD0F007A8D5C /* LOStack.m in Sources */,
+				849745F318FADD0F007A8D5C /* ldebug.c in Sources */,
+				8497463218FADD0F007A8D5C /* OLALongPressGestureRecognizer.m in Sources */,
+				8497460118FADD0F007A8D5C /* lparser.c in Sources */,
+				849745CE18FADD0F007A8D5C /* OLABodyView.m in Sources */,
+				8497460818FADD0F007A8D5C /* lundump.c in Sources */,
+				849745F918FADD0F007A8D5C /* liolib.c in Sources */,
+				849745FF18FADD0F007A8D5C /* lopcodes.c in Sources */,
+				849745FC18FADD0F007A8D5C /* lmem.c in Sources */,
+				849745F818FADD0F007A8D5C /* linit.c in Sources */,
+				849745EF18FADD0F007A8D5C /* lauxlib.c in Sources */,
+				849745E318FADD0F007A8D5C /* yajl.c in Sources */,
+				849745E218FADD0F007A8D5C /* wax_json.c in Sources */,
+				8497460518FADD0F007A8D5C /* ltable.c in Sources */,
 				840C4EB718F9A0CB0061C4B6 /* FDLabelView.m in Sources */,
+				8497463318FADD0F007A8D5C /* OLARelativeLayout.m in Sources */,
+				849745D418FADD0F007A8D5C /* OLADES3Encrypt.m in Sources */,
+				8497463018FADD0F007A8D5C /* OLALayout.m in Sources */,
+				849745D218FADD0F007A8D5C /* OLAUIFactory.m in Sources */,
+				849745D318FADD0F007A8D5C /* OLADatabase.m in Sources */,
+				849745F518FADD0F007A8D5C /* ldump.c in Sources */,
+				849745DE18FADD0F007A8D5C /* wax_filesystem.m in Sources */,
+				849745D618FADD0F007A8D5C /* OLAFileOutputStream.m in Sources */,
+				8497460918FADD0F007A8D5C /* lvm.c in Sources */,
+				8497463818FADD0F007A8D5C /* OLATextView.m in Sources */,
+				8497460B18FADD0F007A8D5C /* print.c in Sources */,
+				849745F118FADD0F007A8D5C /* lcode.c in Sources */,
+				849745FB18FADD0F007A8D5C /* lmathlib.c in Sources */,
+				849745FD18FADD0F007A8D5C /* loadlib.c in Sources */,
+				849745F418FADD0F007A8D5C /* ldo.c in Sources */,
+				8497462718FADD0F007A8D5C /* wax_helpers.m in Sources */,
+				849745CF18FADD0F007A8D5C /* OLALuaContext.m in Sources */,
+				849745F618FADD0F007A8D5C /* lfunc.c in Sources */,
+				8497460018FADD0F007A8D5C /* loslib.c in Sources */,
+				8497462518FADD0F007A8D5C /* wax_class.m in Sources */,
+				849745DF18FADD0F007A8D5C /* wax_http.m in Sources */,
+				8497463C18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m in Sources */,
+				8497463F18FADD0F007A8D5C /* XMLDocument.m in Sources */,
+				8497462618FADD0F007A8D5C /* wax_gc.m in Sources */,
+				8497463718FADD0F007A8D5C /* OLATextField.m in Sources */,
+				8497462D18FADD0F007A8D5C /* OLAContainer.m in Sources */,
 				84DE5C8E18D9A1E30059C5C9 /* OLAViewController.m in Sources */,
+				849745DC18FADD0F007A8D5C /* wax_CGTransform.m in Sources */,
 				84DE5C8518D9A1E30059C5C9 /* OLAAppDelegate.m in Sources */,
+				849745E018FADD0F007A8D5C /* wax_http_connection.m in Sources */,
+				849745E918FADD0F007A8D5C /* yajl_parser.c in Sources */,
+				8497460618FADD0F007A8D5C /* ltablib.c in Sources */,
 				840C4EBC18F9A0CB0061C4B6 /* RelativeLayout.m in Sources */,
+				8497462818FADD0F007A8D5C /* wax_instance.m in Sources */,
+				8497463518FADD0F007A8D5C /* OLATable.m in Sources */,
+				8497462A18FADD0F007A8D5C /* wax_struct.m in Sources */,
+				8497463A18FADD0F007A8D5C /* OLAWedgit.m in Sources */,
+				8497462B18FADD0F007A8D5C /* CSS.m in Sources */,
 				840C4EB618F9A0CB0061C4B6 /* Button.m in Sources */,
 				840C4EB918F9A0CB0061C4B6 /* IView.m in Sources */,
 			);

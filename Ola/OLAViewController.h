@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OLAView.h"
 
-@interface OLAViewController : UIViewController
+@interface OLAViewController : UIViewController<UIScrollViewDelegate>
+{
+    OLAViewController * viewController;
+    OLAView * bodyView;
+}
+
+@property (nonatomic, retain)OLAViewController * viewController;
+@property (nonatomic)OLAView * bodyView;
+
+- (OLAViewController * ) getViewController;
 
 @end

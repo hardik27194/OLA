@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #import "OLAAppDelegate.h"
-
+#import "DPApplication.h"
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([OLAAppDelegate class]));
+        //return UIApplicationMain(argc, argv, NSStringFromClass([DPApplication class]), NSStringFromClass([OLAAppDelegate class]));
+
     }
 }
