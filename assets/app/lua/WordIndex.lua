@@ -44,9 +44,9 @@ Log:d("WordIndex","start WordIndex.load...")
             end
 	]]
 	local bytes=fin:readIntArray(Global.wordsCount * 6)
-		Log:d("WordIndex.load","pos bytes="..bytes)
+			--Log:d("WordIndex.load","pos bytes="..bytes)
 			WordIndex.pos = loadstring('return '..bytes)()
-		Log:d("File test","pos length="..#WordIndex.pos)
+			--Log:d("File test","pos length="..#WordIndex.pos)
 	fin:close()
 end
 

@@ -20,6 +20,8 @@ import android.graphics.Picture;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.PictureDrawable;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -320,16 +322,26 @@ public abstract class IWedgit implements IView
 		}
 	}
 	
-
+	
 	protected void addListner()
 	{
-		gesture=new GestureDetector(this.context,new IGestureListener(this.context));
-		v.setLongClickable(true);
-		ButtonListener listener = new ButtonListener();
-		v.setOnClickListener(listener);
-		v.setOnTouchListener(listener);
-		
-		
+		//TODO changed to Handler
+		new Thread() {
+			public void run() { 
+				Looper.prepare(); 
+				gesture=new GestureDetector(context,new IGestureListener(context));
+				v.setLongClickable(true);
+				ButtonListener listener = new ButtonListener();
+				v.setOnClickListener(listener);
+				v.setOnTouchListener(listener);
+				Looper.loop(); 
+
+			 }
+
+			 }.start();
+
+				
+
 		// btn.setOnClickListener(new View.OnClickListener() {
 
 		// public void onClick(View v) {

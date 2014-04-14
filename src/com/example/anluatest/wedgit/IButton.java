@@ -1,6 +1,7 @@
 package com.example.anluatest.wedgit;
 
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import android.annotation.SuppressLint;
@@ -41,7 +42,6 @@ public class IButton extends IWedgit{
 		Button btn=(Button)v;
 		//Rect bounds=btn.getBackground().getBounds();
 		Drawable drawable1=btn.getBackground();
-		System.out.println("dreable==="+drawable1);
 		if(drawable1 instanceof ColorDrawable || drawable1 instanceof GradientDrawable)
 		{
 			preBgColor=this.getBackgroundColor();

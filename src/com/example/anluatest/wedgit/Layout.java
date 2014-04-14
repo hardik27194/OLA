@@ -62,9 +62,9 @@ public abstract class Layout extends IContainer
 	public static Layout createLayout(IView parent,Context context, Node root)
 	{
 		String name=root.getNodeName();
-    	System.out.println("Tag name="+name);
+    	//System.out.println("Tag name="+name);
 		String layoutName=((Element)root).getAttribute("layout");
-		System.out.println("layout name ="+layoutName);
+		//System.out.println("layout name ="+layoutName);
 		
 		Layout v=null;
 		if(layoutName.equalsIgnoreCase("FrameLayout"))

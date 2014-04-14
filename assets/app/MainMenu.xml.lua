@@ -2,7 +2,7 @@ function initiate()
 	Log:d('initiate','initiate execute...')
 	Log:d('To UTF8 Char','........')
 	Log:d('To UTF8 Char',str:toUTF6LE('230,00'))
-	Log:d('To UTF8 Char',str:toChar(99))
+	 Log:d("UI Test","start")
 end
 
 
