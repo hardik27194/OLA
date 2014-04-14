@@ -14,10 +14,10 @@
 		</div>
 		<scrollview style="width:auto;height:auto;weight:1px;background-color:#DAE9FE">
 			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px">
-				<label id="chinese_label" style="width:auto;height:auto;weight:1px;color:#0000FF">English</label>
-				<label id="english_label" style="orientation:vertical;height:auto;width:auto;weight:1px;color:#FF9900"></label>
-				<label  style="orientation:vertical;height:auto;width:auto;weight:1px;color:#663300">Example:</label>
-				<label id="example_label" style="orientation:vertical;height:auto;width:auto;weight:1px;color:#999900"></label>
+				<label id="chinese_label" style="width:auto;height:auto;color:#0000FF">English</label>
+				<label id="english_label" style="orientation:vertical;height:auto;width:auto;color:#FF9900"></label>
+				<label  style="orientation:vertical;height:auto;width:auto;color:#663300">Example:</label>
+				<label id="example_label" style="orientation:vertical;height:auto;width:auto;color:#999900"></label>
 			</div>
 		</scrollview>
 		<div layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#DAE9FE">

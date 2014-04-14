@@ -12,7 +12,7 @@
 	<button id="row1" style="background-image:url(images/10.gif);width:auto;weight:1px;text-align:right;valign:middle" onclick="start()">Start</button>
 	</div>
 	<label>Current Vocabulary:</label>
-	<label id="Book_Name" style="width:auto;weight:1px;text-align:left;valign:middle">23</label>
+	<label id="Book_Name" style="width:auto;text-align:left;valign:middle">23</label>
 	<TABLE style="width:auto;">
 	<TR>
 		<TD><label style="width:120px;text-align:left;valign:middle">Group Amount:</label></TD>

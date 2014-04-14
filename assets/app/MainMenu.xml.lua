@@ -2,9 +2,16 @@ function initiate()
 	Log:d('initiate','initiate execute...')
 	Log:d('To UTF8 Char','........')
 	Log:d('To UTF8 Char',str:toUTF6LE('230,00'))
-	 Log:d("UI Test","start")
+	--addUIWedgit()
 end
 
+function addUIWedgit()
+	 viewStr="<div layout='LinearLayout'  style='margin:3px;orientation:vertical;width:auto;align:center;background-color:#00EF00'><label>asd</label><label>asd2</label><button>btn</button></div>"
+	 view=ui:createView(viewStr)
+	 Log:d("UI Test","id="..view)
+	 free_area:addView(view)
+	 --userPanel:addView(view) --equals to the above line
+end
 
 function switch()
 	Log:d("UI","switch to Study View ")

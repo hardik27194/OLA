@@ -14,4 +14,5 @@
 -(void)setText:(NSString *) text;
 -(NSString *)getText;
 -(void)adjustSize:(CGFloat) width;
+-(void)adjustSelfSize:(CGFloat) width;
 @end

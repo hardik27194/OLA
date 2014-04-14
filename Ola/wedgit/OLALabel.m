@@ -238,7 +238,25 @@ UIFont *font ;
     }
     
 }
-
+-(void)adjustSelfSize:(CGFloat) width
+{
+    
+    UILabelEx * label=(UILabelEx *)(self.v);
+    
+    CGSize size =CGSizeMake(width,MAXFLOAT);
+    
+    NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:label.font,NSFontAttributeName,nil];
+    
+    CGSize  actualsize =[label.text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin  attributes:tdic context:nil].size;
+    
+    CGFloat w=0,h=0;
+    if(css.width>0)w=css.width;else w=actualsize.width;
+    if(css.height>0)h=css.height; else h=actualsize.height;
+    
+    [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, actualsize.width, h)];
+    [label setNeedsDisplay];
+    
+}
 -(void)adjustSize:(CGFloat) width
 {
     

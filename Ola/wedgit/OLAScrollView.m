@@ -109,8 +109,8 @@
     OLAView * v=(OLAView *)[children firstObject];
     if( [v isKindOfClass:[OLALayout class]])
     {
-        Layout * layout= (Layout *) v.v;
-        CGSize size=[layout minSize];
+        Layout * layout1= (Layout *) v.v;
+        CGSize size=[layout1 minSize];
         [v.v setFrame:CGRectMake(v.v.frame.origin.x, v.v.frame.origin.y, v.v.frame.size.width, size.height)];
     }
     [layout setContentSize:CGSizeMake(0, v.v.frame.size.height)];
