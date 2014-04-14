@@ -12,7 +12,7 @@
             <div layout="LinearLayout" style="orientation:horizontal;margin:3px;weight:3px;padding:3px;height:auto;background-color:#66ccff;">
 			<scrollview style="width:wuto;weight:1px;">
 				<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;weight:1px;">
-                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;">
+                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;width:auto;">
                         <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:3px;padding:15px;align:center;background-color:#3366FF">
                             <button id="row1" style="width:64px;height:64px;background-image:url(images/ico/1.png);valign:middle;" onclick='showFirstStudyView()'></button>
                             <label style="width:auto;align:center;color:#FFFFFF">预习</label>
@@ -22,7 +22,7 @@
                             <label style="width:auto;align:center;color:#FFFFFF">复习</label>
                         </div>
                     </div>
-                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;">
+                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;width:auto;">
                         <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:3px;padding:15px;align:center;background-color:#3366FF">
                             <button id="row1" style="width:64px;height:64px;background-image:url(images/ico/32.png);valign:middle;" onclick='showFirstStudyView()'></button>
                             <label style="width:auto;align:center;color:#FFFFFF">学习情况</label>
@@ -32,7 +32,7 @@
                             <label style="width:auto;align:center;color:#FFFFFF">帮助</label>
                         </div>
                     </div>
-                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;">
+                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;width:auto;">
                         <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:3px;padding:15px;align:center;background-color:#3366FF">
                             <button id="row1" style="width:64px;height:64px;background-image:url(images/ico/4.png);valign:middle;" onclick='showFirstStudyView()'></button>
                             <label style="width:auto;align:center;color:#FFFFFF">选择词库</label>
@@ -42,7 +42,7 @@
                             <label style="width:auto;align:center;color:#FFFFFF">真人语音</label>
                         </div>
                     </div>
-                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;">
+                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;width:auto;">
                         <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:3px;padding:15px;align:center;background-color:#3366FF">
                             <button id="row1" style="width:64px;height:64px;background-image:url(images/ico/My_Projects.png);valign:middle;" onclick='showFirstStudyView()'></button>
                             <label style="width:auto;align:center;color:#FFFFFF">关于</label>
@@ -52,7 +52,7 @@
                             <label style="width:auto;align:center;color:#FFFFFF">设置</label>
                         </div>
                     </div>
-                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;">
+                    <div layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;width:auto;">
                         <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:3px;padding:15px;align:center;background-color:#3366FF">
                             <button id="row1" style="width:64px;height:64px;background-image:url(images/ico/My_Projects.png);valign:middle;" onclick='showFirstStudyView()'></button>
                             <label style="width:auto;align:center;color:#FFFFFF">关于</label>
