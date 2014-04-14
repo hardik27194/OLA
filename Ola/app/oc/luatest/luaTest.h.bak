@@ -1,7 +1,0 @@
-// XMLParser.h
-//#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
-#import "lua/lua1.h"
-@interface luaTest : NSObject {
-}
-@end
