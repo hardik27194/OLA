@@ -133,21 +133,13 @@ public class UIFactory {
 			}
 			else
 			{
-				//TODO
-				IView view=this.createView(null, ctx,  root);
+				
+				IView view=UIFactory.createView(null, ctx,  root);
 				v=view;
 			}
 			LuaContext.getInstance().regist(v, id);
-//			try {
-//				lua.pushObjectValue(v);
-//				lua.setGlobal(id);
-//			} catch (LuaException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-			
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -158,35 +150,7 @@ public class UIFactory {
 	private Layout createActiveBody(Element xmlRoot)
 	{
 		Layout layout = null;
-		
-
-		// Button btn = new Button(this) ;
-		// btn.setText("button test");
-		// WindowManager.LayoutParams params=new WindowManager.LayoutParams
-		// (0,0);
-		// params.x=100;
-		// params.y=100;
-		// params.width=150;
-		// params.height=40;
-		// btn.requestLayout();
-		// btn.setLayoutParams(params);
-		// btn.requestLayout();
-		// try {
-		// lua.pop(1);
-		// lua.pushObjectValue(btn);
-		// lua.setGlobal("btn2");
-		// } catch (Exception e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
 		try {
-			// String
-			// xml=loadAssetsString("http://10.0.2.2:8080/CRM/testLua.htm");
-			// System.out.println(xml);
-//			XMLProperties xmlRoot = new XMLProperties(
-//					getInputStreamFromUrl("http://10.0.2.2:8080/test/testLua1.xml"));
-//			Element html = xmlRoot.getRootElement();
 			NodeList nl = xmlRoot.getChildNodes();
 			for (int i = 0; i < nl.getLength(); i++) {
 
@@ -229,24 +193,6 @@ public class UIFactory {
     	else if (name.equalsIgnoreCase("LABEL"))
     	{
     		v= new ILabel(rootView,context,n);
-    		System.out.println("Lavel 222 root node="+n.getTextContent());
-//    		if(rootView.getRoot().getNodeName().equalsIgnoreCase("TR"))
-//    		{
-//
-//        		Button btn2= new Button(context);
-//           	 	btn2.setText("Button");
-//               	 TableRow.LayoutParams p =new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT);
-//               	 p.weight=1;
-//               	 p.width=TableRow.LayoutParams.MATCH_PARENT;
-//               	 p.height=TableRow.LayoutParams.MATCH_PARENT;
-//               	 btn2.setLayoutParams(p);
-//               	 //btn2.requestLayout();
-//           	 	rootView.addView(btn2);
-//           	    //rootView.getView().requestLayout();
-//
-//    		}
-//    		else
-    		//rootView.addView(lab.getView());
     	}
     	else if (name.equalsIgnoreCase("TEXTFIELD"))
     	{

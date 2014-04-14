@@ -81,7 +81,7 @@
                 <div layout="LinearLayout"  style="margin:3px;orientation:horizontal;width:auto;align:center;valign:middle;background-color:#00CC00">
                     <button id="row1" style="width:48px;height:48px;background-image:url(images/ico/G4.png);valign:middle"></button>
                 </div>
-                <div layout="LinearLayout"  style="margin:3px;orientation:horizontal;weight:1px;width:auto;align:center;valign:middle;background-color:#0000ff">
+                <div id="free_area" layout="LinearLayout"  style="margin:3px;orientation:vertical;weight:1px;width:auto;align:center;valign:middle;background-color:#0000ff">
                     <label style="color:#ffffff">Good \nGood \nStudy,\n\n Day\n Day\n Up!</label>
                 </div>
                 <div layout="LinearLayout"  style="margin:3px;orientation:horizontal;width:auto;align:center;background-color:#00AAEF">
