@@ -71,8 +71,9 @@ end
 
 function create()
 	Log:d("Player","start")
+    Log:d("Player","URL="..OLA.base..'yellow_submarine.mp3')
 	soundPlayer=MediaPlayer:createPlayer(OLA.base..'yellow_submarine.mp3')
-	Log:d("Player","URL="..OLA.base..'yellow_submarine.mp3')
+
 	Log:d("Player","created")
 	soundPlayer:play()
 	Log:d("Player","playing")

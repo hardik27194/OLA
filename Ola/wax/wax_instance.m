@@ -270,7 +270,7 @@ static int __index(lua_State *L) {
         wax_instance_createSuper(L, instanceUserdata);        
         return 1;
     }
-    NSLog(@"Instance __index:%@",[instanceUserdata->instance class]);
+    //NSLog(@"Instance __index:%@",[instanceUserdata->instance class]);
     // Check instance userdata, unless we are acting like a super
 	if (!instanceUserdata->actAsSuper) {
 		lua_getfenv(L, -2);

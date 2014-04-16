@@ -15,6 +15,8 @@
 		840C4EBB18F9A0CB0061C4B6 /* LinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB118F9A0CB0061C4B6 /* LinearLayout.m */; };
 		840C4EBC18F9A0CB0061C4B6 /* RelativeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */; };
 		840C4EBD18F9A0CB0061C4B6 /* ScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */; };
+		84950FFC18FED1D800E6DFBB /* OLASoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84950FFB18FED1D800E6DFBB /* OLASoundPlayer.m */; };
+		84950FFE18FED73600E6DFBB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84950FFD18FED73600E6DFBB /* AVFoundation.framework */; };
 		849745CB18FADD0F007A8D5C /* Log.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EA18FADD0E007A8D5C /* Log.lua */; };
 		849745CC18FADD0F007A8D5C /* luac.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EB18FADD0E007A8D5C /* luac.lua */; };
 		849745CD18FADD0F007A8D5C /* OLA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EC18FADD0E007A8D5C /* OLA.lua */; };
@@ -178,6 +180,9 @@
 		840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeLayout.m; sourceTree = "<group>"; };
 		840C4EB418F9A0CB0061C4B6 /* ScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollerView.h; sourceTree = "<group>"; };
 		840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollerView.m; sourceTree = "<group>"; };
+		84950FFA18FED1D800E6DFBB /* OLASoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLASoundPlayer.h; sourceTree = "<group>"; };
+		84950FFB18FED1D800E6DFBB /* OLASoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLASoundPlayer.m; sourceTree = "<group>"; };
+		84950FFD18FED73600E6DFBB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		849744EA18FADD0E007A8D5C /* Log.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Log.lua; path = ../Log.lua; sourceTree = "<group>"; };
 		849744EB18FADD0E007A8D5C /* luac.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = luac.lua; path = Ola/luac.lua; sourceTree = "<group>"; };
 		849744EC18FADD0E007A8D5C /* OLA.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OLA.lua; path = Ola/OLA.lua; sourceTree = "<group>"; };
@@ -406,6 +411,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84950FFE18FED73600E6DFBB /* AVFoundation.framework in Frameworks */,
 				8497464318FADD53007A8D5C /* libsqlite3.0.dylib in Frameworks */,
 				84DE5C7718D9A1E30059C5C9 /* CoreGraphics.framework in Frameworks */,
 				84DE5C7918D9A1E30059C5C9 /* UIKit.framework in Frameworks */,
@@ -465,6 +471,8 @@
 				849744FF18FADD0F007A8D5C /* OLAFileStream.h */,
 				8497450018FADD0F007A8D5C /* OLALog.h */,
 				8497450118FADD0F007A8D5C /* OLALog.m */,
+				84950FFA18FED1D800E6DFBB /* OLASoundPlayer.h */,
+				84950FFB18FED1D800E6DFBB /* OLASoundPlayer.m */,
 				849744EA18FADD0E007A8D5C /* Log.lua */,
 				8497450218FADD0F007A8D5C /* OLAStringUtil.h */,
 				8497450318FADD0F007A8D5C /* OLAStringUtil.m */,
@@ -822,6 +830,7 @@
 		84DE5C7318D9A1E30059C5C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84950FFD18FED73600E6DFBB /* AVFoundation.framework */,
 				8497464218FADD53007A8D5C /* libsqlite3.0.dylib */,
 				84DE5C7418D9A1E30059C5C9 /* Foundation.framework */,
 				84DE5C7618D9A1E30059C5C9 /* CoreGraphics.framework */,
@@ -1059,6 +1068,7 @@
 				849745F818FADD0F007A8D5C /* linit.c in Sources */,
 				849745EF18FADD0F007A8D5C /* lauxlib.c in Sources */,
 				849745E318FADD0F007A8D5C /* yajl.c in Sources */,
+				84950FFC18FED1D800E6DFBB /* OLASoundPlayer.m in Sources */,
 				849745E218FADD0F007A8D5C /* wax_json.c in Sources */,
 				8497460518FADD0F007A8D5C /* ltable.c in Sources */,
 				840C4EB718F9A0CB0061C4B6 /* FDLabelView.m in Sources */,

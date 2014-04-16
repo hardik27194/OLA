@@ -30,7 +30,7 @@
 
     function Study.deleteCurrentWord()
             Study.setCurrentWordState( 1);
-            WordIndex.writeWordState(wordStatus);
+            Study.writeWordState(Study.wordStatus);
     end
     function Study.getCurrentWordState()
         return Study. wordStatus[(Study.currentGroup - 1) * Global.groupSize + Study.pos - 1 +1];
@@ -51,7 +51,7 @@
                 return false;
 			end
 			Log:d("Study","readiing Study wordStatus ")
-            Study.wordStatus = readWordsState();
+            Study.wordStatus = Study.readWordsState();
 			Log:d("Study","Study.wordStatus ="..#Study.wordStatus )
             Study.seekGroup(Global.currentStudiedGroup);
 			Log:d("Study","seekGroup="..Global.currentStudiedGroup)
@@ -242,7 +242,7 @@ end
 end    
 
 
-function writeWordState(states)
+function Study.writeWordState(states)
 		Log:d("Study","_studyinfo file ="..Global.storage..Global.currentBookFileName .. "_studyinfo.dbms")
         local fc = fos:open(Global.storage..Global.currentBookFileName .. "_studyinfo.dbms")
 		Log:d("Study","file is exists="..fc:exists())
@@ -251,14 +251,15 @@ function writeWordState(states)
 		fc:writeLong(Global.wordsCount)
 		Log:d("Study","writeLong is successful")
         --fos.write(states, 0, states.length);
+        Log:d("Study","states length="..#states)
 		for i = 1, #states, 1 do
              fc:writeByte(states[i])
         end
 
-        fc.close();
+        fc:close();
 end
 
-function readWordsState()
+function Study.readWordsState()
 	local bs = {}
 	local fc = fis:open(Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
 	Log:d("Study","_studyinfo is opened:"..Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")

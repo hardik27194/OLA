@@ -1,24 +1,24 @@
 
---public final class PrepareStudyWordShower extends WordCanvas
+--public final class ReviewShower extends WordCanvas
 
 local study ;
 local word ;
     function initiate()
-		 Log:d("PrepareStudyWord","initiate...")
+		 Log:d("Review","initiate...")
 			Global.isStudy = false;
             study = Study;
 			Study.init()
 			local isOpened=Study.openBook()
-			Log:d("PrepareStudyWord","book was opend:")
+			Log:d("Review","book was opend:")
             if (isOpened) then
-				 Log:d("PrepareStudyWord","book is opend")
+				 Log:d("Review","book is opend")
                 word = study.nextWord();
-				 Log:d("PrepareStudyWord","word="..word.spell)
+				 Log:d("Review","word="..word.spell)
                 autoNext();
             end
 		if(word~=nil) then repaint(word) end
         Global.currentReviewTimes=0;
-		 Log:d("PrepareStudyWord","initiate was end...")
+		 Log:d("Review","initiate was end...")
   end
 
 
@@ -46,6 +46,7 @@ local word ;
 
                 if Global.languageSupport==1  then
                     --drawFrenchSpell(g, Y, font, 'H', new String(s.getBytes(),"utf-8"));
+                    spell_label:setText(wordStr)
                 else
                     --g.drawString( new String(s.getBytes(),"utf-8"), 2, Y, 20);
 					spell_label:setText(wordStr)
@@ -95,7 +96,7 @@ local word ;
 
     end
     function next()
-            local word = readNextWord();
+            word = readNextWord();
 			if(word==nil) then
 				
 				back()
@@ -105,7 +106,8 @@ local word ;
    end
 
     function previous()
-        repaint(study.preWord());
+        word=study.preWord()
+        repaint(word);
     end
     function returnToMenu()
         -- MyDialog md = new MyDialog(display, this, "Exit", "Studying is not finished ,are you sure want to exit?", "YES", "NO");
@@ -148,6 +150,16 @@ local word ;
 			]]
         end
     end
+ function delete()
+    study.deleteCurrentWord()
+end
+function play()
+	Log:d("Player","start")
+	local soundPlayer=MediaPlayer:createPlayer(OLA.storage..'/sound/'..word.spell..'.mp3')
+	Log:d("Player","URL="..OLA.storage..'/sound/'..word.spell..'.mp3')
+	Log:d("Player","created")
+	soundPlayer:play()
+	Log:d("Player","playing")
+end
 
-
-Log:d("PrepareStudyWord","PrepareStudyWord.lua is loaded...")
+Log:d("Review","Review.lua is loaded...")

@@ -54,6 +54,7 @@ local word ;
 
                 if Global.languageSupport==1  then
                     --drawFrenchSpell(g, Y, font, 'H', new String(s.getBytes(),"utf-8"));
+                    spell_label:setText(wordStr)
                 else
                     --g.drawString( new String(s.getBytes(),"utf-8"), 2, Y, 20);
 					spell_label:setText(wordStr)
@@ -113,7 +114,8 @@ local word ;
    end
 
     function previous()
-        repaint(study.preWord());
+        word=study.preWord()
+        repaint(word);
     end
     function returnToMenu()
         -- MyDialog md = new MyDialog(display, this, "Exit", "Studying is not finished ,are you sure want to exit?", "YES", "NO");
@@ -156,6 +158,12 @@ local word ;
 			]]
         end
     end
+    
+function delete()
+    Log:d("PrepareView","delete")
+    study.deleteCurrentWord()
+    Log:d("PrepareView","end delete")
+end
 
 function play()
 	Log:d("Player","start")

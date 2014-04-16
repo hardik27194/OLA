@@ -70,7 +70,7 @@ function WordIndex.getGroupPos( groupIndex)
 
         return WordIndex.pos[(groupIndex - 1) * Global.groupSize * 6 + 1 +1];
 end
-
+--[[
 function readWordsState()
 	local bs = {}
 	local fc = fis:open(Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
@@ -83,6 +83,7 @@ function readWordsState()
 	fc:close();
         return bs;
 end
+]]
 --[[
     public static byte[] readWordsState() throws IOException
     {
@@ -98,7 +99,7 @@ end
         return bs;
     }
 ]]
-
+--[[
 function writeWordState(states)
         local fc = fos:open(Global.storage..Global.currentBookFileName .. "_studyinfo.dbms")
 		fc:writeShort(0);
@@ -110,6 +111,7 @@ function writeWordState(states)
 
         fc.close();
 end
+]]
 --[[
 
     public static void writeWordState(byte[] states) throws IOException
