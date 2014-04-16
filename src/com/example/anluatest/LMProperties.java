@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -14,6 +15,7 @@ import org.w3c.dom.NodeList;
 import com.example.anluatest.util.DES3Encrypt;
 import com.example.anluatest.util.StringUtil;
 import com.example.anluatest.util.XMLProperties;
+import com.example.anluatest.wedgit.SoundPlayer;
 
 import android.os.Environment;
 import android.util.Log;
@@ -72,6 +74,8 @@ public class LMProperties {
 		lua.regist(IFileOutputStream.class, "fos");
 		lua.regist(DES3Encrypt.class, "des3");
 		lua.regist(StringUtil.class, "str");
+		
+		lua.regist(SoundPlayer.class, "MediaPlayer");
 		
 		loadXML();
 	}

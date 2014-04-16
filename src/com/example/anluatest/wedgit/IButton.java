@@ -36,8 +36,9 @@ public class IButton extends IWedgit{
 		super.clicked();
 	}
 
+	@Override
 	protected void pressed() {
-		
+		System.out.println("button pressed");
 		//this.setBackgroundColor(preBgColor);
 		Button btn=(Button)v;
 		//Rect bounds=btn.getBackground().getBounds();
@@ -65,7 +66,9 @@ public class IButton extends IWedgit{
 		super.pressed();
 	}
 
+	@Override
 	protected void released() {
+		System.out.println("button released"); 
 		Button btn=(Button)v;	
 		Drawable drawable1=btn.getBackground();
 		drawable1.clearColorFilter();

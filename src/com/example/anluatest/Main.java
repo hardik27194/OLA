@@ -7,11 +7,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
@@ -40,7 +40,7 @@ public class Main extends Activity {
         System.out.println("getExternalFilesDir="+this.getExternalFilesDir(null));
         ctx=this;
         
-
+        printScreenInfo();
         
         
 //        class CustomGifView extends View {   
@@ -602,4 +602,27 @@ public class Main extends Activity {
          }
          */
 
+	public void printScreenInfo()
+	{
+        String str = ""; 
+        DisplayMetrics dm = new DisplayMetrics(); 
+        getWindowManager().getDefaultDisplay().getMetrics(dm); 
+        dm = this.getApplicationContext().getResources().getDisplayMetrics(); 
+        int screenWidth = dm.widthPixels; 
+        int screenHeight = dm.heightPixels; 
+        float density = dm.density; 
+        float xdpi = dm.xdpi; 
+        float ydpi = dm.ydpi; 
+        str += "屏幕分辨率为:" + dm.widthPixels + " * " + dm.heightPixels + "\n"; 
+        str += "绝对宽度:" + String.valueOf(screenWidth) + "pixels\n"; 
+        str += "绝对高度:" + String.valueOf(screenHeight) 
+                + "pixels\n"; 
+        str += "逻辑密度:" + String.valueOf(density) 
+                + "\n"; 
+        str += "X 维 :" + String.valueOf(xdpi) + "像素每英尺\n"; 
+        str += "Y 维 :" + String.valueOf(ydpi) + "像素每英尺\n"; 
+        str += "densityDpi:" + String.valueOf(dm.densityDpi) ; 
+        Log.i("screen info", str); 
+	}
+	
 }

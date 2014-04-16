@@ -21,12 +21,12 @@
 			</div>
 		</scrollview>
 		<div layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#DAE9FE">
-				<button id="btn1" style="top:1px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_077.png)" onclick="reload()" />
-				<button id="btn1" style="top:1px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_064.png)" onclick="back()" />
-				<button id="btn1" style="top:1px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_065.png)" onclick="previous()" />
-				<button id="btn1" style="top:1px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_029.png)" onclick="next()" />
-				<button id="btn1" style="top:1px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_072.png)" onclick="next()" />
-				<button id="btn1" style="top:1px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_020.png)" onclick="next()" />
+				<button id="btn1" style="top:1px;margin:2px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_077.png)" onclick="reload()" />
+				<button id="btn1" style="top:1px;margin:2px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_064.png)" onclick="back()" />
+				<button id="btn1" style="top:1px;margin:2px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_065.png)" onclick="previous()" />
+				<button id="btn1" style="top:1px;margin:2px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_029.png)" onclick="next()" />
+				<button id="btn1" style="top:1px;margin:2px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_072.png)" onclick="play()" />
+				<button id="btn1" style="top:1px;margin:2px;width:48px;height:48px;align:center;background-image:url(images/blue_velvet_020.png)" onclick="next()" />
 		</div>
 	</div>
 </body>

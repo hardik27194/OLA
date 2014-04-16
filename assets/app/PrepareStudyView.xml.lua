@@ -103,7 +103,7 @@ local word ;
 
     end
     function next()
-            local word = readNextWord();
+            word = readNextWord();
 			if(word==nil) then
 				
 				back()
@@ -157,5 +157,13 @@ local word ;
         end
     end
 
+function play()
+	Log:d("Player","start")
+	local soundPlayer=MediaPlayer:createPlayer(OLA.storage..'/sound/'..word.spell..'.mp3')
+	Log:d("Player","URL="..OLA.storage..'/sound/'..word.spell..'.mp3')
+	Log:d("Player","created")
+	soundPlayer:play()
+	Log:d("Player","playing")
+end
 
 Log:d("PrepareStudyWord","PrepareStudyWord.lua is loaded...")

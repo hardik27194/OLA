@@ -12,7 +12,8 @@ public class IScrollView extends IContainer{
 
 	public IScrollView(IView parent, Context context, Node root) {
 		super(parent, context, root);
-		v = new ScrollView(context);
+		ScrollView sv = new ScrollView(context);
+		v=sv;
 		super.initiate();
 		parseChildren(this,root);
 	}

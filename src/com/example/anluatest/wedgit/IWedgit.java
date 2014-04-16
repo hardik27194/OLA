@@ -79,7 +79,7 @@ public abstract class IWedgit implements IView
 		{
 			this.objId = id.trim();
 			// System.out.println("Create View Item by Id="+id);
-			LuaContext.getInstance().regist(this, id);
+			LuaContext.getInstance().regist(this, objId);
 		}
 
 		String onclick = ((Element) root).getAttribute("onclick");
@@ -294,7 +294,7 @@ public abstract class IWedgit implements IView
 
 	protected void clicked()
 	{
-		System.out.println("IWedgit is clicked,lua function=" + onclick);
+		//System.out.println("IWedgit is clicked,lua function=" + onclick);
 		if (onclick != null)
 		{
 			// lua.LdoString(onclick);
@@ -304,7 +304,7 @@ public abstract class IWedgit implements IView
 
 	protected void pressed()
 	{
-		System.out.println("IWedgit is pressed,lua function=" + pressed);
+		//System.out.println("IWedgit is pressed,lua function=" + pressed);
 		if (pressed != null)
 		{
 			// lua.LdoString(pressed);
@@ -314,7 +314,8 @@ public abstract class IWedgit implements IView
 
 	protected void released()
 	{
-		System.out.println("IWedgit is released,lua function=" + released);
+		//System.out.println("self onrelease,id="+this.objId);
+		//System.out.println("IWedgit is released,lua function=" + released);
 		if (released != null)
 		{
 			// lua.LdoString(released);
@@ -323,52 +324,7 @@ public abstract class IWedgit implements IView
 	}
 	
 	
-	protected void addListner()
-	{
-		//TODO changed to Handler
-		new Thread() {
-			public void run() { 
-				Looper.prepare(); 
-				gesture=new GestureDetector(context,new IGestureListener(context));
-				v.setLongClickable(true);
-				ButtonListener listener = new ButtonListener();
-				v.setOnClickListener(listener);
-				v.setOnTouchListener(listener);
-				Looper.loop(); 
 
-			 }
-
-			 }.start();
-
-				
-
-		// btn.setOnClickListener(new View.OnClickListener() {
-
-		// public void onClick(View v) {
-		//
-		// // LuaObject lo=lua.getLuaObject("btn2");
-		// // System.out.println(lo);
-		// // try {
-		// // LuaObject f=lo.getField("onClick");
-		// //
-		// //// Object[] o=new Object[1];
-		// //// o[0]="32";
-		// //// f.call(o);
-		// // f.call(null);
-		// // } catch (LuaException e) {
-		// // e.printStackTrace();
-		// // }
-		// //lua.LdoString("btn2:Buttontest()");//ִ��һ���޲��ຯ��
-		//
-		// // lua.getField(LuaState.LUA_GLOBALSINDEX, onclick);
-		// // lua.call(0,0);
-		// clicked();
-		//
-		// }
-
-		// }
-		// );
-	}
 
 	public void setText(String text)
 	{
@@ -395,7 +351,6 @@ public abstract class IWedgit implements IView
 
 	public void setWidth(int width)
 	{
-
 		param.width = width;
 		css.bounds.width = width;
 	}
@@ -549,7 +504,52 @@ public abstract class IWedgit implements IView
 		}
 		return bitmap;
 	}
+	protected void addListner()
+	{
+		//TODO changed to Handler
+		new Thread() {
+			public void run() { 
+				Looper.prepare(); 
+				gesture=new GestureDetector(context,new IGestureListener(context));
+				v.setLongClickable(true);
+				ButtonListener listener = new ButtonListener();
+				//v.setOnClickListener(listener);
+				v.setOnTouchListener(listener);
+				Looper.loop(); 
 
+			 }
+
+			 }.start();
+
+				
+
+		// btn.setOnClickListener(new View.OnClickListener() {
+
+		// public void onClick(View v) {
+		//
+		// // LuaObject lo=lua.getLuaObject("btn2");
+		// // System.out.println(lo);
+		// // try {
+		// // LuaObject f=lo.getField("onClick");
+		// //
+		// //// Object[] o=new Object[1];
+		// //// o[0]="32";
+		// //// f.call(o);
+		// // f.call(null);
+		// // } catch (LuaException e) {
+		// // e.printStackTrace();
+		// // }
+		// //lua.LdoString("btn2:Buttontest()");//ִ��һ���޲��ຯ��
+		//
+		// // lua.getField(LuaState.LUA_GLOBALSINDEX, onclick);
+		// // lua.call(0,0);
+		// clicked();
+		//
+		// }
+
+		// }
+		// );
+	}
 	/*
 	 * l onClick(View v) һ����ͨ�ĵ����ť�¼�
 	 * 
@@ -567,31 +567,53 @@ public abstract class IWedgit implements IView
 
 	class ButtonListener implements OnClickListener, OnTouchListener
 	{
+		
 		public void onClick(View v)
 		{
-
-			Log.d("test", "cansal button ---> click");
-			clicked();
+			System.out.println("onClick");
+			//clicked();
 		}
 		@Override
 		public boolean onTouch(View v, MotionEvent event)
 		{
-			System.out.println("button listener on touch.....");
+		System.out.println("event.getAction() ="+event.getAction());
+		//	return gesture.onTouchEvent(event);
+			
 			if (event.getAction() == MotionEvent.ACTION_UP)
 			{
-				Log.d("test", "cansal button ---> cancel");
+				System.out.println("onrelease");
 				released();
 				//return false;
 
 			}
-			if (event.getAction() == MotionEvent.ACTION_DOWN)
+			else if (event.getAction() == MotionEvent.ACTION_CANCEL)
 			{
-				Log.d("test", "cansal button ---> down");
+				System.out.println("oncancel");
+				released();
+				//return false;
+			}
+			
+			else if (event.getAction() == MotionEvent.ACTION_MOVE)
+			{
+				
+				//return false;
+			}
+			/*
+			else if (event.getAction() == MotionEvent.ACTION_DOWN)
+			{
+				System.out.println("onpress");
 				pressed();
 				//return false;
 			}
-			return gesture.onTouchEvent(event);
+			*/
+			
+
+				//released();
+				return gesture.onTouchEvent(event);
+			
+			
 		}
+		
 
 	}
 	
@@ -603,18 +625,114 @@ public abstract class IWedgit implements IView
 		
 		public IGestureListener(Context ctx) 
 		{
+			/*--click
+			 * ondown
+			 * onrelease
+			 * onSingleTapUp
+			 * onSingleTapConfirmed
+			 */
+			
+			/* --onDoubleTap
+			 * ondown
+			 * onrelease
+			 * onSingleTapUp
+			 * onDoubleTap
+			 * onDoubleTapEvent
+			 * ondown
+			 * onrelease
+			 * onDoubleTapEvent
+			 */
+			/*
+			 * --onLongPress
+			 * onDown
+			 * onSHowPress
+			 * on long press
+			 * onrelease
+			 */
+			
 		}
+		// 双击，手指在触摸屏上迅速点击第二下时触发
+		@Override  
+        public boolean onDoubleTap(MotionEvent e)  
+        {  
+            // TODO Auto-generated method stub   
+			System.out.println("onDoubleTap");  
+            return super.onDoubleTap(e);  
+        }  
+		// 短按，触摸屏按下后片刻后抬起，会触发这个手势，如果迅速抬起则不会
+		  public void onShowPress(android.view.MotionEvent e)
+		  {
+			  System.out.println("onShowPress:id="+objId);
+			  //need to be put into Handler, or an error will be throw out: UI must be updated in the main thread(from Ibutton's code: drawable1.clearColorFilter();)
+			 // released();
+	
+		  }
+		// 双击的按下跟抬起各触发一次
+		  public boolean onDoubleTapEvent(android.view.MotionEvent e)
+		  {
+			  System.out.println("onDoubleTapEvent"); 
+			  return false;
+		  }
+		
+		  
+		// 单击，触摸屏按下时立刻触发
+        @Override  
+        public boolean onDown(MotionEvent e)  
+        {  
+        	System.out.println("onDown");
+            pressed();
+            return false;
+        }  
+     // 抬起，手指离开触摸屏时触发(长按、滚动、滑动时，不会触发这个手势
+        @Override  
+        public boolean onSingleTapUp(MotionEvent e)  
+        {  
+        	System.out.println("onSingleTapUp");
+        	clicked(); 
+				return false;
+        }  
+     // 单击确认，即很快的按下并抬起，但并不连续点击第二下
+		  public boolean onSingleTapConfirmed(android.view.MotionEvent e)
+		  {
+			  System.out.println("onSingleTapConfirmed"); 
+			  return false;
+		  }
+
 		@Override
 		public void onLongPress(MotionEvent e)
 		{
-			System.out.println("on on press...");
+			System.out.println("on long press...");
 		}
+		/**
+		 * after long pressed, only the Move(Drag)action is trigged
+		 * @param e
+		 */
+		public void onMove(MotionEvent e)
+		{
+			System.out.println("on Drag");
+			//not implemented
+		}
+		
+		// 滑动，触摸屏按下后快速移动并抬起，会先触发滚动手势，跟着触发一个滑动手势
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
 		{
-			System.out.println("on fling:velocityX="+velocityX+";velocityY="+velocityX);
-//			System.out.println("e1="+e1);
-//			System.out.println("e2="+e2);
+			System.out.println("on fling:id="+objId);
+			return swipe(e1,e2);
+			//return false;
+		}
+		@Override
+		public boolean onScroll(MotionEvent e1,MotionEvent e2, float distanceX,float distanceY)
+		{
+			System.out.println("on scroll:id="+objId);
+			return false;
+		}
+		
+		
+		private boolean swipe(MotionEvent e1, MotionEvent e2)
+		{
+			System.out.println("e1="+e1);
+			System.out.println("e2="+e2);
 			if(e1==null || e2==null) return false;
 			if(e1.getX() - e2.getX() > this.SWIPE_MIN_DISTANCE)// && Math.abs(velocityY) < this.SWIPE_THRESHOLD_VELOCITY)
 			{
@@ -637,13 +755,7 @@ public abstract class IWedgit implements IView
 				System.out.println("top........");
 			}
 			
-			return false;
-		}
-		@Override
-		public boolean onScroll(MotionEvent e1,MotionEvent e2, float distanceX,float distanceY)
-		{
-			System.out.println("on scroll...");
-			return false;
+			return true;
 		}
 	}
 

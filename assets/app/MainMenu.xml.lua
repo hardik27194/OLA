@@ -68,5 +68,21 @@ function test()
 
 end
 
+
+function create()
+	Log:d("Player","start")
+	soundPlayer=MediaPlayer:createPlayer(OLA.base..'yellow_submarine.mp3')
+	Log:d("Player","URL="..OLA.base..'yellow_submarine.mp3')
+	Log:d("Player","created")
+	soundPlayer:play()
+	Log:d("Player","playing")
+end
+
+function pause()
+	soundPlayer:pause()
+end
+function stop()
+	soundPlayer:stop()
+end
 Log:d("test Global","Global.volumeLevel=")
 Log:d("test Global","Global.volumeLevel="..Global.volumeLevel)

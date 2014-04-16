@@ -10,8 +10,6 @@
 #import "lua.h"
 #import "lualib.h"
 #import "lauxlib.h"
-#import "wax_instance.h"
-#import "wax.h"
 
 @interface OLALuaContext : NSObject
 {
@@ -20,9 +18,9 @@
 @property (nonatomic) lua_State * lua;
 +(OLALuaContext *)getInstance;
 
--  (lua_State *) getLuaState;
--  (void) regist:(id) obj  withGlobalName:(NSString *) name;
--  (void) registClass:(id) obj  withGlobalName:(NSString *) name;
+- (lua_State *) getLuaState;
+- (void) regist:(id) obj  withGlobalName:(NSString *) name;
+- (void) registClass:(id) obj  withGlobalName:(NSString *) name;
 - (id) getObject:(NSString *) objId;
 - (void) doString: (NSString *) str;
 - (void) doFile: (NSString *) fileName;

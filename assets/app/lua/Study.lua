@@ -299,7 +299,18 @@ function parseProncation(pron)
 			if tmp=='U1' then p=p..str:toUTF6LE("138,02") end
 			if tmp=='W1' then p=p..str:toUTF6LE("184,03") end
 			if tmp=='Z1' then p=p..str:toUTF6LE("91,02") end
+			if tmp=='V1' then p=p..str:toUTF6LE("146,02") end
 			tmp=''
+		elseif c>='3' and c<='9' then  
+			tmp=c
+			if tmp=='3' then p=p..str:toUTF6LE("89,02") end
+			if tmp=='5' then p=p..str:toUTF6LE("200,02") end
+			if tmp=='7' then p=p..str:toUTF6LE("204,02") end
+			tmp=''
+		elseif c=='!'then  
+			p=":"
+		elseif c=='_'then
+			p=p..str:toUTF6LE("208,02")
 		else
 			p=p..c
 		end
