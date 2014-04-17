@@ -112,7 +112,7 @@
     Global.reviewByChinese=false;
 
     function Global.loadProperties() 
-	local fin = fis:open(LMProperties:getRootPath().."recite.properties")
+	local fin = fis:open(OLA.storage.."recite.properties")
          if fin:exists()=="true" then
                 Global.groupSize=fin:readShort()
                 Global.showChinese = loadstring("return "..fin:readBoolean())()
@@ -135,7 +135,7 @@
         end
     end
     function Global.saveProperties() 
-	local fout = fos:open(LMProperties:getRootPath().."recite.properties")
+	local fout = fos:open(OLA.storage.."recite.properties")
        fout:writeShort(Global.getGroupSize());
         fout:writeBoolean(Global.showChinese);
         fout:writeBoolean(Global.showEnglish);

@@ -7,12 +7,12 @@
 }
 -->
 </style>
-<body layout="FrameLayout" class="FrameLayout" style="margin:0;">
-	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;">
+<body id="body" layout="FrameLayout" class="FrameLayout" style="margin:0;">
+	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;">
 			<div layout="LinearLayout" class="LinearLayout" >
 				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_077.png)" onclick="reload()" />
 				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_065.png)" onclick="back()" />
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_029.png)"/>
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_029.png)" onclick="testDialog()"/>
 			</div>
 	<div layout="LinearLayout" class="LinearLayout" style="width:auto;">
 	<button id="row1" style="background-image:url(images/10.gif);width:auto;weight:1px;valign:middle;" onclick='back()'>Return</button>

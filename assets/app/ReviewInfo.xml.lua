@@ -72,5 +72,21 @@
 			end
       end
 
+local view;
+function testDialog()
+		local viewStr="<div id='dialog' layout='LinearLayout'  style='padding:20px;orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.5;background-color:#00EF00'><label>asd</label><textfield  id=\"Next_Group\" style=\"width:auto;text-align:left;valign:middle\">0</textfield><button onclick='reload()' style='padding:3px;'>Reload</button><button onclick='close()' style='background-color:#0000ff;background-image:url(images/blue_velvet_029.png)'>Close</button></div>"
+		 view=ui:createView(viewStr)
+		--local alert = Alert:create()
+		--alert:show()
+		--alert:setContentView(view)
+		Log:d("testDialog","view created")
+		body:addView(view)
+		Log:d("testDialog","view added")
+end
 
+function close()
+Log:d("Review Info","close start")
+	dialog:setVisibility('block');
+	Log:d("Review Info","close end")
+end
 	Log:d("Review Info","Loaded successful")

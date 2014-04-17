@@ -6,11 +6,13 @@ function initiate()
 end
 
 function addUIWedgit()
-	 viewStr="<div layout='LinearLayout'  style='margin:3px;orientation:vertical;width:auto;align:center;background-color:#00EF00'><label>asd</label><label>asd2</label><button>btn</button></div>"
+	 Log:d("UI Test","addUIWedgit")
+	 viewStr="<div layout='LinearLayout'  style='orientation:vertical;width:80px;align:center;background-color:#00EF00'><label>asd</label><label>asd2</label><button>btn</button></div>"
+	 --viewStr="<label>asd</label>"
 	 view=ui:createView(viewStr)
 	 Log:d("UI Test","id="..view)
 	 free_area:addView(view)
-	 --userPanel:addView(view) --equals to the above line
+	 Log:d("UI Test","view was added")
 end
 
 function switch()
@@ -84,6 +86,22 @@ function pause()
 end
 function stop()
 	soundPlayer:stop()
+end
+
+
+function dialogBtnTest()
+	Log:d("dialogBtnTest","running.......")
+end
+
+function testDialog()
+		--local viewStr="<div id='dialog' layout='LinearLayout'  style='padding:20px;orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.5;background-color:#00EF00'><label>asd</label><textfield  id=\"Next_Group\" style=\"width:auto;text-align:left;valign:middle\">0</textfield><button onclick='reload()' style='padding:3px;'>Reload</button><button onclick='close()' style='background-color:#0000ff;background-image:url(images/blue_velvet_029.png)'>Close</button></div>"
+		local viewStr="<button onclick='close()' style='background-color:#0000ff;background-image:url(images/blue_velvet_029.png)'>Close</button>"
+		local view=ui:createView(viewStr)
+		--local alert = Alert:create()
+		--alert:show()
+		--alert:setContentView(view)
+		body:addView(view)
+
 end
 Log:d("test Global","Global.volumeLevel=")
 Log:d("test Global","Global.volumeLevel="..Global.volumeLevel)
