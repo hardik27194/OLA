@@ -7,12 +7,14 @@
 //
 
 #import "UILabelEx.h"
+#import "OLAProperties.h"
+#import "OLAWedgit.h"
 
 @implementation UILabelEx
 
 
 @synthesize verticalAlignment = verticalAlignment_;
-@synthesize delegate,isResponsedTouchEvent;
+@synthesize delegate,isResponsedTouchEvent,backgroundImageUrl,backgroundColorString,backgroundAlpha;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -53,6 +55,24 @@
 {
     return isResponsedTouchEvent;
 }
+
+-(void)setFrame:(CGRect) frame
+{
+    [super setFrame:frame];
+    if(self.backgroundImageUrl!=nil)[self resetBackgroundImageUrl:self.backgroundImageUrl];
+}
+
+-(void) resetBackgroundImageUrl:(NSString *) imageUrl
+{
+    OLAProperties * param=[OLAProperties getInstance];
+    NSString * img =[param.appUrl stringByAppendingString:imageUrl];
+    UIImage * bg=[UIImage imageNamed:img];
+    bg=[OLAWedgit imageScale:bg toSize:self.frame.size];
+    UIColor *bgColor = [UIColor  colorWithPatternImage: bg];
+    bgColor=[bgColor colorWithAlphaComponent:backgroundAlpha];
+    [super setBackgroundColor:bgColor];
+}
+
 /*
  - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
  {
@@ -70,19 +90,20 @@
  return self;
  }
  */
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     //[super touchesBegan:touches withEvent:event];
     self.alpha=0.6;
     //self.opaque=true;
     isResponsedTouchEvent=true;
     [delegate touchesBegan:touches withEvent:event];
-    NSLog(@"button begin");
+    NSLog(@"label begin");
     
     [[self nextResponder]touchesBegan:touches withEvent:event];
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     //[super touchesEnded:touches withEvent:event];
-    NSLog(@"button end");
+    NSLog(@"label end");
     self.alpha=1;
     isResponsedTouchEvent=NO;
     [delegate touchesEnded:touches withEvent:event];
@@ -90,7 +111,7 @@
 }
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     //[super touchesCancelled:touches withEvent:event];
-    NSLog(@"button cacel");
+    NSLog(@"label cacel");
     self.alpha=1;
     isResponsedTouchEvent=NO;
     //self.opaque=false;
@@ -98,7 +119,7 @@
     //[[self nextResponder] touchesCancelled:touches withEvent:event];
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"button move");
+    NSLog(@"label move");
     [delegate touchesMoved:touches withEvent:event];
     //[[self nextResponder] touchesMoved:touches withEvent:event];
 }

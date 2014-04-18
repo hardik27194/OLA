@@ -124,6 +124,10 @@ UIFont *font ;
     }
     
     
+    label.backgroundImageUrl=css.backgroundImageURL;
+    label.backgroundAlpha=css.alpha;
+    label.backgroundColorString=css.backgroundColor;
+    
 }
 - (NSString *) getColor
 {
@@ -212,7 +216,7 @@ UIFont *font ;
     
     //repaint the whole screen view if the frame size of the label was changed to bigger
     BOOL needRepaint=NO;
-    if(w>origionSize.width || h>origionSize.height)
+    if(w>origionSize.width || h!=origionSize.height)
         needRepaint=YES;
         
     if(needRepaint)

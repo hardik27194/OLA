@@ -23,7 +23,7 @@ typedef struct _LayoutParams
 @interface Layout : IView<UIGestureRecognizerDelegate>
 {
      NSString * backgroundImageUrl;
-    UIColor *backgroundColor;
+    //UIColor *backgroundColor;
     float alpha;
 }
 
