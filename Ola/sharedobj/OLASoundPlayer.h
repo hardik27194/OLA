@@ -19,7 +19,9 @@
 @property (nonatomic,retain)AVAudioPlayer * player;
 
 + (id) createPlayer:(NSString *) mediaFileURL;
+
 - (void) createPlayer;
+- (void) play:(NSString *) url;
 - (void) play;
 - (void) pause;
 - (void) stop;

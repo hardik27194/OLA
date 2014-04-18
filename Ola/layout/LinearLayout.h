@@ -24,6 +24,7 @@ typedef enum
     NSString * objId;
     Margin margin;
     Padding padding;
+   
     
 }
 @property (nonatomic,retain)NSMutableArray * children;
@@ -32,6 +33,7 @@ typedef enum
 @property (nonatomic) NSString * objId;
 @property (nonatomic) Margin margin;
 @property (nonatomic) Padding padding;
+
 
 -(id) initWithFrame:(CGRect) frame;
 -(void)initSize;

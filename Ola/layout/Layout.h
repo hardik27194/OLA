@@ -21,7 +21,15 @@ typedef struct _LayoutParams
 
 
 @interface Layout : IView<UIGestureRecognizerDelegate>
+{
+     NSString * backgroundImageUrl;
+    UIColor *backgroundColor;
+    float alpha;
+}
 
+@property (nonatomic,retain) NSString * backgroundImageUrl;
+
+@property (nonatomic) float alpha;
 -(void)repaint;
 -(void)setFrameMinSize;
 -(CGSize)minSize;

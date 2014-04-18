@@ -57,10 +57,13 @@
 	
 - (void) switchView:(NSString *)viewName callback:(NSString *) callback  params:(NSString *) params  needReload:(BOOL) needReload
     {
+        NSMutableDictionary * viewCache = [OLAUIFactory getViewCache];
+        
         OLAProperties * prop = [OLAProperties getInstance];
         NSString * name=[prop.appUrl stringByAppendingString:viewName];
 		OLABodyView *v;
 		id obj=[viewCache objectForKey:name];
+        NSLog(@"cache size 1=%d",viewCache.count);
 		if(obj!=nil && !needReload)
 		{
 			v=(OLABodyView *)obj;
@@ -72,6 +75,7 @@
             if(!needReload) [viewCache setObject:v forKey:name];//viewCache.put(name, v);
             
 		}
+        NSLog(@"cache size 2=%d",viewCache.count);
         v.parameters=params;
         [v execCallBack:callback];
 		[v show];

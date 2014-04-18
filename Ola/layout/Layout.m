@@ -7,8 +7,13 @@
 //
 
 #import "Layout.h"
+#import "OLAWedgit.h"
+#import "OLAProperties.h"
 
 @implementation Layout
+
+@synthesize backgroundImageUrl;
+@synthesize alpha;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -30,8 +35,24 @@
 */
 -(void)repaint
 {
-    
+    //after the size was changed, reset the background image with alpha
+    if(self.backgroundImageUrl!=nil)
+    {
+        [self resetBackgroundImageUrl:self.backgroundImageUrl];
+    }
 }
+-(void) resetBackgroundImageUrl:(NSString *) imageUrl
+{
+    OLAProperties * param=[OLAProperties getInstance];
+    NSString * img =[param.appUrl stringByAppendingString:imageUrl];
+    UIImage * bg=[UIImage imageNamed:img];
+    bg=[OLAWedgit imageScale:bg toSize:self.frame.size];
+    UIColor *bgColor = [UIColor  colorWithPatternImage: bg];
+    bgColor=[bgColor colorWithAlphaComponent:alpha];
+    [self setBackgroundColor:bgColor];
+}
+
+
 -(void)setFrameMinSize
 {
     

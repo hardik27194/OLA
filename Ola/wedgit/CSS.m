@@ -3,7 +3,7 @@
 
 @implementation CSS
 @synthesize cssString,name,bottom,left,right,top,position,display,visibility,verticalAlign,sIndex,width,height,weight,textAlign,orientation,color,styles;
-@synthesize margin,padding;
+@synthesize margin,padding,alpha;
 
 @synthesize backgroundImageURL,backgroundColor;
 
@@ -11,11 +11,12 @@
 	{
 		self.cssString=cssStr;
 		self.display=YES;
-		self.visibility=YES;
+		self.visibility=@"visible";
 		self.styles=[NSMutableDictionary dictionaryWithCapacity:10];
         
         textAlign=@"";
         verticalAlign=@"";
+        alpha=1;
         
 		[self parse:cssStr];
 		return self;
@@ -69,6 +70,13 @@
 		
 		else if([attName caseInsensitiveCompare:@"weight"]==NSOrderedSame) self.weight=[CSS parseInt:value];
 		else if([attName caseInsensitiveCompare:@"orientation"]==NSOrderedSame) self.orientation=value;
+        
+        else if ([attName caseInsensitiveCompare:@"visibility"]==NSOrderedSame)
+		{
+			visibility=value;
+		}
+		else if ([attName caseInsensitiveCompare:@"alpha"]==NSOrderedSame)
+			alpha = [CSS parseFloat:value];
 		
 	}
 -(void) setMargin:(NSString *) marginString
@@ -94,7 +102,10 @@
 		//NSLog(@"name=%@",styleName);
 		return [self.styles objectForKey:styleName];
 	}
-	
+- (void)setStyleValue:(NSString *)value forKey:(NSString*) name
+{
+[self.styles setObject:value forKey:name];
+}
 	+ (UIColor *) parseColor:(NSString *)color
 	{
 		return [CSS hexStringToColor:color];
@@ -103,10 +114,10 @@
 	}
 	+ (int) parseInt:(NSString *)number
 	{
-		/*
+		
 		@try
 		{
-		*/
+		
 		if([number hasSuffix:@"px"])number=[number substringToIndex:(number.length-2)];
 		if([number hasSuffix:@"dp"])number=[number substringToIndex:(number.length-2)];
 
@@ -120,14 +131,25 @@
 		//number=number.replaceAll("[pP][xX]", "");
 		//number=number.replaceAll("[dD][pP]", "");
 		return [number intValue];
-		/*
+		
 		}
 		@catch (NSException  *e)
 		{
 			return 0;
 		}
-		*/
+		
 	}
++ (float) parseFloat:(NSString *)number
+{
+    @try {
+        return [number floatValue];
+    }
+    @catch (NSException *exception) {
+        return 1;
+    }
+
+    
+}
 	+ (NSString *) parseImageUrl:(NSString *)url
 	{
 		if([url hasPrefix:@"url"])

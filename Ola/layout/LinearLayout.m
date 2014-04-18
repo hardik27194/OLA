@@ -357,6 +357,8 @@ CGFloat origionX,origionY;
     [self requestLayout];
     //[self resize];
     [self reSetChildrenFrame];
+    
+    [super repaint];
 }
 /*
  request to reset frame size of the subviews of the current layout without Margins

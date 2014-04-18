@@ -140,6 +140,8 @@ CGFloat origionX,origionY;
     //[self resize];
     //[self reSetChildrenFrame];
     [self resize];
+    
+    [super repaint];
 }
 -(void)setFrameMinSize
 {

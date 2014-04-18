@@ -18,6 +18,7 @@
 #import "Button.h"
 #import "UILabelEx.h"
 #import "OLAProperties.h"
+#import "Layout.h"
 
 @implementation OLAWedgit
 
@@ -215,8 +216,9 @@ LayoutParams * param;
     
     if ((attr = [css getStyleValue:@"background-image"]) != nil)
     {
-        NSLog(@"image=%@",[CSS parseImageUrl:attr]);
-        [self setBackgroundImageUrl:[CSS parseImageUrl:attr]];
+        //NSLog(@"image=%@",[CSS parseImageUrl:attr]);
+        css.backgroundImageURL=[CSS parseImageUrl:attr];
+        [self setBackgroundImageUrl:css.backgroundImageURL];
     }
      
     // set position attributes
@@ -251,16 +253,18 @@ LayoutParams * param;
         } else
             [self setHeight:[CSS parseInt:attr]];
     }
-    /*
-    // System.out.println("text=" + css.getStyleValue("text"));
-    if ((attr = css.getStyleValue("text")) != nil)
+    
+    
+    if ((attr = [css getStyleValue:@"visibility"]) != nil)
     {
-        self.setText(attr);
+        [self setVisibility:css.visibility];
     }
     
-    param.setMargins(css.margin.left, css.margin.top, css.margin.right,
-                     css.margin.bottom);
-    */
+    if ((attr = [css getStyleValue:@"alpha"]) != nil)
+    {
+        [self setAlpha:css.alpha];
+    }
+    
     if(root.textContent!=nil)
     {
     NSString * text = root.textContent.value;
@@ -573,8 +577,34 @@ LayoutParams * param;
     [v setFrame:CGRectMake(left,self.v.frame.origin.y, self.v.frame.size.width, self.v.frame.size.height)];
     css.left = left;
 }
+-(void) setVisibility:(NSString *)value
+{
+    css.visibility = value;
+    if ([value caseInsensitiveCompare:@"block"]==NSOrderedSame)
+    {
+        OLAView *parent=self.parent;
+        //TODO release self,HOW TO....
+        [v removeFromSuperview];
+        if([parent.v isKindOfClass:[Layout class]])
+        {
+            Layout *layout=(Layout *)parent.v;
+            [layout repaint];
+        }
+    } else if ([value caseInsensitiveCompare:@"hidden"]==NSOrderedSame)
+    {
+        v.hidden=YES;
+    } else
+    {
+        v.hidden=NO;
+    }
+}
 
-
+-(void) setAlpha:(float) alpha
+{
+    //[v  setAlpha:alpha];
+    //[UIColor colorWithRed:70.0 / 255.0 green:70.0 / 255.0 blue:70.0 / 255.0 alpha:alpha];
+    v.backgroundColor=[v.backgroundColor colorWithAlphaComponent:alpha];
+}
 - (NSString *) getBackgroundColor
 {
     
@@ -590,23 +620,6 @@ LayoutParams * param;
 
 
 
-/*
-- (void) setColorInt:(int) color
-{
-    css.color = color;
-    //if (v instanceof TextView)
-    //    ((TextView) v).setTextColor(color);
-}
- */
-/*
-- (void) setVisibility:(BOOL) visibility
-{
-    if (visibility)
-        v.setVisibility(View.VISIBLE);
-    else
-        v.setVisibility(View.GONE);
-}
-*/
 - (NSString *) getBackgroundImageUrl
 {
     return css.backgroundImageURL;
@@ -617,13 +630,29 @@ LayoutParams * param;
     NSString * img =[param.appUrl stringByAppendingString:imageUrl];
     if([self.v isKindOfClass:[UIButton class]])
     {
+        //if not set frame size to "auto" or a number, set the view's size same to image's
+        UIImage *image=[UIImage imageNamed:img];
+        CGSize size= image.size;
+        if([css getStyleValue:@"width"]==nil)
+        {
+            [css setStyleValue:[NSString  stringWithFormat:@"%fpx",size.width] forKey:@"width"];
+            css.width=size.width;
+        }
+        if([css getStyleValue:@"height"]==nil)
+        {
+            [css setStyleValue:[NSString  stringWithFormat:@"%fpx",size.height] forKey:@"height"];
+            css.height=size.height;
+        }
+        
         UIButton * btn=(UIButton *) self.v;
-        [btn  setBackgroundImage:[UIImage imageNamed:img] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:img] forState:UIControlStateSelected];
+        [btn setBackgroundImage:image forState:UIControlStateNormal];
+        //[btn setBackgroundImage:image forState:UIControlStateSelected];
         //这个是设置背景图片的
         //[deleteBtn setImage:[UIImage imageNamed:@"1.png"] forState:UIControlStateNormal];
         //这个是button前景图片
+        
     }
+    /*
     else if([self.v isKindOfClass:[UILabel class]])
     {
         //set back image for label
@@ -632,17 +661,18 @@ LayoutParams * param;
         [myLabel setBackgroundColor:color];
         
     }
+     */
     else
     
     {
         UIImage * bg=[UIImage imageNamed:img];
-        bg=[self imageScale:bg toSize:self.v.frame.size];
+        bg=[OLAWedgit imageScale:bg toSize:self.v.frame.size];
         UIColor *bgColor = [UIColor colorWithPatternImage: bg];
         [self.v setBackgroundColor:bgColor];
     }
 }
 
-- (UIImage *)imageScale:( UIImage *)sourceImage toSize:(CGSize)targetSize
++ (UIImage *)imageScale:( UIImage *)sourceImage toSize:(CGSize)targetSize
 {
     
     UIImage *newImage = nil;

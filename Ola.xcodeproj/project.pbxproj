@@ -368,8 +368,8 @@
 		849745B918FADD0F007A8D5C /* OLAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAView.m; sourceTree = "<group>"; };
 		849745BA18FADD0F007A8D5C /* OLAWedgit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAWedgit.h; sourceTree = "<group>"; };
 		849745BB18FADD0F007A8D5C /* OLAWedgit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAWedgit.m; sourceTree = "<group>"; };
-		849745BC18FADD0F007A8D5C /* UILabelEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILabelEx.h; sourceTree = "<group>"; };
-		849745BD18FADD0F007A8D5C /* UILabelEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILabelEx.m; sourceTree = "<group>"; };
+		849745BC18FADD0F007A8D5C /* UILabelEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILabelEx.h; path = ../wedgit/UILabelEx.h; sourceTree = "<group>"; };
+		849745BD18FADD0F007A8D5C /* UILabelEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILabelEx.m; path = ../wedgit/UILabelEx.m; sourceTree = "<group>"; };
 		849745BE18FADD0F007A8D5C /* UIView+WhenTappedBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WhenTappedBlocks.h"; sourceTree = "<group>"; };
 		849745BF18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WhenTappedBlocks.m"; sourceTree = "<group>"; };
 		849745C118FADD0F007A8D5C /* LOStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOStack.h; sourceTree = "<group>"; };
@@ -435,6 +435,8 @@
 		840C4EA418F9A0CB0061C4B6 /* layout */ = {
 			isa = PBXGroup;
 			children = (
+				849745BC18FADD0F007A8D5C /* UILabelEx.h */,
+				849745BD18FADD0F007A8D5C /* UILabelEx.m */,
 				840C4EA518F9A0CB0061C4B6 /* Button.h */,
 				840C4EA618F9A0CB0061C4B6 /* Button.m */,
 				840C4EA718F9A0CB0061C4B6 /* FDLabelView.h */,
@@ -764,8 +766,6 @@
 				849745B918FADD0F007A8D5C /* OLAView.m */,
 				849745BA18FADD0F007A8D5C /* OLAWedgit.h */,
 				849745BB18FADD0F007A8D5C /* OLAWedgit.m */,
-				849745BC18FADD0F007A8D5C /* UILabelEx.h */,
-				849745BD18FADD0F007A8D5C /* UILabelEx.m */,
 				849745BE18FADD0F007A8D5C /* UIView+WhenTappedBlocks.h */,
 				849745BF18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m */,
 			);

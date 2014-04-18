@@ -18,7 +18,7 @@
 	<button id="row1" style="background-image:url(images/10.gif);width:auto;weight:1px;valign:middle;" onclick='back()'>Return</button>
 	<button id="row1" style="background-image:url(images/10.gif);width:auto;weight:1px;text-align:right;valign:middle" onclick="start()">Start</button>
 	</div>
-	<label>Groups to be Reviewed:</label>
+	<label style="background-image:url(images/10.gif);">Groups to be Reviewed:</label>
 	<label id="groups_text" style="width:auto;text-align:left;valign:middle">0</label>
 	<label style="text-align:left;valign:middle">Next Group Studied:</label>
 	<textfield  id="Next_Group" style="width:auto;text-align:left;valign:middle">0</textfield>

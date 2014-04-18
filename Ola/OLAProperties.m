@@ -76,8 +76,8 @@
         //[lua setGlobal:[self getRootPath] withId:@"OLA.storage"];
         NSMutableString * storage=[[NSMutableString alloc] initWithString:@"OLA.storage='"];
         [storage appendString:[self getRootPath]];
-        //[storage appendString:@"/"];
-        //[storage appendString:fileBase];
+        [storage appendString:@"/"];
+        [storage appendString:fileBase];
         [storage appendString:@"'"];
         [lua doString:storage];
         
@@ -110,9 +110,9 @@
 
 	- (NSString *)  getRootPath
 	{
-        NSLog(@"get root path...");
          NSString *homeDirectory = NSHomeDirectory();
-		return  [[homeDirectory stringByAppendingString:@"/"] stringByAppendingString:fileBase];
+        return homeDirectory;
+		//return  [[homeDirectory stringByAppendingString:@"/"] stringByAppendingString:fileBase];
 	}
 
 

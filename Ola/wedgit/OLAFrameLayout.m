@@ -49,6 +49,9 @@
     //if(css.height>0)
     params->height=css.height;
     
+    myLayout.backgroundImageUrl=css.backgroundImageURL;
+    myLayout.alpha=css.alpha;
+    
 }
 - (void) addSubview:(OLAView *) child
 {

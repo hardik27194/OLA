@@ -84,6 +84,9 @@
     //if(css.height>0)
     myLayout.layoutParams->height=css.height;
     
+    myLayout.backgroundImageUrl=css.backgroundImageURL;
+    myLayout.alpha=css.alpha;
+    
     NSLog(@"set padding=%f",css.padding.left);
     Padding padding;
     padding.left=css.padding.left;

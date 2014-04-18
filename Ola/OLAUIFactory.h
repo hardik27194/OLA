@@ -13,6 +13,7 @@
 @interface OLAUIFactory : NSObject
 {
    	OLAView * bodyView;
+    
 
 }
 @property (nonatomic)OLAView * bodyView;

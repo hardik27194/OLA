@@ -166,7 +166,6 @@
                                                    delegate:parent.v
                                           cancelButtonTitle:@"确定"
                                           otherButtonTitles:nil];
-    //[alert show];
 
     NSLog(@"show message");
     

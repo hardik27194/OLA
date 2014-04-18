@@ -36,7 +36,7 @@ typedef struct _Padding
     
 	NSString *position;
 	BOOL display;
-	BOOL visibility;
+	NSString * visibility;
 	NSString *verticalAlign;
 	int sIndex;
 	
@@ -44,6 +44,8 @@ typedef struct _Padding
 	int width;
 	int height;
 	int weight;
+    
+    float alpha;
 	
 	//text position
 	NSString *textAlign;
@@ -71,7 +73,7 @@ typedef struct _Padding
 @property (nonatomic,readonly)   Padding padding;
 @property (nonatomic)	NSString *position;
 @property (nonatomic)	BOOL display;
-@property (nonatomic)	BOOL visibility;
+@property (nonatomic)	NSString *visibility;
 @property (nonatomic)	NSString *verticalAlign;
 @property (nonatomic)	int sIndex;
 	
@@ -79,6 +81,8 @@ typedef struct _Padding
 @property (nonatomic)	int width;
 @property (nonatomic)	int height;
 @property (nonatomic)	int weight;
+
+@property (nonatomic)   float alpha;
 	
 	//text position
 @property (nonatomic)	NSString *textAlign ;
@@ -93,7 +97,7 @@ typedef struct _Padding
 
 - (CSS *)initWithStyles:(NSString *)cssString;
 - (NSString *) getStyleValue:(NSString *)styleName;
-
+- (void)setStyleValue:(NSString *)value forKey:(NSString*) name;
 + (UIColor *) parseColor:(NSString *)color;
 + (NSString *) colorToString:(UIColor *)color;
 + (NSString *)intToHex:(int)tmpid ;

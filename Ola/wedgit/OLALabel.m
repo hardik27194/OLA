@@ -170,6 +170,7 @@ UIFont *font ;
     //label.lineBreakMode =NSLineBreakByTruncatingTail ;
     label.text=text;
 
+    CGSize origionSize=label.frame.size;
     
     //高度估计文本大概要显示几行，宽度根据需求自己定义。 MAXFLOAT 可以算出具体要多高
     CGFloat initWidth=self.v.frame.size.width;
@@ -210,9 +211,10 @@ UIFont *font ;
     [label setNeedsDisplay];
     
     //repaint the whole screen view if the frame size of the label was changed to bigger
-    BOOL needRepaint=false;
-    //if(w>self.v.frame.size.width || h>self.v.frame.size.height)
+    BOOL needRepaint=NO;
+    if(w>origionSize.width || h>origionSize.height)
         needRepaint=YES;
+        
     if(needRepaint)
     {
         if([parent isKindOfClass:[OLALinearLayout class]])
@@ -235,9 +237,16 @@ UIFont *font ;
 
         
     }
+        //reset the background image with alpha
+        if(css.backgroundImageURL!=nil)
+        {
+            [super setBackgroundImageUrl:css.backgroundImageURL];
+        }
     }
     
 }
+
+//adjust label  itself's true size by coculated by the WIDTH
 -(void)adjustSelfSize:(CGFloat) width
 {
     
@@ -255,26 +264,17 @@ UIFont *font ;
     
     [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, actualsize.width, h)];
     [label setNeedsDisplay];
-    
+    //reset the background image with alpha
+    if(css.backgroundImageURL!=nil)
+    {
+        [super setBackgroundImageUrl:css.backgroundImageURL];
+    }
 }
+
+//adjust label  itself's true size by coculated by the WIDTH, and its parent's size
 -(void)adjustSize:(CGFloat) width
 {
-    
-    UILabelEx * label=(UILabelEx *)(self.v);
-    
-    CGSize size =CGSizeMake(width,MAXFLOAT);
-    
-    NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:label.font,NSFontAttributeName,nil];
-    
-    CGSize  actualsize =[label.text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin  attributes:tdic context:nil].size;
-
-    CGFloat w=0,h=0;
-    if(css.width>0)w=css.width;else w=actualsize.width;
-    if(css.height>0)h=css.height; else h=actualsize.height;
-
-    [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, actualsize.width, h)];
-    [label setNeedsDisplay];
-    
+    [self adjustSelfSize:width];
     //adjust parent's frame size
     if([parent isKindOfClass:[OLALinearLayout class]])
     {
@@ -285,10 +285,4 @@ UIFont *font ;
 
 }
 
--(void) showMessage:(UILongPressGestureRecognizer *)recognizer
-{
-    NSLog(@"show label message");
-    [recognizer cancelsTouchesInView];
-    
-}
 @end

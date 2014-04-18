@@ -56,6 +56,8 @@
     //[self resize];
     //[self reSetChildrenFrame];
     //[self initSize];
+    
+    [super repaint];
 
 }
 
