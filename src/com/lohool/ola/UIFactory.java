@@ -17,10 +17,12 @@ import org.w3c.dom.NodeList;
 
 
 
+
 import com.lohool.ola.util.XMLProperties;
 import com.lohool.ola.wedgit.IButton;
 import com.lohool.ola.wedgit.IContainer;
 import com.lohool.ola.wedgit.ILabel;
+import com.lohool.ola.wedgit.IProgressBar;
 import com.lohool.ola.wedgit.IScrollView;
 import com.lohool.ola.wedgit.ITable;
 import com.lohool.ola.wedgit.ITableRow;
@@ -209,6 +211,10 @@ public class UIFactory {
     	{
     		v= new IScrollView(rootView,context,n);
     		//rootView.addView(text);
+    	}
+    	else if (name.equalsIgnoreCase("PROGRESSBAR"))
+    	{
+    		v= new IProgressBar(rootView,context,n);
     	}
     	return v;
 	}

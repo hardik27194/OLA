@@ -7,10 +7,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
-import com.example.anluatest.R;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.util.DisplayMetrics;
@@ -28,10 +28,13 @@ public class Main extends Activity {
 	private FrameLayout mLayout;
 //	private LuaState lua;
 	public static Main ctx;
- 
+	public static final int baseDpi=160;
+	public int dpi=160;
+	public static float scale=1;
+	
 	LMProperties properties;
 	
-	 
+	
 //	UIFactory ui= new UIFactory(ctx,lua);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,15 @@ public class Main extends Activity {
         System.out.println("getExternalFilesDir="+this.getExternalFilesDir(null));
         ctx=this;
         
+        DisplayMetrics dm=this.getApplicationContext().getResources().getDisplayMetrics(); 
+        this.dpi=dm.densityDpi;
+        this.scale=1.0f*dpi/baseDpi;
+        Log.d("dpi", "dpi="+dpi);
+        Log.d("dpi", "scale="+scale);
+        
         printScreenInfo();
-        
-        
+  
+       
 //        class CustomGifView extends View {   
 //        	private Movie mMovie;    
 //       	 	private long mMovieStart;
@@ -83,8 +92,7 @@ public class Main extends Activity {
         InitPropertiesTask task= new InitPropertiesTask();
         task.execute("");
 	  	 	
-	  	 	
-       
+
 //        if (android.os.Build.VERSION.SDK_INT > 9) {
 //            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 //            StrictMode.setThreadPolicy(policy);

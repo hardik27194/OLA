@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 
 
+
+
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -20,6 +23,7 @@ import com.lohool.ola.util.StringUtil;
 import com.lohool.ola.util.XMLProperties;
 import com.lohool.ola.wedgit.IAlert;
 import com.lohool.ola.wedgit.SoundPlayer;
+import com.lohool.ola.wedgit.UIMessage;
 
 import android.os.Environment;
 import android.util.Log;
@@ -87,8 +91,25 @@ public class LMProperties {
 		
 		lua.regist(IAlert.class, "Alert");
 		
+		lua.regist(UIMessage.class, "uiMsg");
+		
+		//lua.regist(Thread.class, "Thread");
+	
 		
 		loadXML();
+	}
+	
+	public void sleep(int millsec)
+	{
+		
+		try
+		{
+			Thread.sleep(millsec);
+		} catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public String getAppBase()
 	{

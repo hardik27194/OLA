@@ -6,11 +6,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.keplerproject.luajava.LuaObject;
+import org.keplerproject.luajava.LuaState;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import com.lohool.ola.BodyView;
 import com.lohool.ola.LMProperties;
 import com.lohool.ola.LuaContext;
+import com.lohool.ola.Main;
+import com.lohool.ola.UIFactory;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -22,6 +27,7 @@ import android.graphics.drawable.PictureDrawable;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -70,7 +76,9 @@ public abstract class IWedgit implements IView
 		parseCSS();
 		addListner();
 	}
-
+	String ansyClick;
+	String handlerClick;
+	String threadClick;
 	protected void parseAttribute()
 	{
 		String id = ((Element) root).getAttribute("id");
@@ -79,6 +87,21 @@ public abstract class IWedgit implements IView
 			this.objId = id.trim();
 			// System.out.println("Create View Item by Id="+id);
 			LuaContext.getInstance().regist(this, objId);
+		}
+		String ansyClickStr = ((Element) root).getAttribute("ansyClick");
+		if (ansyClickStr != null && !ansyClickStr.equals(""))
+		{
+			ansyClick=ansyClickStr;
+		}
+		String handlerClickStr = ((Element) root).getAttribute("handlerClick");
+		if (handlerClickStr != null && !handlerClickStr.equals(""))
+		{
+			handlerClick=handlerClickStr;
+		}
+		String threadClickStr = ((Element) root).getAttribute("threadClick");
+		if (threadClickStr != null && !threadClickStr.equals(""))
+		{
+			threadClick=threadClickStr;
 		}
 
 		String onclick = ((Element) root).getAttribute("onclick");
@@ -307,13 +330,149 @@ public abstract class IWedgit implements IView
 	// }
 	// }
 	// }
+	
+	public static  Handler mHandler = new Handler(){  
+        public void handleMessage(Message msg){  
+        	LuaContext.getInstance().doString((String)msg.obj);
+//        	int i=((Integer)msg.obj).intValue();
+//        	LuaContext.getInstance().doString("ProgressBar:setValue("+i+")");
+//        	LuaContext.getInstance().doString("test_text:setText('"+i+"%')");
+        }  
+    };  
+    private class Monitor extends AsyncTask<String, Integer, String> {
+    	
+    	@Override
+		protected void onPostExecute(String result) {
+			System.out.println("wedgit.onPostExecute");
+					
+		}
+		@Override
+		protected String doInBackground(String... params)
+		{
+			System.out.println("wedgit.doInBackground="+params[0]);
+			LuaContext.getInstance().doString(params[0]);
+			return "";
+		}
+    }
+    private class EventThread implements Runnable
+	{
+    	String event;
+    	public EventThread(String event)
+    	{
+    		this.event=event;
+    	}
+		@Override
+		public void run() {
+			Looper.prepare();
+			LuaContext.getInstance().doString(event);
+			Looper.loop();
+		}
 
+		
+	}
+    public int i;
+    Handler mHandler1 = new Handler();
+    Runnable mRunnable = new Runnable() {
+    	
+
+        @Override
+        public void run() {
+            //mTextView.setText("haha");
+        	//LuaContext.getInstance().doString(onclick);
+        	LuaContext.getInstance().doString("ProgressBar:setValue("+i+")");
+        	LuaContext.getInstance().doString("test_text:setText('"+i+"%')");
+        
+        }
+    };
+
+    
 	protected void clicked()
 	{
-		// System.out.println("IWedgit is clicked,lua function=" + onclick);
-		if (onclick != null)
+		if (threadClick != null)
 		{
+			System.out.println("IWedgit is clicked, lua function=" + onclick);
+			//LuaContext.getInstance().doString(onclick);
+			new Thread() {
+                public void run() {
+                	boolean running=true;
+                	while(running)
+                	{
+                		try{
+//                		LuaContext.getInstance().doString(onclick);
+                		int start=threadClick.indexOf('(');
+                		int end=threadClick.indexOf(')');
+                		String method=threadClick.substring(0,start);
+                		String paramstr=threadClick.substring(start+1,end);
+                		String[] params;
+                		if(paramstr.trim().equals(""))params=new String[0];
+                		else params=paramstr.split(",");
+                		
+                		LuaState lua=LuaContext.getInstance().getLuaState();
+                		lua.getField(LuaState.LUA_GLOBALSINDEX, method);
+                		 
+                		 for(int j=0;j<params.length;j++)
+                		 {
+                			 String p=params[j].trim();
+                			 if(p.startsWith("'") || p.startsWith("\"")) lua.pushString(p);
+                			 else if(p.charAt(0)>='0' && p.charAt(0)<='9') lua.pushNumber(Integer.parseInt(p));
+                			 else lua.pushJavaObject(p);
+                				 
+                		 }
+                		 lua.call(params.length,1);
+                		// save returned value to param "result"   
+                	        lua.setField(LuaState.LUA_GLOBALSINDEX, "result");   
+                	         
+                	        // read result
+                	        LuaObject lobj =lua.getLuaObject("result");   
+                	        boolean isBreak=lobj.getBoolean();
+                	        if(isBreak)break;
+                		}catch(Exception e)
+                		{
+                			e.printStackTrace();
+                		}
+                	      
+                	try
+        			{
+        				Thread.sleep(100);
+        			} catch (InterruptedException e)
+        			{
+        				// TODO Auto-generated catch block
+        				e.printStackTrace();
+        			}
+                	}
+                }
+            }.start();
+            System.out.println(" end IWedgit  clicked");
+		}
+		
+		if (this.ansyClick != null)
+		{
+			System.out.println("IWedgit is ansyClick,lua function=" + onclick);
+//			LuaContext.getInstance().doString(onclick);
+			Monitor m=new Monitor();
+			m.execute(ansyClick);
 			// lua.LdoString(onclick);
+//			Message msg = new Message();  
+//	        //msg.what = STOP;  
+//			msg.obj=onclick;
+//	        mHandler.sendMessage(msg); 
+			
+			//putting in thread with Looper is in order to suit Ansy progress and UI creation(Img download Ansytask),sine Ansytask cannot invoke another Ansytask
+//			EventThread et= new EventThread(onclick);
+//			Thread t=new Thread(et);
+//			t.start();
+		}
+		if (this.handlerClick != null)
+		{
+			System.out.println("IWedgit is handlerClick,lua function=" + onclick);
+			Message msg = new Message();  
+	        //msg.what = STOP;  
+			msg.obj=handlerClick;
+	        mHandler.sendMessage(msg); 
+		}
+		
+		if (this.onclick != null)
+		{
 			LuaContext.getInstance().doString(onclick);
 		}
 	}
@@ -323,18 +482,14 @@ public abstract class IWedgit implements IView
 		// System.out.println("IWedgit is pressed,lua function=" + pressed);
 		if (pressed != null)
 		{
-			// lua.LdoString(pressed);
 			LuaContext.getInstance().doString(pressed);
 		}
 	}
 
 	protected void released()
 	{
-		// System.out.println("self onrelease,id="+this.objId);
-		// System.out.println("IWedgit is released,lua function=" + released);
 		if (released != null)
 		{
-			// lua.LdoString(released);
 			LuaContext.getInstance().doString(released);
 		}
 	}
@@ -347,7 +502,7 @@ public abstract class IWedgit implements IView
 			text = text.replaceAll("\\\\\n", "\\\\n");
 			((TextView) v).setText(text);
 			v.requestLayout();
-
+			v.refreshDrawableState();
 		}
 	}
 
@@ -366,7 +521,7 @@ public abstract class IWedgit implements IView
 
 	public void setWidth(int width)
 	{
-		param.width = width;
+		param.width =(int) (width*Main.scale);
 		css.bounds.width = width;
 	}
 
@@ -378,7 +533,7 @@ public abstract class IWedgit implements IView
 
 	public void setHeight(int height)
 	{
-		param.height = height;
+		param.height = (int) (height*Main.scale);;
 		css.bounds.height = height;
 	}
 

@@ -6,3 +6,5 @@ OLA.base='app/'
 OLA.storage='test/'
 --app's sandbox path of the platform 
 OLA.app_path='.'
+
+OLA.base_dpi=160

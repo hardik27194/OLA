@@ -3,6 +3,7 @@ function initiate()
 	Log:d('To UTF8 Char','........')
 	Log:d('To UTF8 Char',str:toUTF6LE('230,00'))
 	--addUIWedgit()
+	--testProgressBar1()
 end
 
 function addUIWedgit()
@@ -103,5 +104,66 @@ function testDialog()
 		body:addView(view)
 
 end
+
+local progressValue=0
+function testProgressBar()
+	progressValue=progressValue+1
+	ProgressBar:setValue(progressValue)
+	test_text:setText(progressValue..'%')
+end
+function testProgressBar2()
+		local n,s,s0 = 0 
+	Log:d("testProgressBar2","testProgressBar2=")
+	while true do    
+		--s = os.date("%s", os.time())    
+		s=os.time()
+		if s0 ~= s then        
+			n = n + 10
+			s0=s
+			Log:d("time second=",''..n)
+			--print(n)
+			ProgressBar:setValue(n)
+			test_text:setText(n..'%')
+			--LMProperties:sleep(1000)
+		end    
+
+		if n >= 100 then        
+			break 
+		end
+	end
+end
+			local msg=uiMsg:create()
+			local n=0;
+function testProgressBar20(a,b)
+		local s,s0 = 0 
+	Log:d("testProgressBar20","testProgressBar2=")
+	
+			n=n+1
+			Log:d("time second=",''..n)
+			msg:updateMessage("ProgressBar:setValue("..n.."); test_text:setText('"..n.."%')")
+			if n>=100 then
+				n=0
+				return true 
+			else
+				return false
+			end
+end
+function testProgressBar1()
+Log:d("testProgressBar1","testProgressBar1=")
+	local hxc=coroutine.create(
+	function ()   
+		for i=1,10 do    
+			--print("iter", i)    
+			Log:d("time second=",''..i)
+			--coroutine.yield()   
+		end
+	end
+)
+Log:d("testProgressBar1","testProgressBar1=1")
+	coroutine.resume(hxc) 
+Log:d("testProgressBar1","testProgressBar1=2")
+end
+
 Log:d("test Global","Global.volumeLevel=")
 Log:d("test Global","Global.volumeLevel="..Global.volumeLevel)
+Log:d("test Global","str:toUTF6LE(\"204,02\")="..str:toUTF6LE("200,02"))

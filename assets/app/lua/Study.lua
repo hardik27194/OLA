@@ -158,13 +158,14 @@
                 word.spell=spell;
                 
 				Log:d("Study","word.spell="..word.spell )
-		
-                word.pronunacation="["..parseProncation((Study.fin:readString(wordPos[3]))).."]";
-				--Log:d("Study","word.pronunacation="..word.pronunacation)
+			    local pron=Study.fin:readString(wordPos[3])
+				Log:d("Study","word.pronunacation="..pron)
+                word.pronunacation="["..parseProncation(pron).."]";
+				Log:d("Study","word.pronunacation="..word.pronunacation)
                 word.description=(Study.readTxt( wordPos[4]));
-				--Log:d("Study","word.description="..word.description)
+				Log:d("Study","word.description="..word.description)
                 word.enMeans=(Study.readTxt( wordPos[5]));
-				--Log:d("Study","word.senMeans="..word.enMeans)
+				Log:d("Study","word.senMeans="..word.enMeans)
                 word.example=(Study.readTxt( wordPos[6]));
 				--Log:d("Study","word.example="..word.example)
 				--Log:d("Study","Study.words length="..#Study.words)
@@ -286,7 +287,7 @@ function parseProncation(pron)
 			p=p..c
 		elseif c>='A' and c<='Z' then
 			tmp=c
-		elseif c>='0' and c<='9' then
+		elseif c>='0' and c<='2' then
 			tmp=tmp..c
 			if tmp=='A1' then p=p..str:toUTF6LE("230,00") end
 			if tmp=='B1' then p=p..str:toUTF6LE("81,02") end
@@ -303,10 +304,9 @@ function parseProncation(pron)
 			if tmp=='V1' then p=p..str:toUTF6LE("146,02") end
 			tmp=''
 		elseif c>='3' and c<='9' then  
-			tmp=c
-			if tmp=='3' then p=p..str:toUTF6LE("89,02") end
-			if tmp=='5' then p=p..str:toUTF6LE("200,02") end
-			if tmp=='7' then p=p..str:toUTF6LE("204,02") end
+			if c=='3' then p=p..str:toUTF6LE("89,02") end
+			if c=='5' then p=p..str:toUTF6LE("200,02") end
+			if c=='7' then p=p..str:toUTF6LE("204,02") end
 			tmp=''
 		elseif c=='!'then  
 			p=":"
@@ -315,6 +315,7 @@ function parseProncation(pron)
 		else
 			p=p..c
 		end
+		Log:d("Study","pron="..p)
 	end
 	return p;
 end

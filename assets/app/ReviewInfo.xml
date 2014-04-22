@@ -22,7 +22,7 @@
 	<label id="groups_text" style="width:auto;text-align:left;valign:middle">0</label>
 	<label style="text-align:left;valign:middle">Next Group Studied:</label>
 	<textfield  id="Next_Group" style="width:auto;text-align:left;valign:middle">0</textfield>
-
+<button onclick='close()' style='background-color:#0000ff;background-image:url(images/blue_velvet_029.png)'>Close</button>
 	<label>Copy Right Reserved:lohool(lohool@hotmail.com)</label>
 	<label id="error_mesg"></label>
 	</div>

@@ -47,6 +47,7 @@ public class IButton extends IWedgit{
 		System.out.println("button pressed");
 		//this.setBackgroundColor(preBgColor);
 		Button btn=(Button)v;
+
 		//Rect bounds=btn.getBackground().getBounds();
 		Drawable drawable1=btn.getBackground();
 		if(drawable1 instanceof ColorDrawable || drawable1 instanceof GradientDrawable)
