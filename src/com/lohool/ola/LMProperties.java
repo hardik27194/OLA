@@ -36,7 +36,7 @@ import android.util.Log;
 public class LMProperties {
 	
 	String appBase="app/";
-	String fileBase="";
+	public static String fileBase="";
 	//String appUrl="test/";
 	String appName;
 	String appPackage="";
@@ -93,7 +93,7 @@ public class LMProperties {
 		
 		lua.regist(UIMessage.class, "uiMsg");
 		
-		//lua.regist(Thread.class, "Thread");
+		lua.regist(AsyncDownload.class, "AsyncDownload");
 	
 		
 		loadXML();

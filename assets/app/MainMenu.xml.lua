@@ -148,22 +148,41 @@ function testProgressBar20(a,b)
 				return false
 			end
 end
-function testProgressBar1()
-Log:d("testProgressBar1","testProgressBar1=")
+
+function testCoroutine() --not supported
 	local hxc=coroutine.create(
-	function ()   
-		for i=1,10 do    
-			--print("iter", i)    
-			Log:d("time second=",''..i)
-			--coroutine.yield()   
+		function ()   
+			for i=1,10 do    
+				--print("iter", i)    
+				Log:d("time second=",''..i)
+				--coroutine.yield()   
+			end
 		end
-	end
-)
-Log:d("testProgressBar1","testProgressBar1=1")
+	)
 	coroutine.resume(hxc) 
-Log:d("testProgressBar1","testProgressBar1=2")
 end
 
-Log:d("test Global","Global.volumeLevel=")
-Log:d("test Global","Global.volumeLevel="..Global.volumeLevel)
-Log:d("test Global","str:toUTF6LE(\"204,02\")="..str:toUTF6LE("200,02"))
+function download()
+	local download=AsyncDownload:create();
+	download:addUrl("http://www.myfrfr.com/chanson/flash/Myfrfr_6Angeli.swf")
+	download:addUrl("http://amis.myfrfr.com/chansons/myfrfrnoelsanstoi.swf")
+	--download:setProgressBar("ProgressBar")
+	--download:setTotalProgressBar("ProgressBar2")
+	download:setProcessingCallback("downloadMonitor")
+	Log:d("download","setProcessingCallback")
+	download:setComplitedCallback("finishDownload")
+	download:start()
+
+end
+
+function downloadMonitor(state,totalSize, downloadedSize,url,localFileName)
+	local percent=(1.0*downloadedSize/totalSize)*100
+	ProgressBar:setValue(percent)
+	test_text:setText('Current:\n'..math.floor(percent)..'%')
+end
+function finishDownload(totalNumber,currentNumber,currentUrl,localFileName)
+	local percent=(1.0*currentNumber/totalNumber)*100
+	ProgressBar2:setValue(percent)
+	test_text2:setText('Total:\n'..math.floor(percent)..'%')
+end
+Log:d("MainMenu","loaded successfullly")

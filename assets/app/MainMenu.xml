@@ -11,6 +11,7 @@
 		<div id="div1" layout="LinearLayout"  style="orientation:horizontal;width:auto;weight:1px;">
             <div id="div2" layout="LinearLayout" style="orientation:vertical;margin:3px;weight:3px;padding:3px;height:auto;background-color:#66ccff;">
 			<ProgressBar id="ProgressBar"  style="width:auto;height:5px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:0;"></ProgressBar>
+			<ProgressBar id="ProgressBar2"  style="width:auto;height:5px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:0;"></ProgressBar>
 			<scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
 				<div id="div3" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;weight:1px;">
                     <div id="div4" layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;width:auto;">
@@ -59,8 +60,8 @@
                             <label style="width:auto;align:center;color:#FFFFFF">Dialog</label>
                         </div>
                         <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;weight:1px;margin:3px;padding:15px;align:center;background-color:#3366FF">
-                            <button id="row1" style="width:64px;height:64px;background-image:url(images/ico/7-1.png);valign:middle"  onclick='testProgressBar2()'></button>
-                            <label style="width:auto;align:center;color:#FFFFFF">pro 2</label>
+                            <button id="row1" style="width:64px;height:64px;background-image:url(images/ico/7-1.png);valign:middle"  onclick='download()'></button>
+                            <label style="width:auto;align:center;color:#FFFFFF">Download</label>
                         </div>
                     </div>
                 </div>
@@ -84,6 +85,7 @@
                 </div>
                 <div id="free_area" layout="LinearLayout"  style="margin:3px;orientation:vertical;weight:1px;width:auto;align:center;valign:middle;">
 <label id="test_text" style="color:#ffffff">Good </label>
+<label id="test_text2" style="color:#ffffff">Good </label>
                    <!-- <label style="color:#ffffff">Good \nGood \nStudy,\n\n Day\n Day\n Up!</label>-->
                 </div>
                 <div layout="LinearLayout"  style="margin:3px;orientation:horizontal;width:auto;align:center;background-color:#00AAEF">
