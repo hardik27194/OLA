@@ -161,10 +161,10 @@
 }
 -(void) showMessage:(UITapGestureRecognizer *)recognizer
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                    message:@"您点击了动态按钮！"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Help"
+                                                    message:@"Dynamic Button"
                                                    delegate:parent.v
-                                          cancelButtonTitle:@"确定"
+                                          cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
 
     NSLog(@"show message");

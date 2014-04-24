@@ -18,6 +18,7 @@
 {
     NSString * objId;
     NSString * onclick ;
+    NSString * threadClick;
     NSString * pressed ;
     NSString * released ;
     OLAView * parent;
@@ -30,6 +31,7 @@
     CSS * css;
 }
 @property (nonatomic)NSString * objId;
+@property (nonatomic)NSString * threadClick ;
 @property (nonatomic)NSString * onclick ;
 @property (nonatomic)NSString * pressed ;
 @property (nonatomic)NSString * released ;

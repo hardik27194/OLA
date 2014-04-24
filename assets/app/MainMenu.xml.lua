@@ -132,6 +132,7 @@ function testProgressBar2()
 		end
 	end
 end
+Log:d("MainMenu","loaded successfullly 1")
 			local msg=uiMsg:create()
 			local n=0;
 function testProgressBar20(a,b)

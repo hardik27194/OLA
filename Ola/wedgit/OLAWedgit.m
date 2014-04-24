@@ -59,6 +59,11 @@ LayoutParams * param;
     {
         self.onclick = trim(clicked);
     }
+    NSString * threadClicked = (NSString *)[root.attributes objectForKey:@"threadClick"];
+    if (threadClicked != nil && ![threadClicked isEqualToString:@""])
+    {
+        self.threadClick = trim(threadClicked);
+    }
     NSString * onpress = (NSString *)[root.attributes objectForKey:@"onpress"];
     if (onpress != nil && ![onpress isEqualToString:@""])
     {
@@ -298,7 +303,10 @@ LayoutParams * param;
         [[OLALuaContext getInstance] doString:onclick];
     }
 }
-
+- (void) up:(NSString *)str
+{
+    [[OLALuaContext getInstance] doString:str];
+}
 - (void) clicked
 {
     
@@ -307,6 +315,66 @@ LayoutParams * param;
     {
         [[OLALuaContext getInstance] doString:onclick];
     }
+    if (threadClick != nil)
+    {
+        NSLog(@"start thread click:%@",threadClick);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            
+            BOOL running=YES;
+            while(running)
+            {
+
+                    int start=[threadClick rangeOfString:@"(" ].location;
+                    int end=[threadClick rangeOfString:@")" ].location;
+                NSLog(@"start=%d,end=%d",start,end);
+                    NSString *method=[threadClick substringWithRange:NSMakeRange(0,start)];
+                    NSString * paramstr=[threadClick substringWithRange:NSMakeRange(start+1,end-start-1)];
+                NSLog(@"method=%s,paramstr=%@",[method UTF8String],paramstr);
+                    NSArray * params;
+                    if([trim(paramstr) caseInsensitiveCompare:@""])params=[[NSArray alloc] init];
+                    else params=[paramstr componentsSeparatedByString:@","];
+                
+                    lua_State * lua=[[OLALuaContext getInstance] getLuaState];
+                lua_getfield(lua, LUA_GLOBALSINDEX, [method UTF8String]);
+                for(int j=0;j<params.count;j++)
+                {
+                    NSString * p= trim([params objectAtIndex:j]);
+                    if([p hasPrefix:@"'"] || [p hasPrefix:@"\""])lua_pushfstring(lua, [p UTF8String]);
+                    else if([p characterAtIndex:0]>='0' && [p characterAtIndex:0]<='9') lua_pushnumber(lua, [p doubleValue]);
+                    else lua_pushfstring(lua, [p UTF8String]);
+                }
+                
+                    lua_call(lua, params.count, 1);
+                
+                lua_setfield(lua, LUA_GLOBALSINDEX, "result");
+                lua_getglobal(lua, "result");
+                int result=lua_toboolean(lua, -1);
+                if(result>=1)running=NO;
+             
+                [NSThread sleepForTimeInterval:0.1];
+ 
+            }
+
+            /*
+            NSURL * url = [NSURL URLWithString:@"http://www.baidu.com"];
+            NSError * error;
+            NSString * data = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+            if (data != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"call back, the data is: %@", data);
+                });
+            } else {
+                NSLog(@"error when download:%@", error);
+            }
+             */
+        });
+        
+    }
+
+    
+
+    
 }
 
 - (void) clicked1:(UILongPressGestureRecognizer *)recognizer

@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		840C4EB618F9A0CB0061C4B6 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EA618F9A0CB0061C4B6 /* Button.m */; };
-		840C4EB718F9A0CB0061C4B6 /* FDLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EA818F9A0CB0061C4B6 /* FDLabelView.m */; };
-		840C4EB818F9A0CB0061C4B6 /* FrameLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EAA18F9A0CB0061C4B6 /* FrameLayout.m */; };
-		840C4EB918F9A0CB0061C4B6 /* IView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EAC18F9A0CB0061C4B6 /* IView.m */; };
-		840C4EBA18F9A0CB0061C4B6 /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EAF18F9A0CB0061C4B6 /* Layout.m */; };
-		840C4EBB18F9A0CB0061C4B6 /* LinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB118F9A0CB0061C4B6 /* LinearLayout.m */; };
-		840C4EBC18F9A0CB0061C4B6 /* RelativeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */; };
-		840C4EBD18F9A0CB0061C4B6 /* ScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */; };
+		84937DCE19093AE000E5E405 /* OLAProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DCD19093AE000E5E405 /* OLAProgressBar.m */; };
+		84937DE01909492B00E5E405 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DD01909492A00E5E405 /* Button.m */; };
+		84937DE11909492B00E5E405 /* FDLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DD21909492A00E5E405 /* FDLabelView.m */; };
+		84937DE21909492B00E5E405 /* FrameLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DD41909492A00E5E405 /* FrameLayout.m */; };
+		84937DE31909492B00E5E405 /* IView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DD61909492A00E5E405 /* IView.m */; };
+		84937DE41909492B00E5E405 /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DD91909492B00E5E405 /* Layout.m */; };
+		84937DE51909492B00E5E405 /* LinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DDB1909492B00E5E405 /* LinearLayout.m */; };
+		84937DE61909492B00E5E405 /* RelativeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DDD1909492B00E5E405 /* RelativeLayout.m */; };
+		84937DE71909492B00E5E405 /* ScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DDF1909492B00E5E405 /* ScrollerView.m */; };
+		84937DEA190949A100E5E405 /* ProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DE9190949A100E5E405 /* ProgressBar.m */; };
+		84937DED19094EF900E5E405 /* UILabelEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DEC19094EF900E5E405 /* UILabelEx.m */; };
+		84937DF01909796400E5E405 /* OLAUIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DEF1909796400E5E405 /* OLAUIMessage.m */; };
 		84950FFC18FED1D800E6DFBB /* OLASoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84950FFB18FED1D800E6DFBB /* OLASoundPlayer.m */; };
 		84950FFE18FED73600E6DFBB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84950FFD18FED73600E6DFBB /* AVFoundation.framework */; };
 		849745CB18FADD0F007A8D5C /* Log.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EA18FADD0E007A8D5C /* Log.lua */; };
@@ -126,7 +130,6 @@
 		8497463818FADD0F007A8D5C /* OLATextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745B718FADD0F007A8D5C /* OLATextView.m */; };
 		8497463918FADD0F007A8D5C /* OLAView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745B918FADD0F007A8D5C /* OLAView.m */; };
 		8497463A18FADD0F007A8D5C /* OLAWedgit.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745BB18FADD0F007A8D5C /* OLAWedgit.m */; };
-		8497463B18FADD0F007A8D5C /* UILabelEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745BD18FADD0F007A8D5C /* UILabelEx.m */; };
 		8497463C18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745BF18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m */; };
 		8497463D18FADD0F007A8D5C /* LOStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745C218FADD0F007A8D5C /* LOStack.m */; };
 		8497463E18FADD0F007A8D5C /* XMLAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745C418FADD0F007A8D5C /* XMLAttribute.m */; };
@@ -163,23 +166,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		840C4EA518F9A0CB0061C4B6 /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
-		840C4EA618F9A0CB0061C4B6 /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button.m; sourceTree = "<group>"; };
-		840C4EA718F9A0CB0061C4B6 /* FDLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLabelView.h; sourceTree = "<group>"; };
-		840C4EA818F9A0CB0061C4B6 /* FDLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLabelView.m; sourceTree = "<group>"; };
-		840C4EA918F9A0CB0061C4B6 /* FrameLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLayout.h; sourceTree = "<group>"; };
-		840C4EAA18F9A0CB0061C4B6 /* FrameLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameLayout.m; sourceTree = "<group>"; };
-		840C4EAB18F9A0CB0061C4B6 /* IView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IView.h; sourceTree = "<group>"; };
-		840C4EAC18F9A0CB0061C4B6 /* IView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IView.m; sourceTree = "<group>"; };
-		840C4EAD18F9A0CB0061C4B6 /* IViewEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IViewEvent.h; sourceTree = "<group>"; };
-		840C4EAE18F9A0CB0061C4B6 /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
-		840C4EAF18F9A0CB0061C4B6 /* Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Layout.m; sourceTree = "<group>"; };
-		840C4EB018F9A0CB0061C4B6 /* LinearLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearLayout.h; sourceTree = "<group>"; };
-		840C4EB118F9A0CB0061C4B6 /* LinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearLayout.m; sourceTree = "<group>"; };
-		840C4EB218F9A0CB0061C4B6 /* RelativeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeLayout.h; sourceTree = "<group>"; };
-		840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeLayout.m; sourceTree = "<group>"; };
-		840C4EB418F9A0CB0061C4B6 /* ScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollerView.h; sourceTree = "<group>"; };
-		840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollerView.m; sourceTree = "<group>"; };
+		84937DCC19093AE000E5E405 /* OLAProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAProgressBar.h; sourceTree = "<group>"; };
+		84937DCD19093AE000E5E405 /* OLAProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAProgressBar.m; sourceTree = "<group>"; };
+		84937DCF1909492A00E5E405 /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Button.h; path = Ola/view/Button.h; sourceTree = SOURCE_ROOT; };
+		84937DD01909492A00E5E405 /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Button.m; path = Ola/view/Button.m; sourceTree = SOURCE_ROOT; };
+		84937DD11909492A00E5E405 /* FDLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDLabelView.h; path = Ola/view/FDLabelView.h; sourceTree = SOURCE_ROOT; };
+		84937DD21909492A00E5E405 /* FDLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDLabelView.m; path = Ola/view/FDLabelView.m; sourceTree = SOURCE_ROOT; };
+		84937DD31909492A00E5E405 /* FrameLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameLayout.h; path = Ola/view/FrameLayout.h; sourceTree = SOURCE_ROOT; };
+		84937DD41909492A00E5E405 /* FrameLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrameLayout.m; path = Ola/view/FrameLayout.m; sourceTree = SOURCE_ROOT; };
+		84937DD51909492A00E5E405 /* IView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IView.h; path = Ola/view/IView.h; sourceTree = SOURCE_ROOT; };
+		84937DD61909492A00E5E405 /* IView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IView.m; path = Ola/view/IView.m; sourceTree = SOURCE_ROOT; };
+		84937DD71909492A00E5E405 /* IViewEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IViewEvent.h; path = Ola/view/IViewEvent.h; sourceTree = SOURCE_ROOT; };
+		84937DD81909492A00E5E405 /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Layout.h; path = Ola/view/Layout.h; sourceTree = SOURCE_ROOT; };
+		84937DD91909492B00E5E405 /* Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Layout.m; path = Ola/view/Layout.m; sourceTree = SOURCE_ROOT; };
+		84937DDA1909492B00E5E405 /* LinearLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinearLayout.h; path = Ola/view/LinearLayout.h; sourceTree = SOURCE_ROOT; };
+		84937DDB1909492B00E5E405 /* LinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinearLayout.m; path = Ola/view/LinearLayout.m; sourceTree = SOURCE_ROOT; };
+		84937DDC1909492B00E5E405 /* RelativeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RelativeLayout.h; path = Ola/view/RelativeLayout.h; sourceTree = SOURCE_ROOT; };
+		84937DDD1909492B00E5E405 /* RelativeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RelativeLayout.m; path = Ola/view/RelativeLayout.m; sourceTree = SOURCE_ROOT; };
+		84937DDE1909492B00E5E405 /* ScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollerView.h; path = Ola/view/ScrollerView.h; sourceTree = SOURCE_ROOT; };
+		84937DDF1909492B00E5E405 /* ScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollerView.m; path = Ola/view/ScrollerView.m; sourceTree = SOURCE_ROOT; };
+		84937DE8190949A100E5E405 /* ProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressBar.h; path = Ola/ProgressBar.h; sourceTree = SOURCE_ROOT; };
+		84937DE9190949A100E5E405 /* ProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressBar.m; path = Ola/ProgressBar.m; sourceTree = SOURCE_ROOT; };
+		84937DEB19094EF900E5E405 /* UILabelEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILabelEx.h; path = Ola/wedgit/UILabelEx.h; sourceTree = SOURCE_ROOT; };
+		84937DEC19094EF900E5E405 /* UILabelEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILabelEx.m; path = Ola/wedgit/UILabelEx.m; sourceTree = SOURCE_ROOT; };
+		84937DEE1909796400E5E405 /* OLAUIMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLAUIMessage.h; path = ../../OLAUIMessage.h; sourceTree = "<group>"; };
+		84937DEF1909796400E5E405 /* OLAUIMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLAUIMessage.m; path = ../../OLAUIMessage.m; sourceTree = "<group>"; };
 		84950FFA18FED1D800E6DFBB /* OLASoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLASoundPlayer.h; sourceTree = "<group>"; };
 		84950FFB18FED1D800E6DFBB /* OLASoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLASoundPlayer.m; sourceTree = "<group>"; };
 		84950FFD18FED73600E6DFBB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -368,8 +379,6 @@
 		849745B918FADD0F007A8D5C /* OLAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAView.m; sourceTree = "<group>"; };
 		849745BA18FADD0F007A8D5C /* OLAWedgit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAWedgit.h; sourceTree = "<group>"; };
 		849745BB18FADD0F007A8D5C /* OLAWedgit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAWedgit.m; sourceTree = "<group>"; };
-		849745BC18FADD0F007A8D5C /* UILabelEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILabelEx.h; path = ../wedgit/UILabelEx.h; sourceTree = "<group>"; };
-		849745BD18FADD0F007A8D5C /* UILabelEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILabelEx.m; path = ../wedgit/UILabelEx.m; sourceTree = "<group>"; };
 		849745BE18FADD0F007A8D5C /* UIView+WhenTappedBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WhenTappedBlocks.h"; sourceTree = "<group>"; };
 		849745BF18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WhenTappedBlocks.m"; sourceTree = "<group>"; };
 		849745C118FADD0F007A8D5C /* LOStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOStack.h; sourceTree = "<group>"; };
@@ -432,30 +441,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		840C4EA418F9A0CB0061C4B6 /* layout */ = {
+		840C4EA418F9A0CB0061C4B6 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				849745BC18FADD0F007A8D5C /* UILabelEx.h */,
-				849745BD18FADD0F007A8D5C /* UILabelEx.m */,
-				840C4EA518F9A0CB0061C4B6 /* Button.h */,
-				840C4EA618F9A0CB0061C4B6 /* Button.m */,
-				840C4EA718F9A0CB0061C4B6 /* FDLabelView.h */,
-				840C4EA818F9A0CB0061C4B6 /* FDLabelView.m */,
-				840C4EA918F9A0CB0061C4B6 /* FrameLayout.h */,
-				840C4EAA18F9A0CB0061C4B6 /* FrameLayout.m */,
-				840C4EAB18F9A0CB0061C4B6 /* IView.h */,
-				840C4EAC18F9A0CB0061C4B6 /* IView.m */,
-				840C4EAD18F9A0CB0061C4B6 /* IViewEvent.h */,
-				840C4EAE18F9A0CB0061C4B6 /* Layout.h */,
-				840C4EAF18F9A0CB0061C4B6 /* Layout.m */,
-				840C4EB018F9A0CB0061C4B6 /* LinearLayout.h */,
-				840C4EB118F9A0CB0061C4B6 /* LinearLayout.m */,
-				840C4EB218F9A0CB0061C4B6 /* RelativeLayout.h */,
-				840C4EB318F9A0CB0061C4B6 /* RelativeLayout.m */,
-				840C4EB418F9A0CB0061C4B6 /* ScrollerView.h */,
-				840C4EB518F9A0CB0061C4B6 /* ScrollerView.m */,
+				84937DEB19094EF900E5E405 /* UILabelEx.h */,
+				84937DEC19094EF900E5E405 /* UILabelEx.m */,
+				84937DCF1909492A00E5E405 /* Button.h */,
+				84937DD01909492A00E5E405 /* Button.m */,
+				84937DE8190949A100E5E405 /* ProgressBar.h */,
+				84937DE9190949A100E5E405 /* ProgressBar.m */,
+				84937DD11909492A00E5E405 /* FDLabelView.h */,
+				84937DD21909492A00E5E405 /* FDLabelView.m */,
+				84937DD31909492A00E5E405 /* FrameLayout.h */,
+				84937DD41909492A00E5E405 /* FrameLayout.m */,
+				84937DD51909492A00E5E405 /* IView.h */,
+				84937DD61909492A00E5E405 /* IView.m */,
+				84937DD71909492A00E5E405 /* IViewEvent.h */,
+				84937DD81909492A00E5E405 /* Layout.h */,
+				84937DD91909492B00E5E405 /* Layout.m */,
+				84937DDA1909492B00E5E405 /* LinearLayout.h */,
+				84937DDB1909492B00E5E405 /* LinearLayout.m */,
+				84937DDC1909492B00E5E405 /* RelativeLayout.h */,
+				84937DDD1909492B00E5E405 /* RelativeLayout.m */,
+				84937DDE1909492B00E5E405 /* ScrollerView.h */,
+				84937DDF1909492B00E5E405 /* ScrollerView.m */,
 			);
-			name = layout;
+			name = view;
 			path = Ola/layout;
 			sourceTree = "<group>";
 		};
@@ -478,6 +489,8 @@
 				849744EA18FADD0E007A8D5C /* Log.lua */,
 				8497450218FADD0F007A8D5C /* OLAStringUtil.h */,
 				8497450318FADD0F007A8D5C /* OLAStringUtil.m */,
+				84937DEE1909796400E5E405 /* OLAUIMessage.h */,
+				84937DEF1909796400E5E405 /* OLAUIMessage.m */,
 			);
 			name = sharedobj;
 			path = Ola/sharedobj;
@@ -738,6 +751,8 @@
 				8497459D18FADD0F007A8D5C /* CSS.m */,
 				8497459E18FADD0F007A8D5C /* OLAButton.h */,
 				8497459F18FADD0F007A8D5C /* OLAButton.m */,
+				84937DCC19093AE000E5E405 /* OLAProgressBar.h */,
+				84937DCD19093AE000E5E405 /* OLAProgressBar.m */,
 				849745A018FADD0F007A8D5C /* OLAContainer.h */,
 				849745A118FADD0F007A8D5C /* OLAContainer.m */,
 				849745A218FADD0F007A8D5C /* OLAFrameLayout.h */,
@@ -794,7 +809,7 @@
 		84DE5C6818D9A1E30059C5C9 = {
 			isa = PBXGroup;
 			children = (
-				840C4EA418F9A0CB0061C4B6 /* layout */,
+				840C4EA418F9A0CB0061C4B6 /* view */,
 				8497464418FAFA59007A8D5C /* assets */,
 				849744EB18FADD0E007A8D5C /* luac.lua */,
 				849744EC18FADD0E007A8D5C /* OLA.lua */,
@@ -1017,6 +1032,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84937DE41909492B00E5E405 /* Layout.m in Sources */,
 				849745DD18FADD0F007A8D5C /* wax_CGContext.m in Sources */,
 				849745F018FADD0F007A8D5C /* lbaselib.c in Sources */,
 				8497464018FADD0F007A8D5C /* XMLElement.m in Sources */,
@@ -1024,15 +1040,18 @@
 				849745E618FADD0F007A8D5C /* yajl_encode.c in Sources */,
 				8497463E18FADD0F007A8D5C /* XMLAttribute.m in Sources */,
 				849745E418FADD0F007A8D5C /* yajl_alloc.c in Sources */,
+				84937DED19094EF900E5E405 /* UILabelEx.m in Sources */,
 				8497462F18FADD0F007A8D5C /* OLALabel.m in Sources */,
 				84DE5C8118D9A1E30059C5C9 /* main.m in Sources */,
 				849745E818FADD0F007A8D5C /* yajl_lex.c in Sources */,
+				84937DE31909492B00E5E405 /* IView.m in Sources */,
 				8497460218FADD0F007A8D5C /* lstate.c in Sources */,
 				849745F218FADD0F007A8D5C /* ldblib.c in Sources */,
 				8497462418FADD0F007A8D5C /* wax.m in Sources */,
 				849745E718FADD0F007A8D5C /* yajl_gen.c in Sources */,
 				849745E518FADD0F007A8D5C /* yajl_buf.c in Sources */,
 				8497464118FADD0F007A8D5C /* XMLText.m in Sources */,
+				84937DE01909492B00E5E405 /* Button.m in Sources */,
 				849745F718FADD0F007A8D5C /* lgc.c in Sources */,
 				8497460318FADD0F007A8D5C /* lstring.c in Sources */,
 				849745D818FADD0F007A8D5C /* OLAStringUtil.m in Sources */,
@@ -1041,16 +1060,14 @@
 				8497460718FADD0F007A8D5C /* ltm.c in Sources */,
 				849745FE18FADD0F007A8D5C /* lobject.c in Sources */,
 				8497462C18FADD0F007A8D5C /* OLAButton.m in Sources */,
+				84937DF01909796400E5E405 /* OLAUIMessage.m in Sources */,
+				84937DE61909492B00E5E405 /* RelativeLayout.m in Sources */,
 				8497460A18FADD0F007A8D5C /* lzio.c in Sources */,
-				840C4EBA18F9A0CB0061C4B6 /* Layout.m in Sources */,
-				840C4EBB18F9A0CB0061C4B6 /* LinearLayout.m in Sources */,
-				8497463B18FADD0F007A8D5C /* UILabelEx.m in Sources */,
 				8497462918FADD0F007A8D5C /* wax_server.m in Sources */,
-				840C4EBD18F9A0CB0061C4B6 /* ScrollerView.m in Sources */,
-				840C4EB818F9A0CB0061C4B6 /* FrameLayout.m in Sources */,
 				8497462E18FADD0F007A8D5C /* OLAFrameLayout.m in Sources */,
 				8497463118FADD0F007A8D5C /* OLALinearLayout.m in Sources */,
 				849745EE18FADD0F007A8D5C /* lapi.c in Sources */,
+				84937DE11909492B00E5E405 /* FDLabelView.m in Sources */,
 				8497460418FADD0F007A8D5C /* lstrlib.c in Sources */,
 				849745FA18FADD0F007A8D5C /* llex.c in Sources */,
 				8497463918FADD0F007A8D5C /* OLAView.m in Sources */,
@@ -1065,13 +1082,16 @@
 				849745F918FADD0F007A8D5C /* liolib.c in Sources */,
 				849745FF18FADD0F007A8D5C /* lopcodes.c in Sources */,
 				849745FC18FADD0F007A8D5C /* lmem.c in Sources */,
+				84937DE21909492B00E5E405 /* FrameLayout.m in Sources */,
 				849745F818FADD0F007A8D5C /* linit.c in Sources */,
+				84937DEA190949A100E5E405 /* ProgressBar.m in Sources */,
+				84937DE51909492B00E5E405 /* LinearLayout.m in Sources */,
+				84937DCE19093AE000E5E405 /* OLAProgressBar.m in Sources */,
 				849745EF18FADD0F007A8D5C /* lauxlib.c in Sources */,
 				849745E318FADD0F007A8D5C /* yajl.c in Sources */,
 				84950FFC18FED1D800E6DFBB /* OLASoundPlayer.m in Sources */,
 				849745E218FADD0F007A8D5C /* wax_json.c in Sources */,
 				8497460518FADD0F007A8D5C /* ltable.c in Sources */,
-				840C4EB718F9A0CB0061C4B6 /* FDLabelView.m in Sources */,
 				8497463318FADD0F007A8D5C /* OLARelativeLayout.m in Sources */,
 				849745D418FADD0F007A8D5C /* OLADES3Encrypt.m in Sources */,
 				8497463018FADD0F007A8D5C /* OLALayout.m in Sources */,
@@ -1088,6 +1108,7 @@
 				849745FD18FADD0F007A8D5C /* loadlib.c in Sources */,
 				849745F418FADD0F007A8D5C /* ldo.c in Sources */,
 				8497462718FADD0F007A8D5C /* wax_helpers.m in Sources */,
+				84937DE71909492B00E5E405 /* ScrollerView.m in Sources */,
 				849745CF18FADD0F007A8D5C /* OLALuaContext.m in Sources */,
 				849745F618FADD0F007A8D5C /* lfunc.c in Sources */,
 				8497460018FADD0F007A8D5C /* loslib.c in Sources */,
@@ -1104,14 +1125,11 @@
 				849745E018FADD0F007A8D5C /* wax_http_connection.m in Sources */,
 				849745E918FADD0F007A8D5C /* yajl_parser.c in Sources */,
 				8497460618FADD0F007A8D5C /* ltablib.c in Sources */,
-				840C4EBC18F9A0CB0061C4B6 /* RelativeLayout.m in Sources */,
 				8497462818FADD0F007A8D5C /* wax_instance.m in Sources */,
 				8497463518FADD0F007A8D5C /* OLATable.m in Sources */,
 				8497462A18FADD0F007A8D5C /* wax_struct.m in Sources */,
 				8497463A18FADD0F007A8D5C /* OLAWedgit.m in Sources */,
 				8497462B18FADD0F007A8D5C /* CSS.m in Sources */,
-				840C4EB618F9A0CB0061C4B6 /* Button.m in Sources */,
-				840C4EB918F9A0CB0061C4B6 /* IView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

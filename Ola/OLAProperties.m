@@ -16,6 +16,7 @@
 #import "OLAFileOutputStream.h"
 #import "OLAStringUtil.h"
 #import "OLASoundPlayer.h"
+#import "OLAUIMessage.h"
 
 @implementation OLAProperties
 
@@ -94,6 +95,7 @@
         [lua registClass:[OLAStringUtil class] withGlobalName:@"str"];
         
          [lua registClass:[OLASoundPlayer class] withGlobalName:@"MediaPlayer"];
+        [lua registClass:[OLAUIMessage class] withGlobalName:@"uiMsg"];
         
         /*
 		

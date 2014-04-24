@@ -10,8 +10,8 @@
 <body id="body" layout="FrameLayout"  style="orientation:vertical;background-color:#0000ff;">
 		<div id="div1" layout="LinearLayout"  style="orientation:horizontal;width:auto;weight:1px;">
             <div id="div2" layout="LinearLayout" style="orientation:vertical;margin:3px;weight:3px;padding:3px;height:auto;background-color:#66ccff;">
-			<ProgressBar id="ProgressBar"  style="width:auto;height:5px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:0;"></ProgressBar>
-			<ProgressBar id="ProgressBar2"  style="width:auto;height:5px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:0;"></ProgressBar>
+			<ProgressBar id="ProgressBar"  style="width:auto;height:15px;margin:1px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:0;"></ProgressBar>
+			<ProgressBar id="ProgressBar2"  style="width:auto;height:5px;margin:1px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:1;"></ProgressBar>
 			<scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
 				<div id="div3" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;weight:1px;">
                     <div id="div4" layout="LinearLayout" class="LinearLayout" style="orientation:horizontal;align:center;width:auto;">
@@ -84,7 +84,7 @@
                     <button id="row5" style="width:48px;height:48px;background-image:url(images/ico/P6.png);valign:middle" onclick='create()'></button>
                 </div>
                 <div id="free_area" layout="LinearLayout"  style="margin:3px;orientation:vertical;weight:1px;width:auto;align:center;valign:middle;">
-<label id="test_text" style="color:#ffffff">Good </label>
+<label id="test_text" style="color:#ffffff;background-color:#00ff00">Good </label>
 <label id="test_text2" style="color:#ffffff">Good </label>
                    <!-- <label style="color:#ffffff">Good \nGood \nStudy,\n\n Day\n Day\n Up!</label>-->
                 </div>

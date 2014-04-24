@@ -29,4 +29,7 @@
 -(void) setBackgroundImageUrl:(NSString *) imageUrl;
 
 + (UIImage *)imageScale:( UIImage *)sourceImage toSize:(CGSize)targetSize;
+- (void) setHeight:(int) height;
+- (void) setWidth:(int) width;
+
 @end

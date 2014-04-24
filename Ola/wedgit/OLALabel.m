@@ -209,10 +209,10 @@ UIFont *font ;
     CGFloat w=0,h=0;
     if(css.width>0)w=css.width;else w=actualsize.width;
     if(css.height>0)h=css.height; else h=actualsize.height;
-
+        if(w<label.frame.size.width)w=label.frame.size.width;
     [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, w, h)];
 
-    [label setNeedsDisplay];
+    //[label setNeedsDisplay];
     
     //repaint the whole screen view if the frame size of the label was changed to bigger
     BOOL needRepaint=NO;
@@ -220,7 +220,7 @@ UIFont *font ;
         needRepaint=YES;
         
     if(needRepaint)
-    {
+    {NSLog(@"label frame size was changed....");
         if([parent isKindOfClass:[OLALinearLayout class]])
         {
             LinearLayout * container=(LinearLayout *)parent.v;

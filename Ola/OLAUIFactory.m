@@ -21,6 +21,7 @@
 #import "OLATextField.h"
 #import "OLAScrollView.h"
 #import "OLAProperties.h"
+#import "OLAProgressBar.h"
 
 @implementation OLAUIFactory
 
@@ -254,6 +255,10 @@
     	{
     		v= [[OLAScrollView alloc] initWithParent:rootView withXMLElement:n];
     		//rootView.addView(text);
+    	}
+        else if ([name caseInsensitiveCompare:@"PROGRESSBAR"]==NSOrderedSame )
+    	{
+    		v= [[OLAProgressBar alloc] initWithParent:rootView withXMLElement:n];
     	}
          
     	return v;

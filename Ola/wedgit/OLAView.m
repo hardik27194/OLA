@@ -9,7 +9,7 @@
 #import "OLAView.h"
 
 @implementation OLAView
-@synthesize objId,onclick,pressed,parent,clickFun,v,root,css;
+@synthesize objId,threadClick,onclick,pressed,parent,clickFun,v,root,css;
 
 
 
