@@ -17,6 +17,7 @@
 #import "OLAStringUtil.h"
 #import "OLASoundPlayer.h"
 #import "OLAUIMessage.h"
+#import "OLAAsyncDownload.h"
 
 @implementation OLAProperties
 
@@ -75,12 +76,18 @@
         appUrl=[lua getGlobalString:@"OLA.base"];
         fileBase=[lua getGlobalString:@"OLA.storage"];
         //[lua setGlobal:[self getRootPath] withId:@"OLA.storage"];
+        NSMutableString * tmp=[[NSMutableString alloc] initWithString:[self getRootPath]];
+        [tmp appendString:@"/"];
+        [tmp appendString:fileBase];
+        fileBase=tmp;
         NSMutableString * storage=[[NSMutableString alloc] initWithString:@"OLA.storage='"];
-        [storage appendString:[self getRootPath]];
-        [storage appendString:@"/"];
+        //[storage appendString:[self getRootPath]];
+        //[storage appendString:@"/"];
         [storage appendString:fileBase];
         [storage appendString:@"'"];
         [lua doString:storage];
+        
+        
         
         
         
@@ -96,6 +103,7 @@
         
          [lua registClass:[OLASoundPlayer class] withGlobalName:@"MediaPlayer"];
         [lua registClass:[OLAUIMessage class] withGlobalName:@"uiMsg"];
+        [lua registClass:[OLAAsyncDownload class] withGlobalName:@"AsyncDownload"];
         
         /*
 		

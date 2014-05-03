@@ -327,10 +327,8 @@ LayoutParams * param;
 
                     int start=[threadClick rangeOfString:@"(" ].location;
                     int end=[threadClick rangeOfString:@")" ].location;
-                NSLog(@"start=%d,end=%d",start,end);
                     NSString *method=[threadClick substringWithRange:NSMakeRange(0,start)];
                     NSString * paramstr=[threadClick substringWithRange:NSMakeRange(start+1,end-start-1)];
-                NSLog(@"method=%s,paramstr=%@",[method UTF8String],paramstr);
                     NSArray * params;
                     if([trim(paramstr) caseInsensitiveCompare:@""])params=[[NSArray alloc] init];
                     else params=[paramstr componentsSeparatedByString:@","];

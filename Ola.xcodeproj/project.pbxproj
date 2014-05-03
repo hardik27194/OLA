@@ -138,6 +138,8 @@
 		8497464118FADD0F007A8D5C /* XMLText.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745CA18FADD0F007A8D5C /* XMLText.m */; };
 		8497464318FADD53007A8D5C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8497464218FADD53007A8D5C /* libsqlite3.0.dylib */; };
 		8497464518FAFA59007A8D5C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 8497464418FAFA59007A8D5C /* assets */; };
+		84A20E361913F0300041ECC9 /* OLAAsyncDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A20E351913F0300041ECC9 /* OLAAsyncDownload.m */; };
+		84A20E39191406390041ECC9 /* OLAQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A20E38191406390041ECC9 /* OLAQueue.m */; };
 		84DE5C7518D9A1E30059C5C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7418D9A1E30059C5C9 /* Foundation.framework */; };
 		84DE5C7718D9A1E30059C5C9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7618D9A1E30059C5C9 /* CoreGraphics.framework */; };
 		84DE5C7918D9A1E30059C5C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7818D9A1E30059C5C9 /* UIKit.framework */; };
@@ -393,6 +395,10 @@
 		849745CA18FADD0F007A8D5C /* XMLText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLText.m; sourceTree = "<group>"; };
 		8497464218FADD53007A8D5C /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		8497464418FAFA59007A8D5C /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		84A20E341913F0300041ECC9 /* OLAAsyncDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAAsyncDownload.h; sourceTree = "<group>"; };
+		84A20E351913F0300041ECC9 /* OLAAsyncDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAAsyncDownload.m; sourceTree = "<group>"; };
+		84A20E37191406390041ECC9 /* OLAQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAQueue.h; sourceTree = "<group>"; };
+		84A20E38191406390041ECC9 /* OLAQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAQueue.m; sourceTree = "<group>"; };
 		84DE5C7118D9A1E30059C5C9 /* Ola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ola.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DE5C7418D9A1E30059C5C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84DE5C7618D9A1E30059C5C9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -491,6 +497,10 @@
 				8497450318FADD0F007A8D5C /* OLAStringUtil.m */,
 				84937DEE1909796400E5E405 /* OLAUIMessage.h */,
 				84937DEF1909796400E5E405 /* OLAUIMessage.m */,
+				84A20E341913F0300041ECC9 /* OLAAsyncDownload.h */,
+				84A20E351913F0300041ECC9 /* OLAAsyncDownload.m */,
+				84A20E37191406390041ECC9 /* OLAQueue.h */,
+				84A20E38191406390041ECC9 /* OLAQueue.m */,
 			);
 			name = sharedobj;
 			path = Ola/sharedobj;
@@ -1062,6 +1072,7 @@
 				8497462C18FADD0F007A8D5C /* OLAButton.m in Sources */,
 				84937DF01909796400E5E405 /* OLAUIMessage.m in Sources */,
 				84937DE61909492B00E5E405 /* RelativeLayout.m in Sources */,
+				84A20E39191406390041ECC9 /* OLAQueue.m in Sources */,
 				8497460A18FADD0F007A8D5C /* lzio.c in Sources */,
 				8497462918FADD0F007A8D5C /* wax_server.m in Sources */,
 				8497462E18FADD0F007A8D5C /* OLAFrameLayout.m in Sources */,
@@ -1077,6 +1088,7 @@
 				849745F318FADD0F007A8D5C /* ldebug.c in Sources */,
 				8497463218FADD0F007A8D5C /* OLALongPressGestureRecognizer.m in Sources */,
 				8497460118FADD0F007A8D5C /* lparser.c in Sources */,
+				84A20E361913F0300041ECC9 /* OLAAsyncDownload.m in Sources */,
 				849745CE18FADD0F007A8D5C /* OLABodyView.m in Sources */,
 				8497460818FADD0F007A8D5C /* lundump.c in Sources */,
 				849745F918FADD0F007A8D5C /* liolib.c in Sources */,

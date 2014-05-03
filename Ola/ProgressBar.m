@@ -40,7 +40,7 @@
     progressPercent=mProgress/max;
     if(progressPercent<0)progressPercent=0;
     if(progressPercent>1)progressPercent=1;
-     NSLog(@"progress progressPercent=%f",progressPercent);
+     //NSLog(@"progress progressPercent=%f",progressPercent);
     [self setNeedsDisplay];
 }
 

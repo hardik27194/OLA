@@ -64,7 +64,7 @@
 }
 - (void) setValue:(float) value
 {
-    NSLog(@"progress value=%f",value);
+    //NSLog(@"progress value=%f",value);
     ProgressBar *progressBar=(ProgressBar *)v;
     [progressBar setProgress:value];
     
