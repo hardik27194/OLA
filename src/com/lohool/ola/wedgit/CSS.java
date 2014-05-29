@@ -25,6 +25,7 @@ public class CSS
 	int backgroundColor;
 	int color;
 
+	
 	// text position
 	String textAlign;
 	String orientation;

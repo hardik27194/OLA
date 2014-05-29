@@ -17,12 +17,23 @@ public class LuaContext {
 	{
 		open();
 	}
+	public static LuaContext createInstance()
+	{
+//		if(instance==null)
+//		{
+//			instance = new LuaContext();
+//		}
+		LuaContext instance = new LuaContext();
+		return instance;
+	}
+	public static void registInstance(LuaContext lua)
+	{
+
+			instance = lua;
+
+	}
 	public static LuaContext getInstance()
 	{
-		if(instance==null)
-		{
-			instance = new LuaContext();
-		}
 		return instance;
 	}
 	public  void open()
@@ -78,6 +89,14 @@ public class LuaContext {
 		obj = lua.getLuaObject(id);
 		return obj;
 	}
+//	public Object getUserDateObject(String id) throws LuaException
+//	{
+//		Object obj = null;
+//		lua.getGlobal(id);
+//		//lua.getTable(-1);
+//		obj=lua.getObjectFromUserdata(-1);
+//		return obj;
+//	}
 	public void doString(String str)
 	{
 		lua.LdoString(str);
@@ -87,7 +106,7 @@ public class LuaContext {
 	{
 		System.out.println("Lua file:"+file);
 		
-		//lua.LdoFile(file);
+		lua.LdoFile(file);
 	}
 	
 	
@@ -102,5 +121,9 @@ public class LuaContext {
 	{
 		lua.pushString(val);
 		lua.setGlobal(id);
+	}
+	public void close()
+	{
+		if(lua!=null && !lua.isClosed())lua.close();
 	}
 }

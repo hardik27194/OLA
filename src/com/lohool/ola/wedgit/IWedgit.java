@@ -1,5 +1,6 @@
 package com.lohool.ola.wedgit;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -12,17 +13,21 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.lohool.ola.BodyView;
-import com.lohool.ola.LMProperties;
+import com.lohool.ola.OLA;
+import com.lohool.ola.PortalProperties;
 import com.lohool.ola.LuaContext;
 import com.lohool.ola.Main;
 import com.lohool.ola.UIFactory;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.Picture;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PictureDrawable;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -43,6 +48,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+@SuppressLint("NewApi")
 public abstract class IWedgit implements IView
 {
 
@@ -251,12 +257,12 @@ public abstract class IWedgit implements IView
 		{
 			this.setBackgroundColor(attr);
 		}
-
+//		System.out.println("css.color=" + css.color);
 		if (css.color != 0)
+//		if ((attr = css.getStyleValue("color")) != null)
 			this.setColor(css.color);
 
-		// System.out.println("background-image="
-		// + css.getStyleValue("background-image"));
+		// System.out.println("background-image=" + css.getStyleValue("background-image"));
 		if ((attr = css.getStyleValue("background-image")) != null)
 		{
 			setBackgroundImageUrl(CSS.parseImageUrl(attr));
@@ -333,6 +339,7 @@ public abstract class IWedgit implements IView
 	
 	public static  Handler mHandler = new Handler(){  
         public void handleMessage(Message msg){  
+        	
         	LuaContext.getInstance().doString((String)msg.obj);
 //        	int i=((Integer)msg.obj).intValue();
 //        	LuaContext.getInstance().doString("ProgressBar:setValue("+i+")");
@@ -354,36 +361,36 @@ public abstract class IWedgit implements IView
 			return "";
 		}
     }
-    private class EventThread implements Runnable
-	{
-    	String event;
-    	public EventThread(String event)
-    	{
-    		this.event=event;
-    	}
-		@Override
-		public void run() {
-			Looper.prepare();
-			LuaContext.getInstance().doString(event);
-			Looper.loop();
-		}
-
-		
-	}
-    public int i;
-    Handler mHandler1 = new Handler();
-    Runnable mRunnable = new Runnable() {
-    	
-
-        @Override
-        public void run() {
-            //mTextView.setText("haha");
-        	//LuaContext.getInstance().doString(onclick);
-        	LuaContext.getInstance().doString("ProgressBar:setValue("+i+")");
-        	LuaContext.getInstance().doString("test_text:setText('"+i+"%')");
-        
-        }
-    };
+//    private class EventThread implements Runnable
+//	{
+//    	String event;
+//    	public EventThread(String event)
+//    	{
+//    		this.event=event;
+//    	}
+//		@Override
+//		public void run() {
+//			Looper.prepare();
+//			LuaContext.getInstance().doString(event);
+//			Looper.loop();
+//		}
+//
+//		
+//	}
+//    public int i;
+////    Handler mHandler1 = new Handler();
+//    Runnable mRunnable = new Runnable() {
+//    	
+//
+//        @Override
+//        public void run() {
+//            //mTextView.setText("haha");
+//        	//LuaContext.getInstance().doString(onclick);
+//        	LuaContext.getInstance().doString("ProgressBar:setValue("+i+")");
+//        	LuaContext.getInstance().doString("test_text:setText('"+i+"%')");
+//        
+//        }
+//    };
 
     
 	protected void clicked()
@@ -506,6 +513,7 @@ public abstract class IWedgit implements IView
 		}
 	}
 
+
 	public String getText()
 	{
 		if (v instanceof TextView)
@@ -545,12 +553,14 @@ public abstract class IWedgit implements IView
 
 	public void setBackgroundColor(String backgroundColor)
 	{
+//		System.out.println("back-color="+backgroundColor);
 		int bg = CSS.parseColor(backgroundColor);
 		setBackgroundColor(bg);
 	}
 
 	public void setBackgroundColor(int backgroundColor)
 	{
+//		System.out.println("back-color="+backgroundColor);
 		v.setBackgroundColor(backgroundColor);
 		css.backgroundColor = backgroundColor;
 	}
@@ -614,38 +624,44 @@ public abstract class IWedgit implements IView
 		return css.backgroundImageURL;
 	}
 
+
 	public void setBackgroundImageUrl(String backgroundImageUrl)
 	{
 		// v.setBackground( new
 		// BitmapDrawable(returnBitMap(backgroundImageURL)));
 		// BitmapDrawable bd=new
 		// BitmapDrawable(returnBitMap(backgroundImageURL));
-		String backgroundImageURL = LMProperties.getInstance().getAppBase()
-				+ backgroundImageUrl;
+		String base="";
+//		if(PortalProperties.getInstance().getAppProperties()!=null)base=PortalProperties.getInstance().getAppProperties().getAppBase();
+//		else base=PortalProperties.getInstance().getAppBase();
+		base=OLA.appBase;
+		String backgroundImageURL = base + backgroundImageUrl;
+		System.out.println(backgroundImageURL);
+		try{
 		if (backgroundImageURL.startsWith("http://"))
 		{
 			DownloadImage task = new DownloadImage();
 			task.execute(backgroundImageURL);
+			
 		} else
 		{
-
-			v.setBackgroundDrawable(new BitmapDrawable(
-					getImageFromAssetsFile(backgroundImageURL)));
+//			Bitmap img=getImageFromAssetsFile(backgroundImageURL);
+//			v.setBackgroundDrawable(new BitmapDrawable(img));
+//			//img.recycle();
+//			img=null;
+		
+			InputStream is = new FileInputStream(backgroundImageURL);
+			Drawable drawable=Drawable.createFromStream(is, null);
+			v.setBackground(drawable);
+			is.close();
+		}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
 		}
 
-		// Bitmap image = null;
 
-		// try {
-		// image = task.get();
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// } catch (ExecutionException e) {
-		// e.printStackTrace();
-		// }
-		// v.setBackgroundDrawable(new BitmapDrawable(image));
-
-		// v.setBackgroundDrawable(new BitmapDrawable(
-		// returnBitMap(backgroundImageURL)));
+		System.gc();
 		css.backgroundImageURL = backgroundImageURL;
 	}
 
@@ -664,6 +680,7 @@ public abstract class IWedgit implements IView
 		try
 		{
 			HttpURLConnection hp = (HttpURLConnection) imgUrl.openConnection();
+			
 			icon = new PictureDrawable(Picture.createFromStream(hp
 					.getInputStream()));// ��������ת����bitmap
 			hp.disconnect();// �ر�����
@@ -679,51 +696,166 @@ public abstract class IWedgit implements IView
 
 		URL myFileUrl = null;
 		Bitmap bitmap = null;
-		try
-		{
-			myFileUrl = new URL(url);
-		} catch (MalformedURLException e)
-		{
-			e.printStackTrace();
-		}
 
 		try
 		{
+			myFileUrl = new URL(url);
 			HttpURLConnection conn = (HttpURLConnection) myFileUrl
 					.openConnection();
-			conn.setDoInput(true);
-			conn.connect();
+//			conn.setDoInput(true);
+//			conn.connect();
 			InputStream is = conn.getInputStream();
+			Options opts = new Options(); 
+			opts.inSampleSize = 4;
 			bitmap = BitmapFactory.decodeStream(is);
 			is.close();
+			conn.disconnect();
+			
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 		return bitmap;
 	}
+	
+	public static Drawable returnDrawable(String url)
+	{
 
+		URL myFileUrl = null;
+		Drawable drawable = null;
+
+		try
+		{
+			myFileUrl = new URL(url);
+			HttpURLConnection conn = (HttpURLConnection) myFileUrl
+					.openConnection();
+//			conn.setDoInput(true);
+//			conn.connect();
+			InputStream is = conn.getInputStream();
+			drawable=Drawable.createFromStream(is, null);
+			is.close();
+			conn.disconnect();
+			
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return drawable;
+	}
+
+	private Bitmap getImageFromAssetsFile(String fileName)
+	{
+		Bitmap image = null;
+		//AssetManager am = context.getResources().getAssets();
+//		try
+//		{
+			//InputStream is = am.open(fileName);
+			Options opts = new Options(); 
+			opts.inSampleSize = 4;
+			image = BitmapFactory.decodeFile(fileName);
+			//is.close();
+//		} catch (IOException e)
+//		{
+//			e.printStackTrace();
+//		}
+
+		return image;
+
+	}
+
+	private class DownloadImage extends AsyncTask<String, Integer, Drawable>
+	{
+
+		protected Drawable doInBackground(String... urls)
+		{
+			Drawable image = null;
+			// backgroundImageURL = url;
+
+			try
+			{
+				image = returnDrawable(urls[0]);
+			} catch (Exception e1)
+			{
+				e1.printStackTrace();
+			} finally
+			{
+
+			}
+			return image;
+
+		}
+
+		protected void onProgressUpdate(Integer... progress)
+		{
+
+		}
+
+		protected void onPostExecute(Drawable result)
+		{
+			//BitmapDrawable db=new BitmapDrawable(result);
+			v.setBackground(result);
+//			v.setBackground(null);
+//			result.recycle();
+			result=null;
+			
+			
+		}
+
+	}
+	
+	public static  Handler mListenerHandler = new Handler(){  
+        public void handleMessage(Message msg){  
+        	ListenerHandler lh=(ListenerHandler)msg.obj;
+			lh.wedgit.gesture = new GestureDetector(lh.ctx,lh.ig);
+			lh.view.setLongClickable(true);
+			lh.view.setOnTouchListener(lh.listener);
+        }  
+    }; 
+    class ListenerHandler
+    {
+    	IWedgit wedgit;
+    	Context ctx;
+    	View view;
+    	IGestureListener ig;
+    	ButtonListener listener;
+    }
 	protected void addListner()
 	{
 		// TODO changed to Handler
+		
 		if (!(this instanceof ITextField))
 		{
-			new Thread()
-			{
-				public void run()
-				{
-					Looper.prepare();
-					gesture = new GestureDetector(context,
-							new IGestureListener(context));
-					v.setLongClickable(true);
-					ButtonListener listener = new ButtonListener();
+			IGestureListener ig=new IGestureListener(context);
+			ButtonListener listener = new ButtonListener();
+			ListenerHandler lh=new ListenerHandler();
+			lh.wedgit=this;
+			lh.ctx=context;
+			lh.view=v;
+			lh.ig=ig;
+			lh.listener=listener;
+			Message msg = new Message();  
+			msg.obj=lh;
+			mListenerHandler.sendMessage(msg);
+
+			
+//			new Thread()
+//			{
+//				public void run()
+//				{
+			//Looper will display cannot create weak pipe Error when reload several times later
+//					Looper.prepare();
+			
+//					IGestureListener ig=new IGestureListener(context);
+//					gesture = new GestureDetector(context,ig);
+//					v.setLongClickable(true);
+//					ButtonListener listener = new ButtonListener();
 					// v.setOnClickListener(listener);
-					v.setOnTouchListener(listener);
-					Looper.loop();
+//					v.setOnTouchListener(listener);
+//					Looper.loop();
 
-				}
-
-			}.start();
+//				}
+//
+//			}.start();
 		}
 
 		// btn.setOnClickListener(new View.OnClickListener() {
@@ -1021,62 +1153,10 @@ public abstract class IWedgit implements IView
 		// if(this.parent==null)
 		param = null;
 		this.parent = parent;
-		System.out.println("parent=" + parent);
+//		System.out.println("parent=" + parent);
 		// rebuild the properties which will be related to the current parent.
 		this.parseCSS();
 
 	}
 
-	private Bitmap getImageFromAssetsFile(String fileName)
-	{
-		Bitmap image = null;
-		AssetManager am = context.getResources().getAssets();
-		try
-		{
-			InputStream is = am.open(fileName);
-			image = BitmapFactory.decodeStream(is);
-			is.close();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
-		return image;
-
-	}
-
-	private class DownloadImage extends AsyncTask<String, Integer, Bitmap>
-	{
-
-		protected Bitmap doInBackground(String... urls)
-		{
-			Bitmap image = null;
-			// backgroundImageURL = url;
-
-			try
-			{
-				image = returnBitMap(urls[0]);
-			} catch (Exception e1)
-			{
-				e1.printStackTrace();
-			} finally
-			{
-
-			}
-			return image;
-
-		}
-
-		protected void onProgressUpdate(Integer... progress)
-		{
-
-		}
-
-		protected void onPostExecute(Bitmap result)
-		{
-
-			v.setBackgroundDrawable(new BitmapDrawable(result));
-		}
-
-	}
 }

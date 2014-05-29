@@ -1,0 +1,58 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body id="body" layout="FrameLayout"  style="orientation:vertical;">
+     <div id="div2" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;">
+            <div id="div2" layout="LinearLayout" style="orientation:hotizontal;margin:3px;width:auto;background-color:#99CCFF">
+				<div id="L_reload" layout="LinearLayout" style="orientation:hotizontal;weight:1px;align:center;" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()">
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(151).png);" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()" />
+				</div>
+				<div id="div2" layout="LinearLayout" style="orientation:hotizontal;weight:1px;align:center">
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(19).png)" onclick="previous()" />
+				</div>
+				<div id="div2" layout="LinearLayout" style="orientation:hotizontal;weight:1px;align:center">
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(20).png)" onclick="next()" />
+				</div>
+			</div>
+            <div id="div2" layout="LinearLayout" style="orientation:vertical;width:auto;margin:3px;weight:3px;padding:3px;height:auto;">
+			<scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
+				<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;weight:1px;">
+					<label style="align:left;width:auto;">Installed Apps:</label>
+					<div  layout="LinearLayout"  style="width:auto;height:2px;background-color:#cccccc">
+					</div>
+					<div id="Apps_Panel" layout="LinearLayout"  style="orientation:vertical;width:auto;align:center;weight:1px;">
+					</div>
+					<label style="align:left;width:auto;">Other Apps:</label>
+					<div  layout="LinearLayout"  style="width:auto;height:2px;background-color:#cccccc">
+					</div>
+					<div id="Apps_Other_Panel" layout="LinearLayout"  style="orientation:vertical;width:auto;align:center;weight:1px;">
+					</div>
+                </div>
+			</scrollview>
+			</div>
+            <div layout="LinearLayout" style="orientation:vertical;margin:3px;width:auto;align:left;background-color:#99CCFF">
+				<label  style="orientation:hotizontal;weight:1px;color:#FFFFFF">Enterprise News</label>
+			</div>
+            <div id="div2" layout="LinearLayout" style="orientation:vertical;margin:3px;padding:1px;width:auto;align:left;background-color:#DAF9FE">
+				<label id="L_reload2" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()">Apple's Offering A 'Free' iPhone 5s, Here's Why You Shouldn't Get One!</label>
+				<label id="div2"  style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF">Intel To Release Its Fiest 4GHz Processor</label>
+				<label id="div2" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF">Iphone 5 Bigger, Thinner Than iPhone 5s</label>
+			</div>
+			<div id="div2" layout="LinearLayout" style="orientation:hotizontal;margin:3px;width:auto;background-color:#99CCFF">
+				<div id="div2" layout="LinearLayout" style="orientation:hotizontal;weight:1px;align:center">
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(19).png)" onclick="previous()" />
+				</div>
+				<div id="div2" layout="LinearLayout" style="orientation:hotizontal;weight:1px;align:center">
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(20).png)" onclick="next()" />
+				</div>
+			</div>
+     </div>
+</body>
+</html>
+

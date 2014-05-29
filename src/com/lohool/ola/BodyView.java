@@ -8,12 +8,14 @@ import org.keplerproject.luajava.LuaState;
 
 import com.lohool.ola.wedgit.Layout;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 
 public class BodyView {
 
-	Main ctx;
+	Context ctx;
 	Layout bodyView;
 	UIFactory ui;
 	String viewUrl;
@@ -39,17 +41,14 @@ public class BodyView {
 			LuaContext.getInstance().doString(callback);
 	}
 
-	public BodyView(Main ctx,  String viewUrl) {
+	public BodyView(Context ctx,  String viewUrl) {
 		this.ctx = ctx;
 		this.viewUrl = viewUrl;
 		create();
-
 	}
 
 	private void create() {
-
 		Log.v("MainActivity", "onCreate...");
-
 		ui = new UIFactory(this, ctx);
 		LuaContext.getInstance().regist(ui, "ui");
 
@@ -59,7 +58,6 @@ public class BodyView {
 	}
 
 	public void registReloadFun() {
-		Layout layout = null;
 		LuaState lua=LuaContext.getInstance().getLuaState();
 		try {
 			lua.newTable();
@@ -69,48 +67,74 @@ public class BodyView {
 			lua.pushJavaFunction(new JavaFunction(lua) {
 				@Override
 				public int execute() throws LuaException {
+//					bodyView.getView().setVisibility(View.GONE);
+					System.gc();
 					loadXMLActivity();
 					loadLuaCode();
-					// ctx.setContentView(bodyView.getView());
 					show();
 					return 0;
 				}
 			});
-
 			lua.setTable(-3);
 		} catch (LuaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
+	String uiXML;
 	void loadXMLActivity() {
 		System.out.println("view xml file path="+viewUrl);
+//		if(uiXML==null)uiXML=UIFactory.loadAssetsString(viewUrl);
+//		bodyView=ui.createLayoutByXMLString(uiXML);
 		bodyView = ui.createLayoutByXMLFile(viewUrl);
+		
 		// ctx.setContentView(bodyView.getView());
 	}
 
 	void loadLuaCode() {
 
-		this.LuaCode = ui.loadLayoutLuaCode(viewUrl);
+//		if(this.LuaCode==null)
+			this.LuaCode = UIFactory.loadLayoutLuaCode(viewUrl);
 		// ctx.setContentView(bodyView.getView());
 	}
 
+
+
+	// public Layout getLayout()
+	// {
+	// return this.bodyView;
+	// }
+	public void show() {
+//		 ctx.setContentView(bodyView.getView());
+		// this.executeLua();
+//		Main.activity.setContentView(bodyView.getView());
+		LuaExecuteTask task = new LuaExecuteTask();
+		task.execute("");
+	}
+
+	private class LuaExecuteTask extends AsyncTask<String, Integer, String> {
+		String t;
+
+		@Override
+		protected String doInBackground(String... params) {
+			t = params[0];
+			executeLua();
+			return "";
+		}
+		protected void onPostExecute(String result) {
+			
+//			bodyView.getView().setVisibility(View.GONE);
+			System.out.println("BodyView show view:"+viewUrl);
+			Main.activity.setContentView(bodyView.getView());
+		}
+	}
 	/**
 	 * executed by other code while the View was shown to the Activity
 	 */
 	public void executeLua() {
 		registReloadFun();
-		// System.out.println("lua file="+temp);
+//		System.out.println(LuaCode);
 		LuaContext.getInstance().doString(LuaCode);
-		// System.out.println(lua.getLuaObject("btn1"));
-		// lua.LdoString("Log:d('test btn','btn2')");
-		// lua.LdoString("btn3=btn1:getText()");
-		// lua.LdoString("Log:d('test btn','btn2 0')");
-		// lua.LdoString("Log:d('test btn','btn2='..Log)");
-		// lua.LdoString("Log:d('test btn','btn2='..btn3)");
-		// lua.LdoString("btn1:setBackgroundColor(-65535)");
-		//
 		try {
 
 			// if database class is defined by Lua, create a database connection
@@ -122,7 +146,6 @@ public class BodyView {
 				lua.setGlobal("connection");
 				lua.pop(1);
 			}
-
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -130,33 +153,4 @@ public class BodyView {
 
 		LuaContext.getInstance().doString("initiate()");
 	}
-
-	// public Layout getLayout()
-	// {
-	// return this.bodyView;
-	// }
-	public void show() {
-		// ctx.setContentView(bodyView.getView());
-		// this.executeLua();
-		LuaExecuteTask task = new LuaExecuteTask();
-		task.execute("");
-	}
-
-	private class LuaExecuteTask extends AsyncTask<String, Integer, String> {
-		String t;
-
-		@Override
-		protected String doInBackground(String... params) {
-			t = params[0];
-
-			executeLua();
-			return "";
-		}
-
-		protected void onPostExecute(String result) {
-
-			ctx.setContentView(bodyView.getView());
-		}
-	}
-
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recite>
+  <app-name>Pocket Words</app-name>
+  <global>
+  </global>
+  <init>
+	<script src="init.lua"/>
+  </init>
+
+  <views>
+	<view src="MainMenu.xml" title="Main Menu" />
+  </views>
+
+  <params>
+	<param name="version" value="1" />
+  </params>
+
+
+</Recite>

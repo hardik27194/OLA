@@ -5,19 +5,31 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+
+import org.apache.http.util.EncodingUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 
@@ -27,23 +39,37 @@ public class Main extends Activity {
 
 	private FrameLayout mLayout;
 //	private LuaState lua;
-	public static Main ctx;
+	public static Context ctx;
+	public static Main activity;
 	public static final int baseDpi=160;
 	public int dpi=160;
 	public static float scale=1;
+
 	
-	LMProperties properties;
-	
-	
+	long installedTime;
+	long lastUsedTime;
+	int state;
 //	UIFactory ui= new UIFactory(ctx,lua);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
+       
+        
         Log.v("MainActivity", "onCreate...");
+        // hide titlebar of application  
+
+        // must be before setting the layout  
+        requestWindowFeature(Window.FEATURE_NO_TITLE);  
+        // hide statusbar of Android   could also be done later  
+       // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,   WindowManager.LayoutParams.FLAG_FULLSCREEN);  
+
+        setContentView(R.layout.activity_main);
         
         System.out.println("getExternalFilesDir="+this.getExternalFilesDir(null));
-        ctx=this;
+        ctx=this.getApplicationContext();
+        ctx.setTheme(R.style.AppTheme);
+        activity=this;
+        
         
         DisplayMetrics dm=this.getApplicationContext().getResources().getDisplayMetrics(); 
         this.dpi=dm.densityDpi;
@@ -51,326 +77,94 @@ public class Main extends Activity {
         Log.d("dpi", "dpi="+dpi);
         Log.d("dpi", "scale="+scale);
         
-        printScreenInfo();
+//        printScreenInfo();
   
-       
-//        class CustomGifView extends View {   
-//        	private Movie mMovie;    
-//       	 	private long mMovieStart;
-//            public CustomGifView(Context context) {    
-//                super(context);    
-//                mMovie = Movie.decodeStream(getResources().openRawResource(    
-//                        R.drawabl	e.ic_ldoading));   
-//            }    
-//               
-//            public void onDraw(Canvas canvas) {   
-//                long now = android.os.SystemClock.uptimeMillis();    
-//                   
-//                if (mMovieStart == 0) { // first time    
-//                    mMovieStart = now;    
-//                }    
-//                if (mMovie != null) {    
-//                       
-//                    int dur = mMovie.duration();    
-//                    if (dur == 0) {    
-//                        dur = 1000;    
-//                    }    
-//                    int relTime = (int) ((now - mMovieStart) % dur);                   
-//                    mMovie.setTime(relTime);    
-//                    mMovie.draw(canvas, 0, 0);    
-//                    invalidate();    
-//                }    
-//            }   
-//        }   
-
-        
-        this.setContentView(R.layout.activity_main);
-        
-//        lua = LuaStateFactory.newLuaState();
-//    	lua.openLibs();
-        
-        InitPropertiesTask task= new InitPropertiesTask();
+	        
+        DisplayLoadingTask task= new DisplayLoadingTask();
         task.execute("");
-	  	 	
-
-//        if (android.os.Build.VERSION.SDK_INT > 9) {
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
-//        }
-	  	 	
-//        DownloadFilesTask task=new DownloadFilesTask();
-//        task.execute("");
-        
-//        AppInit ai= new AppInit();
-//        Thread t=new Thread(ai);
-//        t.start();
-//        
-//        Monitor m=new Monitor();
-//        m.execute(ai);
-        
-//		try {
-//			v = task.get();
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (ExecutionException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
-        
+	 
     }
-
-    private void initProperties()
-    {
-    	System.out.println("initProperties is executed");
-        properties=LMProperties.getInstance();
-        
-        String packageName=Main.class.getPackage().getName();
-		System.out.println(packageName);
-		properties.appPackage=packageName;
-		properties.execGlobalScripts();
-			loadDefaultProperties(properties);
-
-	  	 	properties.state++;
-	  	 	if(properties.state<2) 	
+	private class DisplayLoadingTask extends AsyncTask<String, Integer, String> {
+		BodyView v=null;
+		String appServer;
+		String appBase;
+		@Override
+		protected String doInBackground(String... params) {
+			System.out.println("InitPortalViewTask.doInBackground");
+			OLAProperties app= new OLAProperties();
+			app.appName="olaos/";
+			String packageName=Main.class.getPackage().getName();
+			app.appPackage=packageName;
+			loadDefaultProperties();
+			appServer=app.appServer;
+			appBase=app.appBase;
+			System.out.println("Main.state="+state);
+	  	 	if(state==0 || app.mode.equalsIgnoreCase("development")) 	
 	  	 	{
-	  	 		initDatabase();
-	  	 		properties.execInitScripts();
-	  	 	}
-	  	 	//update the properties
-	  	 	ctx.writeProperties(properties);		
-		
-    }
-   
-    
-    private class InitPropertiesTask extends AsyncTask<String, Integer, String> {
+	  	 		try
+				{
+//					copyAssetsApps(app.appServer,app.appBase);
+					copyAssetDir("olaos", appBase);
+					copyAssetDir("olaportal", appBase);
+					copyAssetFile("apps.json",appBase);
+					copyAssetFile("OLA.lua",appBase);
 
-		@Override
-		protected String doInBackground(String... params) {
-			System.out.println("InitPropertiesTask.doInBackground");
-			initProperties();
-			return "";
-		}
-		@Override
-		protected void onPostExecute(String result) {
-			System.out.println("InitPropertiesTask.onPostExecute");
-			startInitFirstViewTask();
-					
-		}
-    }
-    private void startInitFirstViewTask()
-    {
-//    	InitFirstViewTask initFirstViewTask=new InitFirstViewTask();
-//    	initFirstViewTask.execute("");
-    	initFirstView();
-    }
-    private void initFirstView()
-    {
-    	BodyView v=null;
-    	String name=properties.getFirstViewName();
-        if(name!=null)
-        {
-			v=new BodyView(ctx,name);				
-			UIFactory.viewCache.clear();//
-			UIFactory.viewCache.put(name, v);
-			
-//			ctx.setContentView(v.getLayout().getView());
-        }
-        v.show();
-  	 	
-    }
-    private class InitFirstViewTask extends AsyncTask<String, Integer, String> {
-    	BodyView v=null;
-		@Override
-		protected String doInBackground(String... params) {
-
-			 
-		      //load the first page
-		        String name=properties.getFirstViewName();
-		        if(name!=null)
-		        {
-					v=new BodyView(ctx,name);				
-					UIFactory.viewCache.clear();//
-					UIFactory.viewCache.put(name, v);
-					
-//					ctx.setContentView(v.getLayout().getView());
-		        }
-			return "";
-		}
-		protected void onPostExecute(String result) {
-
-				v.show();
-		}
-    }
-    private class Monitor extends AsyncTask<AppInit, Integer, String> {
-    	AppInit t;
-		@Override
-		protected String doInBackground(AppInit... params) {
-			 t=params[0];
-
-			while(!t.isFinished())
-			{
-				try {					
-					wait(1000L);
-				} catch (InterruptedException e) {
+				} catch (IOException e)
+				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-			return "";
-		}
-		protected void onPostExecute(BodyView result) {
-
-					t.getBodyView().show();
-		}
-    }
-
-	private class DownloadFilesTask extends AsyncTask<String, Integer, BodyView> {
-		BodyView v;
-		
-		protected void onPreExecute()
-		{
-			super.onPreExecute();
-
-			System.out.println("onPreExecute is executed");
-		}
-		protected BodyView doInBackground(String... urls) {
-			System.out.println("doInBackground is executed");
-			int count = urls.length;
-//			for (int i = 0; i < count; i++) {
-//
-//				publishProgress(0);
-//				// Escape early if cancel() is called
-//				if (isCancelled())
-//					break;
-//			}
-	        properties=LMProperties.getInstance();
-	        
-	        String packageName=Main.class.getPackage().getName();
-			System.out.println(packageName);
-			properties.appPackage=packageName;
-			properties.execGlobalScripts();
+	  	 	}
+	  	 
+			app.loadAppsInfo();
+			app.reset();
 			
-			//load the first page
-	        String name=properties.getFirstViewName();
-	        if(name!=null)
-	        {
-				v=new BodyView(ctx,name);				
-//				UIFactory.viewCache.clear();//
-				UIFactory.viewCache.put(name, v);
-				
-//				ctx.setContentView(v.getLayout().getView());
-	        }
-				loadDefaultProperties(properties);
-				
-				
-		  	 	
-		  	 	
-		  	 	properties.state++;
-		  	 	if(properties.state<2) 	
-		  	 	{
-		  	 		initDatabase();
-		  	 		properties.execInitScripts();
-		  	 	}
-		  	 	//update the properties
-		  	 	ctx.writeProperties(properties);
-		  	 	System.out.println("doInBackground is ended");
-			return v;
+			return app.getFirstViewName();
 		}
-
-		protected void onPreExecute(Integer... progress) {
-			System.out.println("onPreExecute is executed");
-		}
-
-		protected void onPostExecute(BodyView result) {
-			System.out.println("onPostExecute is executed");
-			System.out.println("onPostExecute v="+v);
-			 if(v!=null)
-		        {
-					
-					UIFactory.viewCache.clear();//
-		//			UIFactory.viewCache.put(name, v);
-					
-					v.show();
-		        }
-		}
-
-	}
-	private class AppInit implements Runnable
-	{
-		boolean isFinished;
-//		MainActivity ac;
-//		public AppInit(MainActivity ac)
-//		{
-//			this.ac=ac;
-//		}
-		BodyView v;
 		@Override
-		public void run() {
-	        properties=LMProperties.getInstance();
-	        
-	        String packageName=Main.class.getPackage().getName();
-			System.out.println(packageName);
-			properties.appPackage=packageName;
-			properties.execGlobalScripts();
+		protected void onPostExecute(String viewName) {
+			BodyView v=null;
+			v=new BodyView(ctx,viewName);				
+			setContentView(v.bodyView.getView());
 			
-			//load the first page
-	        String name=properties.getFirstViewName();
-	        if(name!=null)
-	        {
-				v=new BodyView(ctx,name);				
-//				UIFactory.viewCache.clear();//
-				UIFactory.viewCache.put(name, v);
-				
-//				ctx.setContentView(v.getLayout().getView());
-	        }
-				loadDefaultProperties(properties);
-		  	 	
-		  	 	properties.state++;
-		  	 	if(properties.state<2) 	
-		  	 	{
-		  	 		initDatabase();
-		  	 		properties.execInitScripts();
-		  	 	}
-		  	 	//update the properties
-		  	 	ctx.writeProperties(properties);
-		  	 	
-		  	 	//ac.setContentView(v.getLayout().getView());
+			ExecuteOsLusTask osTask= new ExecuteOsLusTask(appServer,appBase);
+	        osTask.execute(v);	
 		}
-		public boolean isFinished()
-		{
-			return this.isFinished;
-		}
-		public BodyView getBodyView()
-		{
-			return this.v;
-		}
-		
-	}
-    
-	private void showBodyView(BodyView v)
-	{
-		v.show();
-	}
-    public static Main getActivity()
-    {
-    	return ctx;
     }
-    
-//    public void switchActivity(String name,String params)
-//    {
-//    	/* 新建一个Intent对象 */
-//        Intent intent = new Intent();
-//        intent.putExtra("name","LeiPei");    
-//        /* 指定intent要启动的类 */
-//        intent.setClass(this, Activity02.class);
-//        /* 启动一个新的Activity */
-//        this.startActivity(intent);
-//        /* 关闭当前的Activity */
-//        this.finish();
-//    }
-//    
+	private class ExecuteOsLusTask extends AsyncTask<BodyView, Integer, String> {
+		BodyView v=null;
+		String appServer;
+		String appBase;
+		public ExecuteOsLusTask(String appServer,String appBase)
+		{
+			this.appServer=appServer;
+			this.appBase=appBase;
+		}
+		@Override
+		protected String doInBackground(BodyView... params) {
+
+			v=params[0];
+			if(state==0) 	
+	  	 	{
+					copyAssetsApps(appServer,appBase);
+	  	 	}
+			v.executeLua();
+			return null;
+		}
+		@Override
+		protected void onPostExecute(String app) {
+			
+			state++;
+	  	 	//update the properties
+	  	 	writeProperties();	
+	
+//			InitPropertiesTask task= new InitPropertiesTask();
+//	        task.execute("");	
+		}
+    }
+	
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -378,69 +172,147 @@ public class Main extends Activity {
         return true;
     }
 
-	private void initDatabase() {
-//		Toast.makeText(this, "初始化...", 2000);
-		// 获取数据库文件要存放的路径
-		String databaseFilename = "/sdcard/test/test.db";
-		File dir = new File("/sdcard/test"); // 如果目录不存在，创建这个目录
-		if (!dir.exists()) {
-			dir.mkdir();
-		} // 数据库文件是否已存在，不存在则导入
-		if (!(new File(databaseFilename)).exists()) {
-			// StartFrameTask startFrameTask = new StartFrameTask();
-			// startFrameTask.execute();
-			copyDataBase();
-		} else {
-			System.out.println("数据库已经存在");
-		}
-	}
 
+	public void copyAssetsApps(String appServer,String appBase)
+	{
+		try
+		{
+			Log.d("Files:", "start..........................");
+			//String appss=UIFactory.loadAssert("OLA.lua");
+			//System.out.println("ola.apps="+appss);
+//			LuaContext lua =LuaContext.createInstance();
+//			String olaLua=loadAsset("OLA.lua");
+//			lua.doString(olaLua);
+//			//here is only for online test 
+//			String appServer=lua.getGlobalString("OLA.app_server");
+//			String appBase=lua.getGlobalString("OLA.base");
+//			String sandboxRoot="/data/data/"+Main.class.getPackage().getName()+"/";
+//			appBase=sandboxRoot+appBase;
+			System.out.println("appServer="+appServer);
 
-	public  void copyDataBase() {
-		try {
-			// 获得InputStream对象
-//			InputStream is = getResources().getAssets().open("IELTSCore3000.db");
-			InputStream is = getAssets().open("IELTSCore3000.aac");
-
-			FileOutputStream fos = new FileOutputStream("/sdcard/test/test.db");
-			byte[] buffer = new byte[1024];
-			int count = 0; // 开始复制db文件
-			int process = 0;
-			while (-1 != (count = is.read(buffer))) 
-			//while ((count = is.read(buffer)) > 0) 
+			if(appServer!=null && appServer!="" && appServer.startsWith("http://") )
 			{
-				fos.write(buffer, 0, count);
-				process += count;
+				
 			}
-			fos.close();
-			is.close();
-		} catch (Exception e) {
+			else
+			{
+				String appstr=loadAsset("apps.json");
+				JSONObject appObj = new JSONObject(appstr);
+				JSONArray apps=appObj.getJSONArray("user_apps");
+				for(int i=0;i<apps.length();i++)
+				{
+					String app=apps.getJSONObject(i).getString("app");
+					copyAssetDir(app,appBase);
+				}
+				apps=appObj.getJSONArray("sys");
+				for(int i=0;i<apps.length();i++)
+				{
+					String app=apps.getJSONObject(i).getString("app");
+					if(!app.equalsIgnoreCase("olaos"))copyAssetDir(app,appBase);
+				}
+				//File file=new File("/data/data/"+Main.class.getPackage().getName()+"/"+appBase+"/lua");
+				//if(!file.exists())file.mkdirs();
+				//copyAssetDir("lua",appBase);
+//				copyAssetFile("apps.json",appBase);
+//				copyAssetFile("update.lua",appBase);
+			}
+			
+//			lua.close();
+		} catch (Exception e)
+		{
 			e.printStackTrace();
 		}
-
+		
 	}
 	
-	private void loadDefaultProperties(LMProperties prop) {
+	public  void copyAssetDir(String fileName,String appBase) throws IOException {
+		File file=new File(appBase+"/"+fileName);
+		Log.d("coping dir:", appBase+"/"+fileName);
+		if(!file.exists())file.mkdirs();
+		String names[]=getAssets().list(fileName);
+		
+		for(String name:names)
+		{
+			if(isDirectory(name))
+			{
+				copyAssetDir(fileName+"/"+name,appBase);
+			}
+			else
+			{
+				copyAssetFile(fileName+"/"+name,appBase);
+			}
+		}
+
+	}
+	public  void copyAssetFile(String fileName,String appBase) throws IOException {
+		InputStream is = getAssets().open(fileName);
+//		Log.d("Files: coping...", appBase+fileName);
+
+		FileOutputStream fos = new FileOutputStream(appBase+fileName);
+		byte[] buffer = new byte[1024];
+		int count = 0; // 开始复制db文件
+		int process = 0;
+		while (-1 != (count = is.read(buffer))) 
+		//while ((count = is.read(buffer)) > 0) 
+		{
+			fos.write(buffer, 0, count);
+			process += count;
+		}
+		fos.close();
+		is.close();
+	}
+	private boolean isDirectory(String filename) {  
+	
+		return !(filename.startsWith(".") || (filename.lastIndexOf(".") != -1));  
+		
+	}
+	public static String loadAsset(String resPath) {
+		StringBuffer buf = new StringBuffer();
+			// 获得InputStream对象
+//			InputStream is = getResources().getAssets().open("IELTSCore3000.db");
+			
+		InputStream isread = null;
+			
+			byte[] luaByte = new byte[0];
+			try {
+				 isread =Main.ctx. getAssets().open(resPath);
+				int len = 0;
+				while ((len = isread.available()) > 0) {
+					luaByte = new byte[len];
+					isread.read(luaByte);
+					buf.append(EncodingUtils.getString(luaByte, "UTF-8"));
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			} finally {
+				if (isread != null) {
+					try {
+						isread.close();
+					} catch (IOException e) {
+					}
+				}
+			}
+			return buf.toString();
+	}
+	private void loadDefaultProperties() {
 		try{
 		String packageName=this.getClass().getPackage().getName();
-		System.out.println(packageName);
 		File file=new File("/data/data/"+packageName+"/files/.properties");
 		if(file.exists())
 		{
 			System.out.println(".properties file is existed");
-			loadProperties(prop);
+			loadProperties();
 		}
-		else
-		{
-			System.out.println(".properties file is not existed");
-			writeProperties(prop);
-
-		}
+//		else
+//		{
+//			System.out.println(".properties file is not existed");
+//			writeProperties();
+//		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	private void loadProperties(LMProperties prop)
+	private void loadProperties()
 	{
 		String packageName=this.getClass().getPackage().getName();
 		File file=new File("/data/data/"+packageName+"/files/.properties");
@@ -449,9 +321,9 @@ public class Main extends Activity {
 		DataInputStream in=new DataInputStream(fis);
 		byte[] luaByte = new byte[1];
 		try {
-			prop.state=in.readInt();
-			prop.installedTime=in.readLong();
-			prop.lastUsedTime=in.readLong();
+			state=in.readInt();
+			installedTime=in.readLong();
+			lastUsedTime=in.readLong();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		} finally {
@@ -462,19 +334,19 @@ public class Main extends Activity {
 			e.printStackTrace();
 		}
 	}
-	private void writeProperties(LMProperties prop)
+	private void writeProperties()
 	{
 		String packageName=this.getClass().getPackage().getName();
 		File file=new File("/data/data/"+packageName+"/files/.properties");
 		if(!file.exists())file.getParentFile().mkdirs();
-		
+	
 		try{
 		FileOutputStream fos = new FileOutputStream(file);
 		DataOutputStream out=new DataOutputStream(fos);
 		byte[] luaByte = new byte[1];
 		try {
-			out.writeInt(prop.state);	//new installed
-			out.writeLong(prop.installedTime);	//安装时间
+			out.writeInt(state);	//new installed
+			out.writeLong(installedTime);	//安装时间
 			out.writeLong(System.currentTimeMillis());	//最后访问时间
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -486,28 +358,13 @@ public class Main extends Activity {
 			e.printStackTrace();
 		}
 	}
+	
+
     
 /*
     public void test(View v) { 
     	System.out.println("test() is executed");
-    	System.out.println(v.getId());
-//    	lua.LdoString("function testLua() print ('Lua test...') end");
-//    	lua.getField(LuaState.LUA_GLOBALSINDEX, "testLua");
-//    	lua.call(0, 0);
-    	
-    	lua.LdoString("acceptLuaFun()");
-    	lua.LdoString("text = 'Hello Android, I am Lua.'");     
-    	lua.getGlobal("text");
-    	String text = lua.toString(-1);
-    	System.out.println("Lua String:"+text);
-    	
-    	
-    	//����lua
-        
-        LuaState L = lua;
-//        L.openLibs();
-        String temp = UIFactory.loadAssetsString("http://16.187.151.18:8080/test/testLua.lua");
-        System.out.println("internet Lua String:"+temp);
+
         L.LdoString(temp);
 
         L.getGlobal("text");
@@ -560,9 +417,6 @@ public class Main extends Activity {
         	 String temp = UIFactory.loadAssetsString("http://10.0.2.2:8080/test/testLua.lua");
 
 
-//        	 System.out.println("internet Lua String:"+temp);
-//        	 System.out.println(getApplicationContext());
-//        	 System.out.println(mLayout);
              lua.LdoString(temp);
 
              //create a class from Lua using java interface
@@ -588,13 +442,6 @@ public class Main extends Activity {
         	 lua.call(2, 0);// 2������0������ֵ   
         	 
 
-        	 Button btn2= new Button(this);
-        	 btn2.setText("Buttontest");
-        	 d.addView(btn2);
-        	 Button btn3= new Button(this);
-        	 btn3.setText("Buttontest3");
-        	 d.addView(btn3);
-        	 this.mLayout.addView(d.getView());
         	 
         	 
 //        	 lua.getGlobal("btn1.onclick");//����䲻��ִ��
@@ -634,5 +481,38 @@ public class Main extends Activity {
         str += "densityDpi:" + String.valueOf(dm.densityDpi) ; 
         Log.i("screen info", str); 
 	}
-	
+    protected void dialog() {   
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);   
+        builder.setMessage("确定要退出吗?");   
+        builder.setTitle("提示");   
+        builder.setPositiveButton("确认",   
+                new android.content.DialogInterface.OnClickListener() {   
+                    @Override  
+                    public void onClick(DialogInterface dialog, int which) {   
+                        dialog.dismiss();   
+                        Main.this.finish();  
+                        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE); 
+                        manager.killBackgroundProcesses(getPackageName());
+                        System.exit(1);
+                    }
+  
+                });   
+        builder.setNegativeButton("取消",   
+                new android.content.DialogInterface.OnClickListener() {   
+                    @Override  
+                    public void onClick(DialogInterface dialog, int which) {   
+                        dialog.dismiss();   
+                    }   
+                });   
+        builder.create().show();   
+    }   
+    @Override  
+    public boolean onKeyDown(int keyCode, KeyEvent event) {   
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {   
+            dialog();   
+            return false;   
+        }   
+        return false;   
+    } 
+
 }

@@ -12,6 +12,9 @@ import org.keplerproject.luajava.LuaObject;
 import org.keplerproject.luajava.LuaState;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 
 import com.lohool.ola.wedgit.IProgressBar;
 import com.lohool.ola.wedgit.UIMessage;
@@ -30,13 +33,14 @@ public class AsyncDownload
 	IProgressBar barTotal;
 	String processingCallback;
 	String complitedCallback;
-	File tmpDir = new File(LMProperties.fileBase + "/download/");
+	File tmpDir = new File(PortalProperties.fileBase + "/download/");
 	// File tmpDir= new File(LMProperties.fileBase+"/download/");
 	// ArrayList urls=new ArrayList();
 	ArrayDeque<URL> urls = new ArrayDeque<URL>();
-	
+	ArrayDeque<String> keys = new ArrayDeque<String>();
 	Download down = new Download();
-
+	
+	boolean isFinished=false;
 	public AsyncDownload()
 	{
 		if (!tmpDir.exists())
@@ -57,19 +61,43 @@ public class AsyncDownload
 		return new AsyncDownload(url);
 	}
 	
+	public void setDestination(String despath)
+	{
+		tmpDir=new File(despath);
+		if (!tmpDir.exists())
+			tmpDir.mkdirs();
+	}
 	public void start()
 	{
 		
 		Thread t = new Thread(down);
 		t.start();
 	}
-
+	public void receive()
+	{
+		while(!isFinished)
+		{
+			try
+			{
+				Thread.sleep(1000);
+			} catch (InterruptedException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	public void addUrl(String url)
+	{
+		addUrl_forKey(url,"");
+	}
+	public void addUrl_forKey( String url,String key)
 	{
 		try
 		{
 			URL mUrl = new URL(url);
 			urls.add(mUrl);
+			keys.add(key);
 		} catch (Exception e)
 		{
 			e.printStackTrace();
@@ -113,6 +141,7 @@ public class AsyncDownload
 		int state = 0;
 		String err = "";
 		URL currentUrl;
+		String key;
 		File currentFile;
 
 		@Override
@@ -120,16 +149,18 @@ public class AsyncDownload
 		{
 			UIMessage msg=new UIMessage();
 			currentUrl = urls.poll();
+			key=keys.poll();
 			while (currentUrl != null)
 			{
 				InputStream isread = null;
 				FileOutputStream fos = null;
-
-				byte[] bs = new byte[1024];
+				HttpURLConnection urlConn =null;
+				byte[] bs = new byte[2048];
 				try
 				{
 					System.out.println("start to download file:"+currentUrl.getPath());
-					HttpURLConnection urlConn = (HttpURLConnection) currentUrl.openConnection();
+					urlConn = (HttpURLConnection) currentUrl.openConnection();
+					urlConn.setConnectTimeout(10000);
 					InputStream in = urlConn.getInputStream();
 					// isread = UIFactory.getInputStreamFromUrl(ac);
 
@@ -139,16 +170,15 @@ public class AsyncDownload
 					String fileName = filePath.substring(0, point);
 					String fileExt = filePath.substring(point + 1,filePath.length());
 					
-					System.out.println("currentUrl:"+currentUrl);
-					System.out.println("fileName:"+fileName);
-					System.out.println("fileExt:"+fileExt);
-					System.out.println("tmpDir.getAbsolutePath():"+tmpDir.getAbsolutePath());
+					System.out.println("currentUrl:"+currentUrl.toString());
+//					System.out.println("fileName:"+fileName);
+//					System.out.println("fileExt:"+fileExt);
+//					System.out.println("tmpDir.getAbsolutePath():"+tmpDir.getAbsolutePath());
 	
 					currentFile = new File(tmpDir.getAbsolutePath() + "/" + fileName + "." + fileExt);
 					int i = 1;
 					while (currentFile.exists())
 					{
-						System.out.println("local existed file:"+currentFile.getPath());
 						currentFile = new File(tmpDir.getAbsolutePath() +"/" + fileName + "[" + i++ + "]." + fileExt);
 					}
 					System.out.println("local file:"+currentFile.getPath());
@@ -160,7 +190,7 @@ public class AsyncDownload
 					
 					while (-1 != (count = in.read(bs)))
 					{
-						System.out.println("Total:"+total+"; read bytes:"+count);
+						//System.out.println("Total:"+total+"; read bytes:"+count);
 						fos.write(bs, 0, count);
 						process += count;
 						if (bar != null)
@@ -182,7 +212,7 @@ public class AsyncDownload
 	                		 
 	                		 lua.call(5,0);
 	                		 */
-							String luaCallback=processingCallback+"("+state+","+total+","+process+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"')";
+							String luaCallback=processingCallback+"("+state+","+total+","+process+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"','"+key+"')";
 	                		 //LuaContext.getInstance().doString(luaCallback);
 							
 							msg.updateMessage(luaCallback);
@@ -194,11 +224,12 @@ public class AsyncDownload
 	                	        
 						}
 						if(process>102400)fos.flush();
-						Thread.sleep(10);
+						Thread.sleep(50);
 					}
 
 					fos.flush();
 					fos.close();
+//					Bitmap img=returnBitMap(currentUrl.toString());
 
 				} catch (Exception e1)
 				{
@@ -207,6 +238,10 @@ public class AsyncDownload
 					e1.printStackTrace();
 				} finally
 				{
+					if(urlConn!=null)
+					{
+						urlConn.disconnect();
+					}
 					if (isread != null)
 					{
 						try
@@ -227,6 +262,7 @@ public class AsyncDownload
 						{
 						}
 					}
+			
 					state = 2;
 				}
 				processedFileCount++;
@@ -248,7 +284,8 @@ public class AsyncDownload
             		lua.pushString(currentFile.getAbsolutePath());
             	    lua.call(4,0);
             	    */
-            	    String luaCallback=complitedCallback+"("+(processedFileCount+urls.size())+","+processedFileCount+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"')";
+					
+            	    String luaCallback=complitedCallback+"("+(processedFileCount+urls.size())+","+processedFileCount+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"','"+key+"')";
             	    msg.updateMessage(luaCallback);
 				}
 				try
@@ -267,8 +304,10 @@ public class AsyncDownload
 				 currentFile=null;
 				
 				currentUrl = urls.poll();
+				key=keys.poll();
 				
 			}
+			isFinished=true;
 			System.out.println("end download..");
 		}
 		
@@ -314,7 +353,32 @@ public class AsyncDownload
 		else
 			return "";
 	}
+	public static Bitmap returnBitMap(String url)
+	{
 
+		URL myFileUrl = null;
+		Bitmap bitmap = null;
+
+		try
+		{
+			myFileUrl = new URL(url);
+			HttpURLConnection conn = (HttpURLConnection) myFileUrl
+					.openConnection();
+			conn.setDoInput(true);
+			conn.connect();
+			InputStream is = conn.getInputStream();
+			Options opts = new Options(); 
+			opts.inSampleSize = 4;
+			bitmap = BitmapFactory.decodeStream(is);
+			is.close();
+			conn.disconnect();
+			
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return bitmap;
+	}
 }
 
 

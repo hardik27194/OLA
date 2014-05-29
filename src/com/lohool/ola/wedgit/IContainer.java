@@ -92,11 +92,9 @@ public abstract class IContainer extends IWedgit{
 	public void addView(String id)
 	{
 		//lua.getGlobal(id);
-		System.out.println("add view:this.id="+((Element) root).getAttribute("id")+"; child.id="+id);
-			Object obj=LuaContext.getInstance().getObject(id);
-			addView((IView)obj);
-
-
+		//System.out.println("add view:this.id="+((Element) root).getAttribute("id")+"; child.id="+id);
+		Object obj = LuaContext.getInstance().getObject(id);
+		addView((IView) obj);
 	}
 	/**
 	 * remove a child view from the current container by the child's lua id
