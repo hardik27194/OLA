@@ -5,9 +5,9 @@
 	],
 	"user_apps":
 	[
-		{"app":"olaportal","type":"sys","ico":"images/7-1.jpg","title":"OLA","server":"","version":0,"state":1},
+		{"app":"Test","type":"sys","ico":"images/7-1.jpg","title":"Tour","server":"","version":0,"state":1},
 		{"app":"Recite","type":"user","ico":"images/4.png","title":"Recite","server":"","version":0,"state":1},
-		{"app":"Test","type":"user","ico":"images/4.png","title":"Test","server":"","version":0,"state":0}
+		{"app":"Test1","type":"user","ico":"images/4.png","title":"Test","server":"","version":0,"state":0}
 	]
 }
 

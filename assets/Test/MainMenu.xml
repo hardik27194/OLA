@@ -1,0 +1,50 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body id="body" layout="FrameLayout"  style="orientation:vertical;background-image:url(images/1.jpg);">
+	<div id="div1" layout="LinearLayout"  style="orientation:vertical;width:auto;height:auto;weight:1px;">
+		<label style="color:#0000FF">神秘神奇神农架</label>
+		<div  layout="LinearLayout"  style="orientation:horizontal;width:auto;weight:1px;">
+			  <div  layout="LinearLayout" style="orientation:vertical;width:auto;weight:1px;align:center;" >
+              </div>
+			  <div  id="btn1" layout="LinearLayout" style="orientation:vertical;padding:2px;width:75px;align:center;" >
+				<button id="row1" style="width:64px;height:48px;margin:2px;background-image:url(images/v1.jpg);valign:middle" ></button>
+				<label style="color:#FFFFFF">大九湖</label>
+				<button id="row1" style="width:64px;height:48px;margin:2px;background-image:url(images/v2.jpg);valign:middle" ></button>
+				<label style="color:#FFFFFF">板壁岩</label>
+			  <div  id="btn1" layout="LinearLayout" style="orientation:vertical;padding:2px;align:center;background-color:#FF0000" >
+				<button id="row1" style="width:64px;height:48px;background-image:url(images/v3.jpg);valign:middle" ></button>
+              </div>
+				<label style="width:auto;margin:2px;color:#FF6600;background-color:#339999;align:center">金猴岭</label>
+				<button id="row1" style="width:64px;height:48px;margin:2px;background-image:url(images/v4.jpg);valign:middle" ></button>
+				<label style="color:#FFFFFF">神农顶</label>
+              </div>
+		</div>
+		<div  layout="LinearLayout"  style="orientation:horizontal;width:auto;height:36px;background-color:#99CCFF">
+			  <div  id="btn0" layout="LinearLayout" style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn0')" onrelease="layerOnRelease('btn0')"  onclick="exit()">
+                 <button id="row1" style="width:36px;height:36px;background-image:url(images/G1.png);valign:middle" onpress="layerOnPress('btn0')" onrelease="layerOnRelease('btn0')"  onclick="exit()"></button>
+              </div>
+			  <div  id="btn1" layout="LinearLayout" style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn1')" onrelease="layerOnRelease('btn1')"  onclick="reload()">
+                 <button id="row1" style="width:36px;height:36px;background-image:url(images/G11.png);valign:middle" onpress="layerOnPress('btn1')" onrelease="layerOnRelease('btn1')"  onclick="reload()"></button>
+              </div>
+			  <div  id="btn2" layout="LinearLayout"  style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn2')" onrelease="layerOnRelease('btn2')">
+                 <button id="row1" style="width:36px;height:36px;background-image:url(images/g1(10).png);valign:middle"  onpress="layerOnPress('btn2')" onrelease="layerOnRelease('btn2')"></button>
+              </div>
+			  <div  id="btn3" layout="LinearLayout"  style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn3')" onrelease="layerOnRelease('btn3')">
+                 <button id="row1" style="width:36px;height:36px;background-image:url(images/g1(11).png);valign:middle"  onpress="layerOnPress('btn3')" onrelease="layerOnRelease('btn3')"></button>
+              </div>
+			  <div  id="btn4" layout="LinearLayout"  style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn4')" onrelease="layerOnRelease('btn4')">
+                 <button id="row1" style="width:36px;height:36px;background-image:url(images/g1(12).png);valign:middle"  onpress="layerOnPress('btn4')" onrelease="layerOnRelease('btn4')"></button>
+              </div>
+
+		</div>
+	</div>
+</body>
+</html>
+

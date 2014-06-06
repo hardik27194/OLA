@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recite>
+  <app-title>Pocket Words</app-title>
+  <global>
+  </global>
+  <init>
+  </init>
+
+  <views>
+	<view src="MainMenu.xml" title="Main Menu" />
+  </views>
+
+  <params>
+	<param name="version" value="1" />
+  </params>
+
+
+</Recite>

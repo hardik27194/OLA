@@ -49,6 +49,7 @@ public class Main extends Activity {
 	long installedTime;
 	long lastUsedTime;
 	int state;
+	boolean isDevelopementMode=false;
 //	UIFactory ui= new UIFactory(ctx,lua);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,7 @@ public class Main extends Activity {
 			System.out.println("Main.state="+state);
 	  	 	if(state==0 || app.mode.equalsIgnoreCase("development")) 	
 	  	 	{
+	  	 		isDevelopementMode=true;
 	  	 		try
 				{
 //					copyAssetsApps(app.appServer,app.appBase);
@@ -115,7 +117,7 @@ public class Main extends Activity {
 					e.printStackTrace();
 				}
 	  	 	}
-	  	 
+	 
 			app.loadAppsInfo();
 			app.reset();
 			
@@ -144,7 +146,7 @@ public class Main extends Activity {
 		protected String doInBackground(BodyView... params) {
 
 			v=params[0];
-			if(state==0) 	
+			if(state==0 || isDevelopementMode) 	
 	  	 	{
 					copyAssetsApps(appServer,appBase);
 	  	 	}
@@ -172,7 +174,6 @@ public class Main extends Activity {
         return true;
     }
 
-
 	public void copyAssetsApps(String appServer,String appBase)
 	{
 		try
@@ -192,7 +193,7 @@ public class Main extends Activity {
 
 			if(appServer!=null && appServer!="" && appServer.startsWith("http://") )
 			{
-				
+			
 			}
 			else
 			{

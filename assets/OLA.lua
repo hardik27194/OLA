@@ -17,7 +17,7 @@ OLA.base='apps/'
 --OLA.app_server="http://10.0.2.2:8080/"
 --OLA.app_server="http://192.168.0.109:8080/"
 
-OLA.mode="production" --"production" --development
+OLA.mode="development" --"production" --development
 --app's file storage on sdcard
 OLA.storage='test/'
 

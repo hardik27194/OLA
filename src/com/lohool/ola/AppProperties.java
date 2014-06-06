@@ -1,7 +1,6 @@
 package com.lohool.ola;
 
 
-
 /**
  * the main lua mobile properties
  * @author xingbao-
