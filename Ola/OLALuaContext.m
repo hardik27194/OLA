@@ -21,6 +21,13 @@
 
 static OLALuaContext * instance;
 
++ (void) registInstance:(OLALuaContext *)lua
+{
+    
+    instance = lua;
+    
+}
+
 +(OLALuaContext *)getInstance{
     
     @synchronized(self){  //为了确保多线程情况下，仍然确保实体的唯一性
@@ -104,6 +111,24 @@ static OLALuaContext * instance;
 }
 	*/
 
+/*
+-  (void) openLuaState
+{
+    lua = lua_open();
+    luaL_openlibs(lua);
+    set_wax_currentLuaState(lua);
+    wax_setup();
+    //if(!isWaxStarted)
+    {
+        NSLog(@"start wax...");
+        wax_start("luac", nil, nil, nil);
+        isWaxStarted=YES;
+    }
+    //lua =wax_currentLuaState();
+    
+    
+}
+ */
 	-  (void) open
 	{
         wax_start("luac", nil, nil, nil);
@@ -157,7 +182,9 @@ static OLALuaContext * instance;
     luaL_dostring(lua, [[@"return " stringByAppendingString:objId] UTF8String]);
     const char * value= lua_tostring(lua, -1);
     lua_pop(lua, -1);
+    if(value!=NULL)
     return [NSString stringWithUTF8String:value];
+    else return nil;
     
 }
 /*
@@ -181,12 +208,15 @@ static OLALuaContext * instance;
 }
 - (void) doFile: (NSString *) fileName
 {
-    NSString * luaCode=[OLAUIFactory loadResourceTextDirectly:fileName];
+    //NSString * luaCode=[OLAUIFactory loadResourceTextDirectly:fileName];
     luaL_dofile(lua, [fileName cStringUsingEncoding:NSASCIIStringEncoding]);
     //[self doString:luaCode];
     //luaL_dostring(lua, "print('test lua.')");
     //luaL_dostring(lua, "Log={} function Log:d(module,msg)  _Log:d_message(module,msg) end  print('Log.lua is executed')");
 }
-
+- (void) close
+{
+    if(lua!=nil )lua_close(lua);
+}
 
 @end

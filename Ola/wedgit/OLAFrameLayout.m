@@ -59,6 +59,10 @@
 }
 -(void) repaint
 {
-    
+    [layout repaint];
+}
+- (void) setFrameMinSize
+{
+    [layout setFrameMinSize];
 }
 @end

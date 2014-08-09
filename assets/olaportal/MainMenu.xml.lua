@@ -1,6 +1,10 @@
 function initiate()
 	Log:d('initiate','initiate execute...')
+    
+    --news3:setText("Iphone 5 Bigger, Thinner Than iPhone 5s.");
+
 	Log:d('initiate',type(OLA.apps))
+    Log:d('initiate',type(OLA.apps.user_apps))
 	local apps=OLA.apps.user_apps
 	Log:d('initiate','len='..#apps )
 	Log:d('initiate','ui type='..type(ui) )
@@ -31,7 +35,7 @@ function initiate()
 		--	Log:d('OLA.apps','key='..key..'; value='..value)  
 		--end
 
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:5px;align:center;"></div>'
+			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
 			local appPanel=ui:createView(viewStr)
 			_G[bar]:addView(appPanel)
 			viewStr='<button style="width:48px;height:48px;background-image:url('..apps[i].ico..');valign:middle;" onclick=\'startApplication("'..installedApps[i].app..'")\'></button>'
@@ -47,10 +51,10 @@ function initiate()
 	if barCount==0 then barCount=4 end
 	barCount=4-barCount
 	for j=1,barCount do
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:5px;align:center;"></div>'
+			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
 			local appPanel=ui:createView(viewStr)
 			_G[bar]:addView(appPanel)
-			viewStr='<div layout="LinearLayout"  style="width:48px;height:48px;valign:middle;"></div>'
+			viewStr='<div layout="LinearLayout"  style="orientation:vertical;width:48px;height:48px;valign:middle;"></div>'
 			local btn=ui:createView(viewStr)
 			_G[appPanel]:addView(btn)
 	end
@@ -58,11 +62,11 @@ function initiate()
 	for i=1, #otherApps do
 		if i % 4 == 1 then
 			bar=ui:createView(barStr)
-			Log:d('initiate','bar='..bar )
+			Log:d('initiate','other bar='..bar )
 			Apps_Other_Panel:addView(bar)
 		end 
 
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:5px;align:center;"></div>'
+			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
 			local appPanel=ui:createView(viewStr)
 			_G[bar]:addView(appPanel)
 			viewStr='<button style="width:48px;height:48px;background-image:url('..apps[i].ico..');valign:middle;" onclick=\'displayInstallMenu("'..otherApps[i].app..'")\'></button>'
@@ -78,10 +82,10 @@ function initiate()
 	if barCount==0 then barCount=4 end
 	barCount=4-barCount
 	for j=1,barCount do
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:5px;align:center;"></div>'
+			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
 			local appPanel=ui:createView(viewStr)
 			_G[bar]:addView(appPanel)
-			viewStr='<div layout="LinearLayout"  style="width:48px;height:48px;valign:middle;"></div>'
+			viewStr='<button layout="LinearLayout"  style="orientation:vertical;width:48px;height:48px;valign:middle;" />'
 			local btn=ui:createView(viewStr)
 			_G[appPanel]:addView(btn)
 	end
@@ -89,7 +93,33 @@ function initiate()
 
 
 end
+function initiate1()
+    addUIWedgit()
+end
 
+function addUIWedgit()
+	 Log:d("UI Test","addUIWedgit")
+	 local viewStr="<div id='dy_div' layout='LinearLayout'  style='orientation:vertical;width:80px;height:auto;align:center;background-color:#00EF00'><label onclick='addBtn1()'>asd</label><label onclick='addBtn()'>Add Btn</label></div>"
+	 local view=ui:createView(viewStr)
+	 Log:d("UI Test","id="..view)
+     
+     local btn=ui:createView("<button>btn</button>")
+     Apps_Panel:addView(view)
+     --_G[view]:addView(btn)
+    --dy_div:addView(btn)
+
+	 Log:d("UI Test","view was added")
+
+end
+
+function addBtn()
+    local btn=ui:createView("<button>btn</button>")
+    dy_div:addView(btn)
+end
+function addBtn1()
+    local btn=ui:createView("<button>btn1</button>")
+    dy_div2:addView(btn)
+end
 function startApplication(appName)
 	LMProperties:startApp(appName)
 end

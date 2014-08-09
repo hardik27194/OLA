@@ -8,6 +8,8 @@
 
 #import "OLATableRow.h"
 #import "XMLElement.h"
+#import "OLAScrollView.h"
+
 @implementation OLATableRow
 
 
@@ -41,6 +43,7 @@
     NSLog(@"create linear layout 1,id=%@",self.objId);
     layout.objId=self.objId;
     [self parseAllignment:layout];
+    [layout initSize];
     [self parseChildren];
     return self;
     
@@ -77,10 +80,23 @@
     params->weight=css.weight;
     
     
+    
     //if(css.width>0)
     params->width=css.width;
     //if(css.height>0)
     params->height=css.height;
+    
+    layout.backgroundImageUrl=css.backgroundImageURL;
+    layout.alpha=css.alpha;
+    
+    Padding padding;
+    padding.left=css.padding.left;
+    padding.right=css.padding.right;
+    padding.top=css.padding.top;
+    padding.bottom=css.padding.bottom;
+    
+    [layout setPadding:padding];
+    
     NSLog(@"css.height=%d,%d",css.width,css.height);
     
 }
@@ -103,5 +119,47 @@
                 [super parseChildren:self withXMLElement:n];
             }
     }
+    [self repaint];
+    NSLog(@"create Table Row Layout: X=%f,Y=%f,w=%f,h=%f",self.v.frame.origin.x, self.v.frame.origin.y, self.v.frame.size.width, self.v.frame.size.height);
 }
+
+- (void) repaint
+{
+    if([parent isKindOfClass:[OLAScrollView class]])
+    {
+        
+        
+        
+        //[layout requestLayout];
+        //[layout resize];
+        //[layout reSetChildrenFrame];
+        [layout setFrameMinSize];
+        if([[css getStyleValue:@"orientation"] caseInsensitiveCompare:@"vertical"]==NSOrderedSame)
+        {
+            [v setFrame:CGRectMake(0, 0, parent.v.frame.size.width,MAXFLOAT)];        }
+        else{
+            [v setFrame:CGRectMake(0, 0, MAXFLOAT, parent.v.frame.size.height)];
+        }
+        [layout setFrame:parent.v.frame];
+        [layout repaint];
+        OLAScrollView * sv=(OLAScrollView *) parent;
+        NSLog(@"OLAScrollView frame,w=%f,h=%f",v.frame.size.width,v.frame.size.height);
+        NSLog(@"OLAScrollView frame,X=%f,Y=%f",layout.frame.size.width,layout.frame.size.height);
+        [sv resetContentSizeToFitChildren];
+    }
+    
+    else if([parent isKindOfClass:[OLAContainer class]])
+    {
+        OLAContainer * container=(OLAContainer *)parent;
+        [container repaint];
+    }
+    
+    NSLog(@"OLALinear repaint=%f",layout.frame.size.height);
+    //[layout repaint];
+}
+- (void) setFrameMinSize
+{
+    [layout setFrameMinSize];
+}
+
 @end

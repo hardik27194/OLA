@@ -24,12 +24,13 @@
 
     if(parentView!=nil)
     {
-         layout = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, 0, 0)];
+         layout = [[ScrollerView alloc] initWithFrame:CGRectMake(0,0, 0, 0)];
     }
     else
     {
-        layout = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, 0, 0)];
+        layout = [[ScrollerView alloc] initWithFrame:CGRectMake(0,0, 0, 0)];
     }
+    layout.wrapper=self;
     
     layout.directionalLockEnabled = YES; //只能一个方向滑动
     layout.pagingEnabled = NO; //是否翻页
@@ -90,16 +91,26 @@
 -(CGSize)minSize
 {
     CGFloat w = 0.0,h = 0.0;
-    for(OLAView * v in children)
+    for(OLAView * view in children)
     {
-            if(v.v.frame.size.width>w)w=v.v.frame.size.width;
-            if(v.v.frame.size.height>h)h=v.v.frame.size.height;
+            if(view.v.frame.size.width>w)w=view.v.frame.size.width;
+            if(view.v.frame.size.height>h)h=view.v.frame.size.height;
     }
     
     CGSize size=CGSizeMake(w, h);
     return size;
 }
-
+-(void)setFrameMinSize
+{
+    for(OLAView * view in children)
+    {
+        if([view isKindOfClass:[OLALayout class]])
+        {
+            OLALayout *layout=(OLALayout *)view;
+            [layout setFrameMinSize];
+        }
+    }
+}
 /*
  reset the scroll size to the frame size of its first subview.
  generall, the scroller view should only have one child 
@@ -130,7 +141,7 @@
     {
         if( [view isKindOfClass:[OLALayout class]])
         {
-        Layout * layout= (Layout *) view.v;
+        OLALayout * layout= (OLALayout *) view;
         
         [layout repaint];
         }

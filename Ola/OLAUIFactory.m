@@ -22,6 +22,9 @@
 #import "OLAScrollView.h"
 #import "OLAProperties.h"
 #import "OLAProgressBar.h"
+#import "OLAPortalProperties.h"
+#import "OLAAppProperties.h"
+#import "OLA.h"
 
 @implementation OLAUIFactory
 
@@ -60,8 +63,9 @@
     {
         NSMutableDictionary * viewCache = [OLAUIFactory getViewCache];
         
-        OLAProperties * prop = [OLAProperties getInstance];
-        NSString * name=[prop.appUrl stringByAppendingString:viewName];
+        //OLAProperties * prop = [OLAProperties getInstance];
+        //NSString * name=[prop.appUrl stringByAppendingString:viewName];
+        NSString * name=[[OLA getAppBase] stringByAppendingString:viewName];
 		OLABodyView *v;
 		id obj=[viewCache objectForKey:name];
         NSLog(@"cache size 1=%d",viewCache.count);
@@ -165,12 +169,12 @@
 				OLALayout *layout= [OLALayout createLayout:nil withXMLElement:root];
 				v=layout;
 			}
-        
+        /*
 			else if([root.tagName caseInsensitiveCompare:@"TR"]==NSOrderedSame)
 			{
 				v= [[OLATableRow alloc] initWithParent:nil andUIRoot:root];
 			}
-        
+        */
 			else
 			{
 				//TODO
@@ -196,9 +200,13 @@
                  set the full screen size to the body layout, do not allow the system to auto caculate the size of the body view
                  */
                 
-                NSString * css=[n.attributes objectForKey:@"style"];
-                css=[[[css stringByAppendingString:@"width:"] stringByAppendingString:[NSString stringWithFormat:@"%g",viewParent.v.frame.size.width]] stringByAppendingString:@"px;"];
-                css=[[[css stringByAppendingString:@"height:"] stringByAppendingString:[NSString stringWithFormat:@"%g",viewParent.v.frame.size.height]] stringByAppendingString:@"px;"];
+                NSMutableString *css=[[NSMutableString alloc]initWithString:[n.attributes objectForKey:@"style"]];
+               // NSString * css=[n.attributes objectForKey:@"style"];
+                if(![css hasSuffix:@";"])[css appendString:@";"];
+                [css appendFormat:@"width:%gpx;",viewParent.v.frame.size.width];
+                [css appendFormat:@"height:%gpx;",viewParent.v.frame.size.height];
+                //css=[[[css stringByAppendingString:@"width:"] stringByAppendingString:[NSString stringWithFormat:@"%g",viewParent.v.frame.size.width]] stringByAppendingString:@"px;"];
+                //css=[[[css stringByAppendingString:@"height:"] stringByAppendingString:[NSString stringWithFormat:@"%g",viewParent.v.frame.size.height]] stringByAppendingString:@"px;"];
                 [n.attributes setObject:css forKey:@"style"];
                 
                 layout= [OLALayout createLayout:viewParent withXMLElement:n];
@@ -311,7 +319,7 @@
 {
         NSFileManager *fm = [NSFileManager defaultManager];
         //NSString *homeDirectory = NSHomeDirectory();
-        
+        NSLog(@"assert file=%@",resPath);
         NSData *data = [fm contentsAtPath:resPath];
         NSString *text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return text;

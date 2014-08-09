@@ -11,4 +11,5 @@
 @interface OLAContainer : OLAWedgit
 - (void) parseChildren:(OLAContainer *) rootView withXMLElement:(XMLElement *) root;
 - (void) repaint;
+- (void) setFrameMinSize;
 @end

@@ -55,12 +55,16 @@
 */
 -(void) parseAllignment:(LinearLayout *) myLayout
 {
-    if([[css getStyleValue:@"orientation"] caseInsensitiveCompare:@"horizontal"]==NSOrderedSame)
+    NSLog(@"orientation=%@,is Vertical=%i",[css getStyleValue:@"orientation"],[[css getStyleValue:@"orientation"] caseInsensitiveCompare:@"vertical"]);
+    NSString *orientation=[css getStyleValue:@"orientation"];
+    if(orientation !=nil && [orientation caseInsensitiveCompare:@"vertical"]==NSOrderedSame)
     {
-        [myLayout setOrientation:horizontal];
+        NSLog(@"set to vertical");
+        [myLayout setOrientation:vertical];
     }
     else{
-        [myLayout setOrientation:vertical];
+         NSLog(@"set to horizontal");
+        [myLayout setOrientation:horizontal];
     }
     //LayoutParams params=myLayout.layoutParams;
     
@@ -107,18 +111,20 @@
 {
     if([parent isKindOfClass:[OLAScrollView class]])
     {
-        if([[css getStyleValue:@"orientation"] caseInsensitiveCompare:@"horizontal"]==NSOrderedSame)
-        {
-            [v setFrame:CGRectMake(0, 0, MAXFLOAT, parent.v.frame.size.height)];
-        }
-        else{
-            [v setFrame:CGRectMake(0, 0, parent.v.frame.size.width,MAXFLOAT)];
-        }
         
-        [layout setFrame:parent.v.frame];
+        
+        
         //[layout requestLayout];
         //[layout resize];
         //[layout reSetChildrenFrame];
+        [layout setFrameMinSize];
+        if([[css getStyleValue:@"orientation"] caseInsensitiveCompare:@"vertical"]==NSOrderedSame)
+        {
+            [v setFrame:CGRectMake(0, 0, parent.v.frame.size.width,MAXFLOAT)];        }
+        else{
+            [v setFrame:CGRectMake(0, 0, MAXFLOAT, parent.v.frame.size.height)];
+        }
+        [layout setFrame:parent.v.frame];
         [layout repaint];
         OLAScrollView * sv=(OLAScrollView *) parent;
         NSLog(@"OLAScrollView frame,w=%f,h=%f",v.frame.size.width,v.frame.size.height);
@@ -135,5 +141,8 @@
     NSLog(@"OLALinear repaint=%f",layout.frame.size.height);
     //[layout repaint];
 }
-
+- (void) setFrameMinSize
+{
+    [layout setFrameMinSize];
+}
 @end

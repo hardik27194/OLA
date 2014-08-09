@@ -1,5 +1,5 @@
 /*
-** $Id: lstrlib.c,v 1.132.1.4 2008/07/11 17:27:21 roberto Exp $
+** $Id: lstrlib.c,v 1.132.1.5 2010/05/14 15:34:19 roberto Exp $
 ** Standard library for string operations and pattern-matching
 ** See Copyright Notice in lua.h
 */
@@ -164,8 +164,8 @@ static int str_dump (lua_State *L) {
 */
 
 
-#define CAP_UNFINISHED    (-1)
-#define CAP_POSITION    (-2)
+#define CAP_UNFINISHED	(-1)
+#define CAP_POSITION	(-2)
 
 typedef struct MatchState {
   const char *src_init;  /* init of source string */
@@ -179,8 +179,8 @@ typedef struct MatchState {
 } MatchState;
 
 
-#define L_ESC        '%'
-#define SPECIALS    "^$*+?.([%-"
+#define L_ESC		'%'
+#define SPECIALS	"^$*+?.([%-"
 
 
 static int check_capture (MatchState *ms, int l) {
@@ -683,14 +683,14 @@ static int str_gsub (lua_State *L) {
 
 
 /* maximum size of each formatted item (> len(format('%99.99f', -1e308))) */
-#define MAX_ITEM    512
+#define MAX_ITEM	512
 /* valid flags in a format specification */
-#define FLAGS    "-+ #0"
+#define FLAGS	"-+ #0"
 /*
 ** maximum size of each format specification (such as '%-099.99d')
 ** (+10 accounts for %99.99x plus margin of error)
 */
-#define MAX_FORMAT    (sizeof(FLAGS) + sizeof(LUA_INTFRMLEN) + 10)
+#define MAX_FORMAT	(sizeof(FLAGS) + sizeof(LUA_INTFRMLEN) + 10)
 
 
 static void addquoted (lua_State *L, luaL_Buffer *b, int arg) {
@@ -754,6 +754,7 @@ static void addintlen (char *form) {
 
 
 static int str_format (lua_State *L) {
+  int top = lua_gettop(L);
   int arg = 1;
   size_t sfl;
   const char *strfrmt = luaL_checklstring(L, arg, &sfl);
@@ -768,7 +769,8 @@ static int str_format (lua_State *L) {
     else { /* format item */
       char form[MAX_FORMAT];  /* to store the format (`%...') */
       char buff[MAX_ITEM];  /* to store the formatted item */
-      arg++;
+      if (++arg > top)
+        luaL_argerror(L, arg, "no value");
       strfrmt = scanformat(L, strfrmt, form);
       switch (*strfrmt++) {
         case 'c': {

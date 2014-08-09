@@ -16,7 +16,10 @@
      lua_State * lua;
 }
 @property (nonatomic) lua_State * lua;
+
+//+(OLALuaContext *) createInstance;
 +(OLALuaContext *)getInstance;
++ (void) registInstance:(OLALuaContext *)lua;
 
 - (lua_State *) getLuaState;
 - (void) regist:(id) obj  withGlobalName:(NSString *) name;

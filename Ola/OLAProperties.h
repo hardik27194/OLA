@@ -7,25 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface OLAProperties : NSObject
-{
-    NSMutableArray * globalScripts;
-    NSMutableArray * initScripts;
-    NSMutableArray * views;
-    
-    NSString *  appUrl;
-	//NSString *  appUrl="test/";
-    NSString * fileBase;
-}
-
-@property (nonatomic,retain)NSString *  appUrl;
-@property (nonatomic,retain)NSString * fileBase;
-
-+  (OLAProperties *) getInstance;
-- (NSString *)  getRootPath;
--(void) initiate;
-- (NSString *)  getFirstViewName;
--(void) execGlobalScripts;
--(void) execInitScripts;
+#import "OLAAbstractProperties.h"
+@interface OLAProperties : OLAAbstractProperties
+- (void) reset;
+- (void) startApp:(NSString *)appName;
 @end

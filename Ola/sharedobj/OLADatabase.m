@@ -35,7 +35,8 @@ sqlite3 *db;
 
 - (void) open:(NSString *)databse
 {
-    NSString *path=[[[OLAProperties getInstance] getRootPath] stringByAppendingString:databse];
+    //NSString *path=[[[OLAProperties getInstance] getRootPath] stringByAppendingString:databse];
+    NSString *path=[NSHomeDirectory() stringByAppendingFormat:@"/Library/%@",databse];
     [self openLocal:[path UTF8String]];
 }
 

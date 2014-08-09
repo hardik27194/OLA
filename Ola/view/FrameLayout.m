@@ -135,6 +135,7 @@ CGFloat origionX,origionY;
 }
 -(void)repaint
 {
+    NSLog(@"framelayout repaint");
     [self initSize];
     [self requestLayout];
     //[self resize];

@@ -2,39 +2,40 @@
 
 <body layout="FrameLayout" class="FrameLayout" style="margin:0;">
 	<div layout="LinearLayout"  style="orientation:vertical;width:auto;height:auto;weight:1px;">
-		<label style="orientation:hotizontal;margin:3px;height:36px;width:auto;background-color:#99CCFF">Current Vocabulary Info:</label>
-		
+		<label style="orientation:horizontal;margin:3px;height:36px;width:auto;background-color:#99CCFF">Current Vocabulary Info:</label>
+        
 		<TABLE style="width:auto;">
 		<TR>
-			<TD><label style="width:120px;text-align:left;valign:middle">Book Name:</label></TD>
-			<TD><label id="Book_Name" style="width:auto;text-align:left;valign:middle">23</label></TD>
+			<TD><label style="width:120px;valign:middle">Book Name:</label></TD>
+			<TD><label id="Book_Name" style="width:auto;valign:middle">23</label></TD>
 		</TR>
 		<TR>
-			<TD><label style="width:120px;text-align:left;valign:middle">Group Amount:</label></TD>
+			<TD><label style="width:120px;valign:middle">Group Amount:</label></TD>
 			<TD><label id="Group_Amount" style="width:auto;weight:1px;text-align:left;valign:middle">23</label></TD>
 		</TR>
 		<TR>
-			<TD><label style="width:120px;text-align:left;valign:middle">Last Group Studied:</label></TD>
-			<TD><label id="Last_Group" style="width:auto;weight:1px;text-align:left;valign:middle">8</label></TD>
+			<TD><label style="width:120px;valign:middle">Last Group Studied:</label></TD>
+			<TD><label id="Last_Group" style="width:auto;valign:middle">8</label></TD>
 		</TR>
 		<TR>
-			<TD><label style="width:120px;text-align:left;valign:middle">Next Group Studied:</label></TD>
-			<TD><textfield  id="Next_Group" style="width:auto;weight:1px;text-align:left;valign:middle">9</textfield></TD>
+			<TD><label style="width:120px;valign:middle">Next Group Studied:</label></TD>
+			<TD><textfield  id="Next_Group" style="width:120px;valign:middle">9</textfield></TD>
 		</TR>
 		</TABLE>
 
+
 		<label>Buy new vocabularies, please contact lohool@hotmail.com</label>
 		<label id="error_mesg"></label>
-		<div id="div2" layout="LinearLayout" style="orientation:hotizontal;height:auto;weight:1px;">
+		<div id="div2" layout="LinearLayout" style="orientation:horizontal;height:auto;weight:1px;">
 		</div>
-			<div id="div2" layout="LinearLayout" style="orientation:hotizontal;margin:3px;width:auto;background-color:#99CCFF">
-				<div id="L_back" layout="LinearLayout" style="orientation:hotizontal;weight:1px;align:center" onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')"  onclick="back()">
+			<div id="div2" layout="LinearLayout" style="orientation:horizontal;margin:3px;width:auto;background-color:#99CCFF">
+				<div id="L_back" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')"  onclick="back()">
 				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(12).png)"  onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')" onclick="back()" />
 				</div>
-				<div id="L_reload" layout="LinearLayout" style="orientation:hotizontal;weight:1px;align:center" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')"  onclick="reload()" >
+				<div id="L_reload" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')"  onclick="reload()" >
 				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)" onclick="reload()" />
 				</div>
-				<div id="L_start" layout="LinearLayout" style="orientation:hotizontal;weight:1px;align:center" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')"  onclick="start()">
+				<div id="L_start" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')"  onclick="start()">
 				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(296).png)" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')" onclick="start()" />
 				</div>
 			</div>

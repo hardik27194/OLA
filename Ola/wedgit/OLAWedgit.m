@@ -19,6 +19,7 @@
 #import "UILabelEx.h"
 #import "OLAProperties.h"
 #import "Layout.h"
+#import "OLA.h"
 
 @implementation OLAWedgit
 
@@ -70,7 +71,7 @@ LayoutParams * param;
         self.pressed = trim(onpress);
     }
     NSString * onrelease = (NSString *)[root.attributes objectForKey:@"onrelease"];
-    if (onrelease != nil && ![onrelease isEqualToString:@""])
+    if (onrelease != nil )
     {
         self.released = trim(onrelease);
     }
@@ -310,7 +311,7 @@ LayoutParams * param;
 - (void) clicked
 {
     
-    NSLog(@"view=%@,clicked=%@",[v class],onclick);
+    NSLog(@"view=%@,id=%@,clicked=%@",[v class],objId,onclick);
     if (onclick != nil)
     {
         [[OLALuaContext getInstance] doString:onclick];
@@ -399,6 +400,7 @@ LayoutParams * param;
 }
 - (void) onpress
 {
+    NSLog(@"onpress=%@",released);
     if (pressed != nil)
     {
         [[OLALuaContext getInstance] doString:pressed];
@@ -545,6 +547,7 @@ LayoutParams * param;
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [self clicked];
+    [self onrelease];
     NSLog(@"view touch was ended");
 }
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -692,8 +695,9 @@ LayoutParams * param;
 }
 -(void) setBackgroundImageUrl:(NSString *) imageUrl
 {
-    OLAProperties * param=[OLAProperties getInstance];
-    NSString * img =[param.appUrl stringByAppendingString:imageUrl];
+    //OLAProperties * param=[OLAProperties getInstance];
+    //NSString * img =[param.appUrl stringByAppendingString:imageUrl];
+    NSString * img =[[OLA getAppBase] stringByAppendingString:imageUrl];
     if([self.v isKindOfClass:[UIButton class]])
     {
         //if not set frame size to "auto" or a number, set the view's size same to image's

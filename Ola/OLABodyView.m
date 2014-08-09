@@ -149,7 +149,7 @@ OLAUIFactory * ui;
         [subview removeFromSuperview];
         
     }
-    
+    NSLog(@"body show=%@",viewUrl);
     [ctx.v addSubview:bodyLayout.v];
 
 }

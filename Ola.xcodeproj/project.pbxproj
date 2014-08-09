@@ -21,6 +21,34 @@
 		84937DF01909796400E5E405 /* OLAUIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DEF1909796400E5E405 /* OLAUIMessage.m */; };
 		84950FFC18FED1D800E6DFBB /* OLASoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84950FFB18FED1D800E6DFBB /* OLASoundPlayer.m */; };
 		84950FFE18FED73600E6DFBB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84950FFD18FED73600E6DFBB /* AVFoundation.framework */; };
+		84967ACB1950985A002BEB73 /* OLAAbstractProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84967ACA1950985A002BEB73 /* OLAAbstractProperties.m */; };
+		84967AD419509DED002BEB73 /* OLAZipUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 84967AD319509DED002BEB73 /* OLAZipUtil.m */; };
+		84967AD81950A00F002BEB73 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84967AD71950A00F002BEB73 /* libz.dylib */; };
+		84967B091950A130002BEB73 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967ADD1950A130002BEB73 /* ioapi.c */; };
+		84967B0A1950A130002BEB73 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967ADF1950A130002BEB73 /* unzip.c */; };
+		84967B0B1950A130002BEB73 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AE11950A130002BEB73 /* zip.c */; };
+		84967B0C1950A130002BEB73 /* FileInZipInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84967AE51950A130002BEB73 /* FileInZipInfo.m */; };
+		84967B0D1950A130002BEB73 /* ZipException.m in Sources */ = {isa = PBXBuildFile; fileRef = 84967AE71950A130002BEB73 /* ZipException.m */; };
+		84967B0E1950A130002BEB73 /* ZipFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 84967AE91950A130002BEB73 /* ZipFile.m */; };
+		84967B0F1950A130002BEB73 /* ZipReadStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 84967AEB1950A130002BEB73 /* ZipReadStream.m */; };
+		84967B101950A130002BEB73 /* ZipWriteStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 84967AED1950A130002BEB73 /* ZipWriteStream.m */; };
+		84967B111950A130002BEB73 /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AEF1950A130002BEB73 /* adler32.c */; };
+		84967B121950A130002BEB73 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AF01950A130002BEB73 /* compress.c */; };
+		84967B131950A130002BEB73 /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AF11950A130002BEB73 /* crc32.c */; };
+		84967B141950A130002BEB73 /* deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AF31950A130002BEB73 /* deflate.c */; };
+		84967B151950A130002BEB73 /* gzclose.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AF51950A130002BEB73 /* gzclose.c */; };
+		84967B161950A130002BEB73 /* gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AF71950A130002BEB73 /* gzlib.c */; };
+		84967B171950A130002BEB73 /* gzread.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AF81950A130002BEB73 /* gzread.c */; };
+		84967B181950A130002BEB73 /* gzwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AF91950A130002BEB73 /* gzwrite.c */; };
+		84967B191950A130002BEB73 /* infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AFA1950A130002BEB73 /* infback.c */; };
+		84967B1A1950A130002BEB73 /* inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AFB1950A130002BEB73 /* inffast.c */; };
+		84967B1B1950A130002BEB73 /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967AFE1950A130002BEB73 /* inflate.c */; };
+		84967B1C1950A130002BEB73 /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967B001950A130002BEB73 /* inftrees.c */; };
+		84967B1D1950A130002BEB73 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967B021950A130002BEB73 /* trees.c */; };
+		84967B1E1950A130002BEB73 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967B041950A130002BEB73 /* uncompr.c */; };
+		84967B1F1950A130002BEB73 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 84967B071950A130002BEB73 /* zutil.c */; };
+		849712E819519DCA0057DB9A /* OLAAppProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 849712E719519DC90057DB9A /* OLAAppProperties.m */; };
+		849712EB19519EC10057DB9A /* OLAPortalProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 849712EA19519EC10057DB9A /* OLAPortalProperties.m */; };
 		849745CB18FADD0F007A8D5C /* Log.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EA18FADD0E007A8D5C /* Log.lua */; };
 		849745CC18FADD0F007A8D5C /* luac.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EB18FADD0E007A8D5C /* luac.lua */; };
 		849745CD18FADD0F007A8D5C /* OLA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 849744EC18FADD0E007A8D5C /* OLA.lua */; };
@@ -138,6 +166,8 @@
 		8497464118FADD0F007A8D5C /* XMLText.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745CA18FADD0F007A8D5C /* XMLText.m */; };
 		8497464318FADD53007A8D5C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8497464218FADD53007A8D5C /* libsqlite3.0.dylib */; };
 		8497464518FAFA59007A8D5C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 8497464418FAFA59007A8D5C /* assets */; };
+		849E4539194EE8E300E50D27 /* OLAHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 849E4538194EE8E300E50D27 /* OLAHTTP.m */; };
+		849E453C194F0A2C00E50D27 /* OLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 849E453B194F0A2C00E50D27 /* OLA.m */; };
 		84A20E361913F0300041ECC9 /* OLAAsyncDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A20E351913F0300041ECC9 /* OLAAsyncDownload.m */; };
 		84A20E39191406390041ECC9 /* OLAQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A20E38191406390041ECC9 /* OLAQueue.m */; };
 		84DE5C7518D9A1E30059C5C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DE5C7418D9A1E30059C5C9 /* Foundation.framework */; };
@@ -196,6 +226,59 @@
 		84950FFA18FED1D800E6DFBB /* OLASoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLASoundPlayer.h; sourceTree = "<group>"; };
 		84950FFB18FED1D800E6DFBB /* OLASoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLASoundPlayer.m; sourceTree = "<group>"; };
 		84950FFD18FED73600E6DFBB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		84967AC91950985A002BEB73 /* OLAAbstractProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAAbstractProperties.h; sourceTree = "<group>"; };
+		84967ACA1950985A002BEB73 /* OLAAbstractProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAAbstractProperties.m; sourceTree = "<group>"; };
+		84967AD219509DED002BEB73 /* OLAZipUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAZipUtil.h; sourceTree = "<group>"; };
+		84967AD319509DED002BEB73 /* OLAZipUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAZipUtil.m; sourceTree = "<group>"; };
+		84967AD71950A00F002BEB73 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		84967ADA1950A12F002BEB73 /* ARCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCHelper.h; sourceTree = "<group>"; };
+		84967ADC1950A130002BEB73 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		84967ADD1950A130002BEB73 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		84967ADE1950A130002BEB73 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		84967ADF1950A130002BEB73 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		84967AE01950A130002BEB73 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		84967AE11950A130002BEB73 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		84967AE21950A130002BEB73 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		84967AE41950A130002BEB73 /* FileInZipInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInZipInfo.h; sourceTree = "<group>"; };
+		84967AE51950A130002BEB73 /* FileInZipInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInZipInfo.m; sourceTree = "<group>"; };
+		84967AE61950A130002BEB73 /* ZipException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipException.h; sourceTree = "<group>"; };
+		84967AE71950A130002BEB73 /* ZipException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipException.m; sourceTree = "<group>"; };
+		84967AE81950A130002BEB73 /* ZipFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipFile.h; sourceTree = "<group>"; };
+		84967AE91950A130002BEB73 /* ZipFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipFile.m; sourceTree = "<group>"; };
+		84967AEA1950A130002BEB73 /* ZipReadStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipReadStream.h; sourceTree = "<group>"; };
+		84967AEB1950A130002BEB73 /* ZipReadStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipReadStream.m; sourceTree = "<group>"; };
+		84967AEC1950A130002BEB73 /* ZipWriteStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipWriteStream.h; sourceTree = "<group>"; };
+		84967AED1950A130002BEB73 /* ZipWriteStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipWriteStream.m; sourceTree = "<group>"; };
+		84967AEF1950A130002BEB73 /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
+		84967AF01950A130002BEB73 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
+		84967AF11950A130002BEB73 /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc32.c; sourceTree = "<group>"; };
+		84967AF21950A130002BEB73 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
+		84967AF31950A130002BEB73 /* deflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = deflate.c; sourceTree = "<group>"; };
+		84967AF41950A130002BEB73 /* deflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deflate.h; sourceTree = "<group>"; };
+		84967AF51950A130002BEB73 /* gzclose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzclose.c; sourceTree = "<group>"; };
+		84967AF61950A130002BEB73 /* gzguts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gzguts.h; sourceTree = "<group>"; };
+		84967AF71950A130002BEB73 /* gzlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzlib.c; sourceTree = "<group>"; };
+		84967AF81950A130002BEB73 /* gzread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzread.c; sourceTree = "<group>"; };
+		84967AF91950A130002BEB73 /* gzwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzwrite.c; sourceTree = "<group>"; };
+		84967AFA1950A130002BEB73 /* infback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = infback.c; sourceTree = "<group>"; };
+		84967AFB1950A130002BEB73 /* inffast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inffast.c; sourceTree = "<group>"; };
+		84967AFC1950A130002BEB73 /* inffast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffast.h; sourceTree = "<group>"; };
+		84967AFD1950A130002BEB73 /* inffixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffixed.h; sourceTree = "<group>"; };
+		84967AFE1950A130002BEB73 /* inflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inflate.c; sourceTree = "<group>"; };
+		84967AFF1950A130002BEB73 /* inflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inflate.h; sourceTree = "<group>"; };
+		84967B001950A130002BEB73 /* inftrees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inftrees.c; sourceTree = "<group>"; };
+		84967B011950A130002BEB73 /* inftrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inftrees.h; sourceTree = "<group>"; };
+		84967B021950A130002BEB73 /* trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trees.c; sourceTree = "<group>"; };
+		84967B031950A130002BEB73 /* trees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trees.h; sourceTree = "<group>"; };
+		84967B041950A130002BEB73 /* uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uncompr.c; sourceTree = "<group>"; };
+		84967B051950A130002BEB73 /* zconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zconf.h; sourceTree = "<group>"; };
+		84967B061950A130002BEB73 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
+		84967B071950A130002BEB73 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
+		84967B081950A130002BEB73 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
+		849712E619519DC90057DB9A /* OLAAppProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLAAppProperties.h; path = Ola/OLAAppProperties.h; sourceTree = "<group>"; };
+		849712E719519DC90057DB9A /* OLAAppProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLAAppProperties.m; path = Ola/OLAAppProperties.m; sourceTree = "<group>"; };
+		849712E919519EC10057DB9A /* OLAPortalProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLAPortalProperties.h; path = Ola/OLAPortalProperties.h; sourceTree = "<group>"; };
+		849712EA19519EC10057DB9A /* OLAPortalProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLAPortalProperties.m; path = Ola/OLAPortalProperties.m; sourceTree = "<group>"; };
 		849744EA18FADD0E007A8D5C /* Log.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Log.lua; path = ../Log.lua; sourceTree = "<group>"; };
 		849744EB18FADD0E007A8D5C /* luac.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = luac.lua; path = Ola/luac.lua; sourceTree = "<group>"; };
 		849744EC18FADD0E007A8D5C /* OLA.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OLA.lua; path = Ola/OLA.lua; sourceTree = "<group>"; };
@@ -395,6 +478,10 @@
 		849745CA18FADD0F007A8D5C /* XMLText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLText.m; sourceTree = "<group>"; };
 		8497464218FADD53007A8D5C /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		8497464418FAFA59007A8D5C /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		849E4537194EE8E300E50D27 /* OLAHTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAHTTP.h; sourceTree = "<group>"; };
+		849E4538194EE8E300E50D27 /* OLAHTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAHTTP.m; sourceTree = "<group>"; };
+		849E453A194F0A2B00E50D27 /* OLA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLA.h; sourceTree = "<group>"; };
+		849E453B194F0A2C00E50D27 /* OLA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLA.m; sourceTree = "<group>"; };
 		84A20E341913F0300041ECC9 /* OLAAsyncDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAAsyncDownload.h; sourceTree = "<group>"; };
 		84A20E351913F0300041ECC9 /* OLAAsyncDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAAsyncDownload.m; sourceTree = "<group>"; };
 		84A20E37191406390041ECC9 /* OLAQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAQueue.h; sourceTree = "<group>"; };
@@ -426,6 +513,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84967AD81950A00F002BEB73 /* libz.dylib in Frameworks */,
 				84950FFE18FED73600E6DFBB /* AVFoundation.framework in Frameworks */,
 				8497464318FADD53007A8D5C /* libsqlite3.0.dylib in Frameworks */,
 				84DE5C7718D9A1E30059C5C9 /* CoreGraphics.framework in Frameworks */,
@@ -476,6 +564,82 @@
 			path = Ola/layout;
 			sourceTree = "<group>";
 		};
+		84967AD91950A12F002BEB73 /* ARCHelper */ = {
+			isa = PBXGroup;
+			children = (
+				84967ADA1950A12F002BEB73 /* ARCHelper.h */,
+			);
+			name = ARCHelper;
+			path = Ola/ARCHelper;
+			sourceTree = "<group>";
+		};
+		84967ADB1950A12F002BEB73 /* MiniZip */ = {
+			isa = PBXGroup;
+			children = (
+				84967ADC1950A130002BEB73 /* crypt.h */,
+				84967ADD1950A130002BEB73 /* ioapi.c */,
+				84967ADE1950A130002BEB73 /* ioapi.h */,
+				84967ADF1950A130002BEB73 /* unzip.c */,
+				84967AE01950A130002BEB73 /* unzip.h */,
+				84967AE11950A130002BEB73 /* zip.c */,
+				84967AE21950A130002BEB73 /* zip.h */,
+			);
+			name = MiniZip;
+			path = Ola/MiniZip;
+			sourceTree = "<group>";
+		};
+		84967AE31950A130002BEB73 /* Objective-Zip */ = {
+			isa = PBXGroup;
+			children = (
+				84967AE41950A130002BEB73 /* FileInZipInfo.h */,
+				84967AE51950A130002BEB73 /* FileInZipInfo.m */,
+				84967AE61950A130002BEB73 /* ZipException.h */,
+				84967AE71950A130002BEB73 /* ZipException.m */,
+				84967AE81950A130002BEB73 /* ZipFile.h */,
+				84967AE91950A130002BEB73 /* ZipFile.m */,
+				84967AEA1950A130002BEB73 /* ZipReadStream.h */,
+				84967AEB1950A130002BEB73 /* ZipReadStream.m */,
+				84967AEC1950A130002BEB73 /* ZipWriteStream.h */,
+				84967AED1950A130002BEB73 /* ZipWriteStream.m */,
+			);
+			name = "Objective-Zip";
+			path = "Ola/Objective-Zip";
+			sourceTree = "<group>";
+		};
+		84967AEE1950A130002BEB73 /* ZLib */ = {
+			isa = PBXGroup;
+			children = (
+				84967AEF1950A130002BEB73 /* adler32.c */,
+				84967AF01950A130002BEB73 /* compress.c */,
+				84967AF11950A130002BEB73 /* crc32.c */,
+				84967AF21950A130002BEB73 /* crc32.h */,
+				84967AF31950A130002BEB73 /* deflate.c */,
+				84967AF41950A130002BEB73 /* deflate.h */,
+				84967AF51950A130002BEB73 /* gzclose.c */,
+				84967AF61950A130002BEB73 /* gzguts.h */,
+				84967AF71950A130002BEB73 /* gzlib.c */,
+				84967AF81950A130002BEB73 /* gzread.c */,
+				84967AF91950A130002BEB73 /* gzwrite.c */,
+				84967AFA1950A130002BEB73 /* infback.c */,
+				84967AFB1950A130002BEB73 /* inffast.c */,
+				84967AFC1950A130002BEB73 /* inffast.h */,
+				84967AFD1950A130002BEB73 /* inffixed.h */,
+				84967AFE1950A130002BEB73 /* inflate.c */,
+				84967AFF1950A130002BEB73 /* inflate.h */,
+				84967B001950A130002BEB73 /* inftrees.c */,
+				84967B011950A130002BEB73 /* inftrees.h */,
+				84967B021950A130002BEB73 /* trees.c */,
+				84967B031950A130002BEB73 /* trees.h */,
+				84967B041950A130002BEB73 /* uncompr.c */,
+				84967B051950A130002BEB73 /* zconf.h */,
+				84967B061950A130002BEB73 /* zlib.h */,
+				84967B071950A130002BEB73 /* zutil.c */,
+				84967B081950A130002BEB73 /* zutil.h */,
+			);
+			name = ZLib;
+			path = Ola/ZLib;
+			sourceTree = "<group>";
+		};
 		849744F618FADD0F007A8D5C /* sharedobj */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,8 +663,12 @@
 				84937DEF1909796400E5E405 /* OLAUIMessage.m */,
 				84A20E341913F0300041ECC9 /* OLAAsyncDownload.h */,
 				84A20E351913F0300041ECC9 /* OLAAsyncDownload.m */,
+				849E4537194EE8E300E50D27 /* OLAHTTP.h */,
+				849E4538194EE8E300E50D27 /* OLAHTTP.m */,
 				84A20E37191406390041ECC9 /* OLAQueue.h */,
 				84A20E38191406390041ECC9 /* OLAQueue.m */,
+				84967AD219509DED002BEB73 /* OLAZipUtil.h */,
+				84967AD319509DED002BEB73 /* OLAZipUtil.m */,
 			);
 			name = sharedobj;
 			path = Ola/sharedobj;
@@ -765,16 +933,16 @@
 				84937DCD19093AE000E5E405 /* OLAProgressBar.m */,
 				849745A018FADD0F007A8D5C /* OLAContainer.h */,
 				849745A118FADD0F007A8D5C /* OLAContainer.m */,
-				849745A218FADD0F007A8D5C /* OLAFrameLayout.h */,
-				849745A318FADD0F007A8D5C /* OLAFrameLayout.m */,
 				849745A418FADD0F007A8D5C /* OLALabel.h */,
 				849745A518FADD0F007A8D5C /* OLALabel.m */,
 				849745A618FADD0F007A8D5C /* OLALayout.h */,
 				849745A718FADD0F007A8D5C /* OLALayout.m */,
-				849745A818FADD0F007A8D5C /* OLALinearLayout.h */,
-				849745A918FADD0F007A8D5C /* OLALinearLayout.m */,
 				849745AA18FADD0F007A8D5C /* OLALongPressGestureRecognizer.h */,
 				849745AB18FADD0F007A8D5C /* OLALongPressGestureRecognizer.m */,
+				849745A218FADD0F007A8D5C /* OLAFrameLayout.h */,
+				849745A318FADD0F007A8D5C /* OLAFrameLayout.m */,
+				849745A818FADD0F007A8D5C /* OLALinearLayout.h */,
+				849745A918FADD0F007A8D5C /* OLALinearLayout.m */,
 				849745AC18FADD0F007A8D5C /* OLARelativeLayout.h */,
 				849745AD18FADD0F007A8D5C /* OLARelativeLayout.m */,
 				849745AE18FADD0F007A8D5C /* OLAScrollView.h */,
@@ -819,16 +987,28 @@
 		84DE5C6818D9A1E30059C5C9 = {
 			isa = PBXGroup;
 			children = (
+				84967AD91950A12F002BEB73 /* ARCHelper */,
+				84967ADB1950A12F002BEB73 /* MiniZip */,
+				84967AE31950A130002BEB73 /* Objective-Zip */,
+				84967AEE1950A130002BEB73 /* ZLib */,
 				840C4EA418F9A0CB0061C4B6 /* view */,
 				8497464418FAFA59007A8D5C /* assets */,
 				849744EB18FADD0E007A8D5C /* luac.lua */,
 				849744EC18FADD0E007A8D5C /* OLA.lua */,
+				84967AC91950985A002BEB73 /* OLAAbstractProperties.h */,
+				84967ACA1950985A002BEB73 /* OLAAbstractProperties.m */,
+				849E453A194F0A2B00E50D27 /* OLA.h */,
+				849E453B194F0A2C00E50D27 /* OLA.m */,
 				849744ED18FADD0E007A8D5C /* OLABodyView.h */,
 				849744EE18FADD0E007A8D5C /* OLABodyView.m */,
 				849744EF18FADD0E007A8D5C /* OLALuaContext.h */,
 				849744F018FADD0E007A8D5C /* OLALuaContext.m */,
 				849744F118FADD0E007A8D5C /* OLAProperties.h */,
 				849744F218FADD0E007A8D5C /* OLAProperties.m */,
+				849712E619519DC90057DB9A /* OLAAppProperties.h */,
+				849712E719519DC90057DB9A /* OLAAppProperties.m */,
+				849712E919519EC10057DB9A /* OLAPortalProperties.h */,
+				849712EA19519EC10057DB9A /* OLAPortalProperties.m */,
 				849744F318FADD0F007A8D5C /* OLAUIFactory.h */,
 				849744F418FADD0F007A8D5C /* OLAUIFactory.lua */,
 				849744F518FADD0F007A8D5C /* OLAUIFactory.m */,
@@ -855,6 +1035,7 @@
 		84DE5C7318D9A1E30059C5C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84967AD71950A00F002BEB73 /* libz.dylib */,
 				84950FFD18FED73600E6DFBB /* AVFoundation.framework */,
 				8497464218FADD53007A8D5C /* libsqlite3.0.dylib */,
 				84DE5C7418D9A1E30059C5C9 /* Foundation.framework */,
@@ -1044,10 +1225,12 @@
 			files = (
 				84937DE41909492B00E5E405 /* Layout.m in Sources */,
 				849745DD18FADD0F007A8D5C /* wax_CGContext.m in Sources */,
+				84967B1B1950A130002BEB73 /* inflate.c in Sources */,
 				849745F018FADD0F007A8D5C /* lbaselib.c in Sources */,
 				8497464018FADD0F007A8D5C /* XMLElement.m in Sources */,
 				8497463618FADD0F007A8D5C /* OLATableRow.m in Sources */,
 				849745E618FADD0F007A8D5C /* yajl_encode.c in Sources */,
+				84967B161950A130002BEB73 /* gzlib.c in Sources */,
 				8497463E18FADD0F007A8D5C /* XMLAttribute.m in Sources */,
 				849745E418FADD0F007A8D5C /* yajl_alloc.c in Sources */,
 				84937DED19094EF900E5E405 /* UILabelEx.m in Sources */,
@@ -1063,10 +1246,13 @@
 				8497464118FADD0F007A8D5C /* XMLText.m in Sources */,
 				84937DE01909492B00E5E405 /* Button.m in Sources */,
 				849745F718FADD0F007A8D5C /* lgc.c in Sources */,
+				84967B1C1950A130002BEB73 /* inftrees.c in Sources */,
+				84967B1E1950A130002BEB73 /* uncompr.c in Sources */,
 				8497460318FADD0F007A8D5C /* lstring.c in Sources */,
 				849745D818FADD0F007A8D5C /* OLAStringUtil.m in Sources */,
 				849745D718FADD0F007A8D5C /* OLALog.m in Sources */,
 				8497463418FADD0F007A8D5C /* OLAScrollView.m in Sources */,
+				84967B121950A130002BEB73 /* compress.c in Sources */,
 				8497460718FADD0F007A8D5C /* ltm.c in Sources */,
 				849745FE18FADD0F007A8D5C /* lobject.c in Sources */,
 				8497462C18FADD0F007A8D5C /* OLAButton.m in Sources */,
@@ -1075,8 +1261,11 @@
 				84A20E39191406390041ECC9 /* OLAQueue.m in Sources */,
 				8497460A18FADD0F007A8D5C /* lzio.c in Sources */,
 				8497462918FADD0F007A8D5C /* wax_server.m in Sources */,
+				84967B1A1950A130002BEB73 /* inffast.c in Sources */,
+				84967B0B1950A130002BEB73 /* zip.c in Sources */,
 				8497462E18FADD0F007A8D5C /* OLAFrameLayout.m in Sources */,
 				8497463118FADD0F007A8D5C /* OLALinearLayout.m in Sources */,
+				84967B0C1950A130002BEB73 /* FileInZipInfo.m in Sources */,
 				849745EE18FADD0F007A8D5C /* lapi.c in Sources */,
 				84937DE11909492B00E5E405 /* FDLabelView.m in Sources */,
 				8497460418FADD0F007A8D5C /* lstrlib.c in Sources */,
@@ -1086,12 +1275,18 @@
 				849745D018FADD0F007A8D5C /* OLAProperties.m in Sources */,
 				8497463D18FADD0F007A8D5C /* LOStack.m in Sources */,
 				849745F318FADD0F007A8D5C /* ldebug.c in Sources */,
+				84967AD419509DED002BEB73 /* OLAZipUtil.m in Sources */,
 				8497463218FADD0F007A8D5C /* OLALongPressGestureRecognizer.m in Sources */,
+				849E4539194EE8E300E50D27 /* OLAHTTP.m in Sources */,
+				84967B0E1950A130002BEB73 /* ZipFile.m in Sources */,
 				8497460118FADD0F007A8D5C /* lparser.c in Sources */,
+				84967B1F1950A130002BEB73 /* zutil.c in Sources */,
 				84A20E361913F0300041ECC9 /* OLAAsyncDownload.m in Sources */,
+				84967B181950A130002BEB73 /* gzwrite.c in Sources */,
 				849745CE18FADD0F007A8D5C /* OLABodyView.m in Sources */,
 				8497460818FADD0F007A8D5C /* lundump.c in Sources */,
 				849745F918FADD0F007A8D5C /* liolib.c in Sources */,
+				84967B171950A130002BEB73 /* gzread.c in Sources */,
 				849745FF18FADD0F007A8D5C /* lopcodes.c in Sources */,
 				849745FC18FADD0F007A8D5C /* lmem.c in Sources */,
 				84937DE21909492B00E5E405 /* FrameLayout.m in Sources */,
@@ -1099,6 +1294,7 @@
 				84937DEA190949A100E5E405 /* ProgressBar.m in Sources */,
 				84937DE51909492B00E5E405 /* LinearLayout.m in Sources */,
 				84937DCE19093AE000E5E405 /* OLAProgressBar.m in Sources */,
+				84967B131950A130002BEB73 /* crc32.c in Sources */,
 				849745EF18FADD0F007A8D5C /* lauxlib.c in Sources */,
 				849745E318FADD0F007A8D5C /* yajl.c in Sources */,
 				84950FFC18FED1D800E6DFBB /* OLASoundPlayer.m in Sources */,
@@ -1106,25 +1302,38 @@
 				8497460518FADD0F007A8D5C /* ltable.c in Sources */,
 				8497463318FADD0F007A8D5C /* OLARelativeLayout.m in Sources */,
 				849745D418FADD0F007A8D5C /* OLADES3Encrypt.m in Sources */,
+				84967B0A1950A130002BEB73 /* unzip.c in Sources */,
 				8497463018FADD0F007A8D5C /* OLALayout.m in Sources */,
 				849745D218FADD0F007A8D5C /* OLAUIFactory.m in Sources */,
 				849745D318FADD0F007A8D5C /* OLADatabase.m in Sources */,
+				84967B0F1950A130002BEB73 /* ZipReadStream.m in Sources */,
+				84967B091950A130002BEB73 /* ioapi.c in Sources */,
 				849745F518FADD0F007A8D5C /* ldump.c in Sources */,
 				849745DE18FADD0F007A8D5C /* wax_filesystem.m in Sources */,
+				849712E819519DCA0057DB9A /* OLAAppProperties.m in Sources */,
 				849745D618FADD0F007A8D5C /* OLAFileOutputStream.m in Sources */,
 				8497460918FADD0F007A8D5C /* lvm.c in Sources */,
 				8497463818FADD0F007A8D5C /* OLATextView.m in Sources */,
 				8497460B18FADD0F007A8D5C /* print.c in Sources */,
 				849745F118FADD0F007A8D5C /* lcode.c in Sources */,
+				84967B151950A130002BEB73 /* gzclose.c in Sources */,
 				849745FB18FADD0F007A8D5C /* lmathlib.c in Sources */,
 				849745FD18FADD0F007A8D5C /* loadlib.c in Sources */,
 				849745F418FADD0F007A8D5C /* ldo.c in Sources */,
+				84967B101950A130002BEB73 /* ZipWriteStream.m in Sources */,
 				8497462718FADD0F007A8D5C /* wax_helpers.m in Sources */,
 				84937DE71909492B00E5E405 /* ScrollerView.m in Sources */,
+				84967ACB1950985A002BEB73 /* OLAAbstractProperties.m in Sources */,
+				84967B1D1950A130002BEB73 /* trees.c in Sources */,
 				849745CF18FADD0F007A8D5C /* OLALuaContext.m in Sources */,
+				84967B191950A130002BEB73 /* infback.c in Sources */,
 				849745F618FADD0F007A8D5C /* lfunc.c in Sources */,
+				84967B0D1950A130002BEB73 /* ZipException.m in Sources */,
 				8497460018FADD0F007A8D5C /* loslib.c in Sources */,
+				84967B141950A130002BEB73 /* deflate.c in Sources */,
 				8497462518FADD0F007A8D5C /* wax_class.m in Sources */,
+				849712EB19519EC10057DB9A /* OLAPortalProperties.m in Sources */,
+				849E453C194F0A2C00E50D27 /* OLA.m in Sources */,
 				849745DF18FADD0F007A8D5C /* wax_http.m in Sources */,
 				8497463C18FADD0F007A8D5C /* UIView+WhenTappedBlocks.m in Sources */,
 				8497463F18FADD0F007A8D5C /* XMLDocument.m in Sources */,
@@ -1132,6 +1341,7 @@
 				8497463718FADD0F007A8D5C /* OLATextField.m in Sources */,
 				8497462D18FADD0F007A8D5C /* OLAContainer.m in Sources */,
 				84DE5C8E18D9A1E30059C5C9 /* OLAViewController.m in Sources */,
+				84967B111950A130002BEB73 /* adler32.c in Sources */,
 				849745DC18FADD0F007A8D5C /* wax_CGTransform.m in Sources */,
 				84DE5C8518D9A1E30059C5C9 /* OLAAppDelegate.m in Sources */,
 				849745E018FADD0F007A8D5C /* wax_http_connection.m in Sources */,

@@ -38,6 +38,7 @@ UIFont *font ;
     //设置字体颜色为白色
     //label.textColor = [UIColor whiteColor];
     //文字居中显示
+    label.font=[UIFont  systemFontOfSize:14];
     
     //label.lineHeightScale = 0.70;
     ////label.fixedLineHeight = 0.00;
@@ -54,9 +55,16 @@ UIFont *font ;
     
     //allow touch event
     label.userInteractionEnabled=YES;
-
-    
-    
+/*
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"Using NSAttributed String"];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0,5)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(6,12)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:NSMakeRange(19,6)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial-BoldItalicMT" size:30.0] range:NSMakeRange(0, 5)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Bold" size:30.0] range:NSMakeRange(6, 12)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Courier-BoldOblique" size:30.0] range:NSMakeRange(19, 6)];
+    attrLabel.attributedText = str;
+  */
     //button长按事件
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showMessage:)];
     longPress.minimumPressDuration = 0.2; //定义按的时间
@@ -179,8 +187,13 @@ UIFont *font ;
     //高度估计文本大概要显示几行，宽度根据需求自己定义。 MAXFLOAT 可以算出具体要多高
     CGFloat initWidth=self.v.frame.size.width;
      NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:label.font,NSFontAttributeName,nil];
+    
+    
+    
+     NSLog(@"set label=%@",text);
     if(initWidth<=0)
     {
+        NSLog(@"set label size1");
         //create and init the label, do not set its frame size
         initWidth=2048;
         if(text!=nil && [text compare:@""]!=NSOrderedSame)
@@ -193,11 +206,13 @@ UIFont *font ;
             if(css.width>0)w=css.width;else w=actualsize.width;
             if(css.height>0)h=css.height; else h=actualsize.height;
             [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, w, h)];
-            
+            //if(w>origionSize.width || h!=origionSize.height)
+            //    needRepaint=YES;
         }
     }
     else
     {
+        NSLog(@"set label size2");
     CGSize size =CGSizeMake(initWidth,MAXFLOAT);
     
     //ios7方法，获取文本需要的size，限制宽度
@@ -214,39 +229,43 @@ UIFont *font ;
 
     //[label setNeedsDisplay];
     
-    //repaint the whole screen view if the frame size of the label was changed to bigger
-    BOOL needRepaint=NO;
+        //repaint the whole screen view if the frame size of the label was changed to bigger
+        BOOL needRepaint=NO;
     if(w>origionSize.width || h!=origionSize.height)
         needRepaint=YES;
         
-    if(needRepaint)
-    {NSLog(@"label frame size was changed....");
-        if([parent isKindOfClass:[OLALinearLayout class]])
+        if(needRepaint)
         {
-            LinearLayout * container=(LinearLayout *)parent.v;
-            [container resizeToFitMaxChild];
+            NSLog(@"label frame size was changed....");
+            if([parent isKindOfClass:[OLALinearLayout class]])
+            {
+                LinearLayout * container=(LinearLayout *)parent.v;
+                [container resizeToFitMaxChild];
+            }
+            OLAView * containerParent=parent;
+            while([containerParent.parent isKindOfClass:[OLALayout class]])
+            {
+                containerParent=containerParent.parent;
+            }
+            
+            OLALayout *layout= (OLALayout *)containerParent;
+            NSLog(@"repaint id=%@",layout.objId);
+            NSLog(@"layout.description=%@",layout.description);
+            //set min or max frame of subviews
+            [(Layout *)layout.v repaint];
+            //[(Layout *)layout.v setFrameMinSize];
+            //reset auto fitted subviews to fit its parents
+            //[(Layout *)layout.v repaint];
+            
+            
         }
-        OLAView * containerParent=parent;
-        while([containerParent.parent isKindOfClass:[OLALayout class]])
-        {
-            containerParent=containerParent.parent;
-        }
-
-        OLALayout *layout= (OLALayout *)containerParent;
-        //set min or max frame of subviews
-        [(Layout *)layout.v repaint];
-        //[(Layout *)layout.v setFrameMinSize];
-        //reset auto fitted subviews to fit its parents
-        //[(Layout *)layout.v repaint];
-
-        
-    }
         //reset the background image with alpha
         if(css.backgroundImageURL!=nil)
         {
             [super setBackgroundImageUrl:css.backgroundImageURL];
         }
     }
+   
     
 }
 
@@ -255,7 +274,8 @@ UIFont *font ;
 {
     
     UILabelEx * label=(UILabelEx *)(self.v);
-    
+    CGFloat origionW=label.frame.size.width;
+    CGFloat origionH=label.frame.size.height;
     CGSize size =CGSizeMake(width,MAXFLOAT);
     
     NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:label.font,NSFontAttributeName,nil];
@@ -266,8 +286,42 @@ UIFont *font ;
     if(css.width>0)w=css.width;else w=actualsize.width;
     if(css.height>0)h=css.height; else h=actualsize.height;
     
-    [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, actualsize.width, h)];
+    [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, w, h)];
     [label setNeedsDisplay];
+    
+    //repaint the whole screen view if the frame size of the label was changed to bigger
+    BOOL needRepaint=NO;
+    
+    if(w>origionW || h!=origionH)
+        needRepaint=YES;
+    
+    if(needRepaint)
+    {
+        NSLog(@"label frame size was changed....");
+        if([parent isKindOfClass:[OLALinearLayout class]])
+        {
+            LinearLayout * container=(LinearLayout *)parent.v;
+            [container resizeToFitMaxChild];
+        }
+        OLAView * containerParent=parent;
+        while([containerParent.parent isKindOfClass:[OLALayout class]])
+        {
+            containerParent=containerParent.parent;
+        }
+        
+        OLALayout *layout= (OLALayout *)containerParent;
+        NSLog(@"repaint id=%@",layout.objId);
+        NSLog(@"layout.description=%@",layout.description);
+        //set min or max frame of subviews
+        [(Layout *)layout.v repaint];
+        //[(Layout *)layout.v setFrameMinSize];
+        //reset auto fitted subviews to fit its parents
+        //[(Layout *)layout.v repaint];
+        
+        
+    }
+
+    
     //reset the background image with alpha
     if(css.backgroundImageURL!=nil)
     {
@@ -286,6 +340,8 @@ UIFont *font ;
         LinearLayout * container=(LinearLayout *)parent.v;
         [container resizeToFitMaxChild];
     }
+
+
 
 }
 

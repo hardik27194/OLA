@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface ScrollerView : UIScrollView
+{
+    id wrapper;
+}
+@property (nonatomic)id wrapper;
 
+-(void)setFrameMinSize;
+
+- (void) repaint;
 @end

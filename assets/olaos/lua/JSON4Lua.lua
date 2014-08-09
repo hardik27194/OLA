@@ -29,17 +29,19 @@
 -----------------------------------------------------------------------------
 -- Imports and dependencies
 -----------------------------------------------------------------------------
+Log:d("JSON4Lua...","executed......1")
 local math = require('math')
 local string = require("string")
 local table = require("table")
 
 local base = _G
-
+Log:d("JSON4Lua...","executed......2")
 -----------------------------------------------------------------------------
 -- Module declaration
 -----------------------------------------------------------------------------
-module("json")
-
+--module "json"
+module("json", package.seeall)
+Log:d("JSON4Lua...","executed......21")
 -- Public functions
 
 -- Private functions
@@ -53,7 +55,7 @@ local decode_scanWhitespace
 local encodeString
 local isArray
 local isEncodable
-
+Log:d("JSON4Lua...","executed......3")
 -----------------------------------------------------------------------------
 -- PUBLIC FUNCTIONS
 -----------------------------------------------------------------------------
@@ -109,7 +111,7 @@ function encode (v)
   base.assert(false,'encode attempt to encode unsupported type ' .. vtype .. ':' .. base.tostring(v))
 end
 
-
+Log:d("JSON4Lua...","executed......4")
 --- Decodes a JSON string and returns the decoded value as a Lua data structure / value.
 -- @param s The string to scan.
 -- @param [startPos] Optional starting position where the JSON string is located. Defaults to 1.
@@ -374,3 +376,5 @@ function isEncodable(o)
   local t = base.type(o)
   return (t=='string' or t=='boolean' or t=='number' or t=='nil' or t=='table') or (t=='function' and o==null) 
 end
+
+Log:d("JSON4Lua...","executed......100")

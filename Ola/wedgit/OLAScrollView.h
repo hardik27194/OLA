@@ -7,17 +7,19 @@
 //
 
 #import "OLALayout.h"
+#import "ScrollerView.h"
 
 @interface OLAScrollView : OLALayout<UIScrollViewDelegate>
 
 {
-    UIScrollView * layout;
+    ScrollerView * layout;
     NSMutableArray * children;
 }
-@property (nonatomic) UIScrollView * layout;
+@property (nonatomic) ScrollerView * layout;
 @property (nonatomic) NSMutableArray * children;
 
 - (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) root;
 -(void) resetContentSizeToFitChildren;
 - (void) repaint;
+-(void)setFrameMinSize;
 @end

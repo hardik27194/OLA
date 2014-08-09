@@ -14,4 +14,6 @@
 }
 @property (nonatomic) LinearLayout * layout;
 - (id) initWithParent:(OLAView *)parentView andUIRoot:(XMLElement *) root;
+- (void) repaint;
+- (void) setFrameMinSize;
 @end

@@ -10,16 +10,16 @@
 
 @implementation ScrollerView
 
-- (void)setPadding:(BOOL)enable top:(float)top right:(float)right bottom:(float)bottom left:(float)left {
+@synthesize wrapper;
 
+
+
+-(void)setFrameMinSize
+{
+    [wrapper setFrameMinSize];
 }
-
-- (void)drawRect:(CGRect)bounds {
-
-
-
+- (void) repaint
+{
+    [wrapper repaint];
 }
-
-
-
 @end

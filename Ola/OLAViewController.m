@@ -26,6 +26,10 @@
 #import "OLAStringUtil.h"
 #import "OLADatabase.h"
 
+#import "OLAZipUtil.h"
+#import "OLAAbstractProperties.h"
+#import "OLA.h"
+
 @implementation OLAViewController
 
 @synthesize viewController;
@@ -42,178 +46,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    /*
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect]; //绘制形状
-    
-    // 确定宽、高、X、Y坐标
-    CGRect frame;
-    frame.size.width = 100;
-    frame.size.height = 30;
-    frame.origin.x = 320 / 2 - 50;
-    frame.origin.y = 480 / 2 - 30;
-    [btn setFrame:frame];
-    
-    // 设置Tag(整型)
-    btn.tag = 10;
-    
-    // 设置标题
-    [btn setTitle:@"按钮" forState:UIControlStateNormal];
-    
-    // 设置未按下和按下的图片切换
-    [btn setBackgroundImage:[UIImage imageNamed:@"bus.png"] forState:UIControlStateNormal];
-    [btn setBackgroundImage:[UIImage imageNamed:@"plane.png"] forState:UIControlStateHighlighted];
-    
-    // 设置事件
-    [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    // 设置背景色和透明度
-    [btn setBackgroundColor:[UIColor blackColor]];
-    [btn setAlpha:0.8];
-    
-    // 或设置背景色和透明度
-    btn.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    
-    
-    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeRoundedRect]; //绘制形状
-    [btn1 setTitle:@"Button 1" forState:UIControlStateNormal];
-    [btn1 setBackgroundColor:[UIColor blueColor]];
-    [btn1 setFrame:CGRectMake(0, 0, 0, 35)];
-    
-    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeRoundedRect]; //绘制形状
-    [btn2 setTitle:@"Button 2" forState:UIControlStateNormal];
-    [btn2 setBackgroundColor:[UIColor blueColor]];
-    [btn2 setFrame:CGRectMake(0, 0, 0, 35)];
-    
-    UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeRoundedRect]; //绘制形状
-    [btn3 setTitle:@"Button 3" forState:UIControlStateNormal];
-    [btn3 setBackgroundColor:[UIColor blueColor]];
-    [btn3 setFrame:CGRectMake(0, 0, 0, 35)];
-    
-   
-    
-    
-    
-    UIScrollView * myscrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0,100, 90)];
-    myscrollview.directionalLockEnabled = YES; //只能一个方向滑动
-    myscrollview.pagingEnabled = NO; //是否翻页
-    myscrollview.backgroundColor = [UIColor blackColor];
-    myscrollview.showsVerticalScrollIndicator =YES; //垂直方向的滚动指示
-    myscrollview.indicatorStyle = UIScrollViewIndicatorStyleWhite;//滚动指示的风格
-    myscrollview.showsHorizontalScrollIndicator = NO;//水平方向的滚动指示
-    myscrollview.delegate = self;
-    [myscrollview setBackgroundColor:[UIColor yellowColor]];
-    
-    CGSize newSize = CGSizeMake(100, 135);
-    [myscrollview setContentSize:newSize];
-    
-    LinearLayout *layout = [[LinearLayout alloc] initWithParent:myscrollview];
-    [layout setOrientation:vertical];
-    [layout setBackgroundColor:[UIColor grayColor]];
-    //[layout setFrame:CGRectMake(0, 0, 100, 155)];
-    [layout addSubview:btn];
-    [layout addSubview:btn1];
-    [layout addSubview:btn2];
-    [layout addSubview:btn3];
-    
-    [myscrollview addSubview:layout];
-    
-    [self.view addSubview:myscrollview];
 
-    
-    OLALuaContext * lua =[OLALuaContext getInstance];
-    [lua regist:btn withGlobalName:@"btn"];
-    
-    
-    NSLog(@"%@",btn.titleLabel.text);
-    lua_State *L=lua.lua;
-    luaL_dostring(L, "print(type(btn))");
-    luaL_dostring(L, "print(btn.titleLabel.text)");
-    luaL_dostring(L, "btn.tag=11");
-    
-    UIButton *b=(UIButton *)[lua getObject:@"btn"];
-    [b setTitle:@"New Title" forState:UIControlStateNormal];
-    
-    luaL_dostring(L, "btn.titleLabel.text='AA'");
-    
-    
-    
-    
-    [lua registClass:[OLALog class] withGlobalName:@"Log"];
-    luaL_dostring(L, "print(type(Log))");
-    luaL_dostring(L, "Log:d('Log','test')");
-     */
-    
-    
     bodyView=[[OLAView alloc] init];
     bodyView.v=self.view;
-    
-    //NSString * xml=@"<div layout=\"LinearLayout\" style=\"orientation:vertical;align:left;width:auto;weight:1px;background-image:url(app/images/pic-1.gif)\"><button style='background-image:url(app/images/10.gif)'>Button1</button><button style='background-image:url(app/images/10.gif)'>Button2ddddddddddddd</button></div>";
-    /*
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *homeDirectory = NSHomeDirectory();
-    NSLog(@"file path=%@",[fm currentDirectoryPath] );
-    NSLog(@"home dir path=%@",homeDirectory );
-    
-    NSData *data = [fm contentsAtPath:@"app/MainMenu.xml"];
-    NSString *xml = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    //NSLog(@"file data=%@",aString );
-    
-    OLAView * view= [OLALayout createLayout:bodyView withXMLText:xml];
-     */
-    
-    UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeRoundedRect]; //绘制形状
-    [btn3 setTitle:@"Button 3" forState:UIControlStateNormal];
-    [btn3 setBackgroundColor:[UIColor blueColor]];
-    btn3.userInteractionEnabled=YES;
-    btn3.tag=10;
-    [btn3 setFrame:CGRectMake(0, 80, 140, 35)];
-    [btn3 addTarget:self action:@selector(clicked:) forControlEvents:UIControlEventTouchDown];
-
-    UILabel * label =[[UILabel alloc] init];
-    label.text=@"Loading...";
-    label.userInteractionEnabled=YES;
-    label.tag=11;
-    [label setFrame:CGRectMake(0, 10, 140, 35)];
-    [self.view addSubview:label];
-    [self.view addSubview:btn3];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouch:) name:@"notiScreenTouch" object:nil];
-    
-    //[self addListner:self.view];
-    
-    UILongPressGestureRecognizer *longPressReger1 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(pressed:)];
-    longPressReger1.minimumPressDuration = 0.2;
-    longPressReger1.delegate =  self;
-    //[longPressReger1 requireGestureRecognizerToFail:tapGesture];
-    //[self.view addGestureRecognizer:longPressReger1];
+    [OLA setMainView:self.view];
     
     
-    OLAProperties * properties=[OLAProperties getInstance];
+    OLAProperties *properties=[[OLAProperties alloc] init];//[OLAProperties getInstance];
+    properties.appName=@"olaos/";
     OLABodyView * v=nil;
     
-    /*
-    NSString *name=@"app/MainMenu.xml";//[properties getFirstViewName];
-     */
-
-    
-    //NSString * packageName=[self class];
-
-    //properties.appPackage=packageName;
-    [properties execGlobalScripts];
-    /*
-    loadDefaultProperties(properties);
-    
-    properties.state++;
-    if(properties.state<2)
-    {
-        initDatabase();
-        properties.execInitScripts();
-    }
-    //update the properties
-    ctx.writeProperties(properties);
-    */
+    [properties loadAppsInfo];
+    [properties reset];
 
     NSString *name=[properties getFirstViewName] ;
 
@@ -222,16 +66,21 @@
     if(name!=nil)
     {
         v=[[OLABodyView alloc] initWithViewController:bodyView andViewXMLUrl:name];
-        
         //OLAUIFactory.viewCache.clear();//
         //UIFactory.viewCache.put(name, v);
-        
     }
     [v show];
+    
     
     //[self testWriteFile];
     //[self.view addSubview:v.bodyLayout.v];
     
+    //OLAZipUtil *zip= [OLAZipUtil open:[NSHomeDirectory() stringByAppendingString:@"/Documents/a/a.zip"]];
+    //[zip unzipTo:@"/Users/terrencexing/Documents/a"];
+    
+    //OLAAbstractProperties * prop = [[OLAAbstractProperties alloc] init];
+    //[prop initiateLuaContext];
+    //[prop loadAppsInfo];
     
     /*
     //test des3

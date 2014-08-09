@@ -8,7 +8,8 @@
 
 #import "OLAAsyncDownload.h"
 #import "ProgressBar.h"
-#import "OLAProperties.h"
+#import "OLAAppProperties.h"
+#import "OLAPortalProperties.h"
 #import "OLALuaContext.h"
 #import "OLAUIMessage.h"
 
@@ -31,7 +32,10 @@ long long tmpDataLength;
 {
     self=[super init];
     self.urls = [[OLAQueue alloc] init];
-    self.downloadDir = [[OLAProperties getInstance].fileBase stringByAppendingString:@"/download/"];
+    //self.downloadDir = [[OLAProperties getInstance].fileBase stringByAppendingString:@"/download/"];
+    OLAPortalProperties *prop=[OLAPortalProperties getInstance];
+    OLAAppProperties *appProp=prop.currentApp;
+    self.downloadDir = [appProp.fileBase stringByAppendingString:@"/download/"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSLog(@"download dir=%@",downloadDir);
     if(![fileManager fileExistsAtPath:self.downloadDir])

@@ -17,6 +17,8 @@
 #import "OLAUIFactory.h"
 #import "UILabelEx.h"
 #import "OLALabel.h"
+#import "OLALinearLayout.h"
+#import "LinearLayout.h"
 
 
 @implementation OLAContainer
@@ -106,9 +108,11 @@
 {
     CGRect size=self.v.frame;
     //lua.getGlobal(id);
-    id obj=[[OLALuaContext getInstance]  getObject:objLuaId];
-    [self addSubview:obj];
+    OLAView * obj=[[OLALuaContext getInstance]  getObject:objLuaId];
     
+    if(obj.parent==nil)
+        obj.parent=self;
+    [self addSubview:obj];
     //adjust the Label's acture size, and the layout will be shrinked
     if([obj isKindOfClass:[OLALabel class]])
     {
@@ -116,10 +120,49 @@
         [label adjustSelfSize:v.frame.size.width];
     }
     //repaint the layout with its origional size
-    [v setFrame:size];
-    Layout *layout = (Layout *)v;
-    [layout repaint];
+    //[v setFrame:size];
     
+    Layout *layout = (Layout *)v;
+    CGFloat  origionalW=layout.frame.size.width;
+    CGFloat origionalH=layout.frame.size.height;
+    [self repaint];
+    
+    BOOL needRepaint=NO;
+    /*
+    if([layout isKindOfClass:[LinearLayout class]])
+    {
+        LinearLayout *ll=(LinearLayout *)layout;
+        
+        if(ll.orientation==horizontal &&  (strncmp(ll.layoutParams->align, "center",6)==0 || strncmp(ll.layoutParams->align, "right",5)==0))
+        {
+            needRepaint=YES;
+        }
+        else
+        {
+            needRepaint=YES;
+        }
+    }
+    else
+     */
+    if(origionalW<layout.frame.size.width || origionalH<layout.frame.size.height)
+    {
+        needRepaint=YES;
+    }
+    if(needRepaint)
+    {
+        OLAView * containerParent=parent;
+        while([containerParent.parent isKindOfClass:[OLALayout class]])
+        {
+            containerParent=containerParent.parent;
+        }
+        OLALayout *layout1= (OLALayout *)containerParent;
+        NSLog(@"Container addview layout=%@",layout1.description);
+        [layout1 setFrameMinSize];
+        [layout1 repaint];
+        //set min or max frame of subviews
+        //[(Layout *)layout1.v setFrameMinSize];
+        //[(Layout *)layout1.v repaint];
+    }
     
 }
 /**
@@ -132,6 +175,10 @@
     //v remove//removeView((OLAView *)obj);
 }
 - (void) repaint
+{
+    
+}
+- (void) setFrameMinSize
 {
     
 }

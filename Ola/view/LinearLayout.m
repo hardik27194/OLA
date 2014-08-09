@@ -37,7 +37,7 @@ CGFloat origionX,origionY;
         //padding = malloc(sizeof(struct _Padding));
         
     }
-    self.orientation=vertical;
+    orientation=horizontal;
     
 	return self;
 }
@@ -353,6 +353,7 @@ CGFloat origionX,origionY;
 -(void)repaint
 {
     [self initSize];
+    
     //[self resize];
     [self requestLayout];
     //[self resize];
@@ -374,6 +375,7 @@ CGFloat origionX,origionY;
         CGFloat fixedWidth = 0.0;
         for(OLAView * v in children)
         {
+            /*
             if([v isKindOfClass:[OLALabel class]])
             {
                 //reset text
@@ -383,6 +385,7 @@ CGFloat origionX,origionY;
                 [labelView adjustSize:w];
                 //[v.v setFrame:CGRectMake(v.v.frame.origin.x, v.v.frame.origin.y, v.v.frame.size.width, v.v.frame.size.height)];
             }
+             */
             if(v.css.weight<=0)fixedWidth+=v.v.frame.size.width;
             NSLog(@"children size,w=%f,h=%f",v.v.frame.size.width,v.v.frame.size.height);
             fixedWidth+=v.css.margin.left+v.css.margin.right;

@@ -7,7 +7,7 @@
 }
 -->
 </style>
-<body id="body" layout="FrameLayout"  style="orientation:vertical;background-image:url(images/f1.png)">
+<body id="body" layout="FrameLayout"  style="orientation:vertical;background-image:url(images/f1.png);">
      <div id="div2" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;align:center:valign:center">
 			<label id="lbl_loading" style="width:auto;align:center;">Initiating MESB Platforming...</label>
 			<label id="lbl_msg" style="width:auto;align:center;"> </label>

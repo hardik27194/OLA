@@ -9,7 +9,7 @@
 #import "Layout.h"
 #import "OLAWedgit.h"
 #import "OLAProperties.h"
-
+#import "OLA.h"
 @implementation Layout
 
 @synthesize backgroundImageUrl;
@@ -43,8 +43,10 @@
 }
 -(void) resetBackgroundImageUrl:(NSString *) imageUrl
 {
-    OLAProperties * param=[OLAProperties getInstance];
-    NSString * img =[param.appUrl stringByAppendingString:imageUrl];
+   // OLAProperties * param=[OLAProperties getInstance];
+    NSString *base=[OLA getAppBase];
+
+    NSString * img =[base stringByAppendingString:imageUrl];
     UIImage * bg=[UIImage imageNamed:img];
     bg=[OLAWedgit imageScale:bg toSize:self.frame.size];
     UIColor *bgColor = [UIColor  colorWithPatternImage: bg];
