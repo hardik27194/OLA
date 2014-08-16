@@ -102,8 +102,16 @@ public class IFileInputStream {
 		}
 	}
 
-	public String readBoolean() throws IOException {
-		return Boolean.toString(in.readBoolean());
+	public String readBoolean() {
+		try
+		{
+			return Boolean.toString(in.readBoolean());
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "false";
 	}
 
 	public double readDouble() throws IOException {

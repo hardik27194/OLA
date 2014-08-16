@@ -25,8 +25,10 @@ import org.w3c.dom.NodeList;
 
 
 
+
 import com.lohool.ola.util.XMLProperties;
 import com.lohool.ola.wedgit.IButton;
+import com.lohool.ola.wedgit.ICheckBox;
 import com.lohool.ola.wedgit.IContainer;
 import com.lohool.ola.wedgit.ILabel;
 import com.lohool.ola.wedgit.IProgressBar;
@@ -247,6 +249,11 @@ public class UIFactory {
     	else if (name.equalsIgnoreCase("PROGRESSBAR"))
     	{
     		v= new IProgressBar(rootView,context,n);
+    	}
+    	else if (name.equalsIgnoreCase("CHECKBOX"))
+    	{
+    		v= new ICheckBox(rootView,context,n);
+    		//rootView.addView(text);
     	}
     	return v;
 	}

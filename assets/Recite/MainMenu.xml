@@ -50,7 +50,7 @@
                             <label style="width:auto;align:center;color:#FFFFFF">关于</label>
                         </div>
                         <div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:15px;align:center;background-color:#3366FF">
-                            <button id="row1" style="width:64px;height:64px;background-image:url(images/ico/7-1.png);valign:middle"  threadClick='testProgressBar20("AA",10)'></button>
+                            <button id="row1" style="width:64px;height:64px;background-image:url(images/ico/7-1.png);valign:middle"  onclick='showSettingView()'></button>
                             <label style="width:auto;align:center;color:#FFFFFF">设置</label>
                         </div>
                     </div>

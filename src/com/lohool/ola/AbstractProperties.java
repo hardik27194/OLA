@@ -344,7 +344,7 @@ public abstract class AbstractProperties
 		{
 			System.out.println("global lua file="+OLA.appBase + src);
 			String  code=UIFactory.loadResourceTextDirectly(OLA.appBase + src);
-			System.out.println(code);
+			//System.out.println(code);
 			lua.doString(code);
 		}
 	}

@@ -85,7 +85,7 @@ function initiate()
 			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
 			local appPanel=ui:createView(viewStr)
 			_G[bar]:addView(appPanel)
-			viewStr='<button layout="LinearLayout"  style="orientation:vertical;width:48px;height:48px;valign:middle;" />'
+			viewStr='<div layout="LinearLayout"  style="orientation:vertical;width:48px;height:48px;valign:middle;" />'
 			local btn=ui:createView(viewStr)
 			_G[appPanel]:addView(btn)
 	end

@@ -1,7 +1,7 @@
 
 --public class PrepareStudyForm extends Form implements CommandListener
 
-    function initiate1()
+    function initiate()
 			Log:d("Study View","initiate is executed..")
             initRSStudyinfo();
 			Log:d("Study View","Global.currentBookFileName="..Global.currentBookFileName)

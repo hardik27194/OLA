@@ -246,8 +246,7 @@ end
 function Study.writeWordState(states)
 		Log:d("Study","_studyinfo file ="..Global.storage..Global.currentBookFileName .. "_studyinfo.dbms")
         local fc = fos:open(Global.storage..Global.currentBookFileName .. "_studyinfo.dbms")
-		Log:d("Study","file is exists="..fc:exists())
-		fc:writeShort(0);
+		fc:writeShort(Global.lastStudiedGroup);
 		Log:d("Study","writeShort is successful")
 		fc:writeLong(Global.wordsCount)
 		Log:d("Study","writeLong is successful")
@@ -264,8 +263,7 @@ function Study.readWordsState()
 	local bs = {}
 	local fc = fis:open(Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
 	Log:d("Study","_studyinfo is opened:"..Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
-	Log:d("Study","file is exists="..fc:exists())
-	local g=	fc:readShort()
+	Global.lastStudiedGroup=	fc:readShort()
 	Log:d("Study","fc:readShort")
 	local wordcount = fc:readLong()
  	Log:d("Study","fc:readLong")

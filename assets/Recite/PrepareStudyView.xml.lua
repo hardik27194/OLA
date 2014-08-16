@@ -46,6 +46,7 @@ local word ;
     local showSignal = 1;
 
     function repaint(word)
+		Log:d("Study View","repaint word...")
         --//draw word's spell
         --//print spell when review by word or at the page of show all content of it
         if Global.reviewByChinese~=true or (showSignal ~= 0) then
@@ -90,6 +91,8 @@ local word ;
             if (Global.showEnglish) then
                 --Y +=  Util.drawEnglishParagraph(g, 4, Y, getWidth() - 9, font, word.enMeans );
 				if(word.enMeans~=nil) then english_label:setText( word.enMeans) end
+			else
+				english_label:setText( "") end
             end
 
             if (Global.showExample) then
@@ -100,6 +103,8 @@ local word ;
 
         if (Global.autoPronounce and word ~= nil) then
             --playWord(word.getSpell());
+			Log:d("Study View","Auto Pron")
+			play();
         end
 
     end

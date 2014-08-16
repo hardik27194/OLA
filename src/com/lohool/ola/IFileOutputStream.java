@@ -80,6 +80,10 @@ public class IFileOutputStream {
 	{
 		out.writeBoolean(val.equalsIgnoreCase("true")?true:false);
 	}
+	public void writeBoolean(boolean val) throws IOException
+	{
+		out.writeBoolean(val);
+	}
 	public void writeByte(byte val) throws IOException
 	{
 		out.writeByte(val);

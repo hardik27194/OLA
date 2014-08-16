@@ -28,7 +28,6 @@
 					<label style="align:left;width:auto;">Installed Apps:</label>
 					<div  layout="LinearLayout"  style="width:auto;height:2px;background-color:#cccccc" />
 					<div id="Apps_Panel" layout="LinearLayout"  style="width:auto;height:auto;align:center;">
-                        <div id='dy_div2' layout='LinearLayout'  style='width:auto;height:auto;align:center;background-color:#00EFcc'></div>
 					</div>
 					<label style="align:left;width:auto;">Other Apps:</label>
 					<div  layout="LinearLayout"  style="width:auto;height:2px;background-color:#cccccc" />

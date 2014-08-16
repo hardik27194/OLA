@@ -113,9 +113,12 @@ Log:d("Global","Global.storage="..Global.storage)
 
     function Global.loadProperties() 
 	local fin = fis:open(OLA.storage.."recite.properties")
-         if fin:exists()=="true" then
+	Log:d("test Global","loadProperties")
+         if fin:exists() then
                 Global.groupSize=fin:readShort()
-                Global.showChinese = loadstring("return "..fin:readBoolean())()
+				a=fin:readBoolean()
+				Log:d("test Global","showChinese="..a)
+                Global.showChinese = loadstring("return "..a)()
                 Global.showEnglish = loadstring("return "..fin:readBoolean())()
                 Global.showExample = loadstring("return "..fin:readBoolean())()
                 Global.showExampleComment = loadstring("return "..fin:readBoolean())()
@@ -123,6 +126,11 @@ Log:d("Global","Global.storage="..Global.storage)
                 Global.autoBrowseSecond = fin:readShort();
                 Global.autoBrowse=loadstring("return "..fin:readBoolean())()
                 Global.volumeLevel=fin:readShort();
+				if Global.autoPronounce then
+					Log:d("test Global","Global.autoPronounce=True")
+				else
+					Log:d("test Global","Global.autoPronounce=False")
+				end
 				Log:d("test Global","Global.currentBookFileName="..Global.currentBookFileName)
                 Global.currentBookFileName=fin:readStringWithLength();
 				Log:d("test Global","Global.currentBookFileName="..Global.currentBookFileName)

@@ -32,6 +32,9 @@ end
 function showReviewInfo()
 	ui:switchView("ReviewInfo.xml","callback('file opener returned param')","file opener params")
 end
+function showSettingView()
+	ui:switchView("SettingView.xml","callback('file opener returned param')","file opener params")
+end
 function test()
 	--[[
 	rootPath=FileConnector:getSDRoot()
@@ -132,6 +135,10 @@ function testProgressBar2()
 		end
 	end
 end
+
+-- <VIEW threadClick=FUN />
+--using "threadClick " to invoke the method to runa thred event
+--if the method returns TURE, the thread will be terminated
 			local msg=uiMsg:create()
 			local n=0;
 function testProgressBar20(a,b)
