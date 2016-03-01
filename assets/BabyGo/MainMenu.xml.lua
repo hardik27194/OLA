@@ -7,7 +7,7 @@ local isPopMenuDisplayed=false;
 
 function initiate()
 	Log:d('initiate','initiate execute...')
-	--picture:setImageUrl(currentPhoto)
+	picture:setImageUrl(currentPhoto)
 	local height,weight=getBodyStatus()
 	body_height_lbl:setText(height.." CM")
 	body_weight_lbl:setText(weight.." Kg")

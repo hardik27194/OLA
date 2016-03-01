@@ -112,8 +112,7 @@
 		OLALayout * layout = nil;
     
     NSString * xml=[OLAUIFactory loadResourceTextDirectly:url];
-    
-    NSLog(@"xml=%@",xml);
+
     
     NSData * xmlData= [xml dataUsingEncoding:NSUTF8StringEncoding];
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:xmlData];
