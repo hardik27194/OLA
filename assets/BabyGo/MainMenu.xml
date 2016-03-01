@@ -9,71 +9,71 @@
 </style>
 <body id="Main_body" layout="FrameLayout" >
   <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#99CCFF;" >
-		<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;background-color:#99CCFF">
-				<div id="L_showpop" layout="LinearLayout" style="width:42px;height:36px;"  onclick="reload()">
-					<button style="width:36px;height:36px;background-image:url(images/nav/(151).png)"  onclick="reload()" />
+		<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
+				<div id="L_showpop" layout="LinearLayout" style="width:42px;height:36px;align:center;valign:middle;"  onclick="reload()">
+					<button style="width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)"  onclick="reload()" />
 				</div>
-				<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;">
+				<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
                     <button id="row1" style="width:32px;height:32px;background-image:url(images/nav/(12).png);valign:middle" onclick="back2Portal()"></button>
                 </div>				
-				<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;">
+				<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;align:center;valign:middle;">
 				<label>Baby Go! 宝宝成长日记</label>
 				</div>
-				<div id="L_showpop" layout="LinearLayout" style="width:36px;height:36px;"  onclick="ShowPopupMenu()">
+				<div id="L_showpop" layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
 					<button style="width:6px;height:24px;background-image:url(images/more.png)" onclick="ShowPopupMenu()"/>
 				</div>
 		</div>            
   	<div id="Main_body_Content" layout="FrameLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#66ccff;" >
   	<div  layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;" >
-		<div layout="LinearLayout" style="orientation:horizontal;width:auto;padding:5px;">
+		<div layout="LinearLayout" style="orientation:horizontal;width:auto;padding:5px;align:center;valign:middle;">
 		<button style="width:42px;height:42px;background-image:url(images/nav/(19).png)" onclick="showPrePhoto()"/>
-		<label style="width:auto;height:auto;weight:1px;color:#FFFFFF" >邢月瑶</label>
+		<label style="width:auto;height:auto;align:center;valign:middle;weight:1px;color:#FFFFFF" >邢月瑶</label>
 		<button style="width:42px;height:42px;background-image:url(images/nav/(20).png)" onclick="showNextPhoto()"/>
 	   </div>
 
-		<div layout="LinearLayout" style="orientation:vertical;width:auto;padding:5px;">
+		<div layout="LinearLayout" style="orientation:vertical;width:auto;padding:5px;align:center;">
 		<roundimage id="picture"  style="width:150px;height:150px;"/> 
 	   </div>
 
-	    <div layout="LinearLayout" style="width:auto;">
-			   <div layout="LinearLayout" style="width:84px;height:84px;background-image:url(images/nav/(169).png)"  onclick='showDairyView()'></div>
-			   <div id="body_height" layout="LinearLayout" style="width:84px;height:84px;background-image:url(images/nav/(341).png)"  onclick='showDairyView()'><label id="body_height_lbl" style="width:80px;height:80px;color:#FFFFFF"></label></div>
-			   <div id="body_weight" layout="LinearLayout" style="width:84px;height:84px;background-image:url(images/nav/(341).png)"  onclick='showDairyView()'><label id="body_weight_lbl" style="width:80px;height:80px;color:#FFFFFF"></label></div>
+	    <div layout="LinearLayout" style="width:auto;align:center;">
+			   <div layout="LinearLayout" style="width:84px;height:84px;align:center;valign:middle;background-image:url(images/nav/(169).png)"  onclick='showDairyView()'></div>
+			   <div id="body_height" layout="LinearLayout" style="width:84px;height:84px;align:center;valign:middle;background-image:url(images/nav/(341).png)"  onclick='showDairyView()'><label id="body_height_lbl" style="width:80px;height:80px;align:center;valign:middle;color:#FFFFFF"></label></div>
+			   <div id="body_weight" layout="LinearLayout" style="width:84px;height:84px;align:center;valign:middle;background-image:url(images/nav/(341).png)"  onclick='showDairyView()'><label id="body_weight_lbl" style="width:80px;height:80px;align:center;valign:middle;color:#FFFFFF"></label></div>
 	   </div>
 
 	   <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
-	   <div layout="LinearLayout" style="orientation:vertical;width:auto;">
-       <div layout="LinearLayout" style="orientation:vertical;width:auto;margin:3px;background-color:#FFFFCC">
+	   <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;">
+       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;background-color:#FFFFCC">
 
-		   <div layout="LinearLayout" style="orientation:horizontal;width:310px;margin:3px;background-color:#FFFFCC">
-			   <button  style="width:48px;height:48px;background-image:url(images/20071221163934404_2.jpg)"  onclick='showDairyView()'></button>
-				<label style="width:auto;height:auto;weight:1px;" onclick='showDairyView()'>日常记录、统计</label>
-			   <button  style="width:48px;height:48px;background-image:url(images/nav/(124).png)"  onclick='showDairyView()'></button>
+		   <div layout="LinearLayout" style="orientation:horizontal;width:310px;align:center;margin:3px;background-color:#FFFFCC">
+			   <button  style="width:48px;height:48px;align:center;valign:middle;background-image:url(images/20071221163934404_2.jpg)"  onclick='showDairyView()'></button>
+				<label style="width:auto;height:auto;align:center;valign:middle;weight:1px;" onclick='showDairyView()'>日常记录、统计</label>
+			   <button  style="width:48px;height:48px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showDairyView()'></button>
 		   </div>
 	   </div>
-       <div layout="LinearLayout" style="orientation:vertical;width:auto;margin:3px;background-color:#FFFFCC">
+       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;background-color:#FFFFCC">
 		   <div layout="LinearLayout" style="orientation:horizontal;width:310px;margin:3px;background-color:#FFFFCC">
-			   <button  style="width:48px;height:48px;background-color:#cccccc;background-image:url(images/ico/My_Calender.png)"  onclick='showAddLogView(0)'></button>
-				<label style="width:auto;height:auto;weight:1px;" onclick='showAddLogView(0)'>添加宝宝记录</label>
-			   <button  style="width:48px;height:48px;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+			   <button  style="width:48px;height:48px;align:center;valign:middle;background-color:#cccccc;background-image:url(images/ico/My_Calender.png)"  onclick='showAddLogView(0)'></button>
+				<label style="width:auto;height:auto;align:center;valign:middle;weight:1px;" onclick='showAddLogView(0)'>添加宝宝记录</label>
+			   <button  style="width:48px;height:48px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
 		   </div>
 	   </div>
-       <div layout="LinearLayout" style="orientation:horizontal;height:auto;width:auto;weight:1px;height:auto;">
+       <div layout="LinearLayout" style="orientation:horizontal;height:auto;width:auto;weight:1px;align:center;height:auto;">
 		   <div layout="LinearLayout" style="orientation:vertical;">
-			   <button  style="width:48px;height:48px;background-image:url(images/Child/c(2).png)"  onclick='showAddLogView(1)'></button>
-			   <label  style="width:auto;">母乳</label>
+			   <button  style="width:48px;height:48px;align:center;valign:middle;background-image:url(images/Child/c(2).png)"  onclick='showAddLogView(1)'></button>
+			   <label  style="width:auto;;align:center;valign:middle;">母乳</label>
 		   </div>
 		   <div layout="LinearLayout" style="orientation:vertical;">
-			   <button  style="width:48px;height:48px;background-image:url(images/Child/c(5).png)"  onclick='showAddLogView(2)'></button>
-			   <label  style="width:auto;">奶粉</label>
+			   <button  style="width:48px;height:48px;align:center;valign:middle;background-image:url(images/Child/c(5).png)"  onclick='showAddLogView(2)'></button>
+			   <label  style="width:auto;;align:center;valign:middle;">奶粉</label>
 		   </div>
 		   <div layout="LinearLayout" style="orientation:vertical;">
-			   <button  style="width:48px;height:48px;background-image:url(images/Child/c(21).png)"  onclick='showAddLogView(3)'></button>
-			   <label  style="width:auto;">水</label>
+			   <button  style="width:48px;height:48px;align:center;valign:middle;background-image:url(images/Child/c(21).png)"  onclick='showAddLogView(3)'></button>
+			   <label  style="width:auto;;align:center;valign:middle;">水</label>
 		   </div>
 		   <div layout="LinearLayout" style="orientation:vertical;">
-			   <button  style="width:48px;height:48px;background-image:url(images/Child/c(13).png)"  onclick='showAddLogView(4)'></button>
-			   <label  style="width:auto;">药</label>
+			   <button  style="width:48px;height:48px;align:center;valign:middle;background-image:url(images/Child/c(13).png)"  onclick='showAddLogView(4)'></button>
+			   <label  style="width:auto;;align:center;valign:middle;">药</label>
 		   </div>
 	   </div>
 	   </div>

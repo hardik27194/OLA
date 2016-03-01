@@ -40,9 +40,9 @@
 				<label  style="orientation:horizontal;weight:1px;color:#FFFFFF">Enterprise News</label>
 			</div>
             <div id="div2" layout="LinearLayout" style="orientation:vertical;margin:3px;padding:1px;width:auto;align:left;background-color:#DAF9FE">
-				<label id="New_1" style="margin:1px;color:#0000FF;align:left;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_1')" onrelease="layerOnRelease1('New_1')" onclick="showNews(1)">Incorrectly Used Words :Affect and effect</label>
-				<label id="New_2"  style="margin:1px;color:#0000FF;align:left;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_2')" onrelease="layerOnRelease1('New_2')" onclick="showNews(2)">Incorrectly Used Words :Compliment and complement</label>
-				<label id="New_3" style="margin:1px;color:#0000FF;align:left;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_3')" onrelease="layerOnRelease1('New_3')" onclick="showNews(3)">Incorrectly Used Words :Farther and further</label>
+				<label id="New_1" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_1')" onrelease="layerOnRelease1('New_1')" onclick="showNews(1)">Incorrectly Used Words :Affect and effect</label>
+				<label id="New_2"  style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_2')" onrelease="layerOnRelease1('New_2')" onclick="showNews(2)">Incorrectly Used Words :Compliment and complement</label>
+				<label id="New_3" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_3')" onrelease="layerOnRelease1('New_3')" onclick="showNews(3)">Incorrectly Used Words :Farther and further</label>
 			</div>
 			<div id="div2" layout="LinearLayout" style="orientation:horizontal;margin:3px;width:auto;background-color:#99CCFF">
 				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
