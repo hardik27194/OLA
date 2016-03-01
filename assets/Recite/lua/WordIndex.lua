@@ -14,30 +14,16 @@ WordIndex.__index = WordIndex
      return temp 
  end 
 function WordIndex.load()
-Log:d("WordIndex","start WordIndex.load...")
 
     WordIndex.bookFileName = Global.currentBookFileName
     WordIndex.bookName = Global.currentBookFileName  --bookFileName.substring(bookFileName.lastIndexOf('/'));
     WordIndex.bookIndexFileName = WordIndex.bookFileName .. ".dbx";
-
-	Log:d("WorkIndex","WordIndex.bookIndexFileName="..Global.storage..WordIndex.bookIndexFileName)
 	local fin = fis:open(Global.storage..WordIndex.bookIndexFileName)
-	Log:d("WorkIndex","WordIndex.bookIndexFileName="..Global.storage..WordIndex.bookIndexFileName)
-	if (fin:exists()=="true") then
-	Log:d("WorkIndex","file is existed")
-	else
-	Log:d("WorkIndex","file is not existed")
-	end
 	Global.bookName=fin:readStringWithLength()
-	Log:d("WorkIndex","Global.bookName="..Global.bookName)
 	Global.version=fin:readDouble()
-	Log:d("WorkIndex","Global.version="..Global.version)
 	Global.encyptType=fin:readByte()
-	Log:d("WorkIndex","Global.encyptType="..Global.encyptType)
 	Global.wordsCount=fin:readInt()
-	Log:d("WorkIndex","Global.wordsCount="..Global.wordsCount)
 	Global.bookGroupAmount = (Global.wordsCount % Global.groupSize > 0  and Global.wordsCount / Global.groupSize + 1) or Global.wordsCount / Global.groupSize;
-	Log:d("WorkIndex","Global.bookGroupAmount="..Global.bookGroupAmount)
 	--[[
            for i = 1,Global.wordsCount * 6, 1 do
                 WordIndex.pos[i] = fin:readInt();
@@ -52,18 +38,20 @@ end
 
 function WordIndex.getPos(i)
 	i=i-1
-				Log:d("WordIndex.getPos","i="..i)
-        local poss = {}  -- new int[6];
-        poss[1] = WordIndex.pos[i * 6 + 1]
-        poss[2] = WordIndex.pos[i * 6 + 3] - WordIndex.pos[i * 6 + 2]
-        poss[3] = WordIndex.pos[i * 6 + 4] - WordIndex.pos[i * 6 + 3]
-        poss[4] = WordIndex.pos[i * 6 + 5] - WordIndex.pos[i * 6 + 4]
-        poss[5] = WordIndex.pos[i * 6 + 6] - WordIndex.pos[i * 6 + 5]
-        poss[6] = WordIndex.pos[i * 6 + 8] - WordIndex.pos[i * 6 + 6]
-           for i = 1,#poss, 1 do
-				Log:d("WordIndex.getPos","poss[i]="..poss[i])
-            end
-        return poss
+	--Log:d("WordIndex.getPos","i="..i)
+    local poss = {}  -- new int[6];
+    poss[1] = WordIndex.pos[i * 6 + 1]
+    poss[2] = WordIndex.pos[i * 6 + 3] - WordIndex.pos[i * 6 + 2]
+    poss[3] = WordIndex.pos[i * 6 + 4] - WordIndex.pos[i * 6 + 3]
+    poss[4] = WordIndex.pos[i * 6 + 5] - WordIndex.pos[i * 6 + 4]
+    poss[5] = WordIndex.pos[i * 6 + 6] - WordIndex.pos[i * 6 + 5]
+    poss[6] = WordIndex.pos[i * 6 + 8] - WordIndex.pos[i * 6 + 6]
+	--[[
+       for i = 1,#poss, 1 do
+			Log:d("WordIndex.getPos","poss[i]="..poss[i])
+        end
+	]]
+    return poss
 end
 
 function WordIndex.getGroupPos( groupIndex)

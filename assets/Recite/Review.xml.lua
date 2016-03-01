@@ -82,10 +82,14 @@ local word ;
             if (Global.showEnglish) then
                 --Y +=  Util.drawEnglishParagraph(g, 4, Y, getWidth() - 9, font, word.enMeans );
 				if(word.enMeans~=nil) then english_label:setText( word.enMeans) end
+			else
+				english_label:setText( "")
             end
 
             if (Global.showExample) then
 				if(word.example~=nil) then example_label:setText(word.example ) end
+			else
+				example_label:setText( "")
             end
         end
          
@@ -155,7 +159,7 @@ local word ;
 end
 function play()
 	Log:d("Player","start")
-	local soundPlayer=MediaPlayer:createPlayer(OLA.storage..'/sound/'..word.spell..'.mp3')
+	local soundPlayer=MediaPlayer:createPlayer(Global.storage..'/sound/'..word.spell..'.mp3')
 	Log:d("Player","URL="..OLA.storage..'/sound/'..word.spell..'.mp3')
 	Log:d("Player","created")
 	soundPlayer:play()

@@ -6,6 +6,11 @@ function initiate()
 	--testProgressBar1()
 end
 
+function back()
+	back2Portal()
+	return 1;
+end
+
 function addUIWedgit()
 	 Log:d("UI Test","addUIWedgit")
 	 viewStr="<div layout='LinearLayout'  style='orientation:vertical;width:80px;align:center;background-color:#00EF00'><label>asd</label><label>asd2</label><button>btn</button></div>"
@@ -189,8 +194,61 @@ function finishDownload(totalNumber,currentNumber,currentUrl,localFileName)
 	ProgressBar2:setValue(percent)
 	test_text2:setText('Total:\n'..math.floor(percent)..'%')
 end
+function showAbout()
+		local view;
+		local viewStr="<div id='dialog' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc'><div id='dialog' layout='LinearLayout'  style='margin:20px;padding:10px;orientation:vertical;width:auto;align:center;alpha:1;background-color:#FFFFFF'><label style='width:auto;background-image:url(images/10.gif);'>About Recite</label><label>This is an application to help recite English words.\n Copyright:lohool@hotmail.com\Production Version: 1.0 </label><button onclick='closeDialog(\"dialog\")' style='background-color:#FFFFCC;'>Close</button></div></div>"
+		 view=ui:createView(viewStr)
+		--local alert = Alert:create()
+		--alert:show()
+		--alert:setContentView(view)
+		Log:d("testDialog","view created")
+		body:addView(view)
+		Log:d("testDialog","view added")
+end
+function closeDialog(dilogId)
+	Log:d("Review Info","close start")
+	_G[dilogId]:setVisibility('block');
+	Log:d("Review Info","close end")
+end
 
-function exit()
+function threadMethodTest()
+	local thread=Thread:create(1000,10)
+	local s = os.date("%s", os.time())   
+	--thread:start("threadMethod("..s..")");
+	thread:start("threadMethod()");
+end
+
+function threadMethod(s0)
+	--local n,s,s0 = 0 
+	local s = os.date("%s", os.time())    
+	--[[
+		if s0 ~= s then        
+			n = n + 1
+			s0=s
+			Log:d("Timer","this is the "..n.." seceod")    
+		end    
+	]]
+	--Log:d("Timer","this is the "..(s-s0).." seceod")    
+	--	if s -s0  >= 30 then        
+			Log:d("Timer","end...")    
+			msg:updateMessage("showFirstStudyView()")
+			return true
+	--	end
+
+end
+
+local recorder=Recorder:create()
+
+function startRecorder()
+			Log:d("Recorder","startRecorder...")    
+	recorder:startRecording()
+end
+
+function stopRecorder()
+	recorder:stopRecording()
+end
+
+function back2Portal()
 Log:d("Recite","exit...")
 	LMProperties:printtype()
 	LMProperties:exit()

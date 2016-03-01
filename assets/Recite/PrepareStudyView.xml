@@ -22,15 +22,15 @@
 				
 		</div>
 		<div layout="LinearLayout" class="LinearLayout" style="width:auto;background-color:#66CCFF">
-			<label id="spell_label" style="width:auto;weight:2px">English</label><label id="pron_label" style="width:auto;weight:2px;align:right">Pron</label>
+			<label id="spell_label" style="width:auto;align:left;weight:2px">English</label><label id="pron_label" style="width:auto;weight:2px;align:right">Pron</label>
 		</div>
         <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;">
 		<scrollview style="width:auto;height:auto;weight:1px;">
 			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;">
-				<label id="chinese_label" style="width:auto;color:#0000FF;">Chinese</label>
-				<label id="english_label" style="oheight:auto;width:auto;color:#FF9900"></label>
-				<label  style="orientation:vertical;height:auto;width:auto;color:#663300">Example:</label>
-				<label id="example_label" style="height:auto;width:auto;color:#999900"></label>
+				<label id="chinese_label" style="width:auto;align:left;color:#0000FF;">Chinese</label>
+				<label id="english_label" style="oheight:auto;width:auto;align:left;color:#FF9900"></label>
+				<label  style="height:auto;width:auto;align:left;color:#663300">Example:</label>
+				<label id="example_label" style="height:auto;align:left;width:auto;color:#999900"></label>
 			</div>
 		</scrollview>
         </div>

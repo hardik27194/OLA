@@ -9,21 +9,21 @@
                 --Util.showAlert(display, "Please select vocabulary book. \nOr buy a new one by mail to lohool@hotmail.com", AlertType.ALARM, displayable, 2000);
                 --display.setCurrent(this.displayable);
             else
-			Log:d("Study View","Global.currentBookFileName="..Global.currentBookFileName)
-			if Global.lastStudiedGroup <= 0 then
-				Global.lastStudiedGroup = 0 
-			end
-			Log:d("Study View","Global.lastStudiedGroup="..Global.lastStudiedGroup)
-			Log:d("Study View","Global.bookGroupAmount="..Group_Amount:getText())
-			
-			Group_Amount:setText(Global.bookGroupAmount.."")
-			Log:d("Study View","Global.bookGroupAmount="..Global.bookGroupAmount)
-			Book_Name:setText(Global.currentBookName)
-			Log:d("Study View","Global.currentBookName="..Global.currentBookName)
-			Last_Group:setText(Global.lastStudiedGroup.."")
-			Log:d("Study View","Global.lastStudiedGroup="..Global.lastStudiedGroup)
-			Next_Group:setText((Global.lastStudiedGroup+1).."")
-			Log:d("Study View","Global.lastStudiedGroup="..Global.lastStudiedGroup)
+				Log:d("Study View","Global.currentBookFileName="..Global.currentBookFileName)
+				if Global.lastStudiedGroup <= 0 then
+					Global.lastStudiedGroup = 0 
+				end
+				Log:d("Study View","Global.lastStudiedGroup="..Global.lastStudiedGroup)
+				Log:d("Study View","Global.bookGroupAmount="..Group_Amount:getText())
+				
+				Group_Amount:setText(Global.bookGroupAmount.."")
+				Log:d("Study View","Global.bookGroupAmount="..Global.bookGroupAmount)
+				Book_Name:setText(Global.currentBookName)
+				Log:d("Study View","Global.currentBookName="..Global.currentBookName)
+				Last_Group:setText(Global.lastStudiedGroup.."")
+				Log:d("Study View","Global.lastStudiedGroup="..Global.lastStudiedGroup)
+				Next_Group:setText((Global.lastStudiedGroup+1).."")
+				Log:d("Study View","Global.lastStudiedGroup="..Global.lastStudiedGroup)
              end
   end
   	function reset()

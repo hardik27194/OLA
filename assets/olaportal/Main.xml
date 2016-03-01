@@ -5,6 +5,7 @@
   </global>
   <init>
 	<script src="init.lua"/>
+	<script src="lua/ListView.lua"/>
   </init>
 
   <views>

@@ -1,0 +1,21 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body id="body" layout="FrameLayout"  style="orientation:vertical;background-image:url(images/f1.png);">
+     <div id="div2" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;align:center:valign:center">
+			<label id="lbl_version" style="width:auto;">V 1.0</label>
+			<label id="lbl_loading" style="width:auto;align:center;">Loading MESB Platforming...</label>
+			<label id="lbl_msg" style="width:auto;align:center;"> </label>
+			<ProgressBar id="ProgressBar"  style="width:auto;height:15px;margin:1px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:0;"></ProgressBar>
+			<ProgressBar id="ProgressBar2"  style="width:auto;height:5px;margin:1px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:1;"></ProgressBar>
+
+     </div>
+</body>
+</html>
+

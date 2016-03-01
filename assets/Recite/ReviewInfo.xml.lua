@@ -71,6 +71,12 @@
 				ui:switchView("Review.xml","callback('file opener returned param')","file opener params")
 			end
       end
+function layerOnPress(id)
+	_G[id]:setBackgroundColor("#336699")
+end
+function layerOnRelease(id)
+	_G[id]:setBackgroundColor("#99CCFF")
+end
 
 function testDialog()
 		local view;

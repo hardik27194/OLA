@@ -8,7 +8,7 @@
   </init>
 
   <views>
-	<view src="MainMenu.xml" title="Main Menu" />
+	<view src="OLAFrame.xml" title="Main Frame" />
   </views>
 
   <params>

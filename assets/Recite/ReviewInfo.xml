@@ -9,22 +9,25 @@
 </style>
 <body id="body" layout="FrameLayout" class="FrameLayout" style="margin:0;">
 	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;">
-			<div layout="LinearLayout" class="LinearLayout" >
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_077.png)" onclick="reload()" />
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_065.png)" onclick="back()" />
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(images/blue_velvet_029.png)" onclick="testDialog()"/>
+		<label style="orientation:horizontal;margin:3px;height:36px;width:auto;background-color:#99CCFF">Studied Group Info:</label>
+		<label >Groups to be Reviewed:</label>
+		<label id="groups_text" style="width:auto;text-align:left;valign:middle">0</label>
+		<label style="text-align:left;valign:middle">Next Group Studied:</label>
+		<textfield  id="Next_Group" style="width:auto;text-align:left;valign:middle">0</textfield>
+		<label>Copy Right Reserved:lohool(lohool@hotmail.com)</label>
+		<label id="error_mesg" style="orientation:horizontal;height:auto;weight:1px;"></label>
+		<div id="div2" layout="LinearLayout" style="orientation:horizontal;margin:3px;width:auto;background-color:#99CCFF">
+			<div id="L_back" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')"  onclick="back()">
+			<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(12).png)"  onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')" onclick="back()" />
 			</div>
-	<div layout="LinearLayout" class="LinearLayout" style="width:auto;">
-	<button id="row1" style="background-image:url(images/10.gif);width:auto;weight:1px;valign:middle;" onclick='back()'>Return</button>
-	<button id="row1" style="background-image:url(images/10.gif);width:auto;weight:1px;text-align:right;valign:middle" onclick="start()">Start</button>
-	</div>
-	<label style="background-image:url(images/10.gif);">Groups to be Reviewed:</label>
-	<label id="groups_text" style="width:auto;text-align:left;valign:middle">0</label>
-	<label style="text-align:left;valign:middle">Next Group Studied:</label>
-	<textfield  id="Next_Group" style="width:auto;text-align:left;valign:middle">0</textfield>
-<button onclick='close()' style='background-color:#0000ff;background-image:url(images/blue_velvet_029.png)'>Close</button>
-	<label>Copy Right Reserved:lohool(lohool@hotmail.com)</label>
-	<label id="error_mesg"></label>
+			<div id="L_reload" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')"  onclick="reload()" >
+			<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)" onclick="reload()" />
+			</div>
+			<div id="L_start" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')"  onclick="start()">
+			<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(296).png)" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')" onclick="start()" />
+			</div>
+		</div>
+
 	</div>
 </body>
 </html>

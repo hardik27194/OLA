@@ -1,0 +1,88 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body id="BabyGo_AddLog_body" layout="FrameLayout"  style="orientation:vertical;background-color:#0000ff;">
+  	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;padding:3px;background-color:#ccccff;">
+		<div layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
+				<div id="L_reload" layout="LinearLayout" style="weight:1px;align:center;"onclick="reload()">
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)"  onclick="reload()" />
+				</div>
+				<div id="L_reload" layout="LinearLayout" style="weight:1px;align:center;"onclick="homepage()">
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(12).png)"  onclick="homepage()" />
+				</div>
+				<div id="L_play" layout="LinearLayout" style="weight:1px;align:center;"  onclick="add()">
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(18).png)" onclick="add()" />
+				</div>
+				<div id="L_play" layout="LinearLayout" style="weight:1px;align:center;"  onclick="testFlash()">
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(25).png)" onclick="testFlash()" />
+				</div>
+		</div>            
+
+			 <div layout="LinearLayout" style="orientation:horizontal;width:auto;padding:3px;background-color:#66ccff;">
+				<div layout="LinearLayout" style="height:auto;orientation:vertical;width:auto;weight:1px;padding:3px;background-color:#66ccff;">
+					<div layout="LinearLayout"  style="orientation:vertical;width:auto;align:center;">
+							<div layout="LinearLayout"  style="orientation:horizontal;align:center;valign:middle;width:auto;">
+									<button id="btn3"  style="width:36px;height:36px;background-image:url(images/date/date.png);valign:middle;"  ></button>
+									<label id="date_label" style="width:auto;height:auto;align:center;valign:middle;color:#FFFFFF;background-color:#3366FF" onclick='selectDate()'>2000-00-00</label>
+							</div>
+							 <div layout="LinearLayout"  style="orientation:horizontal;padding:2px;align:center;width:auto;">
+									<button id="btn3"  style="width:36px;height:36px;background-image:url(images/date/time.png);valign:middle;"  ></button>
+									<label id="time_label" style="width:auto;height:auto;align:center;valign:middle;color:#FFFFFF;background-color:#3366FF"  onclick='selectTime()'>00:00:00</label>
+							</div>              
+					</div>
+						<div layout="LinearLayout"  style="orientation:vertical;width:auto;align:center;">
+							<div layout="LinearLayout"  style="orientation:horizontal;align:center;valign:middle;width:auto;">
+									<button id="btn3"  style="width:36px;height:36px;background-image:url(images/date/category.png);valign:middle;"  ></button>
+									<label id="item_label" style="width:auto;height:auto;align:center;valign:middle;color:#FFFFFF;background-color:#3366FF" onclick='showList()'>--选择--</label>
+							</div>
+							 <div layout="LinearLayout"  style="orientation:horizontal;padding:2px;align:center;width:auto;">
+									<button id="btn3"  style="width:36px;height:36px;background-image:url(images/date/calculater.png);valign:middle;"  ></button>
+									<textfield id="item_amount" style="width:auto;height:auto;align:center;background-color:#3366FF;color:#FFFFFF;border-bottom:1px">0</textfield>
+							</div>              
+						</div>
+				 </div>
+				 <div layout="LinearLayout"  style="orientation:vertical;height:auto;width:auto;weight:1px;margin:6px;padding:2px;background-color:#3366FF">
+						<label id="label32" style="width:auto;align:center;color:#FFFFFF">说明</label>
+						<textfield id="description" style="width:auto;weight:1px;"></textfield>
+				 </div>
+
+			  </div>
+ 		<scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
+         <div layout="LinearLayout" style="height:auto;orientation:vertical;width:auto;weight:1px;padding:3px;height:auto;background-color:#66ccff;">
+				<div layout="LinearLayout"  style="orientation:vertical;width:auto;align:center;padding:3px;background-color:#3366FF;">
+								<label id="photo_lbl" style="width:320;height:180px;padding:2px;valign:middle;align:center;" onclick="takePhoto()"></label>
+								<label  style="width:auto;height:auto;valign:middle;align:center;" onclick="takePhoto()">Photo</label>
+                </div>
+
+				<div layout="LinearLayout"  style="orientation:vertical;width:auto;align:center;">
+				<TABLE  style="width:auto;height:auto;">
+				<TR style="vertical-align:middle">
+					<TD><button id="row1" style="width:40px;height:35px;background-color:#999900;text-align:center;">ID</button></TD>
+					<TD><button id="row2" style="width:auto;height:35px;weight:1px;background-color:#9900CC;text-align:center">日期</button></TD>
+					<TD><button id="row3" style="width:60px;height:35px;background-color:#9999EE;text-align:center">项目</button></TD>
+				</TR>
+				</TABLE>
+                </div>
+				<div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;align:center;background-color:#99CCFF">
+					<scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
+					<TABLE id="add_item_table" style="width:auto;height:auto;weight:1px;">
+
+
+
+					</TABLE>
+					</scrollview>
+				</div>
+		</div>
+		
+		</scrollview>
+				
+	</div>
+</body>
+</html>
+

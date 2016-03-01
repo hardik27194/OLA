@@ -112,7 +112,7 @@ Log:d("Global","Global.storage="..Global.storage)
     Global.reviewByChinese=false;
 
     function Global.loadProperties() 
-	local fin = fis:open(OLA.storage.."recite.properties")
+	local fin = fis:open(Global.storage.."recite.properties")
 	Log:d("test Global","loadProperties")
          if fin:exists() then
                 Global.groupSize=fin:readShort()
@@ -143,7 +143,7 @@ Log:d("Global","Global.storage="..Global.storage)
         end
     end
     function Global.saveProperties() 
-	local fout = fos:open(OLA.storage.."recite.properties")
+	local fout = fos:open(Global.storage.."recite.properties")
        fout:writeShort(Global.getGroupSize());
         fout:writeBoolean(Global.showChinese);
         fout:writeBoolean(Global.showEnglish);

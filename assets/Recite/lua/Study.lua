@@ -1,4 +1,4 @@
- Study = {}
+	Study = {}
 
 
     Study.pos=0;
@@ -25,6 +25,7 @@
     function Study.close()
             if (Study.fin~= nil) then
                Study.fin:close();
+			   Study.fin= nil;
 			end
     end
 
@@ -313,7 +314,7 @@ function parseProncation(pron)
 		else
 			p=p..c
 		end
-		Log:d("Study","pron="..p)
+		--Log:d("Study","pron="..p)
 	end
 	return p;
 end

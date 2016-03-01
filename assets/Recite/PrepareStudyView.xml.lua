@@ -1,15 +1,13 @@
+	local study ;
+	local word ;
+ 	local thread=Thread:create(1000)
 
---public final class PrepareStudyWordShower extends WordCanvas
-
-local study ;
-local word ;
-    function initiate()
+   function initiate()
 		 Log:d("PrepareStudyWord","initiate...")
 			Global.isStudy = true;
             study = Study;
 			Study.init()
 			local isOpened=Study.openBook()
-			Log:d("PrepareStudyWord","book was opend:")
             if (isOpened) then
 				 Log:d("PrepareStudyWord","book is opend")
                 word = study.nextWord();
@@ -18,9 +16,7 @@ local word ;
             end
 		if(word~=nil) then repaint(word) end
         Global.currentReviewTimes=0;
-		 Log:d("PrepareStudyWord","initiate was end...")
-  end
-
+    end
 	function swipe(direction)
 		if direction==1 then
 			next()
@@ -32,12 +28,14 @@ local word ;
 
 	function reload()
 		 Log:d("reload","Study View Lua reload is executed..")
+		 thread:stop()
 		 study.close()
 		 sys.reload()
 	end
 
 	function back()
 		Study.close()
+		thread:stop()
 		ui:switchView("StudyView.xml","reset()","file opener params")
 	end
 
@@ -54,16 +52,13 @@ local word ;
 			local wordStr = "[" .. study.getPos() .. "]" .. word.spell;
 
                 if Global.languageSupport==1  then
-                    --drawFrenchSpell(g, Y, font, 'H', new String(s.getBytes(),"utf-8"));
                     spell_label:setText(wordStr)
                 else
-                    --g.drawString( new String(s.getBytes(),"utf-8"), 2, Y, 20);
 					spell_label:setText(wordStr)
 				end
                 
 
             if word.pronunacation  ~= nil   then
-                --drawPronuncation(word.getPronunacation(), g, x, Y + (bigWordFont.getHeight() - 13));
 				if(word.pronunacation~=nil) then pron_label:setText(word.pronunacation) end
             end
         else
@@ -89,33 +84,34 @@ local word ;
         
         if (showSignal ~= 0) then
             if (Global.showEnglish) then
-                --Y +=  Util.drawEnglishParagraph(g, 4, Y, getWidth() - 9, font, word.enMeans );
 				if(word.enMeans~=nil) then english_label:setText( word.enMeans) end
 			else
-				english_label:setText( "") end
+				english_label:setText( "")
             end
 
             if (Global.showExample) then
 				if(word.example~=nil) then example_label:setText(word.example ) end
+			else
+				example_label:setText( "")
             end
         end
          
 
         if (Global.autoPronounce and word ~= nil) then
-            --playWord(word.getSpell());
-			Log:d("Study View","Auto Pron")
 			play();
         end
 
     end
     function next()
+		if Study.fin ~= nil then
             word = readNextWord();
-			if(word==nil) then
-				
+			if(word==nil ) then
 				back()
 			else
 				repaint(word);
+				autoNext();
 			end
+		end
    end
 
     function previous()
@@ -138,45 +134,35 @@ local word ;
     end
 
 
-	function autoNext()
-        if (Global.autoBrowse) then
-			--[[
-            Thread t = new Thread()
-            {
+function autoNext()
+	if (Global.autoBrowse) then
+		local s = os.date("%s", os.time())   
+		thread:start("autoNextTimer("..s..")");
+	end
+end
 
-                public void run()
-                {
-                    while (study.getPos() < 20)
-                    {
-                        try
-                        {
-                            Thread.sleep(Global.autoBrowseSecond * 1000);
-                        } catch (InterruptedException ex)
-                        {
-                            ex.printStackTrace();
-                        }
-                        next();
-                    }
-                }
-            };
-            t.start();
-			]]
-        end
-    end
+function autoNextTimer(s0)
+	if Study.fin ~= nil then
+		local s = os.date("%s", os.time())   
+		if s - s0 >= 10 then        
+			local msg=uiMsg:create()
+			msg:updateMessage("next()")
+			return true
+		end
+	else
+		return true
+	end
+end
+
     
 function delete()
-    Log:d("PrepareView","delete")
     study.deleteCurrentWord()
-    Log:d("PrepareView","end delete")
 end
 
 function play()
-	Log:d("Player","start")
-	local soundPlayer=MediaPlayer:createPlayer(OLA.storage..'/sound/'..word.spell..'.mp3')
+	local soundPlayer=MediaPlayer:createPlayer(Global.storage..'/sound/'..word.spell..'.mp3')
 	Log:d("Player","URL="..OLA.storage..'/sound/'..word.spell..'.mp3')
-	Log:d("Player","created")
 	soundPlayer:play()
-	Log:d("Player","playing")
 end
 
 function layerOnPress(id)

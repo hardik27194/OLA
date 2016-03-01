@@ -4,27 +4,27 @@
 	<div layout="LinearLayout"  style="orientation:vertical;width:auto;height:auto;weight:1px;">
 		<label style="orientation:horizontal;margin:3px;height:36px;width:auto;background-color:#99CCFF">Current Vocabulary Info:</label>
         
-		<TABLE style="width:auto;">
+		<TABLE style="width:auto;align:left;">
 		<TR>
-			<TD><label style="width:120px;valign:middle">Book Name:</label></TD>
-			<TD><label id="Book_Name" style="width:auto;valign:middle">23</label></TD>
+			<TD style="align:left;"><label style="width:150px;align:left;">Book Name:</label></TD>
+			<TD><label id="Book_Name" style="width:auto;weight:1px;align:left;">23</label></TD>
 		</TR>
 		<TR>
-			<TD><label style="width:120px;valign:middle">Group Amount:</label></TD>
-			<TD><label id="Group_Amount" style="width:auto;weight:1px;text-align:left;valign:middle">23</label></TD>
+			<TD><label style="width:150px;align:left;">Group Amount:</label></TD>
+			<TD><label id="Group_Amount" style="width:auto;align:left;weight:1px;">23</label></TD>
 		</TR>
 		<TR>
-			<TD><label style="width:120px;valign:middle">Last Group Studied:</label></TD>
-			<TD><label id="Last_Group" style="width:auto;valign:middle">8</label></TD>
+			<TD><label style="width:150px;align:left;">Last Group Studied:</label></TD>
+			<TD><label id="Last_Group" style="width:auto;weight:1px;align:left;">8</label></TD>
 		</TR>
 		<TR>
-			<TD><label style="width:120px;valign:middle">Next Group Studied:</label></TD>
-			<TD><textfield  id="Next_Group" style="width:120px;valign:middle">9</textfield></TD>
+			<TD><label style="width:150px;align:left;">Next Group Studied:</label></TD>
+			<TD><textfield  id="Next_Group" style="width:120px;weight:1px;align:left;padding:5px;">9</textfield></TD>
 		</TR>
 		</TABLE>
 
 
-		<label>Buy new vocabularies, please contact lohool@hotmail.com</label>
+		<label style="align:left;">Buy new vocabularies, please contact lohool@hotmail.com</label>
 		<label id="error_mesg"></label>
 		<div id="div2" layout="LinearLayout" style="orientation:horizontal;height:auto;weight:1px;">
 		</div>
