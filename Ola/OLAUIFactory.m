@@ -25,6 +25,7 @@
 #import "OLAPortalProperties.h"
 #import "OLAAppProperties.h"
 #import "OLA.h"
+#import "OLARoundImage.h"
 
 @implementation OLAUIFactory
 
@@ -111,6 +112,8 @@
 		OLALayout * layout = nil;
     
     NSString * xml=[OLAUIFactory loadResourceTextDirectly:url];
+    
+    NSLog(@"xml=%@",xml);
     
     NSData * xmlData= [xml dataUsingEncoding:NSUTF8StringEncoding];
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:xmlData];
@@ -199,6 +202,8 @@
                 /*
                  set the full screen size to the body layout, do not allow the system to auto caculate the size of the body view
                  */
+                NSLog(@"body start tag=%@",name);
+                NSLog(@"body start repaint=%@",[n.attributes objectForKey:@"id"]);
                 
                 NSMutableString *css=[[NSMutableString alloc]initWithString:[n.attributes objectForKey:@"style"]];
                // NSString * css=[n.attributes objectForKey:@"style"];
@@ -267,6 +272,10 @@
         else if ([name caseInsensitiveCompare:@"PROGRESSBAR"]==NSOrderedSame )
     	{
     		v= [[OLAProgressBar alloc] initWithParent:rootView withXMLElement:n];
+    	}
+        else if ([name caseInsensitiveCompare:@"ROUNDIMAGE"]==NSOrderedSame )
+    	{
+    		v= [[OLARoundImage alloc] initWithParent:rootView withXMLElement:n];
     	}
          
     	return v;
