@@ -11,7 +11,7 @@
             if (isOpened) then
 				 Log:d("PrepareStudyWord","book is opend")
                 word = study.nextWord();
-				 Log:d("PrepareStudyWord","word="..word.spell)
+				 Log:d("PrepareStudyWord","word1="..word.spell)
                 autoNext();
             end
 		if(word~=nil) then repaint(word) end
@@ -56,7 +56,7 @@
                 else
 					spell_label:setText(wordStr)
 				end
-                
+
 
             if word.pronunacation  ~= nil   then
 				if(word.pronunacation~=nil) then pron_label:setText(word.pronunacation) end
@@ -81,7 +81,7 @@
 				if(word.description~=nil) then chinese_label:setText(word.description ) end
 			end
         end
-        
+
         if (showSignal ~= 0) then
             if (Global.showEnglish) then
 				if(word.enMeans~=nil) then english_label:setText( word.enMeans) end
@@ -95,7 +95,7 @@
 				example_label:setText( "")
             end
         end
-         
+
 
         if (Global.autoPronounce and word ~= nil) then
 			play();
@@ -125,7 +125,7 @@
     function  readNextWord()
         local nextWord = study.nextWord();
         if (nextWord ~= nil) then
-        
+
             --study.close();
             --ReviewWordShower ews = new ReviewWordShower(display, parent);
             --display.setCurrent(ews);
@@ -135,16 +135,19 @@
 
 
 function autoNext()
-	if (Global.autoBrowse) then
-		local s = os.date("%s", os.time())   
+	if Global.autoBrowse then
+		Log:d("autoNext","Global.autoBrowse")
+		local s = os.date("%s", os.time())
 		thread:start("autoNextTimer("..s..")");
+		Log:d("autoNext","Global.autoBrowse1")
 	end
 end
 
 function autoNextTimer(s0)
 	if Study.fin ~= nil then
-		local s = os.date("%s", os.time())   
-		if s - s0 >= 10 then        
+		local s = os.date("%s", os.time())
+		if s - s0 >= 10 then
+			Log:d("autoNextTimer",s - s0)
 			local msg=uiMsg:create()
 			msg:updateMessage("next()")
 			return true
@@ -154,14 +157,14 @@ function autoNextTimer(s0)
 	end
 end
 
-    
+
 function delete()
     study.deleteCurrentWord()
 end
 
 function play()
 	local soundPlayer=MediaPlayer:createPlayer(Global.storage..'/sound/'..word.spell..'.mp3')
-	Log:d("Player","URL="..OLA.storage..'/sound/'..word.spell..'.mp3')
+	Log:d("Player","URL="..Global.storage..'/sound/'..word.spell..'.mp3')
 	soundPlayer:play()
 end
 

@@ -11,12 +11,12 @@ OLA.base='apps/'
 
 --esb base, check and download new versions from the base site
 --OLA.esb="http://10.0.2.2:8080/mesb/"  --localhost when use simulator
---OLA.esb="http://192.168.0.101:8080/mesb/"
+OLA.esb="http://192.168.0.103:8080/mesb/"
 
 --app executable resources path. if it is local path of Android,it is in Assets folder.
 --else runs on remote server, and the "reload" function is enabled
-OLA.app_server="http://10.0.2.2:8080/"
---OLA.app_server="http://192.168.0.103:8080/"
+--OLA.app_server="http://10.0.2.2:8080/"
+OLA.app_server="http://192.168.0.103:8080/"
 
 OLA.mode="development" --"production" --development
 --app's file storage on sdcard

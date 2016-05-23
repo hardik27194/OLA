@@ -1,6 +1,6 @@
     Global = {}
 
-	Global.storage=OLA.storage
+	Global.storage=OLA.storage.."/Recite/"
 Log:d("Global","Global.storage="..Global.storage)
     Global.charPos=1;
     function Global.getGroupSize()

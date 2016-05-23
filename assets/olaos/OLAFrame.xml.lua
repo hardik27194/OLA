@@ -65,6 +65,24 @@ function checkVersion (http)
 			
 		end
 		
+		--merge server side App version info
+		for i=1, #apps.user_apps do
+		   apps.user_apps[i].state=0;
+		end
+		--merge server's user app to OLA.user_apps
+		mergeTable(OLA.apps.user_apps,apps.user_apps)
+		Log:d("OLA.apps.user_apps",'Merged')
+		--TODO, need to write to the mobile phone's storage
+		local tmpApp=OLA.apps.user_apps
+		for i=1, #tmpApp do
+		   Log:d("OLA.apps.user_apps",tmpApp[i].title)
+		end
+		
+		--write apps.lua to local storage
+		writeAppsConfig(sysApps,tmpApp)
+
+
+		
 		if #updateApps >= 1 then
 			local download=AsyncDownload:create();
 			download:setDestination(OLA.storage.."/download/")
@@ -86,20 +104,7 @@ function checkVersion (http)
 		end
 
 		
-		for i=1, #apps.user_apps do
-		   apps.user_apps[i].state=0;
-		end
-		--merge server's user app to OLA.user_apps
-		mergeTable(OLA.apps.user_apps,apps.user_apps)
-		Log:d("OLA.apps.user_apps",'Merged')
-		--TODO, need to write to the mobile phone's storage
-		local tmpApp=OLA.apps.user_apps
-		for i=1, #tmpApp do
-		   Log:d("OLA.apps.user_apps",tmpApp[i].title)
-		end
-		
-		--write apps.lua to local storage
-		writeAppsConfig(sysApps,tmpApp)
+
 
 		--[[
 		--user apps
@@ -199,7 +204,7 @@ function writeAppsConfig(sys,user)
 		local user_json=json.encode(user)
 		local sys_json=json.encode(sys)
 		local all='{"sys":'..sys_json..',"user_apps":'..user_json..'}'
-		local olaPath=OLA.app_path.."/"..OLA.base.."/apps1.json";
+		local olaPath=OLA.app_path.."/"..OLA.base.."/apps.json";
 		local fc = fos:open(olaPath,'false')
         fc:writeString(all)
 		fc:close();

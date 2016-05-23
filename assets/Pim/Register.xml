@@ -1,0 +1,53 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body id="Main_body" layout="FrameLayout" style="orientation:vertical;">
+  <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#99CCFF;" >
+	<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
+			<div id="L_showpop" layout="LinearLayout" style="width:42px;height:36px;align:center;valign:middle;"  onclick="reload()">
+				<button style="width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)"  onclick="reload()" />
+			</div>
+			<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
+                <button id="row1" style="width:32px;height:32px;background-image:url(images/nav/(12).png);valign:middle" onclick="back2Portal()"></button>
+            </div>				
+			<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;">
+			<label style="weight:1px;height:auto;align:middle;">Yellow Page</label>
+			</div>
+			<div id="L_showpop" layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
+				<button style="width:6px;height:24px;background-image:url(images/more.png)" onclick="ShowPopupMenu()"/>
+			</div>
+	</div>            
+  	<div id="Main_body_Content" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;padding:5px;width:auto;height:auto;valign:middle;weight:1px;background-color:#FFFFCC;" >
+			<div layout="LinearLayout" style="orientation:horizontal;valign:middle;width:auto;">
+				<label style="width:100px;height:auto;align:right;">账号：</label>
+				<textfield id="account_txt" style="width:auto;height:auto;weight:1px;align:center;border-bottom:1px">admin</textfield>
+				<label  style="width:50px;height:30px;"></label>
+			</div>
+			<div layout="LinearLayout" style="orientation:horizontal;valign:middle;width:auto;">
+				<label style="width:100px;1px;height:auto;align:right;">密码：</label>
+				<textfield id="password_txt" style="width:auto;height:auto;weight:1px;align:center;border-bottom:1px">admin</textfield>
+				<label style="width:50px;height:30px;" ></label>
+			</div>
+			<div layout="LinearLayout" style="orientation:horizontal;valign:middle;width:auto;">
+				<label style="width:100px;1px;height:auto;align:right;">验证码：</label>
+				<textfield id="code_txt" style="width:auto;height:30px;;weight:1px;align:center;border-bottom:1px"></textfield>
+				<label id="code_lbl" style="width:50px;height:25px;" onclick="refreshCode()"></label>
+			</div>
+			<div layout="LinearLayout" style="orientation:horizontal;valign:middle;width:auto;">
+				<label style="width:100px;1px;height:auto;align:right;"></label>
+				<button style="weight:1px;align:center;height:30px;" onclick="logon()">登录</button>
+				<button style="weight:1px;align:center;height:30px;" onclick="ShowPopupMenu()">重置</button>
+				<label style="width:50px;height:25px;" ></label>
+			</div>
+	</div>
+</div>
+				
+</body>
+</html>
+

@@ -20,6 +20,7 @@ function initiate()
 			installedApps[m]=apps[i]
 			m=m+1
 		elseif apps[i].state==0 then
+			Log:d('apps','otherApps='..apps[i].app )
 			otherApps[n]=apps[i]
 			n=n+1
 		end
@@ -166,7 +167,7 @@ function showNews(id)
 end
 function showDialog(title,content)
 	local view;
-	local viewStr="<div id='dialog' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc'><div id='dialog' layout='LinearLayout'  style='margin:20px;padding:10px;orientation:vertical;width:auto;align:center;alpha:1;background-color:#FFFFFF'><label style='width:auto;background-image:url(images/10.gif);'>"..title.."</label><label>"..content.."</label><button onclick='closeDialog(\"dialog\")' style='background-color:#FFFFCC;'>Close</button></div></div>"
+	local viewStr="<div id='dialog' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc'><div id='dialog' layout='LinearLayout'  style='margin:20px;padding:10px;orientation:vertical;width:auto;align:center;alpha:1;background-color:#FFFFFF'><label style='width:auto;background-image:url(images/10.gif);'>"..title.."</label><label>"..content.."</label><button onclick='closeDialog(\"dialog\")'>Close dffghgfhfghfg</button></div></div>"
 	view=ui:createView(viewStr)
 	body:addView(view)
 end
