@@ -20,6 +20,7 @@
 #import "OLAProperties.h"
 #import "Layout.h"
 #import "OLA.h"
+#import "QuartzCore/QuartzCore.h"
 
 @implementation OLAWedgit
 
@@ -284,6 +285,8 @@ LayoutParams * param;
     }
     //NSLog(@"tag=%@, text=%@",self.root.tagName,text);
     }
+    
+    [self setBorder];
     /*
     else{
         NSLog(@"tag=%@, text=is null",self.root.tagName);
@@ -686,6 +689,26 @@ LayoutParams * param;
     [v setBackgroundColor:bg];
 }
 
+-(void)setBorder:(NSString *)borderString
+{
+    [css setBorder:borderString];
+}
+
+-(void) setBorder
+{
+    
+    if(css.border.width>0)
+    {
+        NSLog(@"------CSS border wedgit:%f",css.border.width);
+        //[v.layer setMasksToBounds:YES];
+        [v.layer setBorderWidth:css.border.width];
+        [v.layer setCornerRadius:css.border.radius];
+        NSString *color = [[NSString alloc] initWithCString:css.border.color encoding:NSASCIIStringEncoding];
+        [v.layer setBorderColor:[CSS parseColor:color].CGColor];
+
+    }
+    
+}
 
 
 
