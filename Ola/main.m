@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "OLAAppDelegate.h"
-#import "DPApplication.h"
+//#import "DPApplication.h"
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
