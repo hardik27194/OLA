@@ -25,7 +25,7 @@
             <div id="div2" layout="LinearLayout" style="orientation:vertical;width:auto;margin:3px;weight:3px;height:auto;valign:top;">
 			<scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
 				<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;">
-					<label style="align:left;width:auto;">Installed Apps:</label>
+					<label style="align:left;width:auto;border:solid 1px #00ff00 2px;">Installed Apps:</label>
 					<div  layout="LinearLayout"  style="width:auto;height:1px;background-color:#cccccc" />
 					<div id="Apps_Panel" layout="LinearLayout"  style="width:auto;height:auto;align:center;">
 					</div>

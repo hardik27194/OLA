@@ -3,7 +3,7 @@
 
 @implementation CSS
 @synthesize cssString,name,bottom,left,right,top,position,display,visibility,verticalAlign,sIndex,width,height,weight,textAlign,orientation,color,styles;
-@synthesize margin,padding,alpha;
+@synthesize border,margin,padding,alpha;
 
 @synthesize backgroundImageURL,backgroundColor;
 
@@ -61,6 +61,7 @@
 		else if([attName caseInsensitiveCompare:@"top"]==NSOrderedSame) self.top=[CSS parseInt:value];
 		else if([attName caseInsensitiveCompare:@"bottom"]==NSOrderedSame) self.bottom=[CSS parseInt:value];
         
+        else if([attName caseInsensitiveCompare:@"border"]==NSOrderedSame) [self setBorder:value];
         else if([attName caseInsensitiveCompare:@"margin"]==NSOrderedSame) [self setMargin:value];
         else if([attName caseInsensitiveCompare:@"padding"]==NSOrderedSame) [self setPadding:value];
         
@@ -79,6 +80,28 @@
 			alpha = [CSS parseFloat:value];
 		
 	}
+
+-(void) setBorder:(NSString *) borderString
+{
+    NSLog(@"------CSS border:%@",borderString);
+    borderString=[borderString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    //remove reduandent space in the string
+    NSCharacterSet *whitespaces = [NSCharacterSet whitespaceCharacterSet];
+    NSPredicate *noEmptyStrings = [NSPredicate predicateWithFormat:@"SELF != ''"];
+    
+    NSArray *parts = [borderString componentsSeparatedByCharactersInSet:whitespaces];
+    NSArray *filteredArray = [parts filteredArrayUsingPredicate:noEmptyStrings];
+    borderString = [filteredArray componentsJoinedByString:@" "];
+    
+    
+    NSArray *items=[borderString componentsSeparatedByString:@" "];
+    border.width=[CSS parseInt:[items objectAtIndex:1]];
+    border.color=[[items objectAtIndex:2] UTF8String];
+    border.radius=[CSS parseInt:[items objectAtIndex:3]];
+    NSLog(@"------CSS border widtd:%f",border.width);
+}
+
 -(void) setMargin:(NSString *) marginString
 {
     margin.margin = [marginString UTF8String];
