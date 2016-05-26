@@ -167,6 +167,7 @@
 		8497464118FADD0F007A8D5C /* XMLText.m in Sources */ = {isa = PBXBuildFile; fileRef = 849745CA18FADD0F007A8D5C /* XMLText.m */; };
 		8497464318FADD53007A8D5C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8497464218FADD53007A8D5C /* libsqlite3.0.dylib */; };
 		8497464518FAFA59007A8D5C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 8497464418FAFA59007A8D5C /* assets */; };
+		849B57C51CF3710800FB41BE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849B57C41CF3710800FB41BE /* QuartzCore.framework */; };
 		849E4539194EE8E300E50D27 /* OLAHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 849E4538194EE8E300E50D27 /* OLAHTTP.m */; };
 		849E453C194F0A2C00E50D27 /* OLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 849E453B194F0A2C00E50D27 /* OLA.m */; };
 		84A20E361913F0300041ECC9 /* OLAAsyncDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A20E351913F0300041ECC9 /* OLAAsyncDownload.m */; };
@@ -481,6 +482,7 @@
 		849745CA18FADD0F007A8D5C /* XMLText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLText.m; sourceTree = "<group>"; };
 		8497464218FADD53007A8D5C /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		8497464418FAFA59007A8D5C /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		849B57C41CF3710800FB41BE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		849E4537194EE8E300E50D27 /* OLAHTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAHTTP.h; sourceTree = "<group>"; };
 		849E4538194EE8E300E50D27 /* OLAHTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAHTTP.m; sourceTree = "<group>"; };
 		849E453A194F0A2B00E50D27 /* OLA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLA.h; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849B57C51CF3710800FB41BE /* QuartzCore.framework in Frameworks */,
 				84967AD81950A00F002BEB73 /* libz.dylib in Frameworks */,
 				84950FFE18FED73600E6DFBB /* AVFoundation.framework in Frameworks */,
 				8497464318FADD53007A8D5C /* libsqlite3.0.dylib in Frameworks */,
@@ -1040,6 +1043,7 @@
 		84DE5C7318D9A1E30059C5C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				849B57C41CF3710800FB41BE /* QuartzCore.framework */,
 				84967AD71950A00F002BEB73 /* libz.dylib */,
 				84950FFD18FED73600E6DFBB /* AVFoundation.framework */,
 				8497464218FADD53007A8D5C /* libsqlite3.0.dylib */,

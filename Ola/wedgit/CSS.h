@@ -7,6 +7,19 @@ typedef struct _Bounds
     
 }Bounds;
 
+typedef struct  _Border
+{
+    CGFloat width;
+    const char * color;
+    CGFloat radius;
+}Border;
+typedef struct  _Font
+{
+    CGFloat size;
+    const char * family;
+    CGFloat style;
+}Font;
+
 typedef struct  _Margin
 {
     CGFloat left, top, right, bottom;
@@ -31,6 +44,7 @@ typedef struct _Padding
 	int right;
 	int top;
     
+    Border border;
     Margin margin;
     Padding padding;
     
@@ -69,6 +83,7 @@ typedef struct _Padding
 @property (nonatomic)	int left;
 @property (nonatomic)	int right;
 @property (nonatomic)	int top;
+@property (nonatomic,readonly)   Border border;
 @property (nonatomic,readonly)   Margin margin;
 @property (nonatomic,readonly)   Padding padding;
 @property (nonatomic)	NSString *position;
@@ -107,5 +122,7 @@ typedef struct _Padding
 + (NSString *)parseImageUrl:(NSString *)url;
 -(void) setMargin:(NSString *) marginString;
 -(Margin) getMargin;
+
+-(void) setBorder:(NSString *) borderString;
 
 @end
