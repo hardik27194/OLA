@@ -31,4 +31,25 @@ public class StringUtil {
 		}
 		return buf.toString();
 	}
+	
+	/**
+	 * add a new parameter to the callback method
+	 * @param callback
+	 * @param param
+	 * @return
+	 */
+	public String addParameter(String callback, String param)
+	{
+		callback=callback.trim();
+		String s;
+		int pos=callback.lastIndexOf(")");
+		if (callback.charAt(callback.length()-1)==')')
+		{
+			String pre=callback.substring(0,callback.length()-1).trim();
+			if(pre.charAt(pre.length()-1)!='(')s=pre+","+param+")";
+			else s=pre+param+")";
+		}
+		else s=callback;
+		return s;
+	}
 }

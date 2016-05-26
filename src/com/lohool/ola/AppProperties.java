@@ -1,8 +1,10 @@
 package com.lohool.ola;
 
+import java.io.File;
+
 
 /**
- * the main lua mobile properties
+ * the app's lua mobile properties
  * @author xingbao-
  *
  */
@@ -18,6 +20,8 @@ public class AppProperties extends AbstractProperties{
     	 this.appName=applicationName;;
     	 isPlatformApp=false;
     	 
+
+    	 
     	 initiateLuaContext();
     	 loadXML();
 // 		instance=this;
@@ -32,7 +36,11 @@ public class AppProperties extends AbstractProperties{
         if(name!=null)
         {
 			v=new BodyView(Main.ctx,name);				
-			UIFactory.viewCache.put(name, v);
+			UIFactory.viewCache.clear();//
+			UIFactory.viewStack.clear();
+			//UIFactory.viewCache.put(name, v);
+			UIFactory.viewStack.push(name);
+			
         }
         v.show();
 //        instance=null;

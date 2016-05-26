@@ -80,11 +80,6 @@ public abstract class IContainer extends IWedgit{
 		((ViewGroup) v).addView(child.getView());
 		child.getView().requestLayout();
 	}
-	public void removeView(IView child) {
-		if (child==null) return;
-		((ViewGroup) v).removeView(child.getView());
-	}
-	
 	/**
 	 * add a child by Lua id, this method will be used by the lua script
 	 * @param id
@@ -96,13 +91,24 @@ public abstract class IContainer extends IWedgit{
 		Object obj = LuaContext.getInstance().getObject(id);
 		addView((IView) obj);
 	}
+	
+	public void removeView(IView child) {
+		if (child==null) return;
+		((ViewGroup) v).removeView(child.getView());
+	}
+	
+
 	/**
 	 * remove a child view from the current container by the child's lua id
 	 * @param id
 	 */
-	public void removeChild(String id)
+	public void removeView(String id)
 	{
 			Object obj=LuaContext.getInstance().remove(id);
 			removeView((IView)obj);
+	}
+	
+	public void removeAllViews() {
+		((ViewGroup) v).removeAllViews();
 	}
 }

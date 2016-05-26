@@ -26,6 +26,7 @@
 #import "lua.h"
 #import "lualib.h"
 #import "lauxlib.h"
+#import "OLADatabase.h"
 
 @implementation OLAAbstractProperties
 
@@ -120,6 +121,7 @@ static id  instance;
      lua regist(DES3Encrypt.class  withGlobalName:@"des3");
      */
     
+     [lua registClass:[OLADatabase class] withGlobalName:@"DBConn"];
     
     
     globalScripts =[[NSMutableArray alloc] initWithCapacity:1];

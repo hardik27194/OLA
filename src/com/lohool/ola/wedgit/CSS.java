@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.widget.TextView;
 
@@ -35,6 +36,10 @@ public class CSS
 	Bounds bounds = new Bounds();
 	Margin margin = new Margin();
 	Padding padding = new Padding();
+	
+	Border border=new Border();
+	
+	Font font =new Font();
 
 	protected class Bounds
 	{
@@ -47,6 +52,57 @@ public class CSS
 		int height;
 
 		int weight;
+	}
+	
+	protected class Border
+	{
+		int width;
+		int color;
+		int radius;
+		
+		void setBorder(String s)
+		{
+			String[] items = s.split(" ");
+			this.width=parseInt(items[1]);
+			this.color=parseColor(items[2]);
+			this.radius=parseInt(items[3]);
+		}
+		
+	}
+	class Font
+	{
+		int size;
+		int style=Typeface.NORMAL;
+		String family="Arial";
+		public void setFont(String s)
+		{
+			//Typeface tf=Typeface.SANS_SERIF.create(familyName, style);
+			String[] items = s.split(" ");
+			boolean isBold=false;
+			boolean isItalic=false;
+			boolean isSerif=false;
+			boolean isSans=false;
+			boolean isNormal=false;
+
+			for(String f: items)
+			{
+				if(f.trim().equals(""))continue;
+				if(f.equalsIgnoreCase("bold"))isBold=true;
+				else if(f.equalsIgnoreCase("Italic"))isItalic=true;
+				//else if(f.equalsIgnoreCase("SANS_SERIF"))isSans=true;
+				//else if(f.equalsIgnoreCase("Serif"))isSerif=true;
+				//else if(f.equalsIgnoreCase("Normal"))isNormal=true;
+				else if(f.matches("[0-9]{1,3}.*"))
+				{
+					size= parseInt(f);
+				}
+				else family=f;
+			}
+			if(isBold)style=Typeface.BOLD;
+			if(isItalic) style=Typeface.ITALIC;
+			if(isBold && isItalic)style=Typeface.BOLD_ITALIC;
+			
+		}
 	}
 
 	protected class Margin
@@ -124,6 +180,7 @@ public class CSS
 			paddingBottom = px;
 			bottom = parseInt(px);
 		}
+
 	}
 
 	public CSS(String css)
@@ -190,7 +247,11 @@ public class CSS
 			margin.setMargin(value);
 		else if (name.equalsIgnoreCase("padding"))
 			padding.setPadding(value);
-
+		
+		else if (name.equalsIgnoreCase("border"))
+			border.setBorder(value);
+		else if (name.equalsIgnoreCase("font"))
+			font.setFont(value);
 		else if (name.equalsIgnoreCase("visibility"))
 		{
 			visibility=value;

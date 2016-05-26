@@ -24,8 +24,8 @@ import org.apache.http.protocol.HTTP;
 public class ZipUtil{ 
     private static final int BUFF_SIZE = 1024 * 1024; // 1M Byte 
     
-    ZipFile zf=null;
     
+    ZipFile zf=null;
  
     /**
      * 批量压缩文件（夹）
@@ -90,6 +90,8 @@ public class ZipUtil{
         if (!desDir.exists()) { 
             desDir.mkdirs(); 
         } 
+        
+   
         InputStream in = null; 
         OutputStream out = null; 
         try { 
@@ -97,12 +99,12 @@ public class ZipUtil{
                 ZipEntry entry = ((ZipEntry) entries.nextElement()); 
                 in = zf.getInputStream(entry); 
                 String str = folderPath + File.separator + entry.getName(); 
-//                System.out.println("unzip:"+str);
+                System.out.println("unzip:"+str);
                 str = new String(str.getBytes("8859_1"), HTTP.UTF_8); 
                 File desFile = new File(str); 
-                if(entry.isDirectory() && !desFile.exists())
+                if(entry.isDirectory())
                 {
-                	desFile.mkdirs();
+                	if(!desFile.exists())desFile.mkdirs();
                 }
                 else
                 {

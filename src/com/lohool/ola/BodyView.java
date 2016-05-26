@@ -16,12 +16,13 @@ import android.view.View;
 public class BodyView {
 
 	Context ctx;
-	Layout bodyView;
+	Layout layout;
 	UIFactory ui;
 	String viewUrl;
 	String parameters;
 
 	String LuaCode;
+	String callback;
 
 	public String getParameters() {
 		return parameters;
@@ -36,9 +37,12 @@ public class BodyView {
 
 	public void execCallBack(String callback) {
 		System.out.println("callback=" + callback);
-		if (callback != null && callback.trim().equals(""))
+		if (callback != null && !callback.trim().equals(""))
 //			lua.LdoString(callback);
 			LuaContext.getInstance().doString(callback);
+	}
+	public void setCallBack(String callback) {
+		this.callback=callback;
 	}
 
 	public BodyView(Context ctx,  String viewUrl) {
@@ -86,7 +90,7 @@ public class BodyView {
 		System.out.println("view xml file path="+viewUrl);
 //		if(uiXML==null)uiXML=UIFactory.loadAssetsString(viewUrl);
 //		bodyView=ui.createLayoutByXMLString(uiXML);
-		bodyView = ui.createLayoutByXMLFile(viewUrl);
+		layout = ui.createLayoutByXMLFile(viewUrl);
 		
 		// ctx.setContentView(bodyView.getView());
 	}
@@ -125,7 +129,7 @@ public class BodyView {
 			
 //			bodyView.getView().setVisibility(View.GONE);
 			System.out.println("BodyView show view:"+viewUrl);
-			Main.activity.setContentView(bodyView.getView());
+			Main.activity.setContentView(layout.getView());
 		}
 	}
 	/**
@@ -135,14 +139,15 @@ public class BodyView {
 		registReloadFun();
 //		System.out.println(LuaCode);
 		LuaContext.getInstance().doString(LuaCode);
+		/* removed
 		try {
 
 			// if database class is defined by Lua, create a database connection
 			// and set it to lua global
 			LuaState lua=LuaContext.getInstance().getLuaState();
-			LuaObject luaObj = lua.getLuaObject("database");
+			LuaObject luaObj = lua.getLuaObject("Database");
 			if (luaObj != null && !luaObj.equals("nil")) {
-				lua.pushObjectValue(new Database(ctx));
+				lua.pushObjectValue(new Database());
 				lua.setGlobal("connection");
 				lua.pop(1);
 			}
@@ -150,7 +155,10 @@ public class BodyView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		*/
+//		LuaContext.getInstance().doString("coroutine.resume(coroutine.create(function()ptinf('an co','aa') end))");
+//		LuaContext.getInstance().doFile("assets/test.lua");
 		LuaContext.getInstance().doString("initiate()");
+		if(this.callback!=null)this.execCallBack(this.callback);
 	}
 }

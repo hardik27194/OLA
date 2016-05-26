@@ -223,10 +223,32 @@ public class FileConnector extends Activity {
 	{
 		return android.os.Environment.getRootDirectory().getAbsolutePath();
 	}
-	public static String listFiles(String path) {
+	public static String listFiles(String path)
+	{
+		return listFiles(path,"");
+	}
+	public static String listFiles(String path,String filters) {
 		StringBuffer buf=new StringBuffer();
-		
-		    File[] allFiles = new File(path).listFiles(); 
+		final String[] fs;
+		if(filters!=null)fs=filters.split(",");
+		else fs=null;
+		 FileFilter filefilter = new FileFilter() {
+		        public boolean accept(File file) {
+		        	if (fs==null) return true;
+		            for(String ext:fs)
+		            {
+			            if (file.getName().toLowerCase().endsWith(ext.toLowerCase())) {
+			                return true;
+			            }
+		            }
+		            return false;
+		        }
+		    };
+		    
+		    File[] allFiles ;
+		    if (fs==null) allFiles= new File(path).listFiles(); 
+		    else allFiles= new File(path).listFiles(filefilter); 
+		    
 		    for (int i = 0; i < allFiles.length; i++) { 
 		        File file = allFiles[i]; 
 		        if (file.isFile()) { 

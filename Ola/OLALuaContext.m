@@ -197,9 +197,11 @@ static OLALuaContext * instance;
  */
 - (void) doString: (NSString *) str
 	{
-        const char * luaCode=[str cStringUsingEncoding:NSASCIIStringEncoding];
+        //NSLog(@"Lua Code=%@",str);
+        //const char * luaCode=[str cStringUsingEncoding:NSASCIIStringEncoding];
+        const char * luaCode=[str UTF8String];
         //NSLog(@"Lua Code1=%s",luaCode);
-		luaL_dostring(lua, [str cStringUsingEncoding:NSASCIIStringEncoding]);
+		luaL_dostring(lua,luaCode);
 	}
 - (void) setGlobal: (NSString *) str withId:(NSString *) objId
 {

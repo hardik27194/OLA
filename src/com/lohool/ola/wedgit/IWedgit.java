@@ -23,17 +23,21 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Picture;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PictureDrawable;
+import android.graphics.drawable.shapes.Shape;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
@@ -67,6 +71,9 @@ public abstract class IWedgit implements IView
 	CSS css;
 
 	GestureDetector gesture;
+	
+	/**todo 45*/
+	String defaultCSSStyle="";
 
 	public IWedgit(IView parent, Context context, Node root)
 	{
@@ -132,7 +139,7 @@ public abstract class IWedgit implements IView
 		// set attributes
 		if (css == null)
 		{
-			String cssString = ((Element) root).getAttribute("style");
+			String cssString = defaultCSSStyle+((Element) root).getAttribute("style");
 			css = new CSS(cssString);
 		}
 
@@ -146,7 +153,7 @@ public abstract class IWedgit implements IView
 		if (getParent() != null)
 			parentCss = getParent().getCss();
 		String attr;
-		// param=v.getLayoutParams();
+
 		if (param == null)
 		{
 			if (getParent() == null)
@@ -154,10 +161,8 @@ public abstract class IWedgit implements IView
 				// the BODY tag or the created first level layout
 				param = new MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT,
 						MarginLayoutParams.WRAP_CONTENT);
-				// System.out.println("layout 1");
 			} else if (getParent().getView() instanceof RelativeLayout)// ((attr=css.getStyleValue("position"))!=null)
 			{
-				// System.out.println("layout 2");
 				param = new RelativeLayout.LayoutParams(
 						MarginLayoutParams.WRAP_CONTENT,
 						MarginLayoutParams.WRAP_CONTENT);
@@ -178,6 +183,12 @@ public abstract class IWedgit implements IView
 					// else if(
 					// (css.textAlign.equalsIgnoreCase("bottom")))p.addRule(RelativeLayout.ALIGN_BOTTOM,RelativeLayout.TRUE);
 				}
+				else
+				{
+					//default is center
+					p.addRule(RelativeLayout.CENTER_HORIZONTAL,
+							RelativeLayout.TRUE);
+				}
 				if (parentCss.verticalAlign != null)
 				{
 					if ((parentCss.verticalAlign.equalsIgnoreCase("middle") || (css.verticalAlign
@@ -190,11 +201,15 @@ public abstract class IWedgit implements IView
 						p.addRule(RelativeLayout.ALIGN_BOTTOM,
 								RelativeLayout.TRUE);
 				}
+				else
+				{
+					//default is middle
+					p.addRule(RelativeLayout.CENTER_VERTICAL,RelativeLayout.TRUE);
+				}
 			}
 			// table
 			else if (this.getRoot().getNodeName().equalsIgnoreCase("TABLE"))
 			{
-				// System.out.println("layout 3");
 				param = new MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT,
 						MarginLayoutParams.WRAP_CONTENT);
 			}
@@ -202,14 +217,12 @@ public abstract class IWedgit implements IView
 			// table row
 			else if (getParent().getRoot().getNodeName().equalsIgnoreCase("TR"))
 			{
-				// System.out.println("layout 4");
 				TableRow.LayoutParams p = new TableRow.LayoutParams(
 						TableRow.LayoutParams.WRAP_CONTENT,
 						TableRow.LayoutParams.WRAP_CONTENT);
 				param = p;
 			} else if (getParent().getView() instanceof LinearLayout)
 			{
-				// System.out.println("layout 5");
 				LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
 						MarginLayoutParams.WRAP_CONTENT,
 						MarginLayoutParams.WRAP_CONTENT);
@@ -221,7 +234,6 @@ public abstract class IWedgit implements IView
 				param = p;
 			} else if (getParent().getView() instanceof FrameLayout)
 			{
-				// System.out.println("layout 5");
 				FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(
 						MarginLayoutParams.WRAP_CONTENT,
 						MarginLayoutParams.WRAP_CONTENT);
@@ -231,7 +243,6 @@ public abstract class IWedgit implements IView
 			else
 				param = new MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT,
 						MarginLayoutParams.WRAP_CONTENT);
-			// System.out.println("layout 6");
 		}
 		if (param == null)
 			return;
@@ -287,6 +298,7 @@ public abstract class IWedgit implements IView
 			} else
 				this.setWidth(CSS.parseInt(attr));
 		}
+
 		// System.out.println("height=" + css.getStyleValue("height"));
 		if ((attr = css.getStyleValue("height")) != null)
 		{
@@ -296,6 +308,7 @@ public abstract class IWedgit implements IView
 			} else
 				this.setHeight(CSS.parseInt(attr));
 		}
+
 		// System.out.println("visibility=" + css.getStyleValue("visibility"));
 		if ((attr = css.getStyleValue("visibility")) != null)
 		{
@@ -315,10 +328,17 @@ public abstract class IWedgit implements IView
 
 		param.setMargins(css.margin.left, css.margin.top, css.margin.right,
 				css.margin.bottom);
-
-		v.setPadding(css.padding.left, css.padding.top, css.padding.right,
-				css.padding.bottom);
-
+		this.setBorder();
+		
+		//add border's width as padding, or the children will be painted on the border
+		v.setPadding(css.padding.left+css.border.width, 
+				css.padding.top+css.border.width, 
+				css.padding.right+css.border.width,
+				css.padding.bottom+css.border.width);
+		
+		this.setFont();
+		
+		
 		String text = root.getTextContent();
 		if (text != null && !text.trim().equals(""))
 			this.setText(text);
@@ -535,8 +555,8 @@ public abstract class IWedgit implements IView
 
 	public int getHeight()
 	{
-
-		return css.bounds.height;
+		return v.getHeight();
+		//return css.bounds.height;
 	}
 
 	public void setHeight(int height)
@@ -618,14 +638,53 @@ public abstract class IWedgit implements IView
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void setFont(String s)
+	{
+		css.font.setFont(s);
+		setFont();
+	}
+	private void setFont()
+	{
+		if (v instanceof TextView)
+		{
+			Typeface tf=Typeface.create(css.font.family, css.font.style);
+			
+			TextView t=((TextView) v);
+			if(css.font.size>0)t.setTextSize(css.font.size);
+			t.setTypeface(tf);
+		}
+	}
+	public void setBorder(String s)
+	{
+		css.border.setBorder(s);
+		setBorder();
+		
+	}
+	private void setBorder()
+	{
+		if(css.border.width>0)
+		{
+		IBorder b=new IBorder(this.getBackgroundColor(),css.border.color,(int)(css.border.width*Main.scale),(int)(css.border.radius*Main.scale));
+		v.setBackground(b);
+		}
+	}
+	
 	public String getBackgroundImageUrl()
 	{
 		return css.backgroundImageURL;
 	}
 
-
 	public void setBackgroundImageUrl(String backgroundImageUrl)
+	{
+		setBackgroundImageUrl(backgroundImageUrl,null);
+	}
+	/**
+	 * for that  URLs which need cookies/logon status
+	 * @param backgroundImageUrl
+	 * @param cookies
+	 */
+	public void setBackgroundImageUrl(String backgroundImageUrl,String cookies)
 	{
 		// v.setBackground( new
 		// BitmapDrawable(returnBitMap(backgroundImageURL)));
@@ -635,13 +694,25 @@ public abstract class IWedgit implements IView
 //		if(PortalProperties.getInstance().getAppProperties()!=null)base=PortalProperties.getInstance().getAppProperties().getAppBase();
 //		else base=PortalProperties.getInstance().getAppBase();
 		base=OLA.appBase;
-		String backgroundImageURL = base + backgroundImageUrl;
+		String backgroundImageURL;
+		if(backgroundImageUrl.startsWith("file://"))
+		{
+			backgroundImageURL=backgroundImageUrl.substring(7);
+		}
+		else if(backgroundImageUrl.startsWith("http://"))
+		{
+			backgroundImageURL=backgroundImageUrl;
+		}
+		else
+		{
+			backgroundImageURL= base + backgroundImageUrl;
+		}
 		System.out.println(backgroundImageURL);
 		try{
 		if (backgroundImageURL.startsWith("http://"))
 		{
 			DownloadImage task = new DownloadImage();
-			task.execute(backgroundImageURL);
+			task.execute(backgroundImageURL,cookies);
 			
 		} else
 		{
@@ -652,6 +723,7 @@ public abstract class IWedgit implements IView
 		
 			InputStream is = new FileInputStream(backgroundImageURL);
 			Drawable drawable=Drawable.createFromStream(is, null);
+
 			v.setBackground(drawable);
 			is.close();
 		}
@@ -681,8 +753,7 @@ public abstract class IWedgit implements IView
 		{
 			HttpURLConnection hp = (HttpURLConnection) imgUrl.openConnection();
 			
-			icon = new PictureDrawable(Picture.createFromStream(hp
-					.getInputStream()));// ��������ת����bitmap
+			icon = new PictureDrawable(Picture.createFromStream(hp.getInputStream()));// ��������ת����bitmap
 			hp.disconnect();// �ر�����
 		} catch (Exception e)
 		{
@@ -707,7 +778,8 @@ public abstract class IWedgit implements IView
 			InputStream is = conn.getInputStream();
 			Options opts = new Options(); 
 			opts.inSampleSize = 4;
-			bitmap = BitmapFactory.decodeStream(is);
+			opts.inPreferredConfig = Config.ARGB_4444;
+			bitmap = BitmapFactory.decodeStream(is, null, opts);
 			is.close();
 			conn.disconnect();
 			
@@ -718,7 +790,7 @@ public abstract class IWedgit implements IView
 		return bitmap;
 	}
 	
-	public static Drawable returnDrawable(String url)
+	public static Drawable returnDrawable(String url,String cookies)
 	{
 
 		URL myFileUrl = null;
@@ -727,8 +799,11 @@ public abstract class IWedgit implements IView
 		try
 		{
 			myFileUrl = new URL(url);
-			HttpURLConnection conn = (HttpURLConnection) myFileUrl
-					.openConnection();
+			HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
+			if(cookies!=null && !cookies.trim().equals(""))
+			{
+				conn.setRequestProperty("Cookie",cookies);
+			}
 //			conn.setDoInput(true);
 //			conn.connect();
 			InputStream is = conn.getInputStream();
@@ -770,10 +845,12 @@ public abstract class IWedgit implements IView
 		{
 			Drawable image = null;
 			// backgroundImageURL = url;
-
+			String cookies=null;
 			try
 			{
-				image = returnDrawable(urls[0]);
+				
+				cookies=urls[1];
+				image = returnDrawable(urls[0],cookies);
 			} catch (Exception e1)
 			{
 				e1.printStackTrace();
@@ -1109,23 +1186,23 @@ public abstract class IWedgit implements IView
 		return this.root;
 	}
 
-	int getTop()
+	public int getTop()
 	{
 		return css.bounds.top;
 	}
 
-	void setTop(int top)
+	public void setTop(int top)
 	{
 		param.topMargin = top;
 		css.margin.top = top;
 	}
 
-	int getLeft()
+	public int getLeft()
 	{
 		return css.bounds.left;
 	}
 
-	void setLeft(int left)
+	public void setLeft(int left)
 	{
 		param.leftMargin = left;
 		css.margin.left = left;
@@ -1157,6 +1234,10 @@ public abstract class IWedgit implements IView
 		// rebuild the properties which will be related to the current parent.
 		this.parseCSS();
 
+	}
+	String getId()
+	{
+		return objId;
 	}
 
 }

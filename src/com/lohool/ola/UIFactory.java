@@ -2,7 +2,6 @@ package com.lohool.ola;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -19,19 +18,15 @@ import org.w3c.dom.NodeList;
 
 
 
-
-
-
-
-
-
-
+import com.lohool.ola.util.StackX;
 import com.lohool.ola.util.XMLProperties;
 import com.lohool.ola.wedgit.IButton;
 import com.lohool.ola.wedgit.ICheckBox;
 import com.lohool.ola.wedgit.IContainer;
 import com.lohool.ola.wedgit.ILabel;
+import com.lohool.ola.wedgit.ILineChart;
 import com.lohool.ola.wedgit.IProgressBar;
+import com.lohool.ola.wedgit.IRoundImage;
 import com.lohool.ola.wedgit.IScrollView;
 import com.lohool.ola.wedgit.ITable;
 import com.lohool.ola.wedgit.ITableRow;
@@ -41,13 +36,14 @@ import com.lohool.ola.wedgit.Layout;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Looper;
+
 
 
 public class UIFactory {
 	Context ctx;
 	BodyView bodyView;
-	static HashMap viewCache= new HashMap();
+	static HashMap<String, BodyView> viewCache= new HashMap();
+	static StackX<String> viewStack=new StackX();
 	
 
 	
@@ -55,6 +51,16 @@ public class UIFactory {
 	{
 		this.bodyView=bodyView;
 		this.ctx=ctx;
+	}
+	
+	public void switchView(String name)
+	{
+		switchView(name,null,null,false);
+	}
+	
+	public void switchView(String name,String callback)
+	{
+		switchView(name,null,null,false);
 	}
 	public void switchView(String name,String callback,String params)
 	{
@@ -73,15 +79,26 @@ public class UIFactory {
 		}
 		else
 		{
-		 v=new BodyView(ctx,name);
-		if(!needReload) viewCache.put(name, v);
+			 v=new BodyView(ctx,name);
+			if(!needReload) viewCache.put(name, v);
 		
 		}
+		
+		UIFactory.viewStack.push(name);
+		
+		UIFactory.viewStack.displayStack();
+		
+		LuaContext.getInstance().doString("exit()");
 		v.setParameters(params);
-		v.execCallBack(callback);
+		v.setCallBack(callback);
   	 	v.show();
+  	 	
 
     }
+	public void cleanViewCache()
+	{
+		viewStack.clear();
+	}
 	public String getParameters() {
 		return bodyView.getParameters();
 	}
@@ -120,9 +137,6 @@ public class UIFactory {
 		Layout layout = null;
 
 			try {
-				// String
-				// xml=loadAssetsString("http://10.0.2.2:8080/CRM/testLua.htm");
-				// System.out.println(xml);
 				XMLProperties xmlRoot = new XMLProperties(xml);
 				Element html = xmlRoot.getRootElement();
 				layout=createActiveBody(html);
@@ -139,9 +153,9 @@ public class UIFactory {
 		return layout;
 	}
 	/**
-	 * create a dynamic view by Lua script
+	 * create a dynamic view by Lua script, and the view is registered into Lua environment
 	 * @param xml
-	 * @return
+	 * @return the view's id
 	 */
 	public String createView(String xml)
 	{
@@ -192,8 +206,15 @@ public class UIFactory {
 			for (int i = 0; i < nl.getLength(); i++) {
 
 				Node n = nl.item(i);
+				Node cssClass=null;
 				if (n != null && n.getNodeType() == Node.ELEMENT_NODE
-						&& ((Element) n).getTagName().equalsIgnoreCase("body")) {
+						&& ((Element) n).getTagName().equalsIgnoreCase("head"))
+				{
+					cssClass=n;
+				}
+				else if (n != null && n.getNodeType() == Node.ELEMENT_NODE
+						&& ((Element) n).getTagName().equalsIgnoreCase("body")) 
+				{
 					layout = Layout.createLayout(null, ctx, n);
 					// this.setContentView(layout.getView());
 				}
@@ -253,6 +274,16 @@ public class UIFactory {
     	else if (name.equalsIgnoreCase("CHECKBOX"))
     	{
     		v= new ICheckBox(rootView,context,n);
+    		//rootView.addView(text);
+    	}
+    	else if (name.equalsIgnoreCase("LINECHART"))
+    	{
+    		v= new ILineChart(rootView,context,n);
+    		//rootView.addView(text);
+    	}
+    	else if (name.equalsIgnoreCase("ROUNDIMAGE"))
+    	{
+    		v= new IRoundImage(rootView,context,n);
     		//rootView.addView(text);
     	}
     	return v;

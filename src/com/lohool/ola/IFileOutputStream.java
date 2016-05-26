@@ -43,9 +43,10 @@ public class IFileOutputStream {
 		}
 		boolean isAppend=append.equalsIgnoreCase("true")?true:false;
 		try {
-			if(!file.exists())file.getParentFile().mkdirs();
+			if(!isExisted)file.getParentFile().mkdirs();
+			if(!isAppend && isExisted)file.delete();
 			out=new RandomAccessFile(file,"rw");//new DataOutputStream( new FileOutputStream(file,isAppend));
-			out.seek(out.length());
+			if(isAppend)out.seek(out.length());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,13 +91,13 @@ public class IFileOutputStream {
 	}
 	public void writeString(String val) throws IOException
 	{
-		byte[] b=val.getBytes();
+		byte[] b=val.getBytes("utf-8");
 		
 		out.write(b);
 	}
 	public void writeStringWithLength(String val) throws IOException
 	{
-		byte[] b=val.getBytes();
+		byte[] b=val.getBytes("utf-8");
 		out.writeInt(b.length);
 		out.write(b);
 	}
@@ -187,6 +188,27 @@ public class IFileOutputStream {
 		byte[] buffer = new byte[len];
 		out.read(buffer);
 		return new String(buffer);
+	}
+	
+	public String readLine() throws IOException {
+		String l=out.readLine();
+		String s="";
+//			s+=	 new String(l.getBytes());
+//			s+=	 new String(l.getBytes(),"utf-8");
+//			s+=	 new String(l.getBytes(),"iso-8859-1");
+//			s+=	 new String(l.getBytes(),"gb2312");
+//			s+=	 new String(l.getBytes("utf-8"));
+//			s+=	 new String(l.getBytes("utf-8"),"iso-8859-1");
+//			s+=	 new String(l.getBytes("utf-8"),"gb2312");
+//			s+=	 new String(l.getBytes("iso-8859-1"));
+			s+=	 new String(l.getBytes("iso-8859-1"),"utf-8");
+//			s+=	 new String(l.getBytes("iso-8859-1"),"gb2312");
+//			s+=	 new String(l.getBytes("gb2312"));
+//			s+=	 new String(l.getBytes("gb2312"),"utf-8");
+//			s+=	 new String(l.getBytes("gb2312"),"iso-8859-1");
+			
+//			s+=  System.getProperty("file.encoding");
+				 return s;
 	}
 
 	public byte readByte() {
