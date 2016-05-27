@@ -28,4 +28,8 @@
     
     
 }
+-(void) setFont:(UIFont *)font
+{
+    
+}
 @end

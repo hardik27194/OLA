@@ -277,16 +277,13 @@ LayoutParams * param;
     NSString * text = root.textContent.value;
     if (text != nil && ![trim(text) isEqualToString:@""])
     {
-        if ([self isKindOfClass:[OLATextView class]])
-        {
-            NSLog(@"self.view=%f",self.v.frame.size.width);
-            [((OLATextView *) self) setText:text];
-        }
+        [self setText:text];
     }
     //NSLog(@"tag=%@, text=%@",self.root.tagName,text);
     }
     
     [self setBorder];
+    [self setFont];
     /*
     else{
         NSLog(@"tag=%@, text=is null",self.root.tagName);
@@ -687,6 +684,30 @@ LayoutParams * param;
 {
     UIColor * bg = [CSS parseColor:backgroundColor];
     [v setBackgroundColor:bg];
+}
+
+-(void)setText:(NSString *)text
+{
+    if ([self isKindOfClass:[OLATextView class]])
+    {
+        NSLog(@"self.view=%f",self.v.frame.size.width);
+        [((OLATextView *) self) setText:text];
+    }
+}
+
+-(void)setFont:(NSString *)font
+{
+    [css setFont:font];
+    [self setFont];
+}
+
+-(void)setFont
+{
+    if ([self isKindOfClass:[OLATextView class]])
+    {
+        OLATextView *view=((OLATextView *) self);
+        [view setFont:css.font.font];
+    }
 }
 
 -(void)setBorder:(NSString *)borderString

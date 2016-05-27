@@ -151,7 +151,11 @@ UIFont *font ;
     label.textColor=c;
     
 }
-
+-(void) setFont:(UIFont *)font
+{
+    UILabelEx * label=(UILabelEx *)(self.v);
+    [label setFont:font];
+}
 -(NSString *)getText
 {
     UILabelEx * label=(UILabelEx *)(self.v);

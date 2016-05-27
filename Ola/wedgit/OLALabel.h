@@ -15,4 +15,5 @@
 -(NSString *)getText;
 -(void)adjustSize:(CGFloat) width;
 -(void)adjustSelfSize:(CGFloat) width;
+-(void) setFont:(UIFont *)font;
 @end

@@ -16,8 +16,9 @@ typedef struct  _Border
 typedef struct  _Font
 {
     CGFloat size;
-    const char * family;
+    __unsafe_unretained NSString * family;
     CGFloat style;
+    __unsafe_unretained UIFont *font;
 }Font;
 
 typedef struct  _Margin
@@ -44,6 +45,7 @@ typedef struct _Padding
 	int right;
 	int top;
     
+    Font font;
     Border border;
     Margin margin;
     Padding padding;
@@ -83,9 +85,13 @@ typedef struct _Padding
 @property (nonatomic)	int left;
 @property (nonatomic)	int right;
 @property (nonatomic)	int top;
+
+@property (nonatomic,readonly)   Font font;
 @property (nonatomic,readonly)   Border border;
 @property (nonatomic,readonly)   Margin margin;
 @property (nonatomic,readonly)   Padding padding;
+
+
 @property (nonatomic)	NSString *position;
 @property (nonatomic)	BOOL display;
 @property (nonatomic)	NSString *visibility;
@@ -124,5 +130,5 @@ typedef struct _Padding
 -(Margin) getMargin;
 
 -(void) setBorder:(NSString *) borderString;
-
+-(void) setFont:(NSString *) fontString;
 @end

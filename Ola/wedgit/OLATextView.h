@@ -13,4 +13,5 @@
 -(NSString *)getText;
 - (NSString *) getColor;
 - (void) setColor:(NSString *) color;
+-(void) setFont:(UIFont *)font;
 @end
