@@ -119,22 +119,25 @@ OLAUIFactory * ui;
 - (void) executeLua
 {
     [self registReloadFun];
+
     [[OLALuaContext getInstance] doString:LuaCode];
     
     // if database class is defined by Lua, create a database connection
     // and set it to lua global
     lua_State * lua=[[OLALuaContext getInstance] getLuaState]; //LuaContext.getInstance().getLuaState();
+    /*
     lua_getglobal(lua, "database");
     if(lua_istable(lua, -1))
     {
         OLADatabase * db=[[OLADatabase alloc] init];
         [[OLALuaContext getInstance] regist:db withGlobalName:@"connection"];
-        /*
-         lua.pushObjectValue(new Database(ctx));
-         lua.setGlobal("connection");
-         lua.pop(1);
-         */
+     
+         //lua.pushObjectValue(new Database(ctx));
+         //lua.setGlobal("connection");
+         //lua.pop(1);
+     
     }
+     */
 
     [[OLALuaContext getInstance] doString:@"initiate()"];
 }

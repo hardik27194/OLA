@@ -1,8 +1,6 @@
 package com.lohool.ola;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -10,15 +8,11 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayDeque;
-
-import org.keplerproject.luajava.LuaObject;
-import org.keplerproject.luajava.LuaState;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
+
+import android.util.Log;
+
 
 import com.lohool.ola.wedgit.IProgressBar;
 import com.lohool.ola.wedgit.UIMessage;
@@ -40,6 +34,8 @@ public class HTTP
 
 	URL url ;
 	
+	 private String cookies; 
+	
 //	StringBuffer buf=new StringBuffer();
 	ByteArrayOutputStream out= new ByteArrayOutputStream();
 	String content;
@@ -47,6 +43,7 @@ public class HTTP
 	int state = -1;
 	public HTTP()
 	{
+		
 	}
 	public HTTP(String Url)
 	{
@@ -72,6 +69,9 @@ public class HTTP
 		t.start();
 	}
 	
+	/**
+	 * waiting for the end of HTTP request
+	 */
 	public void receive()
 	{
 		//HTTP request is not sent
@@ -136,8 +136,22 @@ public class HTTP
 					
 					urlConn = (HttpURLConnection) url.openConnection();
 					urlConn.setConnectTimeout(10000);
-					InputStream in = urlConn.getInputStream();
+					if(cookies!=null)
+                    {
+                        urlConn.setRequestProperty("Cookie",cookies);
+                    }
 					
+					InputStream in = urlConn.getInputStream();
+			
+					String key;
+                    for (int i = 1; (key = urlConn.getHeaderFieldKey(i)) != null; i++)
+                    {
+                        if (key.equalsIgnoreCase("set-cookie"))
+                        {
+                            cookies = urlConn.getHeaderField(i);
+                            break;
+                        }
+                    }
 					System.out.println("currentUrl:"+url.toString());
 					int i = 1;
 
@@ -238,10 +252,11 @@ public class HTTP
 //					if(callback.charAt(callback.length()-1)!='(')
 //						luaCallback=callback+state+",\""+content+"\")";
 //					else luaCallback=callback+","+state+",\""+content+"\")";
-					System.out.println(complitedCallback);
+					Log.i("HTTP", complitedCallback);
 					Response res=new Response();
 					res.state=state;
 					res.content=content;
+					res.cookies=cookies;
 					LuaContext lua=LuaContext.getInstance();
             		lua.regist(res, "HttpResponse");
             	    msg.updateMessage(complitedCallback+"(HttpResponse)");
@@ -261,9 +276,22 @@ public class HTTP
 		}
 
 	}
+	
+
+    public void setCookies(String cookies)
+    {
+        this.cookies=cookies;
+    }
+    public String getCookies()
+    {
+        return cookies;
+    }
+    
+    
 	class Response
 	{
 		int state;
+		String cookies;
 		String content;
 		public int getState()
 		{
@@ -273,6 +301,10 @@ public class HTTP
 		{
 			return content;
 		}
+		public String getCookies()
+        {
+            return cookies;
+        }
 	}
 	
 	/**
@@ -311,6 +343,45 @@ public class HTTP
 	{
 		return content;
 	}
+
 	
+    
+    
+//   public void executeGet(String url) throws ClientProtocolException, IOException{  
+//       HttpClient httpClient=new DefaultHttpClient();  
+// 
+//       HttpGet httpGet=new HttpGet(url);  
+//       setRequestCookies(httpGet);  
+// 
+//        HttpResponse response=httpClient.execute(httpGet);  
+//        appendCookies(response);  
+//    }  
+//    /** 
+//     * 设置请求的Cookie头信息 
+//     * @param reqMsg 
+//     */  
+//    private void setRequestCookies(HttpMessage reqMsg) {  
+//        if(!TextUtils.isEmpty(cookies)){  
+//            reqMsg.setHeader("Cookie", cookies);  
+//        }  
+//    }  
+//    /** 
+//     * 把新的Cookie头信息附加到旧的Cookie后面 
+//     * 用于下次Http请求发送 
+//     * @param resMsg 
+//     */  
+//    private void appendCookies(HttpMessage resMsg) {  
+//        Header setCookieHeader=resMsg.getFirstHeader("Set-Cookie");  
+//        if (setCookieHeader != null  
+//                && TextUtils.isEmpty(setCookieHeader.getValue())) {  
+//            String setCookie=setCookieHeader.getValue();  
+//            if(TextUtils.isEmpty(cookies)){  
+//                cookies=setCookie;  
+//            }else{  
+//                cookies=cookies+"; "+setCookie;  
+//            }  
+//        }  
+//    }  
+
 }
 

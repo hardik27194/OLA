@@ -7,44 +7,40 @@
 }
 -->
 </style>
-<body id="body" layout="FrameLayout"  style="orientation:vertical;background-image:url(images/1.jpg);">
-	<div id="div1" layout="LinearLayout"  style="orientation:vertical;width:auto;height:auto;weight:1px;">
-		<label style="color:#0000FF">神秘神奇神农架</label>
-		<div  layout="LinearLayout"  style="orientation:horizontal;width:auto;weight:1px;">
-			  <div  layout="LinearLayout" style="orientation:vertical;width:auto;weight:1px;align:center;" >
-              </div>
-			  <div  id="btn1" layout="LinearLayout" style="orientation:vertical;padding:2px;width:75px;align:center;" >
-				<button id="row1" style="width:64px;height:48px;margin:2px;background-image:url(images/v1.jpg);valign:middle" ></button>
-				<label style="color:#FFFFFF">大九湖</label>
-				<button id="row1" style="width:64px;height:48px;margin:2px;background-image:url(images/v2.jpg);valign:middle" ></button>
-				<label style="color:#FFFFFF">板壁岩</label>
-			  <div  id="btn1" layout="LinearLayout" style="orientation:vertical;padding:2px;align:center;background-color:#FF0000" >
-				<button id="row1" style="width:64px;height:48px;background-image:url(images/v3.jpg);valign:middle" ></button>
-              </div>
-				<label style="width:auto;margin:2px;color:#FF6600;background-color:#339999;align:center">金猴岭</label>
-				<button id="row1" style="width:64px;height:48px;margin:2px;background-image:url(images/v4.jpg);valign:middle" ></button>
-				<label style="color:#FFFFFF">神农顶</label>
-              </div>
-		</div>
-		<div  layout="LinearLayout"  style="orientation:horizontal;width:auto;height:36px;background-color:#99CCFF">
-			  <div  id="btn0" layout="LinearLayout" style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn0')" onrelease="layerOnRelease('btn0')"  onclick="exit()">
-                 <button id="row1" style="width:36px;height:36px;background-image:url(images/G1.png);valign:middle" onpress="layerOnPress('btn0')" onrelease="layerOnRelease('btn0')"  onclick="exit()"></button>
-              </div>
-			  <div  id="btn1" layout="LinearLayout" style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn1')" onrelease="layerOnRelease('btn1')"  onclick="reload()">
-                 <button id="row1" style="width:36px;height:36px;background-image:url(images/G11.png);valign:middle" onpress="layerOnPress('btn1')" onrelease="layerOnRelease('btn1')"  onclick="reload()"></button>
-              </div>
-			  <div  id="btn2" layout="LinearLayout"  style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn2')" onrelease="layerOnRelease('btn2')">
-                 <button id="row1" style="width:36px;height:36px;background-image:url(images/g1(10).png);valign:middle"  onpress="layerOnPress('btn2')" onrelease="layerOnRelease('btn2')"></button>
-              </div>
-			  <div  id="btn3" layout="LinearLayout"  style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn3')" onrelease="layerOnRelease('btn3')">
-                 <button id="row1" style="width:36px;height:36px;background-image:url(images/g1(11).png);valign:middle"  onpress="layerOnPress('btn3')" onrelease="layerOnRelease('btn3')"></button>
-              </div>
-			  <div  id="btn4" layout="LinearLayout"  style="orientation:vertical;width:auto;weight:1px;align:center;" onpress="layerOnPress('btn4')" onrelease="layerOnRelease('btn4')">
-                 <button id="row1" style="width:36px;height:36px;background-image:url(images/g1(12).png);valign:middle"  onpress="layerOnPress('btn4')" onrelease="layerOnRelease('btn4')"></button>
-              </div>
+<body id="Main_body" layout="FrameLayout" style="orientation:vertical;">
+  <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#99CCFF;" >
+		<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
+				<div id="L_showpop" layout="LinearLayout" style="width:42px;height:36px;align:center;valign:middle;"  onclick="reload()">
+					<button style="width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)"  onclick="reload()" />
+				</div>
+				<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
+                    <button id="row1" style="width:32px;height:32px;background-image:url(images/nav/(12).png);valign:middle" onclick="back2Portal()"></button>
+                </div>				
+				<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;">
+				<label style="weight:1px;height:auto;align:middle;">OLA Test</label>
+				</div>
+				<div id="L_showpop" layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
+					<button style="width:6px;height:24px;background-image:url(images/more.png)" onclick="ShowPopupMenu()"/>
+				</div>
+		</div>            
+  	<div id="Main_body_Content" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#66ccff;" >
+  	<div  layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;" >
 
-		</div>
+     <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;">
+	   <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
+       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+				<label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>
+	   </div>
+	   </scrollview>
+       </div>
 	</div>
+	</div>
+</div>
+				
 </body>
 </html>
 

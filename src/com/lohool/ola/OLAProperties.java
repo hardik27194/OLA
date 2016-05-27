@@ -4,6 +4,7 @@ package com.lohool.ola;
 
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 /**
  * the main lua mobile properties
@@ -97,7 +98,6 @@ public class OLAProperties extends AbstractProperties{
 	        properties.reset();
 
 	        String packageName=Main.class.getPackage().getName();
-			System.out.println(packageName);
 			properties.appPackage=packageName;
 			
 			properties.execGlobalScripts();
@@ -106,14 +106,15 @@ public class OLAProperties extends AbstractProperties{
 		}
 		@Override
 		protected void onPostExecute(String result) {
-			System.out.println("InitPropertiesTask.onPostExecute");
 			BodyView v=null;
 	    	String name=properties.getFirstViewName();
+	    	Log.d("OLAProperties", "Loading file:"+name);
 	        if(name!=null)
 	        {
 				v=new BodyView(Main.ctx,name);				
 				UIFactory.viewCache.clear();//
-				UIFactory.viewCache.put(name, v);
+				//UIFactory.viewCache.put(name, v);
+				UIFactory.viewStack.push(name);
 //				ctx.setContentView(v.getLayout().getView());
 	        }
 	        v.show();

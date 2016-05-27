@@ -28,7 +28,6 @@ public class LuaContext {
 	}
 	public static void registInstance(LuaContext lua)
 	{
-
 			instance = lua;
 
 	}
@@ -53,7 +52,6 @@ public class LuaContext {
 			lua.pushObjectValue(obj);
 			lua.setGlobal(name);
 		} catch (LuaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -67,7 +65,6 @@ public class LuaContext {
 			lua.remove(-1);
 			
 		} catch (LuaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return obj;
@@ -78,7 +75,6 @@ public class LuaContext {
 		try {
 			obj = getLuaObject(id).getObject();
 		} catch (LuaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return obj;

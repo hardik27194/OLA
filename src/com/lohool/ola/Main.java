@@ -11,33 +11,32 @@ import java.io.InputStream;
 import org.apache.http.util.EncodingUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.keplerproject.luajava.LuaObject;
+import org.keplerproject.luajava.LuaState;
 
+import com.lohool.ola.wedgit.UIMessage;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-
-
+import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class Main extends Activity {
 
-	private FrameLayout mLayout;
 //	private LuaState lua;
 	public static Context ctx;
 	public static Main activity;
@@ -50,6 +49,9 @@ public class Main extends Activity {
 	long lastUsedTime;
 	int state;
 	boolean isDevelopementMode=false;
+	
+	String subActivityCallback;
+	
 //	UIFactory ui= new UIFactory(ctx,lua);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class Main extends Activity {
         ctx.setTheme(R.style.AppTheme);
         activity=this;
         
-        
+
         DisplayMetrics dm=this.getApplicationContext().getResources().getDisplayMetrics(); 
         this.dpi=dm.densityDpi;
         this.scale=1.0f*dpi/baseDpi;
@@ -79,14 +81,17 @@ public class Main extends Activity {
         Log.d("dpi", "scale="+scale);
         
 //        printScreenInfo();
-  
-	        
+ 
+        
+		
+	    
         DisplayLoadingTask task= new DisplayLoadingTask();
         task.execute("");
+        
+
 	 
     }
 	private class DisplayLoadingTask extends AsyncTask<String, Integer, String> {
-		BodyView v=null;
 		String appServer;
 		String appBase;
 		@Override
@@ -127,7 +132,7 @@ public class Main extends Activity {
 		protected void onPostExecute(String viewName) {
 			BodyView v=null;
 			v=new BodyView(ctx,viewName);				
-			setContentView(v.bodyView.getView());
+			setContentView(v.layout.getView());
 			
 			ExecuteOsLusTask osTask= new ExecuteOsLusTask(appServer,appBase);
 	        osTask.execute(v);	
@@ -268,10 +273,7 @@ public class Main extends Activity {
 		
 	}
 	public static String loadAsset(String resPath) {
-		StringBuffer buf = new StringBuffer();
-			// 获得InputStream对象
-//			InputStream is = getResources().getAssets().open("IELTSCore3000.db");
-			
+		StringBuffer buf = new StringBuffer();			
 		InputStream isread = null;
 			
 			byte[] luaByte = new byte[0];
@@ -320,7 +322,6 @@ public class Main extends Activity {
 		try{
 		FileInputStream fis = new FileInputStream(file);
 		DataInputStream in=new DataInputStream(fis);
-		byte[] luaByte = new byte[1];
 		try {
 			state=in.readInt();
 			installedTime=in.readLong();
@@ -344,7 +345,6 @@ public class Main extends Activity {
 		try{
 		FileOutputStream fos = new FileOutputStream(file);
 		DataOutputStream out=new DataOutputStream(fos);
-		byte[] luaByte = new byte[1];
 		try {
 			out.writeInt(state);	//new installed
 			out.writeLong(installedTime);	//安装时间
@@ -460,6 +460,28 @@ public class Main extends Activity {
          }
          */
 
+	/**
+	 * process the sub Activites' callback function
+	 */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+       // if(requestCode == 1000 && resultCode == 1001)
+        if(resultCode >0)
+        {
+            String luaCallback = data.getStringExtra("luaCallback");
+            System.out.println("main.luaCallback="+luaCallback);
+            UIMessage msg=new UIMessage();
+			LuaContext lua=LuaContext.getInstance();
+    		//lua.regist(new ICalendar(selected), "calendar");
+    	    msg.updateMessage(luaCallback);
+    	   // lua.remove("calendar");
+        }
+    }
+
+    
+    
 	public void printScreenInfo()
 	{
         String str = ""; 
@@ -507,10 +529,62 @@ public class Main extends Activity {
                 });   
         builder.create().show();   
     }   
+    
+    
+    private static final int MSG_EXIT = 1;
+    private static final int MSG_EXIT_WAIT = 2;
+    private static final long EXIT_DELAY_TIME = 2000;
+    private Handler mHandle = new Handler() {
+        public void handleMessage(Message msg) {
+        	int b=back();
+        	if(b==0)
+        	{
+            switch(msg.what) {
+            
+                case MSG_EXIT:
+                    if(mHandle.hasMessages(MSG_EXIT_WAIT)) {
+                    	System.exit(1);
+                    } else {    
+                        Toast.makeText(Main.ctx, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+                        mHandle.sendEmptyMessageDelayed(MSG_EXIT_WAIT, EXIT_DELAY_TIME);
+                    }
+                    break;
+                case MSG_EXIT_WAIT:
+                    break;
+            }
+        	}
+        	else
+        	{
+        		//back to previous view
+        		//current view
+        		UIFactory.viewStack.pop();
+//        		String viewName=UIFactory.viewStack.peek();
+//        		System.out.println("View="+viewName);
+//        		BodyView view=UIFactory.viewCache.get(viewName);
+//        		if(view!=null)view.show();
+        	}
+        }
+    };
+
+    int back()
+    {
+    	LuaState L=LuaContext.getInstance().getLuaState();
+    	 L.getField(LuaState.LUA_GLOBALSINDEX, "back");
+         //L.pushString("in the pad!");   
+         L.call(0,1);                    
+         
+         L.setField(LuaState.LUA_GLOBALSINDEX, "backStatus");
+         LuaObject obj = L.getLuaObject("backStatus");    
+         int result=(int)obj.getNumber();
+         System.out.println("back status:"+result);
+         return result;
+    }
+    
     @Override  
     public boolean onKeyDown(int keyCode, KeyEvent event) {   
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {   
-            dialog();   
+        	 mHandle.sendEmptyMessage(MSG_EXIT);  
+        	 
             return false;   
         }   
         return false;   

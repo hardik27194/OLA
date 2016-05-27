@@ -10,7 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import org.json.JSONArray;
+
+
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.keplerproject.luajava.JavaFunction;
@@ -20,14 +23,20 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import android.os.AsyncTask;
+
+
+
+
 import android.os.Environment;
 import android.util.Log;
 
 import com.lohool.ola.util.DES3Encrypt;
+import com.lohool.ola.util.Pim;
 import com.lohool.ola.util.StringUtil;
 import com.lohool.ola.util.XMLProperties;
 import com.lohool.ola.util.ZipUtil;
+import com.lohool.ola.wedgit.ICamera;
+import com.lohool.ola.wedgit.IDatePicker;
 import com.lohool.ola.wedgit.UIMessage;
 
 public abstract class AbstractProperties
@@ -88,6 +97,7 @@ public abstract class AbstractProperties
 		lua.regist(StringUtil.class, "str");
 		
 		lua.regist(SoundPlayer.class, "MediaPlayer");
+		lua.regist(Recorder.class, "Recorder");
 		
 //		lua.regist(IAlert.class, "Alert");
 		
@@ -100,8 +110,16 @@ public abstract class AbstractProperties
 		
 		lua.regist(ZipUtil.class, "Zip");
 		
+		lua.regist(MethodThread.class, "Thread");
 		
-
+		lua.regist(IDatePicker.class, "DatePicker");
+		lua.regist(Database.class, "DBConn");
+		
+		lua.regist(ICamera.class, "Camera");
+		lua.regist(Pim.class, "Pim");
+		
+	
+		
 		System.out.println("lua file="+sandboxRoot+appBase+"OLA.lua");
 		//lua.doFile(sandboxRoot+appBase+"OLA.lua");
 		String olaLua=Main.loadAsset("OLA.lua");
@@ -113,7 +131,24 @@ public abstract class AbstractProperties
 		System.out.println("LMProp appServer="+appServer);
 		if(appServer==null)appServer="";
 		
-		if(isPlatformApp || appServer==null || appServer=="" || !appServer.startsWith("http://"))	appBase=sandboxRoot+appBase;
+		boolean isAppServerAccessed=false;
+		if(appServer.startsWith("http://"))
+		{
+			String appJsonUrl=appServer+appBase+"/apps.json";
+			String appJsonStr=UIFactory.loadOnline(appJsonUrl);
+			if(appJsonStr==null ||appJsonStr.trim().equals(""))
+			{
+				//app server cannot be accessed, do not use it
+				isAppServerAccessed=false;
+				appServer="";
+			}
+			else
+			{
+				isAppServerAccessed=true;
+			}
+		}
+		
+		if(!isAppServerAccessed || isPlatformApp || appServer==null || appServer=="" || !appServer.startsWith("http://"))	appBase=sandboxRoot+appBase;
 		else appBase=appServer+"/"+appBase;
 		
 		OLA.appBase=appBase+appName+"/";
@@ -150,7 +185,6 @@ public abstract class AbstractProperties
 					else
 					{
 						File file=new File(appBase+appName+"/lua/"+name + ".lua");
-	//					System.out.println("Load required file="+sandboxRoot+name + ".lua");
 						is = new FileInputStream(file);
 					}
 					byte[] bytes = readAll(is);
@@ -201,7 +235,7 @@ public abstract class AbstractProperties
 			JSONObject appObj = new JSONObject(appstr);
 			//JSONArray apps=appObj.getJSONArray("user_apps");
 			lua.doString("require 'JSON4Lua'");
-//			System.out.println("apps.json="+appObj.toString());
+			System.out.println("apps.json="+appObj.toString());
 			lua.doString("OLA.apps=json.decode('"+appObj.toString()+"')");
 		} catch (JSONException e)
 		{

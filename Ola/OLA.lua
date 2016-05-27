@@ -17,7 +17,7 @@ OLA.base='assets/'
 --app executable resources path. if it is local path of Android,it is in Assets folder.
 --if runs on remote server
 --OLA.app_server="http://10.0.2.2:8080/"
---OLA.app_server="http://192.168.0.109:8080/"
+OLA.app_server="http://192.168.0.106:8080/"
 
 OLA.mode="development" --"production" --development
 --app's file storage on sdcard

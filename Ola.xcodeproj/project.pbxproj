@@ -21,6 +21,7 @@
 		84937DF01909796400E5E405 /* OLAUIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DEF1909796400E5E405 /* OLAUIMessage.m */; };
 		84950FFC18FED1D800E6DFBB /* OLASoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84950FFB18FED1D800E6DFBB /* OLASoundPlayer.m */; };
 		84950FFE18FED73600E6DFBB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84950FFD18FED73600E6DFBB /* AVFoundation.framework */; };
+		8495776A1C858AA200CFF353 /* OLARoundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 849577691C858AA200CFF353 /* OLARoundImage.m */; };
 		84967ACB1950985A002BEB73 /* OLAAbstractProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84967ACA1950985A002BEB73 /* OLAAbstractProperties.m */; };
 		84967AD419509DED002BEB73 /* OLAZipUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 84967AD319509DED002BEB73 /* OLAZipUtil.m */; };
 		84967AD81950A00F002BEB73 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84967AD71950A00F002BEB73 /* libz.dylib */; };
@@ -227,6 +228,8 @@
 		84950FFA18FED1D800E6DFBB /* OLASoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLASoundPlayer.h; sourceTree = "<group>"; };
 		84950FFB18FED1D800E6DFBB /* OLASoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLASoundPlayer.m; sourceTree = "<group>"; };
 		84950FFD18FED73600E6DFBB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		849577681C858AA200CFF353 /* OLARoundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLARoundImage.h; sourceTree = "<group>"; };
+		849577691C858AA200CFF353 /* OLARoundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLARoundImage.m; sourceTree = "<group>"; };
 		84967AC91950985A002BEB73 /* OLAAbstractProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAAbstractProperties.h; sourceTree = "<group>"; };
 		84967ACA1950985A002BEB73 /* OLAAbstractProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAAbstractProperties.m; sourceTree = "<group>"; };
 		84967AD219509DED002BEB73 /* OLAZipUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAZipUtil.h; sourceTree = "<group>"; };
@@ -938,6 +941,8 @@
 				849745A118FADD0F007A8D5C /* OLAContainer.m */,
 				849745A418FADD0F007A8D5C /* OLALabel.h */,
 				849745A518FADD0F007A8D5C /* OLALabel.m */,
+				849577681C858AA200CFF353 /* OLARoundImage.h */,
+				849577691C858AA200CFF353 /* OLARoundImage.m */,
 				849745A618FADD0F007A8D5C /* OLALayout.h */,
 				849745A718FADD0F007A8D5C /* OLALayout.m */,
 				849745AA18FADD0F007A8D5C /* OLALongPressGestureRecognizer.h */,
@@ -1101,6 +1106,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84DE5CA618D9A1E30059C5C9 /* Build configuration list for PBXNativeTarget "Ola" */;
 			buildPhases = (
+				84AA47931C85AF2600EA3B8C /* Run Script */,
 				84DE5C6D18D9A1E30059C5C9 /* Sources */,
 				84DE5C6E18D9A1E30059C5C9 /* Frameworks */,
 				84DE5C6F18D9A1E30059C5C9 /* Resources */,
@@ -1222,6 +1228,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		84AA47931C85AF2600EA3B8C /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "find ${SRCROOT}/assets -exec touch {} \\;";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84DE5C6D18D9A1E30059C5C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1330,6 +1353,7 @@
 				84967ACB1950985A002BEB73 /* OLAAbstractProperties.m in Sources */,
 				84967B1D1950A130002BEB73 /* trees.c in Sources */,
 				849745CF18FADD0F007A8D5C /* OLALuaContext.m in Sources */,
+				8495776A1C858AA200CFF353 /* OLARoundImage.m in Sources */,
 				84967B191950A130002BEB73 /* infback.c in Sources */,
 				849745F618FADD0F007A8D5C /* lfunc.c in Sources */,
 				84967B0D1950A130002BEB73 /* ZipException.m in Sources */,
@@ -1448,8 +1472,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -1481,6 +1507,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

@@ -15,14 +15,14 @@ public class Database {
 	Context ctx;
 	SQLiteDatabase db;
 	private HashMap values;
-	public Database(Context ctx)
+	public Database()
 	{
-		this.ctx=ctx;
+		this.ctx=Main.ctx;
 	}
-//	public Database getInstance()
-//	{
-//		return new Database(MainActivity);
-//	}
+	public static Database create()
+	{
+		return new Database();
+	}
 	public boolean isExist(String dbName)
 	{
 
@@ -93,7 +93,7 @@ public class Database {
 		while(cursor.moveToNext())
 		{
 			buf.append("{");
-			int size=cursor.getCount();
+			int size=cursor.getColumnCount();
 			//values = new HashMap();
 			for(int i=0;i<size;i++)
 			{
@@ -108,9 +108,10 @@ public class Database {
 			buf.append(",");
 		}
 		cursor.close();
-		System.out.println("results.size=");
-		buf.deleteCharAt(buf.length()-1);
+		System.out.println("results.size="+cursor.getCount());
 		
+		if(buf.length()>0)buf.deleteCharAt(buf.length()-1);
+		System.out.println("results="+buf.toString());
 		return buf.toString();
 	}
 

@@ -14,6 +14,7 @@ public class PortalProperties extends AbstractProperties {
      PortalProperties()
 	{
     	 super();
+    	 System.out.println("Init PortalProperties class");
 //    	 appBase="apps/";
     	 appServer="";
 //    		 platformApp="olaportal/";
@@ -69,6 +70,10 @@ public class PortalProperties extends AbstractProperties {
 	        {
 				v=new BodyView(Main.ctx,name);				
 	        }
+	        //UIFactory.viewCache.clear();//
+	        
+			UIFactory.viewCache.put(name, v);
+			UIFactory.viewStack.push(name);
 	        v.show();
 		}
     }
