@@ -27,7 +27,9 @@
        <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;">
 	   <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
 	   <div layout="LinearLayout" style="orientation:vertical;width:auto;">
-			<label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold Arial 16 #ff0000" >粗体</label>
+			<label style="width:auto;height:auto;valign:middle;weight:1px;font:bold Arial 16px">粗体 12px</label>
+            <label style="width:auto;height:auto;valign:middle;weight:1px;font:Italic Arial 16px">斜体 16px</label>
+            <label style="width:auto;height:auto;valign:middle;weight:1px;font:bold Italic Arial 16px">粗斜体 24px</label>
 	   </div>
 	   </scrollview>
        </div>
