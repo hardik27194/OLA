@@ -39,6 +39,7 @@ UIFont *font ;
     //label.textColor = [UIColor whiteColor];
     //文字居中显示
     label.font=[UIFont  systemFontOfSize:14];
+    [label setFont:label.font];
     
     //label.lineHeightScale = 0.70;
     ////label.fixedLineHeight = 0.00;
@@ -66,9 +67,9 @@ UIFont *font ;
     attrLabel.attributedText = str;
   */
     //button长按事件
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showMessage:)];
-    longPress.minimumPressDuration = 0.2; //定义按的时间
-    longPress.delegate=self;
+    //UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showMessage:)];
+    //longPress.minimumPressDuration = 0.2; //定义按的时间
+    //longPress.delegate=self;
     //[label addGestureRecognizer:longPress];
 
     super.v=label;
@@ -153,8 +154,12 @@ UIFont *font ;
 }
 -(void) setFont:(UIFont *)font
 {
+    //NSLog(@"Label set font:%f",font.pointSize);
+    if(font.pointSize>0)
+    {
     UILabelEx * label=(UILabelEx *)(self.v);
     [label setFont:font];
+    }
 }
 -(NSString *)getText
 {
@@ -208,7 +213,7 @@ UIFont *font ;
             CGSize  actualsize =[firstChar boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin  attributes:tdic context:nil].size;
             CGFloat w=0,h=0;
             if(css.width>0)w=css.width;else w=actualsize.width;
-            if(css.height>0)h=css.height; else h=actualsize.height;
+            if(css.height>0)h=css.height+css.border.width*2; else h=actualsize.height+css.border.width*2;
             [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, w, h)];
             //if(w>origionSize.width || h!=origionSize.height)
             //    needRepaint=YES;
@@ -227,7 +232,7 @@ UIFont *font ;
     //   更新UILabel的frame
     CGFloat w=0,h=0;
     if(css.width>0)w=css.width;else w=actualsize.width;
-    if(css.height>0)h=css.height; else h=actualsize.height;
+    if(css.height>0)h=css.height+css.border.width*2; else h=actualsize.height+css.border.width*2;
         if(w<label.frame.size.width)w=label.frame.size.width;
     [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, w, h)];
 
@@ -288,7 +293,7 @@ UIFont *font ;
     
     CGFloat w=0,h=0;
     if(css.width>0)w=css.width;else w=actualsize.width;
-    if(css.height>0)h=css.height; else h=actualsize.height;
+    if(css.height>0)h=css.height+css.border.width*2; else h=actualsize.height+css.border.width*2;
     
     [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, w, h)];
     [label setNeedsDisplay];
@@ -317,7 +322,7 @@ UIFont *font ;
         NSLog(@"repaint id=%@",layout.objId);
         NSLog(@"layout.description=%@",layout.description);
         //set min or max frame of subviews
-        [(Layout *)layout.v repaint];
+        //[(Layout *)layout.v repaint];
         //[(Layout *)layout.v setFrameMinSize];
         //reset auto fitted subviews to fit its parents
         //[(Layout *)layout.v repaint];

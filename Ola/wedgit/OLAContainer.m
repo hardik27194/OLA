@@ -112,6 +112,11 @@
     
     if(obj.parent==nil)
         obj.parent=self;
+    
+    Layout *layout = (Layout *)v;
+    CGFloat  origionalW=layout.frame.size.width;
+    CGFloat origionalH=layout.frame.size.height;
+    
     [self addSubview:obj];
     //adjust the Label's acture size, and the layout will be shrinked
     if([obj isKindOfClass:[OLALabel class]])
@@ -122,9 +127,7 @@
     //repaint the layout with its origional size
     //[v setFrame:size];
     
-    Layout *layout = (Layout *)v;
-    CGFloat  origionalW=layout.frame.size.width;
-    CGFloat origionalH=layout.frame.size.height;
+
     [self repaint];
     
     BOOL needRepaint=NO;
@@ -144,6 +147,9 @@
     }
     else
      */
+    //NSLog(@"Container[addView] -- Info -- object=%@",objId);
+    //NSLog(@"Container[addView] -- Info -- origionalW=%f,origionalH=%f",origionalW,origionalH);
+    //NSLog(@"Container[addView] -- Info -- frame.width=%f,frame.height=%f",layout.frame.size.width,layout.frame.size.height);
     if(origionalW<layout.frame.size.width || origionalH<layout.frame.size.height)
     {
         needRepaint=YES;
@@ -156,7 +162,6 @@
             containerParent=containerParent.parent;
         }
         OLALayout *layout1= (OLALayout *)containerParent;
-        NSLog(@"Container addview layout=%@",layout1.description);
         [layout1 setFrameMinSize];
         [layout1 repaint];
         //set min or max frame of subviews

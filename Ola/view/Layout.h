@@ -13,6 +13,10 @@ typedef struct _LayoutParams
 {
     const char * align;
     const char * valign;
+    int left;
+    int top;
+    int right;
+    int bottom;
     int weight;
     int width;
     int height;
@@ -20,17 +24,18 @@ typedef struct _LayoutParams
 
 
 
-@interface Layout : IView<UIGestureRecognizerDelegate>
+@interface Layout : IView
 {
      NSString * backgroundImageUrl;
     //UIColor *backgroundColor;
-    float alpha;
+    //float bgAlpha;
 }
 
 @property (nonatomic,retain) NSString * backgroundImageUrl;
 
-@property (nonatomic) float alpha;
+//@property (nonatomic) float bgAlpha;
 -(void)repaint;
 -(void)setFrameMinSize;
 -(CGSize)minSize;
+ 
 @end

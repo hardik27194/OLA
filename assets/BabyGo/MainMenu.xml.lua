@@ -191,9 +191,10 @@ function ShowPopupMenu()
 		d_dt:addItem("images/nav/(18).png","Export","export")
 		d_dt:addItem("images/nav/(17).png","Import","importDairy")
 		local h=Main_body_menu:getHeight()
-		Log:d("ShowPopupMenu",'h=')
-		d_dt:setTop(h)
+		Log:d("ShowPopupMenu",'h='..h)
+        d_dt:setTop(h)
 		d_dt:showOn("Main_body")
+
 		isPopMenuDisplayed=true
 	end
 end

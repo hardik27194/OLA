@@ -26,7 +26,7 @@ function RightListView:create()
 		math.randomseed(tostring(os.time()):reverse():sub(1, 6))
 		self.dialogId=string.format("Dialog_RightListView_%d",math.floor(math.random()*1000000))
 		local dialogId=self.dialogId
-		local viewStr="<div id='"..dialogId.."' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:right;' onclick='_G[\""..dialogId.."\"]:setVisibility(\"block\")'><div layout='LinearLayout'  style='orientation:vertical;width:150px;height:auto;valign:top;align:right;' onclick='_G[\""..dialogId.."\"]:setVisibility(\"block\")'><div id='"..dialogId.."_item' layout='LinearLayout'  style='margin:2px;padding:10px;orientation:vertical;width:auto;align:center;alpha:1;background-color:#FFFFFF'></div></div></div>"
+		local viewStr="<div id='"..dialogId.."' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:top;align:right;' onclick='_G[\""..dialogId.."\"]:setVisibility(\"block\")'><div layout='LinearLayout' id='"..dialogId.."_Panel' style='orientation:vertical;width:150px;height:auto;valign:top;align:right;' onclick='_G[\""..dialogId.."\"]:setVisibility(\"block\")'><div id='"..dialogId.."_item' layout='LinearLayout'  style='margin:2px;orientation:vertical;width:auto;background-color:#ffffff;'></div></div></div>"
 		self.view=ui:createView(viewStr)
 end
 
@@ -45,8 +45,8 @@ function RightListView:addItem(ico,text,callback)
 	local imgIco=""
 	if ico~=nil then imgIco="background-image:url("..ico..")" end
 
-	Log:d("RightListView",imgIco)
-	_G[self.dialogId.."_item"]:addView(ui:createView("<div id='"..id .."' layout='LinearLayout' style='width:auto;align:center;margin:2px;valign:middle;background-color:#ccccff'><label id='"..icoId .."' style='width:30px;height:30px;margin:2px;"..imgIco.."' onpress='RightListView:onItemPressed(\""..id.."\")' onrelease='RightListView:onItemReleased(\""..id.."\")'  onclick='"..callback.."()'></label><label id='"..txtId .."' style='width:auto;align:left;valign:middle;margin:2px;'  onpress='RightListView:onItemPressed(\""..id.."\")' onrelease='RightListView:onItemReleased(\""..id.."\")' onclick='"..callback.."()'>"..text.."</label></div>"))
+
+	_G[self.dialogId.."_item"]:addView(ui:createView("<div id='"..id .."' layout='LinearLayout' style='width:auto;align:left;margin:2px;valign:middle;background-color:#ccccff'><label id='"..icoId .."' style='width:30px;height:30px;margin:2px;"..imgIco.."' onpress='RightListView:onItemPressed(\""..id.."\")' onrelease='RightListView:onItemReleased(\""..id.."\")'  onclick='"..callback.."()'></label><label id='"..txtId .."' style='width:auto;align:left;valign:middle;margin:2px;weight:1px;'  onpress='RightListView:onItemPressed(\""..id.."\")' onrelease='RightListView:onItemReleased(\""..id.."\")' onclick='"..callback.."()'>"..text.."</label></div>"))
 end
 function RightListView:OK(text,callback)
 	self.OK="<button onclick='"..callback.."()' style='width:auto;weight:1px;align:center;background-color:#FFFFCC;margin:2px;'>"..text.."</button>"

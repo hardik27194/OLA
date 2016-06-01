@@ -1,5 +1,6 @@
+Log:d("WordIndex","start t0 execute word index...")
 WordIndex = {}
-Log:d("WorkIndex","start t0 execute word index...")
+
 WordIndex.__index = WordIndex 
 
     WordIndex.pos={};  --int[]
@@ -18,21 +19,25 @@ function WordIndex.load()
     WordIndex.bookFileName = Global.currentBookFileName
     WordIndex.bookName = Global.currentBookFileName  --bookFileName.substring(bookFileName.lastIndexOf('/'));
     WordIndex.bookIndexFileName = WordIndex.bookFileName .. ".dbx";
+    Log:d("WordIndex","WordIndex.bookIndexFileName:"..WordIndex.bookIndexFileName)
 	local fin = fis:open(Global.storage..WordIndex.bookIndexFileName)
-	Global.bookName=fin:readStringWithLength()
-	Global.version=fin:readDouble()
-	Global.encyptType=fin:readByte()
-	Global.wordsCount=fin:readInt()
-	Global.bookGroupAmount = (Global.wordsCount % Global.groupSize > 0  and Global.wordsCount / Global.groupSize + 1) or Global.wordsCount / Global.groupSize;
-	--[[
+    if fin:exists() then
+
+	  Global.bookName=fin:readStringWithLength()
+	  Global.version=fin:readDouble()
+	  Global.encyptType=fin:readByte()
+	  Global.wordsCount=fin:readInt()
+	  Global.bookGroupAmount = (Global.wordsCount % Global.groupSize > 0  and Global.wordsCount / Global.groupSize + 1) or Global.wordsCount / Global.groupSize;
+	  --[[
            for i = 1,Global.wordsCount * 6, 1 do
                 WordIndex.pos[i] = fin:readInt();
             end
-	]]
-	local bytes=fin:readIntArray(Global.wordsCount * 6)
+	  ]]
+      local bytes=fin:readIntArray(Global.wordsCount * 6)
 			--Log:d("WordIndex.load","pos bytes="..bytes)
 			WordIndex.pos = loadstring('return '..bytes)()
 			--Log:d("File test","pos length="..#WordIndex.pos)
+      end
 	fin:close()
 end
 
@@ -105,7 +110,7 @@ end
     public static void writeWordState(byte[] states) throws IOException
     {
         FileConnection fc = (FileConnection) Connector.open(fileProtocal + bookFileName + "_studyinfo.dbms", Connector.READ_WRITE);
-        if (!fc.exists())
+        if (not fc.exists())
         {
             fc.create();
         }
@@ -118,4 +123,4 @@ end
     ]]
 
 WordIndex.load()
-Log:d("WorkIndex","word index executed")
+Log:d("WordIndex","word index executed")

@@ -10,7 +10,7 @@ function reload()
 end
 
 function show(pageName)
-	ui:switchView(pageName..".xml","callback('file opener returned param')","file opener params")
+	ui:switchView("Font.xml","callback('file opener returned param')","file opener params")
 end
 
 

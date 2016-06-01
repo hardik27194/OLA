@@ -82,6 +82,10 @@
     
     myLayout.layoutParams->weight=css.weight;
     
+    myLayout.layoutParams->left=css.left;
+    myLayout.layoutParams->top=css.top;
+    myLayout.layoutParams->right=css.top;
+    myLayout.layoutParams->bottom=css.bottom;
     
     //if(css.width>0)
     myLayout.layoutParams->width=css.width;
@@ -89,7 +93,7 @@
     myLayout.layoutParams->height=css.height;
     
     myLayout.backgroundImageUrl=css.backgroundImageURL;
-    myLayout.alpha=css.alpha;
+    //myLayout.alpha=css.alpha;
     
     NSLog(@"set padding=%f",css.padding.left);
     Padding padding;
@@ -127,8 +131,8 @@
         [layout setFrame:parent.v.frame];
         [layout repaint];
         OLAScrollView * sv=(OLAScrollView *) parent;
-        NSLog(@"OLAScrollView frame,w=%f,h=%f",v.frame.size.width,v.frame.size.height);
-        NSLog(@"OLAScrollView frame,X=%f,Y=%f",layout.frame.size.width,layout.frame.size.height);
+        //NSLog(@"OLAScrollView frame,w=%f,h=%f",v.frame.size.width,v.frame.size.height);
+        //NSLog(@"OLAScrollView frame,X=%f,Y=%f",layout.frame.size.width,layout.frame.size.height);
         [sv resetContentSizeToFitChildren];
     }
     

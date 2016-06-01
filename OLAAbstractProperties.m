@@ -27,6 +27,7 @@
 #import "lualib.h"
 #import "lauxlib.h"
 #import "OLADatabase.h"
+#import "OLAMethodThread.h"
 
 @implementation OLAAbstractProperties
 
@@ -114,6 +115,9 @@ static id  instance;
     
     [lua registClass:[OLAHTTP class] withGlobalName:@"HTTP"];
     [lua registClass:[OLAZipUtil class] withGlobalName:@"Zip"];
+    
+    [lua registClass:[OLAMethodThread class] withGlobalName:@"Thread"];
+    
     /*
      
      lua regist(FileConnector.class withGlobalName:@"FileConnector");
@@ -152,7 +156,19 @@ static id  instance;
     [tmp appendString:@"/"];
     [tmp appendString:fileBase];
     fileBase=tmp;
-
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //Get documents directory
+    //NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains  (NSDocumentDirectory, NSUserDomainMask, YES);
+    //NSString *documentsDirectoryPath = [directoryPaths objectAtIndex:0];
+    if ([fileManager fileExistsAtPath:fileBase]==NO) {
+         BOOL bo = [[NSFileManager defaultManager] createDirectoryAtPath:fileBase withIntermediateDirectories:YES attributes:nil error:nil];
+        if(!bo)
+        {
+            NSLog(@"Error to create folder:%@",fileBase);
+        }
+    }
+    
     
     NSMutableString * storage=[[NSMutableString alloc] initWithString:@"OLA.storage='"];
     //[storage appendString:[self getRootPath]];

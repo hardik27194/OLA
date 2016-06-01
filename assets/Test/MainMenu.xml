@@ -4,6 +4,7 @@
 .FrameLayout
 {
 	margin:0
+ 
 }
 -->
 </style>
@@ -28,13 +29,86 @@
 
      <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;">
 	   <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
+           <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;">
        <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
 		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
 				<label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
 			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
 		   </div>
 	   </div>
+       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
+	   </div>       <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:3px;">
+		   <div layout="LinearLayout" style="height:48px;orientation:horizontal;width:310px;margin:1px;padding:3px;background-color:#ccccCC;border:solid 1px green 10;">
+               <label style="width:auto;height:auto;align:center;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
+			   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url(images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   </div>
 	   </div>
+       
+       </div>ß
 	   </scrollview>
        </div>
 	</div>

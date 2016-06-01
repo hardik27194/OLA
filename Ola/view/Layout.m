@@ -10,10 +10,12 @@
 #import "OLAWedgit.h"
 #import "OLAProperties.h"
 #import "OLA.h"
+#import "IView.h"
 @implementation Layout
 
 @synthesize backgroundImageUrl;
-@synthesize alpha;
+//@synthesize bgAlpha;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -33,8 +35,10 @@
     // Drawing code
 }
 */
+
 -(void)repaint
 {
+    
     //after the size was changed, reset the background image with alpha
     if(self.backgroundImageUrl!=nil)
     {
@@ -50,7 +54,7 @@
     UIImage * bg=[UIImage imageNamed:img];
     bg=[OLAWedgit imageScale:bg toSize:self.frame.size];
     UIColor *bgColor = [UIColor  colorWithPatternImage: bg];
-    bgColor=[bgColor colorWithAlphaComponent:alpha];
+    //bgColor=[bgColor colorWithAlphaComponent:bgAlpha];
     [self setBackgroundColor:bgColor];
 }
 
@@ -61,8 +65,9 @@
 }
 -(CGSize)minSize
 {
-    return CGSizeMake(0, 0);
+    return self.frame.size;// CGSizeMake(0, 0);
 }
+/*
 #pragma mark - hitTest
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
@@ -72,5 +77,5 @@
     return [super hitTest:point withEvent:event];
     
 }
-
+*/
 @end

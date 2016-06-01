@@ -23,17 +23,16 @@
 					<button style="width:6px;height:24px;background-image:url(images/more.png)" onclick="ShowPopupMenu()"/>
 				</div>
 		</div>            
-  	<div id="Main_body_Content" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#66ccff;" >
-       <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;">
-	   <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
-	   <div layout="LinearLayout" style="orientation:vertical;width:auto;">
-			<label style="width:auto;height:auto;valign:middle;weight:1px;font:bold Arial 16px">粗体 12px</label>
-            <label style="width:auto;height:auto;valign:middle;weight:1px;font:Italic Arial 16px">斜体 16px</label>
-            <label style="width:auto;height:auto;valign:middle;weight:1px;font:bold Italic Arial 16px">粗斜体 24px</label>
-	   </div>
-	   </scrollview>
-       </div>
-	</div>
+        <div id="Main_body_Content" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;margin:3px;weight:1px;height:auto;valign:top;" >
+            <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
+                <div layout="LinearLayout" style="orientation:vertical;width:auto;">
+                    <label style="width:auto;height:auto;valign:middle;weight:1px;font:bold Courier 12px;border:solid 1px #cccccc 0px;" >粗体 12px</label>
+                    <label style="width:auto;height:auto;valign:middle;weight:1px;font:bold italic Courier 16px;border:solid 1px #cccccc 0px;" >斜体 16px</label>
+                    <label style="width:auto;height:auto;valign:middle;weight:1px;font:bold italic Courier 24px;border:solid 1px #cccccc 0px;" >粗斜体 24px</label>
+                </div>
+            </scrollview>
+            
+        </div>
 </div>
 				
 </body>

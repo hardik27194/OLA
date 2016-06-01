@@ -1,6 +1,6 @@
 	local study ;
 	local word ;
- 	local thread=Thread:create(1000)
+    local thread=Thread:create(1000)
 
    function initiate()
 		 Log:d("PrepareStudyWord","initiate...")
@@ -11,10 +11,11 @@
             if (isOpened) then
 				 Log:d("PrepareStudyWord","book is opend")
                 word = study.nextWord();
+                if(word~=nil) then repaint(word) end
 				 Log:d("PrepareStudyWord","word1="..word.spell)
                 autoNext();
             end
-		if(word~=nil) then repaint(word) end
+
         Global.currentReviewTimes=0;
     end
 	function swipe(direction)
@@ -103,7 +104,7 @@
 
     end
     function next()
-		if Study.fin ~= nil then
+		--if Study.fin ~= nil then
             word = readNextWord();
 			if(word==nil ) then
 				back()
@@ -111,7 +112,7 @@
 				repaint(word);
 				autoNext();
 			end
-		end
+		--end
    end
 
     function previous()
@@ -138,23 +139,28 @@ function autoNext()
 	if Global.autoBrowse then
 		Log:d("autoNext","Global.autoBrowse")
 		local s = os.date("%s", os.time())
+        thread=Thread:create(1000)
+        thread:reset()
 		thread:start("autoNextTimer("..s..")");
 		Log:d("autoNext","Global.autoBrowse1")
+    else
+        next()
 	end
 end
-
+local msg=uiMsg:create()
 function autoNextTimer(s0)
 	if Study.fin ~= nil then
 		local s = os.date("%s", os.time())
+        Log:d("autoNextTimer","this is the "..(s-s0).." seceod")
 		if s - s0 >= 10 then
-			Log:d("autoNextTimer",s - s0)
-			local msg=uiMsg:create()
+            thread:stop()
 			msg:updateMessage("next()")
 			return true
 		end
 	else
 		return true
 	end
+    return false
 end
 
 

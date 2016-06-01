@@ -42,7 +42,7 @@
 					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(19).png)" onpress="layerOnPress('L_previous')" onrelease="layerOnRelease('L_previous')" onclick="previous()" />
 				</div>
 				<div id="L_next" layout="LinearLayout" style="weight:1px;align:center;" onpress="layerOnPress('L_next')" onrelease="layerOnRelease('L_next')" onclick="next()">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(20).png)" onpress="layerOnPress('L_next')" onrelease="layerOnRelease('L_next')" onclick="next()" />
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(20).png)" onpress="layerOnPress('L_next')" onrelease="layerOnRelease('L_next')" onclick="autoNext()" />
 				</div>
 		</div>
 	</div>

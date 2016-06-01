@@ -32,4 +32,6 @@
 - (void) setHeight:(int) height;
 - (void) setWidth:(int) width;
 
+- (NSString *)getId;
+
 @end

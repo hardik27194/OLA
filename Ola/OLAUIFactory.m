@@ -57,6 +57,7 @@
 
 - (void) switchView:(NSString *) viewName callback:(NSString *) callback  params:(NSString  *) params
 	{
+        NSLog(@"switch view name=%@",viewName);
         [self switchView:viewName callback:callback params:params needReload:NO];
 	}
 	

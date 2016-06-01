@@ -331,7 +331,7 @@ LayoutParams * param;
                     NSString *method=[threadClick substringWithRange:NSMakeRange(0,start)];
                     NSString * paramstr=[threadClick substringWithRange:NSMakeRange(start+1,end-start-1)];
                     NSArray * params;
-                    if([trim(paramstr) caseInsensitiveCompare:@""])params=[[NSArray alloc] init];
+                    if([trim(paramstr) caseInsensitiveCompare:@""]==NSOrderedSame)params=[[NSArray alloc] init];
                     else params=[paramstr componentsSeparatedByString:@","];
                 
                     lua_State * lua=[[OLALuaContext getInstance] getLuaState];
@@ -617,23 +617,23 @@ LayoutParams * param;
 
 - (void) setHeight:(int) height
 {
+    css.height = height;
     if(height>0)
     {
         
     [v setFrame:CGRectMake(self.v.frame.origin.x,self.v.frame.origin.y, self.v.frame.size.width, height)];
-     NSLog(@"setHeight id=%@ : X=%f,Y=%f,w=%f,h=%d",self.objId, self.v.frame.origin.x,self.v.frame.origin.y, self.v.frame.size.width, height);
     }
-        css.height = height;
+    
 }
 - (int) getTop
 {
-    return self.v.frame.origin.x;
+    return self.v.frame.origin.y;
 }
 
 - (void) setTop:(int) top
 {
-    [v setFrame:CGRectMake(self.v.frame.origin.x,top, self.v.frame.size.width, self.v.frame.size.height)];
     css.top = top;
+    [v setFrame:CGRectMake(self.v.frame.origin.x,top, self.v.frame.size.width, self.v.frame.size.height)];
 }
 
 - (int) getLeft
@@ -643,8 +643,9 @@ LayoutParams * param;
 
 -(void) setLeft:(int) left
 {
-    [v setFrame:CGRectMake(left,self.v.frame.origin.y, self.v.frame.size.width, self.v.frame.size.height)];
     css.left = left;
+    [v setFrame:CGRectMake(left,self.v.frame.origin.y, self.v.frame.size.width, self.v.frame.size.height)];
+    
 }
 -(void) setVisibility:(NSString *)value
 {
@@ -951,12 +952,12 @@ class ButtonListener implements OnClickListener, OnTouchListener
     return css;
 }
 
-- (UIView *) getParent
+- (OLAView *) getParent
 {
-    return parent;
+    return  parent;
 }
 /*
-- (void) setParent:(UIView *)parent
+- (void) setParent:(OLAView *)parent
 {
     // clear the param while the view has no a previous parent
     // if(self.parent==nil)
@@ -967,7 +968,11 @@ class ButtonListener implements OnClickListener, OnTouchListener
     [self parseCSS];
     
 }
- */
+*/ 
+- (NSString *)getId
+{
+    return self.objId;
+}
 /*
 private Bitmap getImageFromAssetsFile(NSString * fileName)
 {

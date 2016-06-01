@@ -14,7 +14,7 @@
 	function writeReviewInfo( group) 
 		Log:d("Study","grour file ="..Global.storage..Global.currentBookFileName .. "_Groupinfo.dbms")
 		local fc = fos:open(Global.storage..Global.currentBookFileName  .. "_Groupinfo.dbms",'true') --append
-		Log:d("Study","file is exists=")
+		Log:d("Study","file is exists")
         fc:writeShort(Global.currentStudiedGroup)
 		Log:d("Study","writeShort is successful")
 		fc:writeByte(0)

@@ -22,18 +22,29 @@
    // NSString *homePath =   [NSHomeDirectory( ) stringByAppendingPathComponent:@"Documents"];
     
     NSString *sourcePath = filePath;//[homePath stringByAppendingPathComponent:filePath];  //源文件路径
-    
-    [[NSFileManager defaultManager] createFileAtPath:sourcePath contents:nil attributes:nil] ;
-    
-    outFile = [NSFileHandle fileHandleForWritingAtPath:sourcePath];
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if([fileManager fileExistsAtPath:sourcePath])
     {
         isExisted=true;
-
+        
     }
-
+    if(!isExisted)
+    {
+        NSString * parent=[sourcePath stringByDeletingLastPathComponent];
+        if(![fileManager fileExistsAtPath:parent])
+        {
+            [fileManager createDirectoryAtPath:parent withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        
+    }
+    NSLog(@"(FileOutputStream -- Info: file name= %@",sourcePath);
+    
+    [fileManager createFileAtPath:sourcePath contents:nil attributes:nil] ;
+    
+    outFile = [NSFileHandle fileHandleForWritingAtPath:sourcePath];
+    
+    
+    
     
     return self;
 }
@@ -61,8 +72,10 @@
     return outer;
 }
 
-- (NSString *) exists
+- (bool) exists
 {
+    return isExisted;
+    /*
     if(!isExisted) //如果不存在
     {
         
@@ -72,6 +85,7 @@
         
         return @"true";
     }
+     */
 }
 
 - (void) writeInt:(int) val
@@ -142,6 +156,21 @@
         [writer appendBytes:&b length:1];
     }
 }
+/*
+- (void) writeBoolean:(NSString *) val
+{
+    Byte b=1;
+    if(val caseInsensitiveCompare:@"true"]==NSOrderedSame)
+    {
+        [writer appendBytes:&b length:1];
+    }
+    else
+    {
+        b=0;
+        [writer appendBytes:&b length:1];
+    }
+}
+*/
 - (void) writeByte:(Byte) val
 {
     [writer appendBytes:&val length:sizeof(val)];

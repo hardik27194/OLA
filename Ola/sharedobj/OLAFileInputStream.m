@@ -52,8 +52,10 @@
     
 
     
-	- (NSString *) exists
+	- (bool) exists
 {
+    return isExisted;
+    /*
     NSLog(@"input stream exists()...");
         if(!isExisted) //如果不存在
         {
@@ -64,6 +66,7 @@
 
             return @"true";
         }
+     */
 	}
     
 	- (int) available

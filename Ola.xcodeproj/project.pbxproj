@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273A33631CFC9DF800345DDC /* OLAMethodThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 273A33621CFC9DF800345DDC /* OLAMethodThread.m */; };
 		84937DCE19093AE000E5E405 /* OLAProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DCD19093AE000E5E405 /* OLAProgressBar.m */; };
 		84937DE01909492B00E5E405 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DD01909492A00E5E405 /* Button.m */; };
 		84937DE11909492B00E5E405 /* FDLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84937DD21909492A00E5E405 /* FDLabelView.m */; };
@@ -200,6 +201,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		273A33611CFC9DF800345DDC /* OLAMethodThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAMethodThread.h; sourceTree = "<group>"; };
+		273A33621CFC9DF800345DDC /* OLAMethodThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAMethodThread.m; sourceTree = "<group>"; };
 		84937DCC19093AE000E5E405 /* OLAProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAProgressBar.h; sourceTree = "<group>"; };
 		84937DCD19093AE000E5E405 /* OLAProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAProgressBar.m; sourceTree = "<group>"; };
 		84937DCF1909492A00E5E405 /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Button.h; path = Ola/view/Button.h; sourceTree = SOURCE_ROOT; };
@@ -653,6 +656,8 @@
 				849744F818FADD0F007A8D5C /* OLADatabase.m */,
 				849744F918FADD0F007A8D5C /* OLADES3Encrypt.h */,
 				849744FA18FADD0F007A8D5C /* OLADES3Encrypt.m */,
+				273A33611CFC9DF800345DDC /* OLAMethodThread.h */,
+				273A33621CFC9DF800345DDC /* OLAMethodThread.m */,
 				849744FB18FADD0F007A8D5C /* OLAFileInputStream.h */,
 				849744FC18FADD0F007A8D5C /* OLAFileInputStream.m */,
 				849744FD18FADD0F007A8D5C /* OLAFileOutputStream.h */,
@@ -1367,6 +1372,7 @@
 				8497463F18FADD0F007A8D5C /* XMLDocument.m in Sources */,
 				8497462618FADD0F007A8D5C /* wax_gc.m in Sources */,
 				8497463718FADD0F007A8D5C /* OLATextField.m in Sources */,
+				273A33631CFC9DF800345DDC /* OLAMethodThread.m in Sources */,
 				8497462D18FADD0F007A8D5C /* OLAContainer.m in Sources */,
 				84DE5C8E18D9A1E30059C5C9 /* OLAViewController.m in Sources */,
 				84967B111950A130002BEB73 /* adler32.c in Sources */,

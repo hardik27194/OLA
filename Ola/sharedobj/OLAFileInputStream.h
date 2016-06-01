@@ -22,7 +22,7 @@
 @property (nonatomic,retain)NSInputStream *reader ;
 
 + (id) open:(NSString *) filePath;
-- (NSString *) exists;
+- (bool) exists;
 - (int) available;
 - (int) readInt;
 - (NSString *) readIntArray:(int )len;

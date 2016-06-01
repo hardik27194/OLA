@@ -46,9 +46,9 @@
 			Log:d("Study","book is :".. Global.storage..Global.currentBookFileName..".db")
 			Study.fin = fis:open(Global.storage..Global.currentBookFileName..".db")
             --end
-			Log:d("Study","book is existed:".. Study.fin :exists())
+			--Log:d("Study","book is existed:".. Study.fin :exists())
 
-            if (Study.fin :exists()~='true') then
+            if (not Study.fin :exists()) then
                 return false;
 			end
 			Log:d("Study","readiing Study wordStatus ")
@@ -318,6 +318,8 @@ function parseProncation(pron)
 	end
 	return p;
 end
+
+
 
 Log:d("Study","Study.lua is loaded...")
 

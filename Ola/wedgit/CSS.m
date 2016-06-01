@@ -118,7 +118,7 @@
     
     BOOL isBold=false;
     BOOL isItalic=false;
-    NSString *family=@"Arial";
+    NSString *family=@"Courier";
     for(NSString *s in items)
     {
         if(s==nil || [s compare:@""] == NSOrderedSame)continue;

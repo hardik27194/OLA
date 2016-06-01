@@ -10,4 +10,5 @@
 
 @interface OLAStringUtil : NSObject
 + (NSString *) toUTF6LE:(NSString *) byteArray;
++ (NSString *) addParameter:(NSString *)callback param:(NSString *)params;
 @end

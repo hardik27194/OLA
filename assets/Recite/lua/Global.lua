@@ -115,6 +115,7 @@ Log:d("Global","Global.storage="..Global.storage)
 	local fin = fis:open(Global.storage.."recite.properties")
 	Log:d("test Global","loadProperties")
          if fin:exists() then
+                Log:d("test Global","Properties file exists")
                 Global.groupSize=fin:readShort()
 				a=fin:readBoolean()
 				Log:d("test Global","showChinese="..a)
@@ -139,6 +140,7 @@ Log:d("Global","Global.storage="..Global.storage)
                 Global.languageSupport=fin:readByte();
 	      fin:close()
 	    else
+                 Log:d("test Global","Properties file does not exist")
                 Global.saveProperties();
         end
     end

@@ -55,7 +55,8 @@
 			local fc = fis:open(Global.storage..Global.currentBookFileName  .. "_Groupinfo.dbms")
 		    -- file head
 			 Log:d("Study View","start is 3..")
-			 if fc:exists()=='true' then
+			 --if fc:exists()=='true' then
+             if fc:exists() then
 				 local groupTmp=fc:readShort()
 				 Log:d("Study View","groupTmp="..groupTmp)
 				while groupTmp~=-1 do
@@ -87,7 +88,7 @@
     function initRSStudyinfo()  
 		local fc = fis:open(Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
 
-        if fc:exists()=="true" then
+        if fc:exists()then
             Global.lastStudiedGroup = fc:readShort();
             --//Global.setCurrentBookFileName(datainputstream.readUTF());
             --//Global.currentPronDirName = datainputstream.readUTF();

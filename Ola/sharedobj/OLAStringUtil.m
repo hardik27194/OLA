@@ -21,9 +21,7 @@
 	
 + (NSString *) toUTF6LE:(NSString *) byteArray
 	{
-		NSMutableString * buf= [[NSMutableString alloc] initWithCapacity:1];
-        //		buf.deleteCharAt(buf.length()-1);
-        //		buf.deleteCharAt(0);
+		//NSMutableString * buf= [[NSMutableString alloc] initWithCapacity:1];
         NSArray *bs=[byteArray  componentsSeparatedByString:@","];
         
         
@@ -36,29 +34,46 @@
             chars[i]=c;
             i++;
         }
-        NSLog(@"bs count=%d",bs.count);
+        NSLog(@"bs count=%lu",bs.count);
 
         NSString * str= [[NSString alloc]  initWithBytes:chars length:bs.count encoding:NSUTF16LittleEndianStringEncoding];
         return str;
-        /*
-		int i=0;
-		for(i=0;i<bs.count;i++)
-		{
-			if(i>=bs.count || bs[i].equals("") || i+1>=bs.length || bs[i+1].equals(""))
-			{
-				i++;
-				
-			}
-			else
-			{
-				int l=Integer.parseInt(bs[i]);
-				i++;
-				int h=Integer.parseInt(bs[i]);
-				buf.append(UTF6LE(h,l));
-			}
-		}
-		return buf.toString();
-         */
+
 	}
+
+/**
+ * add a new parameter to the callback method
+ * @param callback
+ * @param param
+ * @return
+ */
++ (NSString *) addParameter:(NSString *)callback param:(NSString *)params
+{
+    
+    callback=[callback stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    //NSRange pos= [callback rangeOfString:@")" options:NSBackwardsSearch];
+    NSString *s;
+    if( [callback  characterAtIndex:[callback length]-1] ==')' )
+    {
+        NSString *pre=[callback substringToIndex:[callback length]-1];
+        pre=[pre stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if([pre characterAtIndex:pre.length-1]!='(')
+        {
+            s=[pre stringByAppendingFormat:@",%@)",params];
+        }
+        else
+        {
+            s=[pre stringByAppendingFormat:@"%@)",params];
+
+        }
+    }
+    else
+    {
+        s=callback;
+    }
+    return s;
+}
+
 
 @end

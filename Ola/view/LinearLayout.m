@@ -29,10 +29,10 @@ CGFloat origionX,origionY;
     origionY=frame.size.height;
     if(self)
     {
-    NSLog(@"create Linear Layout,id=%@; X=%f,Y=%f,w=%f,h=%f",objId,self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-    children=[[NSMutableArray alloc] init];
-    //self.backgroundColor=[UIColor blueColor];
-    //orientation=vertical;
+        NSLog(@"create Linear Layout,id=%@; X=%f,Y=%f,w=%f,h=%f",objId,self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+        children=[[NSMutableArray alloc] init];
+        //self.backgroundColor=[UIColor blueColor];
+        //orientation=vertical;
         layoutParams=  malloc(sizeof(struct _LayoutParams));
         //padding = malloc(sizeof(struct _Padding));
         
@@ -45,7 +45,7 @@ CGFloat origionX,origionY;
 -(void)initSize
 {
     NSLog(@"init linear layout init 1: X=%f,Y=%f,w=%f,h=%f",self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-
+    
     //CGFloat w=origionX;
     //CGFloat h=origionY;
     CGFloat w=self.frame.size.width;
@@ -56,12 +56,12 @@ CGFloat origionX,origionY;
     w=w-margin.left-margin.right;
     h=h-margin.top-margin.bottom;
     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, w, h)];
-     NSLog(@"init linear layout init 2: X=%f,Y=%f,w=%f,h=%f",self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+    NSLog(@"init linear layout init 2: X=%f,Y=%f,w=%f,h=%f",self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
 }
 -(void)resizeToFitMaxChild
 {
     CGFloat w = self.frame.size.width,h = self.frame.size.height;
-
+    
     CGSize size=[self minSize];
     CGFloat w1,h1;
     w1=size.width+padding.left+padding.right;
@@ -69,22 +69,22 @@ CGFloat origionX,origionY;
     if(w1>w)w=w1;
     if(h1>h)h=h1;
     /*
-    NSLog(@"linear layout resize,min size= : w=%f,h=%f",w,h);
-    NSLog(@"linear layout resize,layoutParams size= : w=%d,h=%d",self.layoutParams->width,self.layoutParams->height);
-    if(orientation==vertical)
-    {
-        if(self.layoutParams->height>0)
-        {
-            h=self.layoutParams->height;
-        }
-        [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, h)];
-    }
-    else{
-        if(self.layoutParams->width>0){w=self.layoutParams->width;}
-
-        [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, w, self.frame.size.height)];
-
-    }
+     NSLog(@"linear layout resize,min size= : w=%f,h=%f",w,h);
+     NSLog(@"linear layout resize,layoutParams size= : w=%d,h=%d",self.layoutParams->width,self.layoutParams->height);
+     if(orientation==vertical)
+     {
+     if(self.layoutParams->height>0)
+     {
+     h=self.layoutParams->height;
+     }
+     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, h)];
+     }
+     else{
+     if(self.layoutParams->width>0){w=self.layoutParams->width;}
+     
+     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, w, self.frame.size.height)];
+     
+     }
      
      */
     if(self.layoutParams->height>0)
@@ -97,91 +97,91 @@ CGFloat origionX,origionY;
     NSLog(@"linear layout resize : X=%f,Y=%f,w=%f,h=%f",self.frame.origin.x, self.frame.origin.y, self.frame.size.width,self.frame.size.height);
 }
 /*
--(void)addSubView:(UIView *) view
-{
-    CGFloat X=0;
-    CGFloat Y=0;
-    CGFloat w=0;
-    CGFloat h=0;
-
-    
-    //init the frame of the subview
-    if( children.count<=0)
-    {
-        if(orientation == vertical)
-        {
-            Y=0;
-            //w=self.frame.size.width;
-            if(view.frame.size.width<=self.frame.size.width)w=self.frame.size.width;
-            else w=view.frame.size.width;
-            h=view.frame.size.height;
-        }
-        else
-        {
-            X=0;
-            w=view.frame.size.width;
-            //h=self.frame.size.height;
-            if(view.frame.size.height<=self.frame.size.height)h=self.frame.size.height;else h=view.frame.size.height;
-        }
-        if(view.frame.size.width>0) w=view.frame.size.width;
-        if(view.frame.size.height>0) h=view.frame.size.height;
-
-    }
-    else{
-        UIView* v= (UIView*) [children lastObject];
-    if(orientation == vertical)
-    {
-        Y=v.frame.origin.y+v.frame.size.height;
-        if(view.frame.size.width<=self.frame.size.width)w=self.frame.size.width;
-        else w=view.frame.size.width;
-        h=view.frame.size.height;
-    }
-    else
-    {
-        X=v.frame.origin.x+v.frame.size.width;
-        w=view.frame.size.width;
-        NSLog(@"view.frame.size.height=%f,self.frame.size.height=%f",view.frame.size.height,self.frame.size.height);
-        if(view.frame.size.height<=self.frame.size.height)h=self.frame.size.height;
-        else h=view.frame.size.height;
-    }
-        //if the size was defined munally, used the defined size
-        if([view isKindOfClass:[LinearLayout class]])
-        {
-            LinearLayout * l=(LinearLayout *)view;
-            if(l.layoutParams->width>0)w=l.layoutParams->width;
-            if(l.layoutParams->height)h=l.layoutParams->height;
-        }
-        else
-        {
-        if(view.frame.size.width>0) w=view.frame.size.width;
-        if(view.frame.size.height>0) h=view.frame.size.height;
-        }
-    }
-    NSLog(@"1-----------");
-    NSLog(@"X=%f,Y=%f,w=%f,h=%f",X, Y, w, h);
-    //set auto match the parent layout
-    if(view.frame.size.width==0)w=self.frame.size.width;
-    if(view.frame.size.height==0)h=self.frame.size.height;
-  
-    NSLog(@"view.frame:X=%f,Y=%f,w=%f,h=%f",view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-   
-
-    
-    
-    [self.children addObject:view];
-    
-    [super addSubview:view];
-    [self resize];
-    NSLog(@"X=%f,Y=%f,w=%f,h=%f",X, Y, w, h);
-    CGRect frame=CGRectMake(X, Y, w, h);
-    NSLog(@"X=%f,Y=%f,w=%f,h=%f",frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
-    frame=[self reFrame:frame];
-    
-    [view setFrame:frame];
-    NSLog(@"2-----------");
-    
-}
-*/
+ -(void)addSubView:(UIView *) view
+ {
+ CGFloat X=0;
+ CGFloat Y=0;
+ CGFloat w=0;
+ CGFloat h=0;
+ 
+ 
+ //init the frame of the subview
+ if( children.count<=0)
+ {
+ if(orientation == vertical)
+ {
+ Y=0;
+ //w=self.frame.size.width;
+ if(view.frame.size.width<=self.frame.size.width)w=self.frame.size.width;
+ else w=view.frame.size.width;
+ h=view.frame.size.height;
+ }
+ else
+ {
+ X=0;
+ w=view.frame.size.width;
+ //h=self.frame.size.height;
+ if(view.frame.size.height<=self.frame.size.height)h=self.frame.size.height;else h=view.frame.size.height;
+ }
+ if(view.frame.size.width>0) w=view.frame.size.width;
+ if(view.frame.size.height>0) h=view.frame.size.height;
+ 
+ }
+ else{
+ UIView* v= (UIView*) [children lastObject];
+ if(orientation == vertical)
+ {
+ Y=v.frame.origin.y+v.frame.size.height;
+ if(view.frame.size.width<=self.frame.size.width)w=self.frame.size.width;
+ else w=view.frame.size.width;
+ h=view.frame.size.height;
+ }
+ else
+ {
+ X=v.frame.origin.x+v.frame.size.width;
+ w=view.frame.size.width;
+ NSLog(@"view.frame.size.height=%f,self.frame.size.height=%f",view.frame.size.height,self.frame.size.height);
+ if(view.frame.size.height<=self.frame.size.height)h=self.frame.size.height;
+ else h=view.frame.size.height;
+ }
+ //if the size was defined munally, used the defined size
+ if([view isKindOfClass:[LinearLayout class]])
+ {
+ LinearLayout * l=(LinearLayout *)view;
+ if(l.layoutParams->width>0)w=l.layoutParams->width;
+ if(l.layoutParams->height)h=l.layoutParams->height;
+ }
+ else
+ {
+ if(view.frame.size.width>0) w=view.frame.size.width;
+ if(view.frame.size.height>0) h=view.frame.size.height;
+ }
+ }
+ NSLog(@"1-----------");
+ NSLog(@"X=%f,Y=%f,w=%f,h=%f",X, Y, w, h);
+ //set auto match the parent layout
+ if(view.frame.size.width==0)w=self.frame.size.width;
+ if(view.frame.size.height==0)h=self.frame.size.height;
+ 
+ NSLog(@"view.frame:X=%f,Y=%f,w=%f,h=%f",view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+ 
+ 
+ 
+ 
+ [self.children addObject:view];
+ 
+ [super addSubview:view];
+ [self resize];
+ NSLog(@"X=%f,Y=%f,w=%f,h=%f",X, Y, w, h);
+ CGRect frame=CGRectMake(X, Y, w, h);
+ NSLog(@"X=%f,Y=%f,w=%f,h=%f",frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+ frame=[self reFrame:frame];
+ 
+ [view setFrame:frame];
+ NSLog(@"2-----------");
+ 
+ }
+ */
 
 /**
  reset position of of the children views
@@ -196,7 +196,7 @@ CGFloat origionX,origionY;
 }
 - (CGRect) reFrame:(CGRect)frame //relativeLastObjectFrame:(CGRect) lastFrame //withAlign:(char *) align andValign:(char *)valign
 {
-    const char * align ="center";
+    const char * align ="left";
     const char * valign ="middle";
     
     //if(layoutParams!=nil)
@@ -215,20 +215,20 @@ CGFloat origionX,origionY;
     if(orientation==vertical)
     {
         NSLog(@"align=%s",align);
-    if(strncmp(align, "center",6)==0)
-    {
-        x=(pw-w)/2;
-    }
-    else if(strncmp(align, "left",4)==0)
-    {
-        x=0;
-    }
-    else if(strncmp(align, "right",5)==0)
-    {
-        x=(pw-w);
-    }
-    
-    if(frame.size.height>0)h=frame.size.height;
+        if(strncmp(align, "center",6)==0)
+        {
+            x=(pw-w)/2;
+        }
+        else if(strncmp(align, "left",4)==0)
+        {
+            x=0;
+        }
+        else if(strncmp(align, "right",5)==0)
+        {
+            x=(pw-w);
+        }
+        
+        if(frame.size.height>0)h=frame.size.height;
     }
     else
     {
@@ -312,7 +312,7 @@ CGFloat origionX,origionY;
     {
         weight+=v.css.weight;
     }
-    NSLog(@"linear weight=%f",weight);
+    if(weight>0)NSLog(@"linear weight=%f",weight);
     return weight;
 }
 
@@ -343,10 +343,10 @@ CGFloat origionX,origionY;
     [super addSubview:view.v];
     [self setFrameMinSize];
     /*
-    [self initSize];
-    [self requestLayout];
-    [self resize];
-    [self reSetChildrenFrame];
+     [self initSize];
+     [self requestLayout];
+     [self resize];
+     [self reSetChildrenFrame];
      */
 }
 
@@ -359,7 +359,7 @@ CGFloat origionX,origionY;
     //[self resize];
     [self reSetChildrenFrame];
     
-    [super repaint];
+    //[super repaint];
 }
 /*
  request to reset frame size of the subviews of the current layout without Margins
@@ -367,7 +367,7 @@ CGFloat origionX,origionY;
 -(void) requestLayout
 {
     NSLog(@"start request layout");
-
+    
     CGFloat sumWeight=[self sumWeight];
     //CGSize  minSize=[self minSize];
     if(orientation==horizontal)
@@ -375,17 +375,17 @@ CGFloat origionX,origionY;
         CGFloat fixedWidth = 0.0;
         for(OLAView * v in children)
         {
-            /*
-            if([v isKindOfClass:[OLALabel class]])
-            {
-                //reset text
-                CGFloat w=self.frame.size.width-padding.left-padding.right-v.css.margin.left-v.css.margin.right;
-                //NSLog(@"reset  label text,w=%f,h=%f",w, minSize.height);
-                OLALabel * labelView= (OLALabel *)v;
-                [labelView adjustSize:w];
-                //[v.v setFrame:CGRectMake(v.v.frame.origin.x, v.v.frame.origin.y, v.v.frame.size.width, v.v.frame.size.height)];
-            }
-             */
+            
+             if([v isKindOfClass:[OLALabel class]])
+             {
+             //reset text
+             CGFloat w=self.frame.size.width-padding.left-padding.right-v.css.margin.left-v.css.margin.right;
+             //NSLog(@"reset  label text,w=%f,h=%f",w, minSize.height);
+             OLALabel * labelView= (OLALabel *)v;
+             [labelView adjustSize:w];
+             //[v.v setFrame:CGRectMake(v.v.frame.origin.x, v.v.frame.origin.y, v.v.frame.size.width, v.v.frame.size.height)];
+             }
+             
             if(v.css.weight<=0)fixedWidth+=v.v.frame.size.width;
             NSLog(@"children size,w=%f,h=%f",v.v.frame.size.width,v.v.frame.size.height);
             fixedWidth+=v.css.margin.left+v.css.margin.right;
@@ -400,7 +400,7 @@ CGFloat origionX,origionY;
         {
             CGFloat y=[v.css getMargin].top+padding.top;
             CGFloat x=offsetX+[v.css getMargin].left;
-             NSLog(@"-----child----- offsetX,=%f",x);
+            NSLog(@"-----child----- offsetX,=%f",x);
             NSLog(@"fixedWidth,=%f,weight=%f",fixedWidth,sumWeight);
             CGFloat h=self.frame.size.height-padding.top-padding.bottom-v.css.margin.top-v.css.margin.bottom;
             if(v.css.height>0)h=v.css.height;
@@ -414,30 +414,30 @@ CGFloat origionX,origionY;
             {
                 [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, h)];
             }
-
+            
             
             /*
-            if([v.v isKindOfClass:[LinearLayout class]])
-            {
-                LinearLayout *childLayout=(LinearLayout *)v.v;
-                if(children.count>0 )
-                {
-                    CGSize size= [childLayout minSize];
-                    [v.v setFrame:CGRectMake(x,y, size.width, size.height)];
-
-                }
-                    [childLayout repaint];
-            }
+             if([v.v isKindOfClass:[LinearLayout class]])
+             {
+             LinearLayout *childLayout=(LinearLayout *)v.v;
+             if(children.count>0 )
+             {
+             CGSize size= [childLayout minSize];
+             [v.v setFrame:CGRectMake(x,y, size.width, size.height)];
+             
+             }
+             [childLayout repaint];
+             }
              */
             /*
-            if(v.css.height==0)
-            {
-                [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, v.v.frame.size.height)];
-            }
-            else
-            {
-                [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, v.v.frame.size.height)];
-            }
+             if(v.css.height==0)
+             {
+             [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, v.v.frame.size.height)];
+             }
+             else
+             {
+             [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, v.v.frame.size.height)];
+             }
              */
             
             
@@ -457,22 +457,22 @@ CGFloat origionX,origionY;
             }
             
             /*
-            if(v.css.weight>0)
-            {
-                CGFloat w=freeWidth *(v.css.weight/sumWeight);
-                [v.v setFrame:CGRectMake(x,y, w, v.v.frame.size.height)];
-                NSLog(@"self frame:id=%@, width=%f",objId,w);
-                //[v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, v.v.frame.size.height)];
-            }
-            
-            if([v.v isKindOfClass:[Layout class]])
-            {
-                
-                LinearLayout *childLayout=(LinearLayout *)v.v;
-                
-                [childLayout repaint];
-            }
-            */
+             if(v.css.weight>0)
+             {
+             CGFloat w=freeWidth *(v.css.weight/sumWeight);
+             [v.v setFrame:CGRectMake(x,y, w, v.v.frame.size.height)];
+             NSLog(@"self frame:id=%@, width=%f",objId,w);
+             //[v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, v.v.frame.size.height)];
+             }
+             
+             if([v.v isKindOfClass:[Layout class]])
+             {
+             
+             LinearLayout *childLayout=(LinearLayout *)v.v;
+             
+             [childLayout repaint];
+             }
+             */
             offsetX+=[v.css getMargin].left+[v.css getMargin].right+v.v.frame.size.width;
             NSLog(@"request child layout resize : X=%f,Y=%f,w=%f,h=%f",v.v.frame.origin.x, v.v.frame.origin.y, v.v.frame.size.width,v.v.frame.size.height);
         }
@@ -520,6 +520,7 @@ CGFloat origionX,origionY;
             if(v.css.weight>0)
             {
                 CGFloat h=freeHeight *(v.css.weight/sumWeight);
+                NSLog(@"weight,weight=%f",v.css.weight);
                 NSLog(@"offsetY,h=%f,h=%f",v.v.frame.size.height,h);
                 NSLog(@"margin,t=%f,b=%f",v.css.margin.top,v.css.margin.bottom);
                 [v.v setFrame:CGRectMake(x,y,  w,h)];
@@ -532,45 +533,45 @@ CGFloat origionX,origionY;
             
             /* removed
              CGFloat y=offsetY+[v.css getMargin].top;
-            NSLog(@"offset y=%f",offsetY);
-            CGFloat x=[v.css getMargin].left;
-            //origion mini size
-            if(v.css.weight>0)
-            {
-                CGFloat h=freeHeight *(v.css.weight/sumWeight);
-                NSLog(@"Free Height=%f,sum weight=%f,weight=%d",h,sumWeight,v.css.weight);
-                [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, h)];
-            }
-            else if([v.v isKindOfClass:[Layout class]])
-            {
-                if(children.count>0 )
-                {
-                    LinearLayout *childLayout=(LinearLayout *)v.v;
-                    CGSize size= [childLayout minSize];
-                    [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, size.height)];
-                    [childLayout repaint];
-                }
-            }
+             NSLog(@"offset y=%f",offsetY);
+             CGFloat x=[v.css getMargin].left;
+             //origion mini size
+             if(v.css.weight>0)
+             {
+             CGFloat h=freeHeight *(v.css.weight/sumWeight);
+             NSLog(@"Free Height=%f,sum weight=%f,weight=%d",h,sumWeight,v.css.weight);
+             [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, h)];
+             }
+             else if([v.v isKindOfClass:[Layout class]])
+             {
+             if(children.count>0 )
+             {
+             LinearLayout *childLayout=(LinearLayout *)v.v;
+             CGSize size= [childLayout minSize];
+             [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, size.height)];
+             [childLayout repaint];
+             }
+             }
              */
             
             //if set to "auto", set it match to parent
             /*
-            if(v.css.width==0)
-            {
-                [v.v setFrame:CGRectMake(x, y, self.frame.size.width-[v.css getMargin].left-[v.css getMargin].right, v.v.frame.size.height)];
-            }
-            else
-            {
-                [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, v.v.frame.size.height)];
-            }
+             if(v.css.width==0)
+             {
+             [v.v setFrame:CGRectMake(x, y, self.frame.size.width-[v.css getMargin].left-[v.css getMargin].right, v.v.frame.size.height)];
+             }
+             else
+             {
+             [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, v.v.frame.size.height)];
+             }
              */
-             
+            
             
             if([v.v isKindOfClass:[Layout class]])
             {
                 
                 LinearLayout *childLayout=(LinearLayout *)v.v;
-
+                
                 [childLayout repaint];
             }
             if([v isKindOfClass:[OLAScrollView class]])
@@ -581,13 +582,13 @@ CGFloat origionX,origionY;
                 [childLayout repaint];
             }
             /*
-            if(v.css.weight>0)
-            {
-                CGFloat h=freeHeight *(v.css.weight/sumWeight);
-
-                [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, h)];
-            }
-            */
+             if(v.css.weight>0)
+             {
+             CGFloat h=freeHeight *(v.css.weight/sumWeight);
+             
+             [v.v setFrame:CGRectMake(x, y, v.v.frame.size.width, h)];
+             }
+             */
             offsetY+=[v.css getMargin].top+[v.css getMargin].bottom+v.v.frame.size.height;
         }
     }
@@ -597,7 +598,7 @@ CGFloat origionX,origionY;
 - (void) reSetChildrenFrame//relativeLastObjectFrame:(CGRect) lastFrame //withAlign:(char *) align andValign:(char *)valign
 {
     NSLog(@"reSetChildrenFrame layout resize : X=%f,Y=%f,w=%f,h=%f",self.frame.origin.x, self.frame.origin.y, self.frame.size.width,self.frame.size.height);
-
+    
     CGSize sumMargin=[self sumMargin];
     CGSize minSize=[self minSize];
     const char * align=layoutParams->align;
@@ -609,7 +610,7 @@ CGFloat origionX,origionY;
         CGFloat x=0,y=0;
         
         CGFloat freeWidth=self.frame.size.width-minSize.width-padding.left-padding.right;
-
+        
         if(strncmp(align, "center",6)==0)
         {
             x=freeWidth/2;
@@ -618,6 +619,7 @@ CGFloat origionX,origionY;
         {
             x=freeWidth;
         }
+        
         else  //if(strncmp(align, "left",4)==0)
         {
             x=offsetX;
@@ -637,11 +639,17 @@ CGFloat origionX,origionY;
             {
                 y=self.frame.size.height-v.v.frame.size.height;
             }
+            
             else //if(strncmp(valign, "middle",6)==0 || strncmp(valign, "center",6)==0)
             {
                 y=(self.frame.size.height-v.v.frame.size.height)/2;
             }
-            [v.v setFrame:CGRectMake(v.v.frame.origin.x+x, y+offsetY, v.v.frame.size.width, v.v.frame.size.height)];
+            
+            int X=v.v.frame.origin.x+x;
+            int Y=y+offsetY;
+            if(v.css.top>0) Y=v.css.top;
+            if(v.css.left>0) X=v.css.left;
+            [v.v setFrame:CGRectMake(X, Y, v.v.frame.size.width, v.v.frame.size.height)];
         }
     }
     else
@@ -681,8 +689,13 @@ CGFloat origionX,origionY;
                 x=padding.left+v.css.margin.left;
             }
             //if(x<0)x=0;
-            NSLog(@"child reset frame:id=%@, x=%f,y=%f,w=%f,h=%f",objId,x,y, v.v.frame.size.width, v.v.frame.size.height);
-            [v.v setFrame:CGRectMake(x+offsetX, v.v.frame.origin.y+y, v.v.frame.size.width, v.v.frame.size.height)];
+            int X=x+offsetX;
+            int Y=v.v.frame.origin.y+y;
+            if(v.css.top>0) Y=v.css.top;
+            if(v.css.left>0) X=v.css.left;
+            //NSLog(@"child reset frame:id=%@, top=%d,left=%d",objId,v.css.top,v.css.left);
+            //NSLog(@"child reset frame:id=%@, x=%d,y=%d,w=%f,h=%f",objId,X,Y, v.v.frame.size.width, v.v.frame.size.height);
+            [v.v setFrame:CGRectMake(X, Y, v.v.frame.size.width, v.v.frame.size.height)];
             
             //y+=v.v.frame.size.height;
             
@@ -697,24 +710,24 @@ CGFloat origionX,origionY;
  
  for(all child)
  {
-    size = child.min_size
-    if(size is defined)size=defined size;
+ size = child.min_size
+ if(size is defined)size=defined size;
  
  }
  
  if(horiental)
  {
-    height=max children height
-    min_width=sum(children's width)
-    if(min_width<self.width)
-    {
-        free_width=self.width-min_width
-        weight_amount=sum(children.weight)
-        for(c2 in all child)
-        {
-            c2.width+= free_width/weight_amount * c2.weight;
-        }
-    }
+ height=max children height
+ min_width=sum(children's width)
+ if(min_width<self.width)
+ {
+ free_width=self.width-min_width
+ weight_amount=sum(children.weight)
+ for(c2 in all child)
+ {
+ c2.width+= free_width/weight_amount * c2.weight;
+ }
+ }
  }
  
  */

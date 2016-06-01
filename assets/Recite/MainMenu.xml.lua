@@ -40,6 +40,14 @@ end
 function showSettingView()
 	ui:switchView("SettingView.xml","callback('file opener returned param')","file opener params")
 end
+
+function back2Portal()
+Log:d("Recite","exit...")
+	LMProperties:printtype()
+	LMProperties:exit()
+end
+
+
 function test()
 	--[[
 	rootPath=FileConnector:getSDRoot()
@@ -212,10 +220,10 @@ function closeDialog(dilogId)
 end
 
 function threadMethodTest()
-	local thread=Thread:create(1000,10)
+	local thread=Thread:create(1000)
 	local s = os.date("%s", os.time())   
-	--thread:start("threadMethod("..s..")");
-	thread:start("threadMethod()");
+	thread:start("threadMethod("..s..")");
+	--thread:start("threadMethod()");
 end
 
 function threadMethod(s0)
@@ -228,12 +236,12 @@ function threadMethod(s0)
 			Log:d("Timer","this is the "..n.." seceod")    
 		end    
 	]]
-	--Log:d("Timer","this is the "..(s-s0).." seceod")    
-	--	if s -s0  >= 30 then        
+	Log:d("Timer","this is the "..(s-s0).." seceod")
+		if s -s0  >= 30 then
 			Log:d("Timer","end...")    
 			msg:updateMessage("showFirstStudyView()")
 			return true
-	--	end
+    end
 
 end
 
@@ -248,9 +256,5 @@ function stopRecorder()
 	recorder:stopRecording()
 end
 
-function back2Portal()
-Log:d("Recite","exit...")
-	LMProperties:printtype()
-	LMProperties:exit()
-end
+
 Log:d("MainMenu","loaded successfullly")

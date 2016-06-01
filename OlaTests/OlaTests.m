@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "OLAStringUtil.h"
 
 @interface OlaTests : XCTestCase
 
@@ -28,7 +29,21 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSString * cb=@" test( ) ";
+    NSString * result=[OLAStringUtil addParameter:cb param:@"'name'"];
+    NSLog(@"%@",result);
+    XCTAssertEqualObjects(result, @"test('name')","SHould equals");
+    
+    cb=@" test('test') ";
+    result=[OLAStringUtil addParameter:cb param:@"'name'"];
+    NSLog(@"%@",result);
+    XCTAssertEqualObjects(result, @"test('test','name')");
+    
+    NSString * a=@"a";
+    NSArray *as=[a componentsSeparatedByString:@","];
+    NSLog(@"length=%d",as.count);
+    
 }
 
 @end

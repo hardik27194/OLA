@@ -92,6 +92,7 @@ CGFloat origionX,origionY;
 {
     [self.children addObject:view];
     [super addSubview:view.v];
+    NSLog(@"FrameLayout[addSubview] -- Info-- :X=%f,Y=%f,w=%f,h=%f",view.v.frame.origin.x, view.v.frame.origin.y, view.v.frame.size.width, view.v.frame.size.height);
     
 }
 /*
@@ -105,6 +106,15 @@ CGFloat origionX,origionY;
         {
             CGFloat y=self.frame.origin.y+v.css.margin.top+padding.top;
             CGFloat x=self.frame.origin.x+v.css.margin.left+padding.left;
+            if(v.css.top>0)
+            {
+                y=v.css.top+v.css.margin.top+padding.top;
+            }
+            if(v.css.left>0)
+            {
+                x=v.css.left+v.css.margin.left+padding.left;
+            }
+            
             CGFloat w=0,h=0;
             w=self.frame.size.width-v.css.margin.left-v.css.margin.right-padding.left-padding.right;
             h=self.frame.size.height-v.css.margin.top-v.css.margin.bottom-padding.top-padding.bottom;
