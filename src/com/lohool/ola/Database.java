@@ -1,7 +1,12 @@
 package com.lohool.ola;
 
 import java.io.File;
+//import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import android.content.ContentValues;
@@ -15,6 +20,12 @@ public class Database {
 	Context ctx;
 	SQLiteDatabase db;
 	private HashMap values;
+//	PreparedStatement pstmt;
+	
+	//for prepared statements
+	String pstmtSql;	
+	ArrayList pstmtParams=new ArrayList();
+	
 	public Database()
 	{
 		this.ctx=Main.ctx;
@@ -60,6 +71,63 @@ public class Database {
 		return db.insert(table, null, initialValues);
 	}
 	
+    public void createPreparedStatement(String sql) throws  SQLException
+	{
+    	pstmtSql=sql;
+	}
+    public void setColumn(String value) throws SQLException
+    {
+    	pstmtParams.add(value);
+    }
+
+    public void setColumn(int value) throws SQLException
+    {
+    	pstmtParams.add(value);
+    }
+
+    public void setColumn(long value) throws SQLException
+    {
+    	pstmtParams.add(value);
+    }
+
+    public void setColumn(float value) throws SQLException
+    {
+    	pstmtParams.add(value);
+    }
+
+    public void setColumn(double value) throws SQLException
+    {
+    	pstmtParams.add(value);
+    }
+
+    public void setColumn( byte value) throws SQLException
+    {
+    	pstmtParams.add(value);
+    }
+
+    public void setColumn(short value) throws SQLException
+    {
+    	pstmtParams.add(value);
+    }
+
+    public void setColumn(String date,String dateformat) throws SQLException, ParseException
+    {
+    	SimpleDateFormat form = new SimpleDateFormat(dateformat);
+    	pstmtParams.add(form.parse(date));
+    }
+
+    public void setColumn(Object value) throws SQLException
+    {
+    	pstmtParams.add(value);
+    }
+
+    
+    public void executePreparedStatement() throws  SQLException
+    {
+    	//Object[] p=new Object[pstmtParams.size()];
+    	db.execSQL(pstmtSql, pstmtParams.toArray());
+    }
+    
 //	public ArrayList query(String table, String[] columns)
 //	{
 //		//db.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit, cancellationSignal);
@@ -98,7 +166,8 @@ public class Database {
 			for(int i=0;i<size;i++)
 			{
 				String name=cursor.getColumnName(i);
-				String value=cursor.getString(i);
+				String value=cursor.getString(i).replace("\"", "\\\"");
+				 //value=value.replace("'", "\\'");
 				//values.put(name, value);
 				if(i!=0)buf.append(",");
 				buf.append(name).append("=\"").append(value).append("\"");
@@ -111,7 +180,7 @@ public class Database {
 		System.out.println("results.size="+cursor.getCount());
 		
 		if(buf.length()>0)buf.deleteCharAt(buf.length()-1);
-		System.out.println("results="+buf.toString());
+		//System.out.println("results="+buf.toString());
 		return buf.toString();
 	}
 

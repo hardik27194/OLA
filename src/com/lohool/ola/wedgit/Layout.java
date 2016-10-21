@@ -80,6 +80,11 @@ public abstract class Layout extends IContainer
 			v=new IRelativeLayout(parent, context,  root);
 			
 		}
+		else if(layoutName.equalsIgnoreCase("WebView"))
+		{
+			v=new IWebView(parent, context,  root);
+			
+		}
 		return v;
 	}
 	

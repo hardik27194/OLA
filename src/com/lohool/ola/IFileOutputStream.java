@@ -77,10 +77,12 @@ public class IFileOutputStream {
 	{
 		out.writeLong(val);
 	}
+	/*
 	public void writeBoolean(String val) throws IOException
 	{
 		out.writeBoolean(val.equalsIgnoreCase("true")?true:false);
 	}
+	*/
 	public void writeBoolean(boolean val) throws IOException
 	{
 		out.writeBoolean(val);

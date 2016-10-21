@@ -11,66 +11,82 @@
   
      <div id="div2" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;valign:top;">
 
-            <div id="div2" layout="LinearLayout" style="orientation:horizontal;margin:3px;width:auto;background-color:#99CCFF">
+            <div id="div2" layout="LinearLayout" style="orientation:horizontal;width:auto;background-color:#99CCFF">
 				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
-					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(19).png)" onclick="previous()" />
+					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(19).png)" onclick="previous()" />
 				</div>
 				<div id="L_reload" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center;" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()">
-					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(151).png);" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()" />
+					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(151).png);" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()" />
 				</div>
 				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
-					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(20).png)" onclick="next()" />
+					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(20).png)" onclick="testProgressBar2()" />
 				</div>
 			</div>
+			<ProgressBar id="ProgressBar"  style="style:bar;width:auto;height:20px;value:20;"></ProgressBar>
             <div id="div2" layout="LinearLayout" style="orientation:vertical;width:auto;margin:3px;weight:3px;height:auto;valign:top;">
 			<scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
 				<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;">
-					<label style="align:left;width:auto;border:solid 2px #00ff00 8px;color:#ff0000;font:bold italic Courier 16px;">Installed Apps:析构路径，获得组成此路径的各个部分</label>
+					<label style="align:left;width:auto;border:solid 2px #00ff00 8px;color:#ff0000;font:bold italic Courier 16px;">Installed Apps:</label>
 					<div  layout="LinearLayout"  style="width:auto;height:1px;background-color:#cccccc" />
-					<div id="Apps_Panel" layout="LinearLayout"  style="width:auto;height:auto;align:center;">
+					<div id="Apps_Panel" layout="LinearLayout"  style="orientation:vertical;width:auto;height:auto;align:center;">
 					</div>
 					<label style="align:left;width:auto;">Other Apps:</label>
 					<div  layout="LinearLayout"  style="width:auto;height:1px;background-color:#cccccc" />
 					<div id="Apps_Other_Panel" layout="LinearLayout"  style="width:auto;align:center;">
 					</div>
+
                 </div>
 			</scrollview>
 			</div>
             <div layout="LinearLayout" style="margin:3px;width:auto;align:left;background-color:#99CCFF">
-				<label  style="orientation:horizontal;weight:1px;color:#FFFFFF">Enterprise News</label>
+				<label  style="orientation:horizontal;weight:1px;color:#FFFFFF">Simion IELTS News</label>
 				<label  style="orientation:horizontal;weight:1px;align:right;color:#FFFFFF">More...</label>
 			</div>
-            <div id="div2" layout="LinearLayout" style="orientation:vertical;margin:3px;padding:1px;width:auto;align:left;background-color:#DAF9FE">
-				<label id="New_1" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_1')" onrelease="layerOnRelease1('New_1')" onclick="showNews(1)">Incorrectly Used Words :Affect and effect</label>
-				<label id="New_2"  style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_2')" onrelease="layerOnRelease1('New_2')" onclick="showNews(2)">Incorrectly Used Words :Compliment and complement</label>
-				<label id="New_3" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_3')" onrelease="layerOnRelease1('New_3')" onclick="showNews(3)">Incorrectly Used Words :Farther and further</label>
+            <div layout="LinearLayout" style="orientation:vertical;margin:3px;padding:1px;width:auto;align:left;background-color:#DAF9FE">
+				<label id="New_1" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_1')" onrelease="layerOnRelease1('New_1')" onclick="showSimonDetail(1)">Incorrectly Used Words :Affect and effect</label>
+				<label id="New_2"  style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_2')" onrelease="layerOnRelease1('New_2')" onclick="showSimonDetail(2)">Incorrectly Used Words :Compliment and complement</label>
+				<label id="New_3" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('New_3')" onrelease="layerOnRelease1('New_3')" onclick="showSimonDetail(3)">Incorrectly Used Words :Farther and further</label>
 			</div>
 			<div id="div2" layout="LinearLayout" style="orientation:horizontal;margin:3px;width:auto;background-color:#99CCFF">
 				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
-				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(19).png)" onclick="previous()" />
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(19).png)" onclick="previous()" />
 				</div>
 				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
-				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(20).png)" onclick="next()" />
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(121).png)" onclick="videoPlay()" />
+				</div>
+				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(244).png)" onclick="mapTest()" />
+				</div>
+				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(166).png)" onclick="alipay()" />
+				</div>
+				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(20).png)" onclick="next()" />
 				</div>
 			</div>
 
      </div>
 	<div id="load_wait_panel" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;background-color:#6699CC;alpha:0.8;visibility:hidden;">
-            <div id="div2" layout="LinearLayout" style="orientation:horizontal;margin:3px;width:auto;background-color:#99CCFF">
-				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
-					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(19).png)" onclick="previous()" />
+				<div layout="LinearLayout" style="orientation:vertical;width:auto;height:auto;align:center;valign:middle;">
+				<ProgressBar style="style:rotate;progress-image:url($/images/loading.png);width:60px;height:60px;"></ProgressBar>
+				<label style="margin:10px;align:center;"  onclick="reload()">   Loading...</label>
 				</div>
-				<div id="L_reload" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center;" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()">
-					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(151).png);" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()" />
-				</div>
-				<div id="div2" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center">
-					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/ico/(20).png)" onclick="next()" />
-				</div>
+	</div>
+
+<div id='news_dialog' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc;visibility:hidden;'>
+	<div  layout='LinearLayout'  style='margin:20px;padding:10px;orientation:vertical;width:auto;align:center;alpha:1;background-color:#FFFFFF'>
+		<label id="news_title" style='width:auto;background-image:url(images/10.gif);'>News</label>
+		<scrollview id="scroll" style="width:auto;height:400px;weight:1px;">
+			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;">
+				<!--<label id="news_content" >Loading...</label>-->
+				<div id="news_content" layout="webview" ></div>
 			</div>
-				<div id="div2" layout="LinearLayout" style="orientation:horizontal;width:auto;weight:1px;height:auto;align:center;valign:middle;">
-				<label id="btn1" style="top:1px;margin:2px;align:center;"  >Loading...</label>
-				</div>
+		</scrollview>
+		<button onclick='closeDialog("news_dialog")'>Close</button>
+	</div>
 </div>
+
+
 </body>
 </html>
 

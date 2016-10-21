@@ -12,9 +12,8 @@
 			<label id="lbl_version" style="width:auto;">V 1.0</label>
 			<label id="lbl_loading" style="width:auto;align:center;">Loading MESB Platforming...</label>
 			<label id="lbl_msg" style="width:auto;align:center;"> </label>
-			<ProgressBar id="ProgressBar"  style="width:auto;height:15px;margin:1px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:0;"></ProgressBar>
-			<ProgressBar id="ProgressBar2"  style="width:auto;height:5px;margin:1px;style:horizontal;indeterminate:false;indeterminateOnly:false;value:1;"></ProgressBar>
-
+			<ProgressBar id="ProgressBar"  style="width:auto;height:4px;margin:1px;value:0"></ProgressBar>
+			<ProgressBar id="ProgressBar2"  style="width:auto;height:2px;margin:1px;"></ProgressBar>
      </div>
 </body>
 </html>

@@ -1,8 +1,16 @@
     Global = {}
 
+	--Global.server="http://192.168.0.106:8080/ct/"
+	Global.server="http://lohool.imwork.net/ct/"
+
+
 	Global.storage=OLA.storage.."/Recite/"
-Log:d("Global","Global.storage="..Global.storage)
+	Log:d("Global","Global.storage="..Global.storage)
     Global.charPos=1;
+	Global.newsDownloadTime=0
+	--the books which are on downloading
+	Global.bookOnDownloading={}
+
     function Global.getGroupSize()
     
         return Global.groupSize;
@@ -12,22 +20,15 @@ Log:d("Global","Global.storage="..Global.storage)
         Global.groupSize = aGroupSize;
     end
 
-    --[[
-     * version of PocketWords
-     public static double version;
-     ]]
+    --version of PocketWords
     Global.version=0;
 
-    --[[
-     * 0--support, 1--unsupport
-     public static byte languageSupport=0;
-     ]]
+    -- 0--support, 1--unsupport
     Global.languageSupport=0;
 
     --[[
      * 0-- not encrypt
      * 1-- 3 DES
-     public static byte encryptMethod=0;
      ]]
     Global.encryptMethod=0;
 
@@ -35,53 +36,41 @@ Log:d("Global","Global.storage="..Global.storage)
     --public static short lastStudiedGroup;
     Global.lastStudiedGroup=0;
 
-    --[[
-     * the current group be studied
-     public static short currentStudiedGroup;
-     ]]
+     -- the current group be studied
     Global.currentStudiedGroup=0;
-    --[[
-     * the current times that the group be reviewed.
-     public static short currentReviewTimes;
-     ]]
+
+    -- the current times that the group be reviewed.
     Global.currentReviewTimes=0;
-    --[[
-     * the count of words in every group
-     private static short groupSize = 5;
-     ]]
+
+     -- the count of words in every group
     Global.groupSize = 20;
-    --[[
-     *book's name
-     ]]
-    --public static String currentBookName = "";
-    Global.currentBookName = "ITIES1228";
+
+    --book's name
+    Global.currentBookName = "Please select a book";
     --private static String currentBookFileName = "";--/words.db
-    Global.currentBookFileName = "ITIES1228";
+    Global.currentBookFileName = "";
    -- public static String currentPronDirName = "";
     Global.currentPronDirName = "";
    -- public static int bookGroupAmount;
     Global.bookGroupAmount=0;
-    --[[
-     * the count of the vocabulary
-     public static int wordsCount;
-     ]]
+
+    -- the count of the vocabulary
+
     Global.wordsCount=0;
+
     --[[
      * Is reciting words or reviewing words now.
      * If the value is TRUE, it means is reciting now, FLASE is reviewing.
      * 1:studying
      * 2:newreview
-     public static boolean isStudy = false;
      ]]
     Global.isStudy = false;
-    --[[
-     * auto play the ward's sound
-     Global.autoPronounce = false;
-     ]]
+
+    -- auto play the ward's sound
+
     Global.autoPronounce = false;
     --[[
      * 0--supported, 1--not supported
-      public static int isFileSystemSupported = 0;
      ]]
     Global.isFileSystemSupported = 0;
     
@@ -111,14 +100,15 @@ Log:d("Global","Global.storage="..Global.storage)
    -- public static boolean reviewByChinese=false;
     Global.reviewByChinese=false;
 
+	--Create time, the first time that the user start to use the app
+	Global.startTime=os.time()
+	Global.totalStudyTime=0
+
     function Global.loadProperties() 
 	local fin = fis:open(Global.storage.."recite.properties")
-	Log:d("test Global","loadProperties")
          if fin:exists() then
-                Log:d("test Global","Properties file exists")
                 Global.groupSize=fin:readShort()
 				a=fin:readBoolean()
-				Log:d("test Global","showChinese="..a)
                 Global.showChinese = loadstring("return "..a)()
                 Global.showEnglish = loadstring("return "..fin:readBoolean())()
                 Global.showExample = loadstring("return "..fin:readBoolean())()
@@ -127,26 +117,21 @@ Log:d("Global","Global.storage="..Global.storage)
                 Global.autoBrowseSecond = fin:readShort();
                 Global.autoBrowse=loadstring("return "..fin:readBoolean())()
                 Global.volumeLevel=fin:readShort();
-				if Global.autoPronounce then
-					Log:d("test Global","Global.autoPronounce=True")
-				else
-					Log:d("test Global","Global.autoPronounce=False")
-				end
-				Log:d("test Global","Global.currentBookFileName="..Global.currentBookFileName)
+                Global.currentBookName=fin:readStringWithLength();
                 Global.currentBookFileName=fin:readStringWithLength();
-				Log:d("test Global","Global.currentBookFileName="..Global.currentBookFileName)
                 Global.currentPronDirName=fin:readStringWithLength();
                 Global.reviewByChinese=loadstring("return "..fin:readBoolean())()
                 Global.languageSupport=fin:readByte();
+				Global.startTime=fin:readLong();
+				Global.totalStudyTime=fin:readLong();
 	      fin:close()
 	    else
-                 Log:d("test Global","Properties file does not exist")
                 Global.saveProperties();
         end
     end
     function Global.saveProperties() 
 	local fout = fos:open(Global.storage.."recite.properties")
-       fout:writeShort(Global.getGroupSize());
+        fout:writeShort(Global.getGroupSize());
         fout:writeBoolean(Global.showChinese);
         fout:writeBoolean(Global.showEnglish);
         fout:writeBoolean(Global.showExample);
@@ -155,12 +140,16 @@ Log:d("Global","Global.storage="..Global.storage)
         fout:writeShort(Global.autoBrowseSecond);
         fout:writeBoolean(Global.autoBrowse);
         fout:writeShort(Global.volumeLevel);
+        fout:writeStringWithLength(Global.currentBookName);
         fout:writeStringWithLength(Global.currentBookFileName);
         fout:writeStringWithLength(Global.currentPronDirName);
         fout:writeBoolean(Global.reviewByChinese);
         fout:writeByte(Global.languageSupport);
+		fout:writeLong(Global.startTime)										
+		fout:writeLong(Global.totalStudyTime)										
         fout:close()
     end
+
     --[[
 
     function Global.resetProperties() 
@@ -175,49 +164,20 @@ Log:d("Global","Global.storage="..Global.storage)
         Global.currentBookFileName = aCurrentBookFileName;
     end
     ]]
-    --[[
 
-    function Global.String[] getPlatInfo()
-        String[] info =new String[]{" "," "," "};
-        String infos= System.getProperty("microedition.platform");
-        int pos = infos.indexOf('/');
-        if(pos>=0)info[0]=infos.substring(0,pos);
-        infos=infos.substring(pos+1);
-        pos = infos.indexOf('/');
-        if(pos>=0)info[1]=infos.substring(0,pos);
-        info[2]=getIMEI();
-        return info;
-    end
-    public static String getIMEI()
-    {
 
-        String imei=null;
 
-        String[] brands=new String[]{
-         "com.siemens.IMEI",
-         "com.samsung.imei",
-         "com.sonyericsson.imei",
-         "com.motorola.IMEI",
-         "IMEI",
-         "imei",
-         "com.nokia.mid.imei",
-         "phone.imei",
-         "phone.IMEI",
-         "com.nokia.IMEI",
-         "com.ktouch.imei",
-         "com.k-touch.imei"
-        };
-
-        for(int i=0;i<brands.length;i++)
-        {
-            imei=System.getProperty(brands[i]);
-            if(imei!=null)break;
-        }
-        return imei==null?" ":imei;
-    }
-    ]]
-Log:d("test Global","0")
     Global.loadProperties()
-Log:d("test Global","Global.loadProperties executed")
 
-Log:d("test Global","Global.currentBookFileName="..Global.currentBookFileName)
+
+
+function loadingViewXml()
+		local viewXml=''
+		viewXml=viewXml..'<div id="lui_loading_view" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;background-color:#6699CC;alpha:0.8;">'
+		viewXml=viewXml..'	 <div layout="LinearLayout" style="orientation:vertical;width:auto;height:auto;align:center;valign:middle;">'
+		viewXml=viewXml..'			<ProgressBar style="style:rotate;progress-image:url($/images/loading.png);width:60px;height:60px;"></ProgressBar>'
+		viewXml=viewXml..'			<label style="margin:10px;align:center;"  onclick="reload()">   Loading...</label>'
+		viewXml=viewXml..'    </div>'
+		viewXml=viewXml..'</div>'
+		return viewXml
+end

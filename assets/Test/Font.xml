@@ -8,27 +8,28 @@
 -->
 </style>
 <body id="Main_body" layout="FrameLayout" style="orientation:vertical;">
-  <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#99CCFF;" >
+  <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;" >
 		<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
 				<div id="L_showpop" layout="LinearLayout" style="width:42px;height:36px;align:center;valign:middle;"  onclick="reload()">
-					<button style="width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)"  onclick="reload()" />
+					<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(151).png)"  onclick="reload()" />
 				</div>
 				<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
-                    <button id="row1" style="width:32px;height:32px;background-image:url(images/nav/(12).png);valign:middle" onclick="back2Portal()"></button>
+                    <button id="row1" style="width:32px;height:32px;background-image:url($/images/nav/(12).png);valign:middle" onclick="show('MainMenu')"></button>
                 </div>				
 				<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;">
-				<label style="weight:1px;height:auto;align:middle;">OLA Test</label>
+				<label style="weight:1px;height:auto;valign:middle;">OLA Test--Font</label>
 				</div>
 				<div id="L_showpop" layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
-					<button style="width:6px;height:24px;background-image:url(images/more.png)" onclick="ShowPopupMenu()"/>
+					<button style="width:6px;height:24px;background-image:url($/images/more.png)" onclick="ShowPopupMenu()"/>
 				</div>
 		</div>            
         <div id="Main_body_Content" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;margin:3px;weight:1px;height:auto;valign:top;" >
             <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
                 <div layout="LinearLayout" style="orientation:vertical;width:auto;">
-                    <label style="width:auto;height:auto;valign:middle;weight:1px;font:bold Courier 12px;border:solid 1px #cccccc 0px;" >粗体 12px</label>
-                    <label style="width:auto;height:auto;valign:middle;weight:1px;font:bold italic Courier 16px;border:solid 1px #cccccc 0px;" >斜体 16px</label>
-                    <label style="width:auto;height:auto;valign:middle;weight:1px;font:bold italic Courier 24px;border:solid 1px #cccccc 0px;" >粗斜体 24px</label>
+                    <label style="width:auto;height:auto;valign:middle;font:Courier 12px;border:solid 1px #cccccc 0px;" >普通 12px</label>
+                    <label style="width:auto;height:auto;valign:middle;font:bold Courier 14px;border:solid 1px #cccccc 0px;" >粗体 14px</label>
+                    <label style="width:auto;height:auto;valign:middle;font:bold italic Courier 16px;border:solid 1px #cccccc 0px;" >斜体 16px</label>
+                    <label style="width:auto;height:auto;valign:middle;font:bold italic Courier 24px;border:solid 1px #cccccc 0px;" >粗斜体 24px</label>
                 </div>
             </scrollview>
             

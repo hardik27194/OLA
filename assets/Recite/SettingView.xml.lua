@@ -16,7 +16,7 @@ function reload()
 end
 
 function back()
-	ui:switchView("MainMenu.xml","callback('file opener returned param')","file opener params")
+	ui:switchView("Reading.xml","callback('file opener returned param')","file opener params")
 end
 function save()
     --short size = Short.parseShort(groupSize.getString());

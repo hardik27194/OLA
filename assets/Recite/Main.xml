@@ -2,19 +2,22 @@
 <Recite>
   <app-title>Pocket Words</app-title>
   <global>
-	<script src="lua/db.lua"/>
+	<script src="lua/util.lua"/>
 	<script src="lua/Global.lua"/>
+	<script src="lua/db.lua"/>
 	<script src="lua/WordIndex.lua"/>
 	<script src="lua/Word.lua"/>
 	<script src="lua/Study.lua"/>
+	<script src="lua/FlashView.lua"/>
+	<script src="lua/ListPanel.lua"/>
   </global>
   <init>
 	<script src="init.lua"/>
   </init>
 
   <views>
-	<view src="MainMenu.xml" title="Main Menu" />
 	<view src="StudyView.xml" title="StudyView" />
+	<view src="Reading.xml" title="Main Menu" />
   </views>
 
   <params>

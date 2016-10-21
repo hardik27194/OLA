@@ -24,6 +24,11 @@ public class BodyView {
 	String LuaCode;
 	String callback;
 
+	public BodyView(Context ctx, String viewUrl) {
+		this.ctx = ctx;
+		this.viewUrl = viewUrl;
+		create();
+	}
 	public String getParameters() {
 		return parameters;
 	}
@@ -45,11 +50,7 @@ public class BodyView {
 		this.callback=callback;
 	}
 
-	public BodyView(Context ctx,  String viewUrl) {
-		this.ctx = ctx;
-		this.viewUrl = viewUrl;
-		create();
-	}
+
 
 	private void create() {
 		Log.v("MainActivity", "onCreate...");
@@ -117,11 +118,9 @@ public class BodyView {
 	}
 
 	private class LuaExecuteTask extends AsyncTask<String, Integer, String> {
-		String t;
 
 		@Override
 		protected String doInBackground(String... params) {
-			t = params[0];
 			executeLua();
 			return "";
 		}
@@ -137,7 +136,7 @@ public class BodyView {
 	 */
 	public void executeLua() {
 		registReloadFun();
-//		System.out.println(LuaCode);
+		//System.out.println(LuaCode);
 		LuaContext.getInstance().doString(LuaCode);
 		/* removed
 		try {
@@ -155,9 +154,11 @@ public class BodyView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		*/
 //		LuaContext.getInstance().doString("coroutine.resume(coroutine.create(function()ptinf('an co','aa') end))");
 //		LuaContext.getInstance().doFile("assets/test.lua");
+		
 		LuaContext.getInstance().doString("initiate()");
 		if(this.callback!=null)this.execCallBack(this.callback);
 	}

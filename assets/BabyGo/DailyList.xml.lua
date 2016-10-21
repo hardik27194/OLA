@@ -191,7 +191,6 @@ local itemType;
 function showDetails(id)
 	itemId=id
 	local sql="select *,time(event_time) as eventtime from Diary where id="..id
-Log:d("showDetails","sql="..sql)
 	stmt=database:query(sql)
 	row=stmt[1]
 

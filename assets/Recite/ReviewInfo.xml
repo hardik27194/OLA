@@ -10,23 +10,34 @@
 <body id="body" layout="FrameLayout" class="FrameLayout" style="margin:0;">
 	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;">
 		<label style="orientation:horizontal;margin:3px;height:36px;width:auto;background-color:#99CCFF">Studied Group Info:</label>
-		<label >Groups to be Reviewed:</label>
-		<label id="groups_text" style="width:auto;text-align:left;valign:middle">0</label>
-		<label style="text-align:left;valign:middle">Next Group Studied:</label>
-		<textfield  id="Next_Group" style="width:auto;text-align:left;valign:middle">0</textfield>
-		<label>Copy Right Reserved:lohool(lohool@hotmail.com)</label>
-		<label id="error_mesg" style="orientation:horizontal;height:auto;weight:1px;"></label>
-		<div id="div2" layout="LinearLayout" style="orientation:horizontal;margin:3px;width:auto;background-color:#99CCFF">
-			<div id="L_back" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')"  onclick="back()">
-			<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(12).png)"  onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')" onclick="back()" />
-			</div>
-			<div id="L_reload" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')"  onclick="reload()" >
-			<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)" onclick="reload()" />
-			</div>
-			<div id="L_start" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')"  onclick="start()">
-			<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(296).png)" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')" onclick="start()" />
+
+		<div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;background-color:#ffffff;border:solid 1px #cccccc 0px;margin:15px;">
+			<label id="groups_text"  style="color:#CC9933;" >当前需要复习的词组</label>
+			<div layout="LinearLayout" id="studied_groups_pan" style="orientation:vertical;width:auto;margin:10px;">
 			</div>
 		</div>
+		<div layout="LinearLayout" style="orientation:horizontal;width:auto;height:auto;weight:1px;align:center;">
+					<button style="width:90px;height:90px;background-image:url($/images/cbtn_2.png)" onclick="start()" >开始</button>
+		</div>
+
+	<div layout="LinearLayout" style="width:auto;background-color:#99CCFF">
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;background-color:#6699CC;" >
+				<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(145).png);"  onclick="reload()" />
+				<label style="color:#00FF66;" >复习</label>
+			</div>
+			<div layout="LinearLayout"  style="orientation:vertical;align:center;width:auto;weight:1px;">
+                <button style="width:36px;height:36px;background-image:url($/images/nav/(126).png);valign:middle"  onclick="showReading()"/>
+				<label style="color:#FFFFFF">阅读</label>
+            </div>				
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;">
+				<button style="width:36px;height:36px;background-image:url($/images/nav/(146).png)" onclick="showBooks()"/>
+				<label style="color:#ffffff;">词汇书</label>
+			</div>
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;">
+				<button style="width:36px;height:36px;background-image:url($/images/nav/(68).png)" onclick="myInfo()" />
+				<label style="color:#ffffff">我的</label>
+			</div>
+	</div>            
 
 	</div>
 </body>

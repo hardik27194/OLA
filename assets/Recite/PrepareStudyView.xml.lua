@@ -1,18 +1,15 @@
 	local study ;
 	local word ;
     local thread=Thread:create(1000)
-
+	local startStudyTime=os.time()
    function initiate()
-		 Log:d("PrepareStudyWord","initiate...")
 			Global.isStudy = true;
             study = Study;
 			Study.init()
 			local isOpened=Study.openBook()
             if (isOpened) then
-				 Log:d("PrepareStudyWord","book is opend")
                 word = study.nextWord();
                 if(word~=nil) then repaint(word) end
-				 Log:d("PrepareStudyWord","word1="..word.spell)
                 autoNext();
             end
 
@@ -38,6 +35,7 @@
 		Study.close()
 		thread:stop()
 		ui:switchView("StudyView.xml","reset()","file opener params")
+		return 1
 	end
 
 
@@ -50,7 +48,8 @@
         --//print spell when review by word or at the page of show all content of it
         if Global.reviewByChinese~=true or (showSignal ~= 0) then
 
-			local wordStr = "[" .. study.getPos() .. "]" .. word.spell;
+			local wordStr =  word.spell;
+				num_label:setText("[" .. study.getPos() .. "]")
 
                 if Global.languageSupport==1  then
                     spell_label:setText(wordStr)
@@ -65,7 +64,8 @@
         else
             -- //only print the index of the word
             local wordStr = "[" .. study.getPos() .. "]";
-			spell_label:setText(s)
+			num_label:setText(wordStr)
+			spell_label:setText("")
 			pron_label:setText("")
 
         end
@@ -89,7 +89,7 @@
 			else
 				english_label:setText( "")
             end
-
+			word.example=string.gsub(word.example," *"..word.spell," <font color='#CC9933'>"..word.spell.."</font>")
             if (Global.showExample) then
 				if(word.example~=nil) then example_label:setText(word.example ) end
 			else
@@ -104,6 +104,13 @@
 
     end
     function next()
+		---record how many study time spent on the words
+		local currentTime=os.time()
+		local studiedTime=currentTime-startStudyTime
+		Global.totalStudyTime=Global.totalStudyTime+studiedTime
+		Study.studyTime=Study.studyTime+studiedTime
+		startStudyTime=currentTime
+
 		--if Study.fin ~= nil then
             word = readNextWord();
 			if(word==nil ) then
@@ -143,8 +150,6 @@ function autoNext()
         thread:reset()
 		thread:start("autoNextTimer("..s..")");
 		Log:d("autoNext","Global.autoBrowse1")
-    else
-        next()
 	end
 end
 local msg=uiMsg:create()

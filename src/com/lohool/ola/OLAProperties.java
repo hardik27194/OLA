@@ -116,8 +116,9 @@ public class OLAProperties extends AbstractProperties{
 				//UIFactory.viewCache.put(name, v);
 				UIFactory.viewStack.push(name);
 //				ctx.setContentView(v.getLayout().getView());
+				v.show();
 	        }
-	        v.show();
+	        
 					
 		}
     }

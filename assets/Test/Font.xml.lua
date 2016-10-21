@@ -13,7 +13,7 @@ function layerOnRelease(id)
 	_G[id]:setBackgroundColor("#99CCFF")
 end
 
-function exit()
+function back2Portal()
 	LMProperties:printtype()
 	LMProperties:exit()
 end

@@ -168,9 +168,6 @@ public  static String getSubTagValue(Node root, String subTagName)
         for (int loop = 0; loop < list.getLength(); loop++)
         {
             Node node = list.item(loop);
-            if (node != null)
-            {
-
                 if ( (node != null) && (node.getNodeName() != null) &&
                     node.getNodeName().equals(subTagName))
                 {
@@ -179,7 +176,6 @@ public  static String getSubTagValue(Node root, String subTagName)
                         return ( (Element) node).getAttribute(attribute);
                     }
                 }
-            }
         }
         return returnString;
     }

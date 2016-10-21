@@ -10,10 +10,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.annotation.SuppressLint;
-
 import android.util.Log;
 
 
+
+
+import com.lohool.ola.util.StringUtil;
 import com.lohool.ola.wedgit.IProgressBar;
 import com.lohool.ola.wedgit.UIMessage;
 
@@ -39,6 +41,8 @@ public class HTTP
 //	StringBuffer buf=new StringBuffer();
 	ByteArrayOutputStream out= new ByteArrayOutputStream();
 	String content;
+	Response response;
+	
 	Download down = new Download();
 	int state = -1;
 	public HTTP()
@@ -136,6 +140,7 @@ public class HTTP
 					
 					urlConn = (HttpURLConnection) url.openConnection();
 					urlConn.setConnectTimeout(10000);
+					urlConn.setReadTimeout(10000);
 					if(cookies!=null)
                     {
                         urlConn.setRequestProperty("Cookie",cookies);
@@ -176,7 +181,7 @@ public class HTTP
 							String callback=processingCallback.trim();
 							//find the last char")"
 							int pos=callback.lastIndexOf(')');
-							callback=callback.substring( pos);
+							callback=callback.substring(0, pos);
 							String luaCallback=callback+","+state+","+total+","+process+")";
 							msg.updateMessage(luaCallback);
 						}
@@ -253,10 +258,14 @@ public class HTTP
 //						luaCallback=callback+state+",\""+content+"\")";
 //					else luaCallback=callback+","+state+",\""+content+"\")";
 					Log.i("HTTP", complitedCallback);
+					//System.out.println("HTTP="+ content);
 					Response res=new Response();
 					res.state=state;
 					res.content=content;
 					res.cookies=cookies;
+					
+					response=res;
+					
 					LuaContext lua=LuaContext.getInstance();
             		lua.regist(res, "HttpResponse");
             	    msg.updateMessage(complitedCallback+"(HttpResponse)");
@@ -305,6 +314,10 @@ public class HTTP
         {
             return cookies;
         }
+		public void match(String luaFieldName, String reg)
+		{
+			StringUtil.match(luaFieldName, content, reg);
+		}
 	}
 	
 	/**
@@ -342,6 +355,11 @@ public class HTTP
 	public String getContent()
 	{
 		return content;
+	}
+	
+	public void match(String luaFieldName, String reg)
+	{
+		StringUtil.match(luaFieldName, content, reg);
 	}
 
 	

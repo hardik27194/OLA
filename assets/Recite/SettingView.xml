@@ -14,13 +14,13 @@
 		</div>
 			<div id="div2" layout="LinearLayout" style="orientation:horizontal;margin:3px;width:auto;background-color:#99CCFF">
 				<div id="L_back" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')"  onclick="back()">
-				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(12).png)"  onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')" onclick="back()" />
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(12).png)"  onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')" onclick="back()" />
 				</div>
 				<div id="L_reload" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')"  onclick="reload()" >
-				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)" onclick="reload()" />
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(151).png)" onclick="reload()" />
 				</div>
 				<div id="L_start" layout="LinearLayout" style="orientation:horizontal;weight:1px;align:center" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')"  onclick="start()">
-				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url(images/nav/(296).png)" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')" onclick="save()" />
+				<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(296).png)" onpress="layerOnPress('L_start')" onrelease="layerOnRelease('L_start')" onclick="save()" />
 				</div>
 			</div>
 	</div>

@@ -40,9 +40,9 @@ public class AppProperties extends AbstractProperties{
 			UIFactory.viewStack.clear();
 			//UIFactory.viewCache.put(name, v);
 			UIFactory.viewStack.push(name);
-			
+			v.show();
         }
-        v.show();
+        
 //        instance=null;
       //android Fatal signal 11
 //		lua.close();

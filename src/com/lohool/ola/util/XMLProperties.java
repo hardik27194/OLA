@@ -255,7 +255,7 @@ public XMLProperties(InputStream is) throws IOException
         {
             
             node = XMLToolkit.getChild(node, (String) URIName[i]);
-            System.out.print("Node name::"+node.getNodeName());
+            //System.out.print("Node name::"+node.getNodeName());
             if (node == null)
             {
                 return null;

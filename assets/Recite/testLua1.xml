@@ -9,18 +9,18 @@
 </style>
 <!-- the first level layout of the Android Activity -->
 <body layout="FrameLayout" class="FrameLayout" style="margin:0;background-color:#66CCCC;">
-	<div layout="RelativeLayout" class="RelativeLayout" style="position:absolute;border:solid 1 red;left:30px;top:30px;height:300px;margin:0;text-align:center;background-image:url(http://10.0.2.2:8080/test/images/pic-1.gif);">
+	<div layout="RelativeLayout" class="RelativeLayout" style="position:absolute;border:solid 1 red;left:30px;top:30px;height:300px;margin:0;text-align:center;background-image:url(http://10.0.2.2:8080/test/$/images/pic-1.gif);">
 		<div layout="LinearLayout" class="LinearLayout" style="width:auto;weight:1px;align:right;">
 			<div layout="LinearLayout" class="LinearLayout" >
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(http://10.0.2.2:8080/test/images/blue_velvet_077.png)" onclick="reload()" />
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(http://10.0.2.2:8080/test/images/blue_velvet_065.png)" onclick="reload()" />
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(http://10.0.2.2:8080/test/images/blue_velvet_029.png)" onclick="switch()" />
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(http://10.0.2.2:8080/test/$/images/blue_velvet_077.png)" onclick="reload()" />
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(http://10.0.2.2:8080/test/$/images/blue_velvet_065.png)" onclick="reload()" />
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:center;background-image:url(http://10.0.2.2:8080/test/$/images/blue_velvet_029.png)" onclick="switch()" />
 			</div>
 			<div layout="LinearLayout" class="LinearLayout" style="height:32px;width:auto;weight:1px;margin:5;align:right;">
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:right;background-image:url(http://10.0.2.2:8080/test/images/blue_velvet_003.png)" onclick="reload()" />
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:right;background-image:url(http://10.0.2.2:8080/test/images/blue_velvet_083.png)" onclick="searchUser()" />
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:right;background-image:url(http://10.0.2.2:8080/test/images/blue_velvet_020.png)" onclick="searchUser()" />
-				<button id="btn1" style="top:1px;width:32px;height:32px;align:right;background-image:url(http://10.0.2.2:8080/test/images/blue_velvet_027.png)" onclick="searchUser()" />
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:right;background-image:url(http://10.0.2.2:8080/test/$/images/blue_velvet_003.png)" onclick="reload()" />
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:right;background-image:url(http://10.0.2.2:8080/test/$/images/blue_velvet_083.png)" onclick="searchUser()" />
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:right;background-image:url(http://10.0.2.2:8080/test/$/images/blue_velvet_020.png)" onclick="searchUser()" />
+				<button id="btn1" style="top:1px;width:32px;height:32px;align:right;background-image:url(http://10.0.2.2:8080/test/$/images/blue_velvet_027.png)" onclick="searchUser()" />
 			</div>
 		</div>
 
@@ -37,9 +37,9 @@
 		<div id="userPanel" layout="LinearLayout" class="LinearLayout" style="top:63px;width:auto;margin:5;">
 				<TABLE id="user_table" style="width:auto;height:auto;">
 				<TR style="vertical-align:middle">
-					<TD><button id="row1" style="width:40px;height:35px;background-image:url(http://10.0.2.2:8080/test/images/10.gif);text-align:center;valign:middle">ID</button></TD>
-					<TD><button id="row2" style="width:auto;height:35px;weight:1px;background-image:url(http://10.0.2.2:8080/test/images/10.gif);text-align:center;valign:middle">用户名</button></TD>
-					<TD><button id="row3" style="width:auto;height:35px;weight:1px;background-image:url(http://10.0.2.2:8080/test/images/10.gif);text-align:center;valign:middle">操作</button></TD>
+					<TD><button id="row1" style="width:40px;height:35px;background-image:url(http://10.0.2.2:8080/test/$/images/10.gif);text-align:center;valign:middle">ID</button></TD>
+					<TD><button id="row2" style="width:auto;height:35px;weight:1px;background-image:url(http://10.0.2.2:8080/test/$/images/10.gif);text-align:center;valign:middle">用户名</button></TD>
+					<TD><button id="row3" style="width:auto;height:35px;weight:1px;background-image:url(http://10.0.2.2:8080/test/$/images/10.gif);text-align:center;valign:middle">操作</button></TD>
 				</TR>
 				<!--
 				<TR>

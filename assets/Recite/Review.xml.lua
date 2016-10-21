@@ -3,27 +3,24 @@
 
 local study ;
 local word ;
-    function initiate()
-		 Log:d("Review","initiate...")
+local startStudyTime=os.time()
+
+	
+	function initiate()
 			Global.isStudy = false;
             study = Study;
 			Study.init()
 			local isOpened=Study.openBook()
-			Log:d("Review","book was opend:")
             if (isOpened) then
-				 Log:d("Review","book is opend")
                 word = study.nextWord();
-				 Log:d("Review","word="..word.spell)
                 autoNext();
             end
 		if(word~=nil) then repaint(word) end
         Global.currentReviewTimes=0;
-		 Log:d("Review","initiate was end...")
-  end
+    end
 
 
 	function reload()
-		 Log:d("reload","Study View Lua reload is executed..")
 		 study.close()
 		 sys.reload()
 	end
@@ -100,7 +97,15 @@ local word ;
 
     end
     function next()
-            word = readNextWord();
+		---record how many study time spent on the words
+		local currentTime=os.time()
+		local studiedTime=currentTime-startStudyTime
+		Global.totalStudyTime=Global.totalStudyTime+studiedTime
+		Study.studyTime=Study.studyTime+studiedTime
+		startStudyTime=studiedTime
+
+			
+			word = readNextWord();
 			if(word==nil) then
 				
 				back()

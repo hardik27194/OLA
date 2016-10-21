@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.util.EncodingUtils;
+import org.keplerproject.luajava.LuaObject;
+import org.keplerproject.luajava.LuaState;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -20,9 +22,11 @@ import org.w3c.dom.NodeList;
 
 import com.lohool.ola.util.StackX;
 import com.lohool.ola.util.XMLProperties;
+import com.lohool.ola.wedgit.BaiDuMap;
 import com.lohool.ola.wedgit.IButton;
 import com.lohool.ola.wedgit.ICheckBox;
 import com.lohool.ola.wedgit.IContainer;
+import com.lohool.ola.wedgit.IGifView;
 import com.lohool.ola.wedgit.ILabel;
 import com.lohool.ola.wedgit.ILineChart;
 import com.lohool.ola.wedgit.IProgressBar;
@@ -70,7 +74,28 @@ public class UIFactory {
 	public void switchView(String pageName,String callback,String params,boolean needReload)
     {
 //		String name=AppProperties.getInstance().getAppBase()+pageName;
+		//show loading screen
+		Layout oldLayout=bodyView.layout;
+		
+		LuaState lua=LuaContext.getInstance().getLuaState();
+		
+		lua.getField(LuaState.LUA_GLOBALSINDEX, "loadingViewXml");		 
+		lua.call(0,1);
+        lua.setField(LuaState.LUA_GLOBALSINDEX, "loadingViewXmlStr");   
+        LuaObject lobj =lua.getLuaObject("loadingViewXmlStr");   
+        String loadingXml=lobj.getString();
+       System.out.println("loading view xml:"+loadingXml);
+        IView loadingView=this.createViewByXml(loadingXml);
+        oldLayout.addView(loadingView);
+        
+       
+        
 		String name=OLA.appBase+pageName;
+		
+		
+			
+			
+		
 		BodyView v;
 		Object obj=viewCache.get(name);
 		if(obj!=null && !needReload)
@@ -83,24 +108,72 @@ public class UIFactory {
 			if(!needReload) viewCache.put(name, v);
 		
 		}
+		viewLoadTask task = new viewLoadTask();
+		task.execute(oldLayout,loadingView,v,params,callback);
 		
 		UIFactory.viewStack.push(name);
 		
 		UIFactory.viewStack.displayStack();
 		
+		/*
 		LuaContext.getInstance().doString("exit()");
 		v.setParameters(params);
 		v.setCallBack(callback);
   	 	v.show();
+  	 	*/
+		
   	 	
+  	 	//oldLayout.removeView(loadingView);
 
     }
+	
+	
+
+
+	private class viewLoadTask extends AsyncTask<Object, Integer, Layout> {
+		Layout oldLayout;
+		IView loadingView;
+		@Override
+		protected Layout doInBackground(Object... params) {
+			System.out.println("loading view xml:start doInBackground");
+			
+			oldLayout=(Layout)params[0];
+			loadingView=(IView)params[1];
+			
+			BodyView v=(BodyView)params[2];
+			
+			String viewParams=(String)params[3];
+			String callback=(String)params[4];
+			
+	
+			LuaContext.getInstance().doString("exit()");
+			v.setParameters(viewParams);
+			v.setCallBack(callback);
+	  	 	//v.show();
+			v.executeLua();
+			System.out.println("loading view end doInBackground");
+			return v.layout;
+		}
+		protected void onPostExecute(Layout layout) {
+			
+			oldLayout.removeView(loadingView);
+			Main.activity.setContentView(layout.getView());
+			
+		}
+	}
+	
+	
 	public void cleanViewCache()
 	{
 		viewStack.clear();
 	}
 	public String getParameters() {
 		return bodyView.getParameters();
+	}
+	
+	public String getRootViewId()
+	{
+		return bodyView.layout.getObjectId();
 	}
 	
 //	public  Layout loadXML(String url) 
@@ -160,6 +233,15 @@ public class UIFactory {
 	public String createView(String xml)
 	{
 		String id=null;
+		IView v= createViewByXml(xml);
+		id=v.getObjectId();
+		return id;
+	}
+
+	public IView createViewByXml(String xml)
+	{
+		String id=null;
+		IView v=null;
 		try {
 			//System.out.println("create xml view:"+xml);
 			//Looper.prepare();
@@ -172,7 +254,7 @@ public class UIFactory {
 				root.setAttribute("id", id);				
 			}
 			
-			IView v=null;
+			
 			if(root.getNodeName().equalsIgnoreCase("DIV"))
 			{
 				Layout layout= Layout.createLayout(null, ctx,  root);
@@ -195,9 +277,9 @@ public class UIFactory {
 		}
 		
 		
-		return id;
+		return v;
 	}
-
+	
 	private Layout createActiveBody(Element xmlRoot)
 	{
 		Layout layout = null;
@@ -255,17 +337,20 @@ public class UIFactory {
     	else if (name.equalsIgnoreCase("TEXTFIELD"))
     	{
     		v= new ITextField(rootView,context,n);
-    		//rootView.addView(text);
+    	}
+    	else if (name.equalsIgnoreCase("PASSWORD"))
+    	{
+    		ITextField t= new ITextField(rootView,context,n);
+    		t.setInputType(ITextField.TYPE_MASK_FLAGS, ITextField.TYPE_TEXT_VARIATION_WEB_PASSWORD);
+    		v=t;
     	}
     	else if (name.equalsIgnoreCase("TABLE"))
     	{
     		v= new ITable(rootView,context,n);
-    		//rootView.addView(text);
     	}
     	else if (name.equalsIgnoreCase("SCROLLVIEW"))
     	{
     		v= new IScrollView(rootView,context,n);
-    		//rootView.addView(text);
     	}
     	else if (name.equalsIgnoreCase("PROGRESSBAR"))
     	{
@@ -274,17 +359,22 @@ public class UIFactory {
     	else if (name.equalsIgnoreCase("CHECKBOX"))
     	{
     		v= new ICheckBox(rootView,context,n);
-    		//rootView.addView(text);
     	}
     	else if (name.equalsIgnoreCase("LINECHART"))
     	{
     		v= new ILineChart(rootView,context,n);
-    		//rootView.addView(text);
     	}
     	else if (name.equalsIgnoreCase("ROUNDIMAGE"))
     	{
     		v= new IRoundImage(rootView,context,n);
-    		//rootView.addView(text);
+    	}
+    	else if (name.equalsIgnoreCase("MAP"))
+    	{
+    		v= new BaiDuMap(rootView,context,n);
+    	}
+    	else if (name.equalsIgnoreCase("GIFVIEW"))
+    	{
+    		v= new IGifView(rootView,context,n);
     	}
     	return v;
 	}
@@ -423,6 +513,7 @@ public class UIFactory {
 				{
 					URL url = new URL(resPath);
 					urlConn = (HttpURLConnection) url.openConnection();
+					urlConn.setConnectTimeout(5000);
 					in = urlConn.getInputStream();
 
 					int count = 0;

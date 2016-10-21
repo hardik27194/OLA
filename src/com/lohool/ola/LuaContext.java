@@ -79,7 +79,7 @@ public class LuaContext {
 		}
 		return obj;
 	}
-	public LuaObject getLuaObject(String id)
+	private LuaObject getLuaObject(String id)
 	{
 		LuaObject obj = null;
 		obj = lua.getLuaObject(id);

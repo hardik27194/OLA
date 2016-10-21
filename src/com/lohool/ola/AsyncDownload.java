@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayDeque;
 
 import org.keplerproject.luajava.LuaObject;
@@ -95,6 +97,7 @@ public class AsyncDownload
 	{
 		try
 		{
+			String encodedUrl=URLEncoder.encode(url, "UTF-8");
 			URL mUrl = new URL(url);
 			urls.add(mUrl);
 			keys.add(key);
@@ -163,19 +166,37 @@ public class AsyncDownload
 					urlConn.setConnectTimeout(10000);
 					InputStream in = urlConn.getInputStream();
 					// isread = UIFactory.getInputStreamFromUrl(ac);
-
-					String path = currentUrl.getPath();
-					String filePath = path.substring(path.lastIndexOf('/') + 1,path.length());
-					int point = filePath.lastIndexOf('.');
-					String fileName = filePath.substring(0, point);
-					String fileExt = filePath.substring(point + 1,filePath.length());
 					
-					System.out.println("currentUrl:"+currentUrl.toString());
-//					System.out.println("fileName:"+fileName);
-//					System.out.println("fileExt:"+fileExt);
-//					System.out.println("tmpDir.getAbsolutePath():"+tmpDir.getAbsolutePath());
-	
-					currentFile = new File(tmpDir.getAbsolutePath() + "/" + fileName + "." + fileExt);
+					String fn=null;
+					
+					String disposition= urlConn.getHeaderField("Content-Disposition");
+		             String[] ps=disposition.split(";");
+		             for(String p:ps)
+		             {
+		                 String head=p.trim();
+		                if(head.toLowerCase().startsWith("filename"))
+		                {
+		                    fn=(head.substring(10,head.length()-1));
+		                    break;
+		                }
+		             }
+		             
+		             if(fn==null)
+		             {
+						String path = currentUrl.getPath();
+						String filePath = path.substring(path.lastIndexOf('/') + 1,path.length());
+						//int point = filePath.lastIndexOf('.');
+						//String fileName =filePath.substring(0, point);
+						//String fileExt = filePath.substring(point + 1,filePath.length());
+						//currentFile = new File(tmpDir.getAbsolutePath() + "/" + fileName + "." + fileExt);
+						//fn=fileName + "." + fileExt;
+						fn=filePath;
+		             }
+		            int point = fn.lastIndexOf('.');
+		            String fileName =fn.substring(0, point);
+					String fileExt = fn.substring(point + 1,fn.length());
+						
+					currentFile = new File(tmpDir.getAbsolutePath() + "/" + fn);
 					int i = 1;
 					while (currentFile.exists())
 					{
@@ -212,8 +233,21 @@ public class AsyncDownload
 	                		 
 	                		 lua.call(5,0);
 	                		 */
-							String luaCallback=processingCallback+"("+state+","+total+","+process+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"','"+key+"')";
-	                		 //LuaContext.getInstance().doString(luaCallback);
+							String callback=processingCallback.trim();
+							//find the last char")"
+							int pos=callback.lastIndexOf(')');
+							callback=callback.substring(0, pos);
+							String luaCallback=callback;
+							if(pos>0)
+							{
+							luaCallback+=","+state+","+total+","+process+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"','"+key+"')";
+							}
+							else
+							{
+								luaCallback+=state+","+total+","+process+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"','"+key+"')";
+								
+							}
+							msg.updateMessage(luaCallback);
 							
 							msg.updateMessage(luaCallback);
 	                		 
@@ -284,8 +318,22 @@ public class AsyncDownload
             		lua.pushString(currentFile.getAbsolutePath());
             	    lua.call(4,0);
             	    */
+					String callback=complitedCallback.trim();
+					//find the last char")"
+					int pos=callback.lastIndexOf(')');
+					callback=callback.substring(0, pos);
+					String luaCallback=callback;
+					if(pos>0)
+					{
+					luaCallback+=","+(processedFileCount+urls.size())+","+processedFileCount+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"','"+key+"')";
+					}
+					else
+					{
+						luaCallback+=(processedFileCount+urls.size())+","+processedFileCount+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"','"+key+"')";
+						
+					}
 					
-            	    String luaCallback=complitedCallback+"("+(processedFileCount+urls.size())+","+processedFileCount+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"','"+key+"')";
+//            	    String luaCallback=complitedCallback+"("+(processedFileCount+urls.size())+","+processedFileCount+",'"+(currentUrl.getHost()+"/"+currentUrl.getPath())+"','"+(currentFile.getAbsolutePath())+"','"+key+"')";
             	    msg.updateMessage(luaCallback);
 				}
 				try

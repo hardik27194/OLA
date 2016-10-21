@@ -36,6 +36,8 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
@@ -83,6 +85,10 @@ public abstract class IWedgit implements IView
 
 	}
 
+	public String getObjectId()
+	{
+		return objId;
+	}
 	protected void initiate()
 	{
 		parseAttribute();
@@ -268,6 +274,9 @@ public abstract class IWedgit implements IView
 		{
 			this.setBackgroundColor(attr);
 		}
+		
+		this.setBorder();
+		
 //		System.out.println("css.color=" + css.color);
 		if (css.color != 0)
 //		if ((attr = css.getStyleValue("color")) != null)
@@ -328,7 +337,7 @@ public abstract class IWedgit implements IView
 
 		param.setMargins(css.margin.left, css.margin.top, css.margin.right,
 				css.margin.bottom);
-		this.setBorder();
+		
 		
 		//add border's width as padding, or the children will be painted on the border
 		v.setPadding(css.padding.left+css.border.width, 
@@ -412,6 +421,18 @@ public abstract class IWedgit implements IView
 //        }
 //    };
 
+    public void setOnclick(String onclick)
+    {
+    	this.onclick=onclick;
+    }
+    public void setPressed(String pressed)
+    {
+    	this.pressed=pressed;
+    }
+    public void setReleased(String released)
+    {
+    	this.released=released;
+    }
     
 	protected void clicked()
 	{
@@ -527,8 +548,17 @@ public abstract class IWedgit implements IView
 		{
 			text = text.replaceAll("\\\\n", "\n");
 			text = text.replaceAll("\\\\\n", "\\\\n");
+			text=text.replaceAll("\n", "<br>");
+//			text=text.replaceAll("\\\\\n", "\\\\n");
+//			btn.setText(text);
+//			btn.requestLayout();
+			CharSequence charSequence = Html.fromHtml(text);
+       
+			TextView t=(TextView) v;
 			((TextView) v).setText(text);
-			v.requestLayout();
+			t.setText(charSequence);
+		    t.setMovementMethod(LinkMovementMethod.getInstance());//点击时产生超
+			t.requestLayout();
 			v.refreshDrawableState();
 		}
 	}
@@ -690,29 +720,38 @@ public abstract class IWedgit implements IView
 		// BitmapDrawable(returnBitMap(backgroundImageURL)));
 		// BitmapDrawable bd=new
 		// BitmapDrawable(returnBitMap(backgroundImageURL));
+		backgroundImageUrl=backgroundImageUrl.trim();
 		String base="";
 //		if(PortalProperties.getInstance().getAppProperties()!=null)base=PortalProperties.getInstance().getAppProperties().getAppBase();
 //		else base=PortalProperties.getInstance().getAppBase();
 		base=OLA.appBase;
-		String backgroundImageURL;
+		String bgImageURL;
 		if(backgroundImageUrl.startsWith("file://"))
 		{
-			backgroundImageURL=backgroundImageUrl.substring(7);
+			bgImageURL=backgroundImageUrl.substring(7);
 		}
 		else if(backgroundImageUrl.startsWith("http://"))
 		{
-			backgroundImageURL=backgroundImageUrl;
+			bgImageURL=backgroundImageUrl;
 		}
 		else
 		{
-			backgroundImageURL= base + backgroundImageUrl;
+			//is it started with the Root path
+			if(backgroundImageUrl.startsWith("$/"))
+			{
+				bgImageURL= OLA.base + backgroundImageUrl.substring(1);
+			}
+			else
+			{
+				bgImageURL= base + backgroundImageUrl;
+			}
 		}
-		System.out.println(backgroundImageURL);
+		System.out.println(bgImageURL);
 		try{
-		if (backgroundImageURL.startsWith("http://"))
+		if (bgImageURL.startsWith("http://"))
 		{
 			DownloadImage task = new DownloadImage();
-			task.execute(backgroundImageURL,cookies);
+			task.execute(bgImageURL,cookies);
 			
 		} else
 		{
@@ -721,7 +760,7 @@ public abstract class IWedgit implements IView
 //			//img.recycle();
 //			img=null;
 		
-			InputStream is = new FileInputStream(backgroundImageURL);
+			InputStream is = new FileInputStream(bgImageURL);
 			Drawable drawable=Drawable.createFromStream(is, null);
 
 			v.setBackground(drawable);
@@ -734,7 +773,7 @@ public abstract class IWedgit implements IView
 
 
 		System.gc();
-		css.backgroundImageURL = backgroundImageURL;
+		css.backgroundImageURL = bgImageURL;
 	}
 
 	public static PictureDrawable getcontentPic(String imageUri)

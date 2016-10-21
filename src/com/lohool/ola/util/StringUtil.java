@@ -1,5 +1,11 @@
 package com.lohool.ola.util;
 
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.lohool.ola.LuaContext;
+
 public class StringUtil {
 
 	public static String UTF6LE(int uc,int lc)
@@ -38,7 +44,7 @@ public class StringUtil {
 	 * @param param
 	 * @return
 	 */
-	public String addParameter(String callback, String param)
+	public static String addParameter(String callback, String param)
 	{
 		callback=callback.trim();
 		String s;
@@ -51,5 +57,41 @@ public class StringUtil {
 		}
 		else s=callback;
 		return s;
+	}
+	public static void match(String luaFieldName, String str, String reg)
+	{
+		Pattern pattern = Pattern.compile(reg);
+        Matcher m = pattern.matcher(str);
+        ArrayList<String> result=new ArrayList<String>();
+        LuaContext lua=LuaContext.getInstance();
+        lua.doString(luaFieldName+"={}");
+        
+        int pos=1;
+        while(m.find()){
+        	int count=m.groupCount();
+        	StringBuffer r=new StringBuffer();
+        	for(int i=0;i<=count;i++)
+        	{
+        		String v=m.group(i);
+                r.append("\""+v.replaceAll("\"", "\\\\\"")+"\",");
+        	}
+        	r.deleteCharAt(r.length()-1);
+        	
+        	//System.out.println(luaFieldName+"["+(pos)+"]={"+r.toString().replaceAll("\n", "")+"}");
+        	lua.doString(luaFieldName+"["+(pos)+"]={"+r.toString().replaceAll("\n", "")+"}");
+        	//System.out.println(luaFieldName+"["+(pos)+"]={"+r.toString().replaceAll("\n", "")+"}");
+        	pos++;
+                
+        }
+        
+//        
+//        for(int i=0;i<result.size();i++)
+//        {
+//        	System.out.println(luaFieldName+"["+(i+1)+"]=\""+result.get(i).replaceAll("\"", "\\\\\"")+"\"");
+//        	lua.doString(luaFieldName+"["+(i+1)+"]=\""+result.get(i).replaceAll("\"", "\\\\\"")+"\"");
+//        	
+//        }
+        //lua.regist(res, luaFieldName);
+	
 	}
 }

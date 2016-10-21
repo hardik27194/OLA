@@ -1,6 +1,5 @@
 --Check versions of the portal and apps, then auto download and install
 
-Log:d("Update",'load starting..')
 require "JSON4Lua"
 
 function initiate()

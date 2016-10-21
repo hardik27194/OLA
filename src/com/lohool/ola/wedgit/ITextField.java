@@ -5,6 +5,7 @@ import org.w3c.dom.Node;
 
 import android.content.Context;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -133,8 +134,9 @@ public class ITextField extends IWedgit {
 
 	public void setInputType(int classType, int type) {
 		System.out.println("ITextField.setInputType is executed");
-
-		((EditText) v).setInputType(classType | type);
+		EditText t=((EditText) v);
+		t.setInputType(classType | type);
+		t.setTransformationMethod(PasswordTransformationMethod.getInstance());
 	}
 	
 }

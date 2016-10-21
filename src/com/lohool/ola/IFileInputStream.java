@@ -56,8 +56,9 @@ public class IFileInputStream {
 		System.out.println("lua boolean=" + a);
 	}
 
-	public String exists() {
-		return Boolean.toString(isExisted);
+	public boolean exists() {
+		//return Boolean.toString(isExisted);
+		return isExisted;
 	}
 
 	public int available() throws IOException {

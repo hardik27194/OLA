@@ -9,33 +9,33 @@
 </style>
 <body id="body" layout="FrameLayout"  style="orientation:vertical;background-color:#0000ff;">
   	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#ccccff;">
-		<div layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
-				<div id="L_reload" layout="LinearLayout" style="weight:1px;align:center;"onclick="reload()">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)"  onclick="reload()" />
+		<div layout="LinearLayout" class="LinearLayout"  style="width:auto;align:center;background-color:#99CCFF" >
+				<div id="L_reload"  layout="LinearLayout" style="weight:1px;align:center;"  onclick="reload()" >
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav/(151).png)"  onclick="reload()" />
 				</div>
-				<div id="L_reload" layout="LinearLayout" style="weight:1px;align:center;"onclick="homepage()">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(12).png)"  onclick="homepage()" />
+				<div id="L_reload" layout="LinearLayout" style="weight:1px;align:center;" onclick="homepage()">
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav/(12).png)"  onclick="homepage()" />
 				</div>
 				<div id="L_reload" layout="LinearLayout" style="weight:1px;align:center;">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(17).png)"   />
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav/(17).png)"   />
 				</div>
 				<div id="L_play" layout="LinearLayout" style="weight:1px;align:center;"  >
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(18).png)" />
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav/(18).png)" />
 				</div>
 		</div>            
-
+  	    
 
          <div id="div2" layout="LinearLayout" style="height:auto;orientation:vertical;width:auto;weight:1px;padding:3px;height:auto;background-color:#66ccff;">
 				<div id="div3" layout="LinearLayout"  style="orientation:vertical;width:auto;align:center;">
                     <div id="div7" layout="LinearLayout"  style="orientation:horizontal;align:center;width:auto;">
                         <div id="div8" layout="LinearLayout"  style="orientation:vertical;margin:1px;padding:10px;height:auto;align:center;background-color:#3366FF">
-                            <button id="btn3"  style="width:36px;height:36px;background-image:url(images/ico/32.png);valign:middle;"  onclick="allDairy()"></button>
+                            <button id="btn3"  style="width:36px;height:36px;background-image:url($/images/ico/32.png);valign:middle;"  onclick="allDairy()"></button>
                         </div>
                         <div layout="LinearLayout"  style="orientation:vertical;weight:1px;align:center;">
 							<div  layout="LinearLayout"  style="orientation:horizontal;width:auto;weight:1px;margin:1px;padding:10px;align:center;background-color:#3366FF">
-								<label id="nav_pre" style="height:36px;width:36px;align:center;background-image:url(images/nav/(125).png);color:#FFFFFF" onclick="navPre()"></label>
+								<label id="nav_pre" style="height:36px;width:36px;align:center;background-image:url($/images/nav/(125).png);color:#FFFFFF" onclick="navPre()"></label>
 								<label id="today_lbl" style="height:auto;weight:1px;align:center;valign:middle;color:#FFFFFF" onclick='selectDate()'>0000:00:00</label>
-								<label id="nav_next" style="height:36px;width:36px;align:center;background-image:url(images/nav/(124).png);color:#FFFFFF" onclick="navNext()"></label>
+								<label id="nav_next" style="height:36px;width:36px;align:center;background-image:url($/images/nav/(124).png);color:#FFFFFF" onclick="navNext()"></label>
 							</div>
                          </div>
                     </div>

@@ -45,8 +45,11 @@ public abstract class IContainer extends IWedgit{
             	if(name.equalsIgnoreCase("DIV"))
             	{
             		String layoutName=((Element)n).getAttribute("layout");
-            		if(layoutName.equalsIgnoreCase("FrameLayout") 
-            		   || (layoutName.equalsIgnoreCase("LinearLayout")) || (layoutName.equalsIgnoreCase("RelativeLayout")))
+            		if( layoutName.equalsIgnoreCase("FrameLayout") 
+            		   || layoutName.equalsIgnoreCase("LinearLayout")
+            		   || layoutName.equalsIgnoreCase("RelativeLayout")
+            		   || layoutName.equalsIgnoreCase("WebView")	   
+            				   )
             		{
             			Layout layout=Layout.createLayout(rootView,this.context,n);
             			rootView.addView(layout);
@@ -76,10 +79,12 @@ public abstract class IContainer extends IWedgit{
 			//rebuild the properties of the view.
 			//be rebuilt by the setParent method
 			//((IWedgit)child).parseCSS();
+			
 		}
 		((ViewGroup) v).addView(child.getView());
 		child.getView().requestLayout();
 	}
+	
 	/**
 	 * add a child by Lua id, this method will be used by the lua script
 	 * @param id

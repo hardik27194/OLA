@@ -7,7 +7,7 @@
     --Vector words= new Vector();
     Study.words=  {} --List:new(self)
     Study.currentGroup=0;
-
+	Study.studyTime=0;	-- current book studied time
 	Study.fin=nil;
 	
     function Study.init()
@@ -23,6 +23,8 @@
     end
 
     function Study.close()
+			Study.writeWordState(Study.wordStatus);
+			Global.saveProperties() 
             if (Study.fin~= nil) then
                Study.fin:close();
 			   Study.fin= nil;
@@ -54,6 +56,9 @@
 			Log:d("Study","readiing Study wordStatus ")
             Study.wordStatus = Study.readWordsState();
 			Log:d("Study","Study.wordStatus ="..#Study.wordStatus )
+			if Global.currentStudiedGroup==0 then
+				Global.currentStudiedGroup=Global.lastStudiedGroup
+			end
             Study.seekGroup(Global.currentStudiedGroup);
 			Log:d("Study","seekGroup="..Global.currentStudiedGroup)
 			Log:d("Study","Study.openBook is successful")
@@ -104,24 +109,20 @@
     function  Study.nextWord() 
        local  word =nil;
         if  Study.getPos() >= Global.groupSize  then
-			Log:d("Study","Study.getPos() >= Global.groupSize")
+			--Log:d("Study","Study.getPos() >= Global.groupSize")
             if Global.isStudy  then
- 			Log:d("Study","true")
-             writeReviewInfo(Global.currentStudiedGroup);
-  			Log:d("Study","writeReviewInfo is successful" )
-              writeStudyInfo(Global.currentStudiedGroup);
-   			Log:d("Study","writeStudyInfo is successful" )
+               writeReviewInfo(Global.currentStudiedGroup);
+               writeStudyInfo(Global.currentStudiedGroup);
+			   Global.saveProperties()
 			else
- 			Log:d("Study","false")
-			 setReviewInfo(Global.currentStudiedGroup)
+			   setReviewInfo(Global.currentStudiedGroup)
+			   Global.saveProperties()
            end
-  			Log:d("Study","Global.lastStudiedGroup ="..Global.lastStudiedGroup )
            Global.lastStudiedGroup = Global.currentStudiedGroup;
             return nil;
         end
 
         if Study.pos+1<= #Study.words then
-   			Log:d("Study","Study.pos="..Study.pos )
              Study.pos=Study.pos+1;
            word=Study.words[Study.pos]
         else
@@ -129,17 +130,16 @@
            word=Word.new(self);
  		Log:d("Study","pos="..((Global.currentStudiedGroup - 1) * Global.groupSize) + Study.pos +1)
            local wordPos = WordIndex.getPos(((Global.currentStudiedGroup - 1) * Global.groupSize) + Study.pos +1);
-		Log:d("Study","wordPos length="..#wordPos)
 			Study.pos=Study.pos+1
              word.state=wordPos[1];
 			    --local b= loadstring('return {'..Study.fin:readBytes(wordPos[2])..'}')()
 			    --local b= Study.fin:readBytes(wordPos[2])
 			    local b= Study.fin:readString(wordPos[2])
                 local spell="";
-				Log:d("Study","b="..b)
-				--Log:d("Study","spell="..des3:decypt(b,"lohool@hotmail.com"," "," "))
+				--Log:d("Study","b="..b)
+				----Log:d("Study","spell="..des3:decypt(b,"lohool@hotmail.com"," "," "))
                 local desPwd={};
-				Log:d("Study","Global.encryptMethod ="..Global.encryptMethod )
+				--Log:d("Study","Global.encryptMethod ="..Global.encryptMethod )
 
                 if Global.encryptMethod == 0 then
                    -- spell =des3:decypt(b,"lohool@hotmail.com"," "," ");
@@ -158,26 +158,26 @@
 
                 word.spell=spell;
                 
-				Log:d("Study","word.spell="..word.spell )
+				--Log:d("Study","word.spell="..word.spell )
 			    local pron=Study.fin:readString(wordPos[3])
-				Log:d("Study","word.pronunacation="..pron)
+				--Log:d("Study","word.pronunacation="..pron)
                 word.pronunacation="["..parseProncation(pron).."]";
-				Log:d("Study","word.pronunacation="..word.pronunacation)
+				--Log:d("Study","word.pronunacation="..word.pronunacation)
                 word.description=(Study.readTxt( wordPos[4]));
-				Log:d("Study","word.description="..word.description)
+				--Log:d("Study","word.description="..word.description)
                 word.enMeans=(Study.readTxt( wordPos[5]));
-				Log:d("Study","word.senMeans="..word.enMeans)
+				--Log:d("Study","word.senMeans="..word.enMeans)
                 word.example=(Study.readTxt( wordPos[6]));
 				--Log:d("Study","word.example="..word.example)
 				--Log:d("Study","Study.words length="..#Study.words)
 				Study.words[#Study.words+1]=word;
- 				Log:d("Study","Study.words length="..#Study.words)
+ 				--Log:d("Study","Study.words length="..#Study.words)
        end
-				Log:d("Study","Study.currentWordState ="..Study.getCurrentWordState() )
+				--Log:d("Study","Study.currentWordState ="..Study.getCurrentWordState() )
         if Study.getCurrentWordState() == 1 then
             word = Study.nextWord();
         end
-				Log:d("Study","Study.nextWord is end" )
+				--Log:d("Study","Study.nextWord is end" )
         return word;
     end
 function Study.preWord()
@@ -196,22 +196,13 @@ end
 function writeReviewInfo( group) 
 		Log:d("Study","grour file ="..Global.storage..Global.currentBookFileName .. "_Groupinfo.dbms")
 		local fc = fos:open(Global.storage..Global.currentBookFileName  .. "_Groupinfo.dbms",'true') --append
-		Log:d("Study","file is exists=")
         fc:writeShort(Global.currentStudiedGroup)
-		Log:d("Study","writeShort is successful")
 		fc:writeByte(0)
-		Log:d("Study","writeByte is successful")
 		fc:writeLong(os.time()*1000); --milliseconds
-		Log:d("Study","writeLong is successful")
 		fc:close();
 		return 0
 end
 
-function writeStudyInfo( group) 
-				local fc = fos:open(Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
-                fc:writeShort(group)
-				fc:close()
-end
 
     function setReviewInfo( reviedGroup)
 
@@ -226,15 +217,12 @@ end
 			 if group<0 then do break end end
 			 byte0=fc:readByte()
 			 if byte0<=0 then byte0=1 end
-		Log:d("setReviewInfo","group="..group)
 			 recordedDate=fc:readLong () /1000
 				if group == reviedGroup then
 					local pointer=fc:getFilePointer()
-		Log:d("setReviewInfo","pointer="..pointer)
 					fc:seek(pointer-9)
 					fc:writeByte(byte0+1)
 					fc:writeLong(os.time()*1000)
-		Log:d("setReviewInfo","os.time()*1000="..os.time()*1000)
 					do break end
 				end
 		end
@@ -243,20 +231,24 @@ end
   
 end    
 
+function writeStudyInfo( group) 
+		local fc = fos:open(Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
+        fc:writeShort(group)
+		fc:writeLong(Global.wordsCount)
+		fc:writeLong(Study.studyTime)
+		fc:close()
+end
 
 function Study.writeWordState(states)
 		Log:d("Study","_studyinfo file ="..Global.storage..Global.currentBookFileName .. "_studyinfo.dbms")
         local fc = fos:open(Global.storage..Global.currentBookFileName .. "_studyinfo.dbms")
 		fc:writeShort(Global.lastStudiedGroup);
-		Log:d("Study","writeShort is successful")
 		fc:writeLong(Global.wordsCount)
-		Log:d("Study","writeLong is successful")
+		fc:writeLong(Study.studyTime)
         --fos.write(states, 0, states.length);
-        Log:d("Study","states length="..#states)
 		for i = 1, #states, 1 do
              fc:writeByte(states[i])
         end
-
         fc:close();
 end
 
@@ -265,18 +257,40 @@ function Study.readWordsState()
 	local fc = fis:open(Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
 	Log:d("Study","_studyinfo is opened:"..Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
 	Global.lastStudiedGroup=	fc:readShort()
-	Log:d("Study","fc:readShort")
-	local wordcount = fc:readLong()
- 	Log:d("Study","fc:readLong")
+	local wordcount = fc:readLong() --- duplicated with WordIndex
+	Study.studyTime= fc:readLong()
+
            --for i = 1, fc:available(), 1 do
             --    bs[i] = f:readByte();
             --end
-	Log:d("Study","Global.wordsCount="..Global.wordsCount)
-			bs=loadstring('return {'..fc:readBytes(Global.wordsCount)..'}')()
-	Log:d("Study","bs="..#bs)
+	bs=loadstring('return {'..fc:readBytes(Global.wordsCount)..'}')()
 	fc:close();
-        return bs;
+    return bs;
 end
+
+
+    function Study.initRSStudyinfo()  
+		local fc = fis:open(Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
+
+        if fc:exists()then
+            Global.lastStudiedGroup = fc:readShort();
+			local wordCount=fc:readLong()
+			Study.studyTime= fc:readLong()
+         else
+			fc = fos:open(Global.storage..Global.currentBookFileName  .. "_studyinfo.dbms")
+
+            fc:writeShort(0);
+			fc:writeLong(Global.wordsCount)
+			fc:writeLong(0)
+			for i=1, Global.wordsCount , 1  do
+			   fc:writeByte(0)
+			end
+            --fc:writeStringWithLength(Global.currentBookFileName);
+            --fc:writeStringWithLength(Global.currentPronDirName);
+        end
+        fc:close()
+    end
+
 
 function parseProncation(pron)
 	local p="";

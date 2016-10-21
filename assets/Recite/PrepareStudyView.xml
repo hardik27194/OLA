@@ -9,40 +9,34 @@
 </style>
 <body layout="FrameLayout" class="FrameLayout" style="margin:0;">
 	<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px">
-		<div layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
-				<div id="L_reload" layout="LinearLayout" style="weight:1px;align:center;" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(151).png)" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()" />
-				</div>
-				<div id="L_delete" layout="LinearLayout" style="weight:1px;align:center;" onpress="layerOnPress('L_delete')" onrelease="layerOnRelease('L_delete')" onclick="delete()">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(43).png)" onpress="layerOnPress('L_delete')" onrelease="layerOnRelease('L_delete')" onclick="delete()" />
-				</div>
-				<div id="L_play" layout="LinearLayout" style="weight:1px;align:center;" onpress="layerOnPress('L_play')" onrelease="layerOnRelease('L_play')" onclick="play()">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(189).png)"  onpress="layerOnPress('L_play')" onrelease="layerOnRelease('L_play')" onclick="play()" />
-				</div>
-				
+		<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;margin:10px; padding:15px;">
+			<div layout="LinearLayout" style="width:auto;">
+				<label id="num_label" style="width:auto;align:left;weight:2px;color:#663366;">[N]</label>
+				<label style="width:auto;align:left;weight:1px;weight:2px;color:#663366;"></label>
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav-gray/(151).png)" onpress="layerOnPress('L_reload')" onrelease="layerOnRelease('L_reload')" onclick="reload()" />
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav-gray/(43).png)" onpress="layerOnPress('L_delete')" onrelease="layerOnRelease('L_delete')" onclick="delete()" />
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav-gray/(189).png)"  onpress="layerOnPress('L_play')" onrelease="layerOnRelease('L_play')" onclick="play()" />
+			</div>
+			<label id="spell_label" style="width:auto;align:center;weight:2px;color:#663366;font:36px Arial;">English</label>
+			<label id="pron_label" style="width:auto;align:center;weight:2px;font:16px Arial;">Pron</label>
+				<label id="chinese_label" style="width:auto;padding:5px;margin:5px;align:center;font:18px;">Chinese</label>
 		</div>
-		<div layout="LinearLayout" class="LinearLayout" style="width:auto;background-color:#66CCFF">
-			<label id="spell_label" style="width:auto;align:left;weight:2px">English</label><label id="pron_label" style="width:auto;weight:2px;align:right">Pron</label>
-		</div>
-        <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;">
+        <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;margin:10px;padding:15px;background-color:#ffffff">
 		<scrollview style="width:auto;height:auto;weight:1px;">
 			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;">
-				<label id="chinese_label" style="width:auto;align:left;color:#0000FF;">Chinese</label>
-				<label id="english_label" style="oheight:auto;width:auto;align:left;color:#FF9900"></label>
-				<label  style="height:auto;width:auto;align:left;color:#663300">Example:</label>
-				<label id="example_label" style="height:auto;align:left;width:auto;color:#999900"></label>
+				<label style="width:80px;margin:5px;height:auto;padding:5px;align:left;border:solid 1px #cccccc 5px;font:16px;background-color:#cccccc">英英释义</label>
+				<label id="english_label" style="height:auto;width:auto;padding:5px;margin:5px;align:left;font:16px;"></label>
+				<label style="width:80px;margin:5px;height:auto;padding:5px;align:left;border:solid 1px #cccccc 5px;font:16px;background-color:#cccccc">例句</label>
+				<label id="example_label" style="height:auto;;padding:5px;margin:5px;align:left;width:auto;font:16px;"></label>
 			</div>
 		</scrollview>
         </div>
 		<div layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
-				<div id="L_back" layout="LinearLayout" style="weight:1px;align:center;" onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')" onclick="back()">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(18).png)" onpress="layerOnPress('L_back')" onrelease="layerOnRelease('L_back')" onclick="back()" />
+				<div id="L_next" layout="LinearLayout" style="weight:1px;align:center;" onpress="layerOnPress('L_next')" onrelease="layerOnRelease('L_next')" onclick="next()">
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav/(345).png)" onpress="layerOnPress('L_next')" onrelease="layerOnRelease('L_next')" onclick="next()" />
 				</div>
 				<div id="L_previous" layout="LinearLayout" style="weight:1px;align:center;" onpress="layerOnPress('L_previous')" onrelease="layerOnRelease('L_previous')" onclick="previous()">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(19).png)" onpress="layerOnPress('L_previous')" onrelease="layerOnRelease('L_previous')" onclick="previous()" />
-				</div>
-				<div id="L_next" layout="LinearLayout" style="weight:1px;align:center;" onpress="layerOnPress('L_next')" onrelease="layerOnRelease('L_next')" onclick="next()">
-					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url(images/nav/(20).png)" onpress="layerOnPress('L_next')" onrelease="layerOnRelease('L_next')" onclick="autoNext()" />
+					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav/(344).png)" onpress="layerOnPress('L_previous')" onrelease="layerOnRelease('L_previous')" onclick="previous()" />
 				</div>
 		</div>
 	</div>

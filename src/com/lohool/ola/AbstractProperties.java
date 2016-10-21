@@ -14,6 +14,10 @@ import java.util.ArrayList;
 
 
 
+
+
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.keplerproject.luajava.JavaFunction;
@@ -26,11 +30,15 @@ import org.w3c.dom.NodeList;
 
 
 
-
 import android.os.Environment;
-import android.util.Log;
 
+
+
+
+import com.lohool.ola.pay.alipay.AliPay;
 import com.lohool.ola.util.DES3Encrypt;
+import com.lohool.ola.util.Location;
+import com.lohool.ola.util.Log;
 import com.lohool.ola.util.Pim;
 import com.lohool.ola.util.StringUtil;
 import com.lohool.ola.util.XMLProperties;
@@ -76,6 +84,7 @@ public abstract class AbstractProperties
 	ArrayList<String> apps=new ArrayList<String>();
 	
 	
+	public static boolean isAppServerAccessed=true;
 	
 	protected AbstractProperties()
 	{
@@ -89,17 +98,19 @@ public abstract class AbstractProperties
 		sandboxRoot="/data/data/"+Main.class.getPackage().getName()+"/";
 		
 		lua.regist(this, "LMProperties");
-		lua.regist(Log.class, "Log");
+		lua.regist(Log.class, "Log");		
 		lua.regist(FileConnector.class, "FileConnector");
 		lua.regist(IFileInputStream.class, "fis");
 		lua.regist(IFileOutputStream.class, "fos");
 		lua.regist(DES3Encrypt.class, "des3");
 		lua.regist(StringUtil.class, "str");
 		
+		lua.regist(VideoPlayer.class, "VideoPlayer");
 		lua.regist(SoundPlayer.class, "MediaPlayer");
 		lua.regist(Recorder.class, "Recorder");
 		
 //		lua.regist(IAlert.class, "Alert");
+		
 		
 		lua.regist(UIMessage.class, "uiMsg");
 		lua.regist(MyAsyncTask.class, "AsyncTask");
@@ -117,6 +128,10 @@ public abstract class AbstractProperties
 		
 		lua.regist(ICamera.class, "Camera");
 		lua.regist(Pim.class, "Pim");
+		lua.regist(Location.class, "Location");
+		
+		lua.regist(AliPay.class, "AliPay");
+		lua.regist(Session.class, "Session");
 		
 	
 		
@@ -131,8 +146,8 @@ public abstract class AbstractProperties
 		System.out.println("LMProp appServer="+appServer);
 		if(appServer==null)appServer="";
 		
-		boolean isAppServerAccessed=false;
-		if(appServer.startsWith("http://"))
+		
+		if(appServer.startsWith("http://") && isAppServerAccessed)
 		{
 			String appJsonUrl=appServer+appBase+"/apps.json";
 			String appJsonStr=UIFactory.loadOnline(appJsonUrl);
@@ -147,10 +162,15 @@ public abstract class AbstractProperties
 				isAppServerAccessed=true;
 			}
 		}
+		else
+		{
+			appServer="";
+		}
 		
-		if(!isAppServerAccessed || isPlatformApp || appServer==null || appServer=="" || !appServer.startsWith("http://"))	appBase=sandboxRoot+appBase;
+		if(!isAppServerAccessed || isPlatformApp || appServer==null || appServer.equals("") || !appServer.startsWith("http://"))	appBase=sandboxRoot+appBase;
 		else appBase=appServer+"/"+appBase;
 		
+		OLA.base=appBase;
 		OLA.appBase=appBase+appName+"/";
 		
 		//sdcard dir
@@ -162,29 +182,35 @@ public abstract class AbstractProperties
 //		System.out.println("getExternalStoragePublicDirectory="+Environment.getDataDirectory().getAbsolutePath());
 		fileBase=sdcardRoot+"/"+fileBase;
 		
+		File fileBaseDir=new File(fileBase+"/"+appName);
+		  if(!fileBaseDir.exists())fileBaseDir.mkdirs();
+		  
 		lua.doString("OLA.storage='"+fileBase+"'");
 		
 
 		lua.doString("OLA.app_path='"+sandboxRoot+"'");
-
 		
 		LuaState L=lua.getLuaState();
+	
 		JavaFunction assetLoader = new JavaFunction(L) {
 			@Override
 			public int execute() throws LuaException {
 				String name = L.toString(-1);
+				name=name.replaceAll("\\.", "/");
 				try {
 					InputStream is=null;
 					if(!isPlatformApp && appServer.startsWith("http://"))
 					{
-						System.out.println("HTTP Require lua="+appBase+appName+"/lua/"+name + ".lua");
-						URL url = new URL(appBase+appName+"/lua/"+name + ".lua");
+						//remove appName from the path
+						System.out.println("HTTP Require lua="+appBase+"/lua/"+name + ".lua");
+						URL url = new URL(appBase+"/lua/"+name + ".lua");
 						HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
 						is = urlConn.getInputStream();
 					}
 					else
 					{
-						File file=new File(appBase+appName+"/lua/"+name + ".lua");
+						System.out.println("Local Require lua="+appBase+"/lua/"+name + ".lua");
+						File file=new File(appBase+"/lua/"+name + ".lua");
 						is = new FileInputStream(file);
 					}
 					byte[] bytes = readAll(is);
@@ -216,7 +242,7 @@ public abstract class AbstractProperties
 		L.pop(1);                          // package
 		
 		L.getField(-1, "path");            // package path
-		String customPath = sandboxRoot + "lua/?.lua";
+		String customPath = sandboxRoot +appBase+ "lua/?.lua";
 		L.pushString(";" + customPath);    // package path custom
 		L.concat(2);                       // package pathCustom
 		L.setField(-2, "path");            // package
@@ -232,9 +258,12 @@ public abstract class AbstractProperties
 //		System.out.println(appstr);
 		try
 		{
+			
 			JSONObject appObj = new JSONObject(appstr);
 			//JSONArray apps=appObj.getJSONArray("user_apps");
 			lua.doString("require 'JSON4Lua'");
+			System.out.println("try to load socket");
+			lua.doString("require 'socketlua'");
 			System.out.println("apps.json="+appObj.toString());
 			lua.doString("OLA.apps=json.decode('"+appObj.toString()+"')");
 		} catch (JSONException e)

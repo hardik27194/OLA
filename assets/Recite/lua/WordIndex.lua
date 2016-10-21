@@ -17,7 +17,7 @@ WordIndex.__index = WordIndex
 function WordIndex.load()
 
     WordIndex.bookFileName = Global.currentBookFileName
-    WordIndex.bookName = Global.currentBookFileName  --bookFileName.substring(bookFileName.lastIndexOf('/'));
+    WordIndex.bookName = Global.bookName  --bookFileName.substring(bookFileName.lastIndexOf('/'));
     WordIndex.bookIndexFileName = WordIndex.bookFileName .. ".dbx";
     Log:d("WordIndex","WordIndex.bookIndexFileName:"..WordIndex.bookIndexFileName)
 	local fin = fis:open(Global.storage..WordIndex.bookIndexFileName)
@@ -27,17 +27,15 @@ function WordIndex.load()
 	  Global.version=fin:readDouble()
 	  Global.encyptType=fin:readByte()
 	  Global.wordsCount=fin:readInt()
-	  Global.bookGroupAmount = (Global.wordsCount % Global.groupSize > 0  and Global.wordsCount / Global.groupSize + 1) or Global.wordsCount / Global.groupSize;
+	  Global.bookGroupAmount = math.ceil((Global.wordsCount % Global.groupSize > 0  and Global.wordsCount / Global.groupSize + 1) or Global.wordsCount / Global.groupSize);
 	  --[[
            for i = 1,Global.wordsCount * 6, 1 do
                 WordIndex.pos[i] = fin:readInt();
             end
 	  ]]
       local bytes=fin:readIntArray(Global.wordsCount * 6)
-			--Log:d("WordIndex.load","pos bytes="..bytes)
-			WordIndex.pos = loadstring('return '..bytes)()
-			--Log:d("File test","pos length="..#WordIndex.pos)
-      end
+	  WordIndex.pos = loadstring('return '..bytes)()
+    end
 	fin:close()
 end
 

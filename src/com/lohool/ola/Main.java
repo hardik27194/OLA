@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import org.keplerproject.luajava.LuaObject;
 import org.keplerproject.luajava.LuaState;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.lohool.ola.wedgit.UIMessage;
 
 import android.os.AsyncTask;
@@ -51,6 +52,7 @@ public class Main extends Activity {
 	boolean isDevelopementMode=false;
 	
 	String subActivityCallback;
+
 	
 //	UIFactory ui= new UIFactory(ctx,lua);
     @Override
@@ -66,6 +68,8 @@ public class Main extends Activity {
         // hide statusbar of Android   could also be done later  
        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,   WindowManager.LayoutParams.FLAG_FULLSCREEN);  
 
+        SDKInitializer.initialize(getApplicationContext()); 
+        
         setContentView(R.layout.activity_main);
         
         System.out.println("getExternalFilesDir="+this.getExternalFilesDir(null));
@@ -79,18 +83,23 @@ public class Main extends Activity {
         this.scale=1.0f*dpi/baseDpi;
         Log.d("dpi", "dpi="+dpi);
         Log.d("dpi", "scale="+scale);
+
         
-//        printScreenInfo();
+        //        printScreenInfo();
  
         
-		
-	    
+        //Location loc= new Location();
+        //loc.bdLocate();
+        
+        
         DisplayLoadingTask task= new DisplayLoadingTask();
         task.execute("");
         
 
 	 
     }
+
+	
 	private class DisplayLoadingTask extends AsyncTask<String, Integer, String> {
 		String appServer;
 		String appBase;
@@ -115,7 +124,8 @@ public class Main extends Activity {
 					copyAssetDir("olaportal", appBase);
 					copyAssetFile("apps.json",appBase);
 					copyAssetFile("OLA.lua",appBase);
-
+					copyAssetDir("lua",appBase);
+					copyAssetDir("images",appBase);
 				} catch (IOException e)
 				{
 					// TODO Auto-generated catch block
@@ -196,7 +206,7 @@ public class Main extends Activity {
 //			appBase=sandboxRoot+appBase;
 			System.out.println("appServer="+appServer);
 
-			if(appServer!=null && appServer!="" && appServer.startsWith("http://") )
+			if(appServer!=null && !appServer.endsWith("") && appServer.startsWith("http://") )
 			{
 			
 			}
@@ -366,7 +376,7 @@ public class Main extends Activity {
     public void test(View v) { 
     	System.out.println("test() is executed");
 
-        L.LdoString(temp);
+        L.LdoString("text='AAA'");
 
         L.getGlobal("text");
          text = L.toString(-1);

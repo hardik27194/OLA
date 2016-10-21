@@ -1,0 +1,48 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+ 
+}
+-->
+</style>
+<body id="Main_body" layout="FrameLayout" style="orientation:vertical;">
+  <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#87B9F5" >
+		<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
+				<div id="L_showpop" layout="LinearLayout" style="width:42px;height:36px;align:center;valign:middle;"  onclick="reload()">
+					<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(151).png)"  onclick="reload()" />
+				</div>
+				<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
+                    <button id="row1" style="width:32px;height:32px;background-image:url($/images/nav/(12).png);valign:middle" onclick="back2Portal()"></button>
+                </div>				
+				<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;">
+				<label style="weight:1px;height:auto;valign:middle;">Weather</label>
+				</div>
+				<div id="L_showpop" layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
+					<button style="width:6px;height:24px;background-image:url($/images/more.png)" onclick="ShowPopupMenu()"/>
+				</div>
+		</div>            
+  	<div id="Main_body_Content" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;align:center;" >
+
+		   <div layout="LinearLayout" style="orientation:horizontal;width:auto;height:40px;valign:middle;padding:10px;margin:5px;background-color:#CEE6B5">
+				<label style="padding:10px;font:bold Courier 16px;color:#ffffff;align:left;">武汉</label>
+
+					
+					<label id="current_temp_lbl" style="height:40px;font:bold Courier 28px;valign:middle;color:#FF6600;">24</label>
+					<label style="font:bold Courier 12px;height:30px;color:#FF6600;valign:top;">O</label>
+					<label style="weight:1px;"></label>
+					<label id="temp_lbl" style="font:Courier 16px;valign:bottom;">12-31</label>
+						<label id="wind_lbl" style="font:Courier 16px;valign:bottom;margin:5px;color:#990099">微风 2-3级</label>
+						<label id="weather_lbl" style="font:Courier 16px;valign:bottom;margin:5px;color:#FF9900">中雨</label>
+						<label id="pm25_lbl" style="font:Courier 14px;valign:bottom;margin:5px;">PM2.5 120</label>
+		   </div>
+
+       
+	</div>
+</div>
+				
+</body>
+</html>
+
