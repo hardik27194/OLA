@@ -1,0 +1,87 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body id="Main_body" layout="FrameLayout" style="orientation:vertical;">
+  <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#66CCFF;" >
+	<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
+			<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
+                <button style="width:32px;height:32px;background-image:url($/images/nav/(19).png);valign:middle" onclick="back()"></button>
+                <label style="width:auto;valign:middle;color:#ffffff;" onclick="back()">Back</label>
+            </div>				
+
+			<label style="height:auto;width:auto;valign:middle;align:center;weight:1px;">My Profile</label>
+
+			<div id="L_showpop" layout="LinearLayout" style="width:42px;height:36px;align:center;valign:middle;"  onclick="reload()">
+			</div>
+			<div id="L_showpop" layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
+			</div>
+	</div>            
+  	<div layout="LinearLayout"  style="orientation:vertical;width:auto;height:auto;weight:1px;padding:15px;background-color:#e2e2e2;" >
+		<div layout="LinearLayout" style="orientation:horizontal;width:auto;valign:middle;margin:10px;background-color:#ffffff" >
+				<label  style="width:80px;height:80px;background-image:url($/images/nav-gray/(67).png);"></label>
+				<label id="name_lbl" style="width:auto;">dd</label>
+		</div>
+
+		<div layout="LinearLayout" style="orientation:vertical;margin:10px;width:auto;valign:middle;border:solid 1px #cccccc 5px;background-color:#ffffff" >
+			<div layout="LinearLayout" style="orientation:horizontal;margin:10px;width:auto;valign:middle;" >
+				<label  style="width:40px;height:40px;background-image:url($/images/nav-gray/(67).png);"></label>
+				<label  style="width:auto;">My Profile</label>
+			</div>
+			<label  style="width:auto;background-color:#cccccc;height:1px;"></label>
+			<div layout="LinearLayout" style="orientation:horizontal;margin:10px;width:auto;valign:middle;" >
+				<label  style="width:40px;height:40px;background-image:url($/images/nav-gray/(34).png);"></label>
+				<label  style="width:auto;weight:1px;">Auto Logon</label>
+				<button style="width:36px;height:36px;align:center;background-image:url($/images/nav-gray/(341).png);"  onclick="setAutoLogon()" />
+			</div>
+			<label  style="width:auto;background-color:#cccccc;height:5px;"></label>
+			<div layout="LinearLayout" style="orientation:horizontal;margin:10px;width:auto;valign:middle;" >
+				<label  style="width:48px;height:48px;background-image:url($/images/ico2/(46).png);"></label>
+				<label  style="width:auto;weight:1px;" onclick="allMyBookOrder()">All Book Orders</label>
+				<button style="width:36px;height:36px;align:center;background-image:url($/images/ico2/(73).png);"  onclick="allMyBookOrder()" />
+			</div>
+			<label  style="width:auto;background-color:#cccccc;height:1px;"></label>
+			<div layout="LinearLayout" style="orientation:horizontal;margin:10px;width:auto;valign:middle;" >
+				<label  style="width:48px;height:48px;background-image:url($/images/ico2/(42).png);"></label>
+				<label  style="width:auto;weight:1px;">Paid Orders</label>
+				<button style="width:36px;height:36px;align:center;background-image:url($/images/ico2/(73).png);"  onclick="setAutoLogon()" />
+			</div>
+			<label  style="width:auto;background-color:#cccccc;height:1px;"></label>
+			<div layout="LinearLayout" style="orientation:horizontal;margin:10px;width:auto;valign:middle;" >
+				<label  style="width:48px;height:48px;background-image:url($/images/ico2/(44).png);"></label>
+				<label  style="width:auto;weight:1px;">Unpaid Orders</label>
+				<button style="width:36px;height:36px;align:center;background-image:url($/images/ico2/(73).png);"  onclick="setAutoLogon()" />
+			</div>
+			<label  style="width:auto;background-color:#cccccc;height:1px;"></label>
+		</div>
+	</div>
+
+	<div id="Main_body_menu" layout="LinearLayout" style="width:auto;background-color:#99CCFF">
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;" >
+				<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(145).png)"  onclick="showReviewInfo()" />
+				<label style="color:#FFFFFF;" >复习</label>
+			</div>
+			<div layout="LinearLayout"  style="orientation:vertical;align:center;width:auto;weight:1px;">
+                <button style="width:36px;height:36px;background-image:url($/images/nav/(126).png);valign:middle"  onclick="showReading()"/>
+				<label style="color:#FFFFFF">阅读</label>
+            </div>				
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;">
+				<button style="width:36px;height:36px;background-image:url($/images/nav/(146).png)" onclick="showBooks()"/>
+				<label style="color:#FFFFFF;">词汇书</label>
+			</div>
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;background-color:#6699CC;">
+				<button style="width:36px;height:36px;background-image:url($/images/nav/(68).png)" onclick="reload()" />
+				<label style="color:#00FF66">我的</label>
+			</div>
+
+	</div>            
+</div>
+				
+</body>
+</html>
+

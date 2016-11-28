@@ -11,6 +11,6 @@ public interface IView {
 	public Node getRoot();
 	public IView getParent();
 	public void setParent(IView view);
-	public String getObjectId();
+	public String getId();
 
 }

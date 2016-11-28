@@ -75,6 +75,11 @@ public class Database {
 	{
     	pstmtSql=sql;
 	}
+    //reset the prepare stmt's params list
+    public void resetPreparedStatement()
+    {
+    	pstmtParams.clear();
+    }
     public void setColumn(String value) throws SQLException
     {
     	pstmtParams.add(value);

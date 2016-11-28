@@ -48,7 +48,7 @@ public class ITable extends IContainer{
 	{
 		ITableRow row = new ITableRow(this, context, node);
 		
-		this.addView(row);
+		this.addOlaView(row);
 	}
 
 }

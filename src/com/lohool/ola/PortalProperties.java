@@ -52,6 +52,8 @@ public class PortalProperties extends AbstractProperties {
 		BodyView v=null;
 		@Override
 		protected String doInBackground(String... params) {
+			//run the exit function of the old view
+			LuaContext.getInstance().doString("exit()");
 			String appName=params[0];
 			System.out.println("start app:"+appName);
 			AppProperties app=new AppProperties(appName);

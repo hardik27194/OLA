@@ -52,26 +52,26 @@ public abstract class IContainer extends IWedgit{
             				   )
             		{
             			Layout layout=Layout.createLayout(rootView,this.context,n);
-            			rootView.addView(layout);
+            			rootView.addOlaView(layout);
             		}
             	}
             	else 
             	{
             		IView view=UIFactory.createView(rootView, context,   n);
-            		rootView.addView(view);
+            		rootView.addOlaView(view);
             	}
             	
                 
             }
         }
 	}
-
+/*
 	public void addView(View child) {
 		((ViewGroup) v).addView(child);
 		child.requestLayout();
 	}
-
-	public void addView(IView child) {
+*/
+	public void addOlaView(IView child) {
 
 		if(child.getParent()==null)
 		{
@@ -94,10 +94,10 @@ public abstract class IContainer extends IWedgit{
 		//lua.getGlobal(id);
 		//System.out.println("add view:this.id="+((Element) root).getAttribute("id")+"; child.id="+id);
 		Object obj = LuaContext.getInstance().getObject(id);
-		addView((IView) obj);
+		addOlaView((IView) obj);
 	}
 	
-	public void removeView(IView child) {
+	public void removeOlaView(IView child) {
 		if (child==null) return;
 		((ViewGroup) v).removeView(child.getView());
 	}
@@ -110,7 +110,7 @@ public abstract class IContainer extends IWedgit{
 	public void removeView(String id)
 	{
 			Object obj=LuaContext.getInstance().remove(id);
-			removeView((IView)obj);
+			removeOlaView((IView)obj);
 	}
 	
 	public void removeAllViews() {

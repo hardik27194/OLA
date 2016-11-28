@@ -1,0 +1,107 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body id="Main_body" layout="FrameLayout" style="orientation:vertical;">
+  <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;background-color:#e2e2e2;" >
+	<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
+			<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
+                <button style="width:32px;height:32px;background-image:url($/images/nav/(19).png);valign:middle" onclick="back()"></button>
+                <label style="width:auto;valign:middle;color:#ffffff;" onclick="back()">Back</label>
+            </div>				
+
+				
+			<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;">
+			<label style="weight:1px;height:auto;valign:middle;align:center;">Logon</label>
+			</div>
+			<div layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
+				<!--<button style="width:6px;height:24px;" onclick="ShowPopupMenu()"/>-->
+			</div>
+	</div>            
+
+	<div layout="LinearLayout" style="orientation:vertical;align:center;width:auto;align:center;">
+	<label style="width:150px;height:150px;background-image:url(images/ola-2.png)" />
+	</div>
+
+  	<div id="Main_body_Content" layout="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;" >
+			<div layout="LinearLayout" style="orientation:horizontal;valign:middle;width:auto; align:right;margin:5px;">
+				<label  style="width:auto;weight:1px;"></label>
+				<div layout="LinearLayout" style="orientation:horizontal;width:250px;valign:middle;background-color:#ffffff;border:solid 1px #cccccc 3px;">
+					<label style="width:40px;height:40px;margin:5px;background-image:url($/images/nav-gray/(68).png);align:right;valign:middle;font:22px;color:#FF9900">|</label>
+					<textfield id="account_txt" style="width:auto;height:35px;margin:5px;weight:1px;valign:middle;border:solid 1px #ffffff 0px;">test</textfield>
+				</div>
+				<label  style="width:auto;weight:1px;"></label>
+			</div>
+			<div layout="LinearLayout" style="orientation:horizontal;valign:middle;width:auto; align:right;margin:5px;">
+				<label  style="width:auto;weight:1px;"></label>
+				<div layout="LinearLayout" style="orientation:horizontal;width:250px;valign:middle;background-color:#ffffff;border:solid 1px #cccccc 3px;">
+					<label style="width:40px;height:40px;margin:5px;align:right;background-image:url($/images/nav-gray/(34).png);align:right;valign:middle;font:22px;color:#FF9900">|</label>
+					<password id="password_txt" style="width:auto;height:35px;margin:5px;weight:1px;valign:middle;border:solid 1px #ffffff 0px;">111111</password>
+				</div>
+				<label  style="width:auto;weight:1px;"></label>
+			</div>
+			
+			<div layout="LinearLayout" style="orientation:horizontal;valign:middle;width:auto; margin:5px;">
+				<label  style="width:auto;weight:1px;"></label>
+				<div layout="LinearLayout" style="orientation:horizontal;width:250px;valign:middle;">
+					<div layout="LinearLayout" style="orientation:horizontal;width:auto;height:40px;weight:1px;background-color:#ffffff;border:solid 1px #cccccc 3px;">
+						<label style="width:40px;height:40px;align:right;background-image:url($/images/nav-gray/(13).png);align:right;valign:middle;font:22px;color:#FF9900">|</label>
+						<textfield id="code_txt" style="width:auto;height:30px;padding:5px;weight:1px;valign:middle;border-bottom:1px;border:solid 1px #ffffff 0px;"></textfield>
+					</div>
+					<label id="code_lbl" style="width:50px;height:40px;margin:5px;" onclick="refreshCode()"></label>
+				</div>
+				<label  style="width:auto;weight:1px;"></label>
+			</div>
+
+
+			<div layout="LinearLayout" style="orientation:horizontal;valign:middle;width:auto; align:right;">
+				<label  style="width:auto;weight:1px;"></label>
+				<div layout="LinearLayout" style="orientation:horizontal;width:250px;valign:middle;align:center;">
+					<label style="width:40px;height:40px;padding:4px;align:right;"></label>
+					<!--<checkbox style="align:center;valign:middle;">自动登录</checkbox>-->
+					<label style="width:auto;weight:1px;"></label>
+					<label style="height:25px;align:right;" >忘记密码</label>
+				</div>
+				<label  style="width:auto;weight:1px;"></label>
+			</div>
+
+
+			<div layout="LinearLayout" style="orientation:horizontal;valign:middle;width:auto; align:right;">
+				<label  style="width:auto;weight:1px;"></label>
+				<div layout="LinearLayout" style="orientation:horizontal;width:250px;valign:middle;background-color:#ffffff;border:solid 1px #cccccc 3px;">
+				<button style="weight:1px;align:center;valign:middle;height:32px;" onclick="logon()">登  录</button>
+				</div>
+				<label  style="width:auto;weight:1px;"></label>
+			</div>
+
+	</div>
+	<div id="Main_body_menu" layout="LinearLayout" style="width:auto;background-color:#99CCFF">
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;" >
+				<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(145).png)"  onclick="showReviewInfo()" />
+				<label style="color:#FFFFFF;" >复习</label>
+			</div>
+			<div layout="LinearLayout"  style="orientation:vertical;align:center;width:auto;weight:1px;">
+                <button style="width:36px;height:36px;background-image:url($/images/nav/(126).png);valign:middle"  onclick="showReading()"/>
+				<label style="color:#FFFFFF">阅读</label>
+            </div>				
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;">
+				<button style="width:36px;height:36px;background-image:url($/images/nav/(146).png)" onclick="showBooks()"/>
+				<label style="color:#FFFFFF;">词汇书</label>
+			</div>
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;background-color:#6699CC;">
+				<button style="width:36px;height:36px;background-image:url($/images/nav/(68).png)" onclick="reload()" />
+				<label style="color:#00FF66">我的</label>
+			</div>
+
+	</div>            
+
+</div>
+				
+</body>
+</html>
+
