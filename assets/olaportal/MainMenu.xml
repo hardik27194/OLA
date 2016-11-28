@@ -22,7 +22,7 @@
 					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(20).png)" onclick="testProgressBar2()" />
 				</div>
 			</div>
-			<ProgressBar id="ProgressBar"  style="style:bar;width:auto;height:20px;value:20;"></ProgressBar>
+			<ProgressBar id="ProgressBar" type="bar" style="width:auto;height:20px;value:20;"></ProgressBar>
             <div id="div2" layout="LinearLayout" style="orientation:vertical;width:auto;margin:3px;weight:3px;height:auto;valign:top;">
 			<scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
 				<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;">
@@ -32,13 +32,13 @@
 					</div>
 					<label style="align:left;width:auto;">Other Apps:</label>
 					<div  layout="LinearLayout"  style="width:auto;height:1px;background-color:#cccccc" />
-					<div id="Apps_Other_Panel" layout="LinearLayout"  style="width:auto;align:center;">
+					<div id="Apps_Other_Panel" layout="LinearLayout"  style="orientation:vertical;width:auto;align:center;">
 					</div>
-
+                    <linechart id="line_chart"  style="height:250px;width:auto;align:center;">   </linechart>
                 </div>
 			</scrollview>
 			</div>
-            <div layout="LinearLayout" style="margin:3px;width:auto;align:left;background-color:#99CCFF">
+            <div layout="LinearLayout" style="orientation:horizontal;margin:3px;width:auto;align:left;background-color:#99CCFF">
 				<label  style="orientation:horizontal;weight:1px;color:#FFFFFF">Simion IELTS News</label>
 				<label  style="orientation:horizontal;weight:1px;align:right;color:#FFFFFF">More...</label>
 			</div>
@@ -66,26 +66,27 @@
 			</div>
 
      </div>
-	<div id="load_wait_panel" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;background-color:#6699CC;alpha:0.8;visibility:hidden;">
-				<div layout="LinearLayout" style="orientation:vertical;width:auto;height:auto;align:center;valign:middle;">
-				<ProgressBar style="style:rotate;progress-image:url($/images/loading.png);width:60px;height:60px;"></ProgressBar>
-				<label style="margin:10px;align:center;"  onclick="reload()">   Loading...</label>
-				</div>
-	</div>
-
-<div id='news_dialog' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc;visibility:hidden;'>
-	<div  layout='LinearLayout'  style='margin:20px;padding:10px;orientation:vertical;width:auto;align:center;alpha:1;background-color:#FFFFFF'>
-		<label id="news_title" style='width:auto;background-image:url(images/10.gif);'>News</label>
-		<scrollview id="scroll" style="width:auto;height:400px;weight:1px;">
-			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;">
-				<!--<label id="news_content" >Loading...</label>-->
-				<div id="news_content" layout="webview" ></div>
-			</div>
-		</scrollview>
-		<button onclick='closeDialog("news_dialog")'>Close</button>
-	</div>
-</div>
-
+     
+     <div id="load_wait_panel" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;background-color:#6699CC;alpha:0.8;visibility:hidden;">
+         <div layout="LinearLayout" style="orientation:vertical;width:auto;height:auto;align:center;valign:middle;">
+             <ProgressBar id="progress_test" type="rotate" style="type:rotate;progress-image:url($/images/loading.png);width:160px;height:160px;"/>
+             <label style="margin:10px;align:center;color:#ff0000"  onclick="reload()">   Loading...</label>
+             <label style="margin:10px;align:center;color:#ff0000"  onclick="progress_test:start()">   Start</label>
+         </div>
+     </div>
+     
+     <div id='news_dialog' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc;visibility:hidden;'>
+         <div  layout='LinearLayout'  style='margin:20px;padding:10px;orientation:vertical;width:auto;align:center;alpha:1;background-color:#FFFFFF'>
+             <label id="news_title" style='width:auto;background-image:url(images/10.gif);'>News</label>
+             <scrollview id="scroll" style="width:auto;height:400px;weight:1px;">
+                 <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;">
+                     <!--<label id="news_content" >Loading...</label>-->
+                     <!--<div id="news_content" layout="webview" ></div>-->
+                 </div>
+             </scrollview>
+             <button onclick='closeDialog("news_dialog")'>Close</button>
+         </div>
+     </div>
 
 </body>
 </html>

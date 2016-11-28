@@ -324,7 +324,7 @@ CGFloat origionX,origionY;
         if(orientation==vertical)
         {
             h+=[v.css getMargin].top+[v.css getMargin].bottom;
-            CGFloat totalW=[v.css getMargin].top+[v.css getMargin].bottom;
+            CGFloat totalW=[v.css getMargin].left+[v.css getMargin].right;
             if(totalW>w)w=totalW;
         }
         else{
@@ -362,7 +362,7 @@ CGFloat origionX,origionY;
     //[super repaint];
 }
 /*
- request to reset frame size of the subviews of the current layout without Margins
+ request to reset frame size of the subviews of the current layout with Margins
  */
 -(void) requestLayout
 {
@@ -370,6 +370,7 @@ CGFloat origionX,origionY;
     
     CGFloat sumWeight=[self sumWeight];
     //CGSize  minSize=[self minSize];
+    CGSize sumMargin=[self sumMargin];
     if(orientation==horizontal)
     {
         CGFloat fixedWidth = 0.0;
@@ -390,9 +391,10 @@ CGFloat origionX,origionY;
             NSLog(@"children size,w=%f,h=%f",v.v.frame.size.width,v.v.frame.size.height);
             fixedWidth+=v.css.margin.left+v.css.margin.right;
         }
+        
         fixedWidth+=padding.left+padding.right;
-        NSLog(@"padding,l=%f,r=%f",padding.left,padding.right);
-        CGFloat freeWidth=self.frame.size.width-fixedWidth;
+        
+        CGFloat freeWidth=self.frame.size.width-fixedWidth-sumMargin.width;
         NSLog(@"self=%f",self.frame.size.width);
         
         CGFloat offsetX=padding.left;
@@ -400,8 +402,6 @@ CGFloat origionX,origionY;
         {
             CGFloat y=[v.css getMargin].top+padding.top;
             CGFloat x=offsetX+[v.css getMargin].left;
-            NSLog(@"-----child----- offsetX,=%f",x);
-            NSLog(@"fixedWidth,=%f,weight=%f",fixedWidth,sumWeight);
             CGFloat h=self.frame.size.height-padding.top-padding.bottom-v.css.margin.top-v.css.margin.bottom;
             if(v.css.height>0)h=v.css.height;
             if(v.css.weight>0)
@@ -501,10 +501,7 @@ CGFloat origionX,origionY;
             fixedHeight+=v.css.margin.top+v.css.margin.bottom;
         }
         fixedHeight+=padding.top+padding.bottom;
-        NSLog(@"padding,l=%f,r=%f",padding.top,padding.bottom);
         CGFloat freeHeight=self.frame.size.height-fixedHeight;
-        NSLog(@"self=%f",self.frame.size.height);
-        NSLog(@"fixedWidth,=%f",fixedHeight);
         CGFloat offsetY=padding.top;
         
         //CGFloat freeHeight=self.frame.size.height-fixedHeight-sumMargin.height;
@@ -513,16 +510,13 @@ CGFloat origionX,origionY;
             
             CGFloat x=[v.css getMargin].left+padding.left;
             CGFloat y=offsetY+[v.css getMargin].top;
-            //NSLog(@"offsetY,=%f",y);
             
             CGFloat w=self.frame.size.width-padding.left-padding.right-v.css.margin.left-v.css.margin.right;
             if(v.css.width>0)w=v.css.width;
             if(v.css.weight>0)
             {
                 CGFloat h=freeHeight *(v.css.weight/sumWeight);
-                NSLog(@"weight,weight=%f",v.css.weight);
-                NSLog(@"offsetY,h=%f,h=%f",v.v.frame.size.height,h);
-                NSLog(@"margin,t=%f,b=%f",v.css.margin.top,v.css.margin.bottom);
+
                 [v.v setFrame:CGRectMake(x,y,  w,h)];
             }
             else

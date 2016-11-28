@@ -79,7 +79,7 @@
     //implemented by sub class
 }
 
-- (void) addOLAView :(OLAView *) child
+- (void) addOlaView :(OLAView *) child
 {
     
     if(child.parent==nil)
@@ -89,7 +89,70 @@
         //be rebuilt by the setParent method
         //((IWedgit)child).parseCSS();
     }
+   // [self addSubview:child];
+
+    
+    Layout *layout = (Layout *)v;
+    CGFloat  origionalW=layout.frame.size.width;
+    CGFloat origionalH=layout.frame.size.height;
+    
     [self addSubview:child];
+    //adjust the Label's acture size, and the layout will be shrinked
+    if([child isKindOfClass:[OLALabel class]])
+    {
+        OLALabel *label =(OLALabel *)child;
+        [label adjustSelfSize:v.frame.size.width];
+    }
+    //repaint the layout with its origional size
+    //[v setFrame:size];
+    
+    
+    [self repaint];
+    
+    //check to see if it needes to repaint parent container view or not
+    BOOL needRepaint=NO;
+    /*
+     if([layout isKindOfClass:[LinearLayout class]])
+     {
+     LinearLayout *ll=(LinearLayout *)layout;
+     
+     if(ll.orientation==horizontal &&  (strncmp(ll.layoutParams->align, "center",6)==0 || strncmp(ll.layoutParams->align, "right",5)==0))
+     {
+     needRepaint=YES;
+     }
+     else
+     {
+     needRepaint=YES;
+     }
+     }
+     else
+     */
+    //NSLog(@"Container[addView] -- Info -- object=%@",objId);
+    //NSLog(@"Container[addView] -- Info -- origionalW=%f,origionalH=%f",origionalW,origionalH);
+    //NSLog(@"Container[addView] -- Info -- frame.width=%f,frame.height=%f",layout.frame.size.width,layout.frame.size.height);
+    if(origionalW<layout.frame.size.width || origionalH<layout.frame.size.height)
+    {
+        //the origional view's size is larger than the size of after added a child
+        //so it is need to repaint the parent
+        needRepaint=YES;
+    }
+    if(needRepaint)
+    {
+        OLAView * containerParent=parent;
+        while([containerParent.parent isKindOfClass:[OLALayout class]])
+        {
+            containerParent=containerParent.parent;
+        }
+        OLALayout *layout1= (OLALayout *)containerParent;
+        [layout1 setFrameMinSize];
+        [layout1 repaint];
+        //set min or max frame of subviews
+        //[(Layout *)layout1.v setFrameMinSize];
+        //[(Layout *)layout1.v repaint];
+    }
+
+    
+    
     
     //child.getView().requestLayout();
 }
@@ -109,82 +172,32 @@
     CGRect size=self.v.frame;
     //lua.getGlobal(id);
     OLAView * obj=[[OLALuaContext getInstance]  getObject:objLuaId];
-    
-    if(obj.parent==nil)
-        obj.parent=self;
-    
-    Layout *layout = (Layout *)v;
-    CGFloat  origionalW=layout.frame.size.width;
-    CGFloat origionalH=layout.frame.size.height;
-    
-    [self addSubview:obj];
-    //adjust the Label's acture size, and the layout will be shrinked
-    if([obj isKindOfClass:[OLALabel class]])
-    {
-        OLALabel *label =(OLALabel *)obj;
-        [label adjustSelfSize:v.frame.size.width];
-    }
-    //repaint the layout with its origional size
-    //[v setFrame:size];
-    
-
-    [self repaint];
-    
-    BOOL needRepaint=NO;
-    /*
-    if([layout isKindOfClass:[LinearLayout class]])
-    {
-        LinearLayout *ll=(LinearLayout *)layout;
-        
-        if(ll.orientation==horizontal &&  (strncmp(ll.layoutParams->align, "center",6)==0 || strncmp(ll.layoutParams->align, "right",5)==0))
-        {
-            needRepaint=YES;
-        }
-        else
-        {
-            needRepaint=YES;
-        }
-    }
-    else
-     */
-    //NSLog(@"Container[addView] -- Info -- object=%@",objId);
-    //NSLog(@"Container[addView] -- Info -- origionalW=%f,origionalH=%f",origionalW,origionalH);
-    //NSLog(@"Container[addView] -- Info -- frame.width=%f,frame.height=%f",layout.frame.size.width,layout.frame.size.height);
-    if(origionalW<layout.frame.size.width || origionalH<layout.frame.size.height)
-    {
-        needRepaint=YES;
-    }
-    if(needRepaint)
-    {
-        OLAView * containerParent=parent;
-        while([containerParent.parent isKindOfClass:[OLALayout class]])
-        {
-            containerParent=containerParent.parent;
-        }
-        OLALayout *layout1= (OLALayout *)containerParent;
-        [layout1 setFrameMinSize];
-        [layout1 repaint];
-        //set min or max frame of subviews
-        //[(Layout *)layout1.v setFrameMinSize];
-        //[(Layout *)layout1.v repaint];
-    }
+    [self addOlaView:obj];
     
 }
+
+-(void) removeOlaView:(OLAView *) view
+{
+    [view.v removeFromSuperview];
+}
+
 /**
  * remove a child view from the current container by the child's lua id
  * @param id
  */
-- (void) removeChild:(NSString *) objId
+- (void) removeView:(NSString *) objId
 {
     id obj=[[OLALuaContext getInstance]  remove:objId];
     //v remove//removeView((OLAView *)obj);
+    [self removeOlaView:obj];
 }
-- (void) repaint
+
+- (void) removeAllViews
 {
-    
+    for(UIView * view in [v subviews])
+    {
+        [view removeFromSuperview];
+    }
 }
-- (void) setFrameMinSize
-{
-    
-}
+
 @end

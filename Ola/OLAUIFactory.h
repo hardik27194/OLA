@@ -12,13 +12,15 @@
 
 @interface OLAUIFactory : NSObject
 {
-   	OLAView * bodyView;
+   	OLABodyView * bodyView;
+    OLAView *ctx;
     
 
 }
-@property (nonatomic)OLAView * bodyView;
+@property (nonatomic)OLABodyView * bodyView;
+@property (nonatomic)OLAView * ctx;
 
-- (id) initWithBodyView:(OLAView *) bodyViewObj;
+- (id) initWithContext:(OLABodyView *) olaBodyView withContext:(OLAView *) context;
 
 +  (NSString *) loadAssert:(NSString *) resPath;
 + (NSString *) loadResourceTextDirectly:(NSString *) resPath;
@@ -27,4 +29,6 @@
 -  (OLALayout *) createLayout:(OLAView *) parentView withXMLFile:(NSString *) url;
 - (NSString *) createView:(NSString *) xml;
 - (void) switchView:(NSString *) name callback:(NSString *) callback  params:(NSString  *) params;
+- (NSString *) getParameters;
+-(NSString*)getRootViewId;
 @end

@@ -49,6 +49,7 @@ static OLAPortalProperties *instance;
 }
 - (void) startApp:(NSString *)name
 {
+    NSLog(@"portl startApp: running");
     //[self performSelectorOnMainThread:@selector(_startApp:)withObject:appName waitUntilDone:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self _startApp:name];
@@ -58,10 +59,8 @@ static OLAPortalProperties *instance;
 - (void) _startApp:(NSString *) name
 {
     
+    
     OLAAppProperties *app= [[OLAAppProperties alloc] initWithAppName:name]; //new AppProperties(appName);
-    //NSString *packageName=Main.class.getPackage().getName();
-    //System.out.println(packageName);
-    //app.appPackage=packageName;
     currentApp=app;
     [app execGlobalScripts];
     NSString *firstName=[currentApp getFirstViewName];
@@ -73,8 +72,12 @@ static OLAPortalProperties *instance;
         v=[[OLABodyView alloc] initWithViewController:bodyView andViewXMLUrl:firstName]; //new BodyView(Main.ctx,name);
         //UIFactory.viewCache.clear();//
         //UIFactory.viewCache.put(name, v);
+        NSLog(@"show body show switch view -1=%@",v.ctx);
     }
      [v show];
+    //run the exit function of the old view
+    [[OLALuaContext getInstance] doString:@"exit()"];
+    [v executeLua];
     
 }
 

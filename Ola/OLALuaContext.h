@@ -19,6 +19,7 @@
 
 //+(OLALuaContext *) createInstance;
 +(OLALuaContext *)getInstance;
++(OLALuaContext *)createInstance;
 + (void) registInstance:(OLALuaContext *)lua;
 
 - (lua_State *) getLuaState;

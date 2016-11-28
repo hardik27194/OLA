@@ -48,7 +48,7 @@
     --book's name
     Global.currentBookName = "Please select a book";
     --private static String currentBookFileName = "";--/words.db
-    Global.currentBookFileName = "";
+    Global.currentBookFileName = "IELTS 1228 WORDS";
    -- public static String currentPronDirName = "";
     Global.currentPronDirName = "";
    -- public static int bookGroupAmount;

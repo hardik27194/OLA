@@ -89,7 +89,7 @@
 			else
 				english_label:setText( "")
             end
-			word.example=string.gsub(word.example," *"..word.spell," <font color='#CC9933'>"..word.spell.."</font>")
+			--word.example=string.gsub(word.example," *"..word.spell," <font color='#CC9933'>"..word.spell.."</font>")
             if (Global.showExample) then
 				if(word.example~=nil) then example_label:setText(word.example ) end
 			else

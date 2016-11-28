@@ -14,6 +14,12 @@
 
 sqlite3 *db;
 //private HashMap values;
+sqlite3_stmt *pstmt;
+const char * psql;
+
+NSMutableArray *pParams;
+int pParamIndex=1;
+
 - (id) init
 {
     self=[super init];
@@ -52,6 +58,41 @@ sqlite3 *db;
     char * errorMsg;
     return sqlite3_exec(db, sql, NULL, NULL, &errorMsg);
 
+
+}
+
+
+-(void)createPreparedStatement:(const char*) sql
+{
+    psql=sql;
+   if( sqlite3_prepare( db,sql,  -1,&pstmt,0)!=SQLITE_OK)
+   {
+       NSLog(@"Error to create Prepared Statement \"%s\"",sql);
+   }
+    
+    pParams = [[NSMutableArray alloc] initWithCapacity:30];
+    
+}
+
+-(void) resetPreparedStatement
+{
+    [pParams removeAllObjects];
+    sqlite3_clear_bindings(pstmt);
+    //sqlite3_reset(pstmt);
+    pParamIndex=1;
+    
+}
+
+-(void) setColumn:(const char*) value
+{
+    sqlite3_bind_text(pstmt, pParamIndex++, value, -1, SQLITE_STATIC);
+    //[pParams addObject:value];
+}
+
+
+-(void) executePreparedStatement
+{
+    while(sqlite3_step(pstmt) == SQLITE_ROW){}
 }
 /*
 - (long) insert:(NSString *)table withColumns:(NSArray *)columns andValues:(NSArray) values

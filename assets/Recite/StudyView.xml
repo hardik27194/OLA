@@ -13,9 +13,10 @@
 		</div>
 
 		<div layout="LinearLayout"  style="orientation:vertical;width:auto;weight:1px;align:center;valign:middle;">
-
-			<div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;background-color:#e2e2e2;border:solid 0px #cccccc 0px;margin:15px;">
-				<div layout="LinearLayout" style="orientation:vertical;width:auto;margin:25px;align:center;border:solid 1px #cccccc 15px;background-color:#ffffff;padding:25px;">
+            <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
+			<div layout="LinearLayout" style="orientation:vertical;weight:1px;height:auto;width:auto;align:center;background-color:#e2e2e2;border:solid 0px #cccccc 0px;margin:15px;">
+				
+                <div layout="LinearLayout" style="orientation:vertical;width:auto;margin:25px;align:center;border:solid 1px #cccccc 15px;background-color:#ffffff;padding:25px;">
 					<label style="width:auto;height:30px;align:left;align:center;valign:middle;weight:1px;">不要忘了，每天一组词哦！</label>
 					<label  style="height:1px;width:auto;background-color:#cccccc;"></label>
 					<div layout="LinearLayout" style="width:auto;">
@@ -42,13 +43,15 @@
 						<label id="Next_Group" style="align:left;height:30px;valign:middle;color:#ff0000;">0</label>
 					</div>
 				</div>
+                
+                
 
-				<div layout="LinearLayout" style="orientation:horizontal;width:250px;height:auto;weight:1px;align:center;">
+				<div layout="LinearLayout" style="orientation:horizontal;width:250px;height:auto;align:center;">
 					<button style="width:80px;height:80px;background-image:url($/images/cbtn_2.png)" onclick="start()" >Study</button>
 				</div>
-		<div layout="LinearLayout" style="orientation:horizontal;width:auto;align:center;background-color:#e2e2e2;border:solid 0px #cccccc 5px;margin:15px;">
+		<div layout="LinearLayout" style="orientation:horizontal;width:auto;align:center;border:solid 0px #cccccc 5px;margin:15px;">
 				<label style="width:40px;height:auto;align:right;valign:middle;">学习用时</label>
-				<div layout="LinearLayout" style="orientation:vertical;width:auto;margin:25px;align:center;border:solid 0px #cccccc 15px;padding:25px;">
+				<div layout="LinearLayout" style="orientation:vertical;weight:1px;width:auto;margin:5px;align:center;border:solid 0px #cccccc 15px;padding:25px;">
 					<div layout="LinearLayout" style="orientation:horizontal;align:center;width:auto;">
 						<label style="width:auto;align:left;valign:middle;weight:1px;">所有词汇:</label>
 						<label id="Total_Time" style="align:left;valign:middle;">0</label>
@@ -60,24 +63,26 @@
 				</div>
 		</div>
 			</div>
+            </scrollview>
+            
 		</div>
 
 	<div id="Main_body_menu" layout="LinearLayout" style="width:auto;background-color:#99CCFF">
 			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;" >
 				<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(145).png)"  onclick="showReviewInfo()" />
-				<label style="color:#ffffff;" >复习</label>
+				<label style="color:#ffffff;align:center;" >复习</label>
 			</div>
 			<div layout="LinearLayout"  style="orientation:vertical;align:center;width:auto;weight:1px;">
                 <button style="width:36px;height:36px;background-image:url($/images/nav/(126).png);valign:middle"  onclick="showReading()"/>
-				<label style="color:#FFFFFF">阅读</label>
+				<label style="color:#FFFFFF;align:center;">阅读</label>
             </div>				
 			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;">
 				<button style="width:36px;height:36px;background-image:url($/images/nav/(146).png)" onclick="showBooks()"/>
-				<label style="color:#ffffff;">词汇书</label>
+				<label style="color:#ffffff;align:center;">词汇书</label>
 			</div>
 			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;">
 				<button style="width:36px;height:36px;background-image:url($/images/nav/(68).png)" onclick="myInfo()" />
-				<label style="color:#ffffff">我的</label>
+				<label style="color:#ffffff;align:center;">我的</label>
 			</div>
 	</div>            
 	</div>

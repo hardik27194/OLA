@@ -244,7 +244,7 @@ function showLineChart()
 	end
 	line_chart:clear()
 	line_chart:setXValue(xa)
-	line_chart:addYValue(name,ya)
+	line_chart:addYValue_withLabel(ya,name)
 	--line_chart:addYValue("Test2","1.5,2,3.5,4.5,15.5")
 	line_chart:show()
 Log:d("MainMenu","loaded showLineChart")

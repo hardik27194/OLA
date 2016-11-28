@@ -16,7 +16,7 @@
 -- Luiz Henrique de Figueiredo <lhf@tecgraf.puc-rio.br>
 -- Tue Aug  5 22:57:33 BRT 2008
 -- This code is hereby placed in the public domain.
---[
+--[[
 local MARK = "////////"
 local NAME = "luac"
 
@@ -78,4 +78,4 @@ end
 -- 32
 assert(f:write(string.rep("\0", 12)))
 assert(f:close())
-]]
+]]--

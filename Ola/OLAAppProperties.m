@@ -63,6 +63,7 @@
         //OLAUIFactory.viewCache.put(name, v);
     }
     [v show];
+    [v executeLua];
     
 
 

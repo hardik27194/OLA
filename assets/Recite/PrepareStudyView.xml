@@ -17,11 +17,11 @@
 					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav-gray/(43).png)" onpress="layerOnPress('L_delete')" onrelease="layerOnRelease('L_delete')" onclick="delete()" />
 					<button id="btn1" style="width:36px;height:36px;align:center;background-image:url($/images/nav-gray/(189).png)"  onpress="layerOnPress('L_play')" onrelease="layerOnRelease('L_play')" onclick="play()" />
 			</div>
-			<label id="spell_label" style="width:auto;align:center;weight:2px;color:#663366;font:36px Arial;">English</label>
-			<label id="pron_label" style="width:auto;align:center;weight:2px;font:16px Arial;">Pron</label>
-				<label id="chinese_label" style="width:auto;padding:5px;margin:5px;align:center;font:18px;">Chinese</label>
+			<label id="spell_label" style="width:auto;align:center;color:#663366;font:36px Arial;">English</label>
+			<label id="pron_label" style="width:auto;align:center;font:16px Arial;">Pron</label>
+			<label id="chinese_label" style="width:auto;padding:5px;margin:5px;align:center;font:18px;">Chinese</label>
 		</div>
-        <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;margin:10px;padding:15px;background-color:#ffffff">
+        <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;margin:10px;background-color:#ffffff">
 		<scrollview style="width:auto;height:auto;weight:1px;">
 			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;">
 				<label style="width:80px;margin:5px;height:auto;padding:5px;align:left;border:solid 1px #cccccc 5px;font:16px;background-color:#cccccc">英英释义</label>

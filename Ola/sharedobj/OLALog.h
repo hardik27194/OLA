@@ -12,6 +12,7 @@
 
 //+ (void)d: (NSString *) msg;
 + (void)d:(NSString *) module message:(NSString *) msg;
-static void d(char * module,char * msg);
++ (void)i:(NSString *) module message:(NSString *) msg;
++ (void)f:(NSString *) module message:(NSString *) msg;
 @end
 

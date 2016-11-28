@@ -10,6 +10,11 @@
 
 @implementation OLAStringUtil
 
++(NSString*)fun_test:(NSString*)a
+{
+    NSLog(@"lua ios fun test:a=%@, b=",a);
+    return  @"AAAA";
+}
     
 	+ (NSString *) UTF6LE:(int) uc lc:(int) lc
 	{

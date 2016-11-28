@@ -19,7 +19,9 @@
 - (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootEle
 {
     self=[super initWithParent:parentView withXMLElement:rootEle];
+    NSString* defaultStyle=@"width:auto;align:center;valign:middle;background-color:#FFFBF0;border:solid 1px #00F0F0 5px;";
     
+    super.defaultCSSStyle=defaultStyle;
     //font = [UIFont fontWithName:@"Arial" size:12];
     
     Button *btn= [Button buttonWithType:UIButtonTypeRoundedRect]; //绘制形状

@@ -18,6 +18,17 @@
     NSLog(@"%@:%@",module, msg);
 }
 
++ (void) i:(NSString *) module message:(NSString *) msg
+{
+    NSLog(@"%@:%@",module, msg);
+}
+
++ (void) f:(NSString *) module message:(NSString *) msg
+{
+    NSLog(@"%@:%@",module, msg);
+}
+
+
 @end
 
 

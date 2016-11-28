@@ -26,6 +26,7 @@
 #import "OLAAppProperties.h"
 #import "OLA.h"
 #import "OLARoundImage.h"
+#import "OLALineChart.h"
 
 @implementation OLAUIFactory
 
@@ -48,10 +49,11 @@
     return viewCache;
 }
 
-- (id) initWithBodyView:(OLAView *) bodyViewObj
+- (id) initWithContext:(OLABodyView *) olaBodyView withContext:(OLAView *) context;
 	{
         self=[super init];
-		bodyView=bodyViewObj;
+		[self setBodyView:olaBodyView];
+        [self setCtx:context];
         return self;
 	}
 
@@ -68,9 +70,14 @@
         //OLAProperties * prop = [OLAProperties getInstance];
         //NSString * name=[prop.appUrl stringByAppendingString:viewName];
         NSString * name=[[OLA getAppBase] stringByAppendingString:viewName];
+        
+        //run the exit function of the old view
+        
+        OLALuaContext* preLuaCtx=[OLALuaContext getInstance];
+        
+        
 		OLABodyView *v;
 		id obj=[viewCache objectForKey:name];
-        NSLog(@"cache size 1=%d",viewCache.count);
 		if(obj!=nil && !needReload)
 		{
 			v=(OLABodyView *)obj;
@@ -78,29 +85,38 @@
 		else
 		{
             //v=new BodyView(ctx,name);
-            v=[[OLABodyView alloc] initWithViewController:bodyView andViewXMLUrl:name];
+            v=[[OLABodyView alloc] initWithViewController:self.ctx andViewXMLUrl:name];
             if(!needReload) [viewCache setObject:v forKey:name];//viewCache.put(name, v);
-            
 		}
         NSLog(@"cache size 2=%d",viewCache.count);
         v.parameters=params;
-        [v execCallBack:callback];
+        
+        
 		[v show];
+        [preLuaCtx doString:@"exit()"];
+        
+        // do not close or set the preLuaCtx to nil, since in IOS, only one LuaCtx there which is used by the porttal and all of the apps.
+        
+        [v executeLua];
+        [v execCallBack:callback];
         
     }
- /*
+
 	- (NSString *) getParameters
 {
 		return bodyView.parameters;
 	}
-	*/
+
     //	public  Layout loadXML(String url)
     //	{
     //	 return loadXML(url,true);
     //	}
 
 
-
+-(NSString*)getRootViewId
+{
+    return [self.bodyView.bodyLayout getId];
+}
 
 
 
@@ -113,7 +129,7 @@
 		OLALayout * layout = nil;
     
     NSString * xml=[OLAUIFactory loadResourceTextDirectly:url];
-
+    //NSLog(@"xml=%@",xml);
     
     NSData * xmlData= [xml dataUsingEncoding:NSUTF8StringEncoding];
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:xmlData];
@@ -276,6 +292,10 @@
         else if ([name caseInsensitiveCompare:@"ROUNDIMAGE"]==NSOrderedSame )
     	{
     		v= [[OLARoundImage alloc] initWithParent:rootView withXMLElement:n];
+    	}
+        else if ([name caseInsensitiveCompare:@"LINECHART"]==NSOrderedSame )
+    	{
+    		v= [[OLALineChart alloc] initWithParent:rootView withXMLElement:n];
     	}
          
     	return v;

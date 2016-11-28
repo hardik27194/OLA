@@ -45,6 +45,14 @@
 				   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url($/images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
 			   </div>
 		   </div>
+           
+           <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:5px;">
+			   <div layout="LinearLayout" style="height:auto;orientation:horizontal;width:auto;margin:1px;padding:3px;background-color:#ccffff;border:solid 2px #6699cc 5;">
+                   <label style="width:16px;height:16px;background-image:url($/images/icon/textfield.png);"></label>
+                   <label style="width:auto;height:auto;align:left;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Chart")'>Chart</label>
+				   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url($/images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+			   </div>
+		   </div>
        
        </div>
 	   </scrollview>

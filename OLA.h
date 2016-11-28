@@ -15,6 +15,8 @@
 //@property (nonatomic) NSString * appBase;
 + (void) setAppBase:(NSString *) base;
 +(NSString *) getAppBase;
++(NSString *) getBase;
++ (void) setBase:(NSString *) base;
 +(void)setMainView:(UIView *) view;
 +(UIView *)getMainView;
 @end

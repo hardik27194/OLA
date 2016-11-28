@@ -1,7 +1,7 @@
-OLA={}
+--for IOS
+--Log:d("OLA.lua Test","IOS")
 
-
---package.path = ';;/data/data/com.lohool.ola/apps/lua/?.lua;'   
+--package.path = ';;assets/lua/?.lua;'   
 --package.cpath = '/data/data/com.lohool.ola/lua/?.so;'   --so
 
 OLA={}

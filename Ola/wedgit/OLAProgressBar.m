@@ -8,6 +8,8 @@
 
 #import "OLAProgressBar.h"
 #import "ProgressBar.h"
+#import "ImgRotationView.h"
+#import "OLAThreeDotsView.h"
 
 @implementation OLAProgressBar
 
@@ -18,7 +20,37 @@
 {
     self=[super initWithParent:parentView withXMLElement:rootEle];
     
-    ProgressBar *bar= [[ProgressBar alloc]init];
+    [super parseAttribute];
+    [super parseCSS];
+
+    UIView *view= NULL;
+    NSString *attr=[css getStyleValue:@"type"];
+    NSLog(@"draw progrssbar:type=%@",attr);
+     if (attr!=NULL && [attr caseInsensitiveCompare:@"rotate"]==NSOrderedSame)
+     {
+         NSLog(@"draw progrssbar:%@",@"rotate");
+         
+         ImgRotationView *iview=[[ImgRotationView alloc]init];
+         
+         //[iview start];
+         
+         /*
+        OLAThreeDotsView * iview = [[OLAThreeDotsView alloc] initWithView:parentView.v blur:NO];
+         // Start
+         [iview showWhileExecutingBlock:^{
+             sleep(6);
+         } completion:^{
+             //[self.navigationController popToRootViewControllerAnimated:YES];
+         }];
+         */
+         
+         view=iview;
+     }
+    else
+    {
+        NSLog(@"draw progrssbar:%@",@"bar");
+        view=[[ProgressBar alloc]init];
+    }
 
     //bar.progressTintColor = [UIColor blueColor];
     //bar.trackTintColor=[UIColor grayColor];
@@ -28,11 +60,24 @@
     
     //bar.transform = transform;
     
-    super.v=bar;
+    super.v=view;
+    //
+    //[super initiate];
+    [super parseCSS];
+    [super addListner];
     
-    [super initiate];
     [self parseMyAttribute];
     return self;
+}
+-(void)start
+{
+    ImgRotationView *view=(ImgRotationView *)v;
+    [view start];
+}
+-(void)stop
+{
+    ImgRotationView *view=(ImgRotationView *)v;
+    [view stop];
 }
 
 - (void) parseMyAttribute

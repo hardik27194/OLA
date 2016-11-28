@@ -30,10 +30,10 @@ OLAUIFactory * ui;
 
 
 
-- (id) initWithViewController:(OLAView *)bodyView andViewXMLUrl:(NSString * )viewUrl
+- (id) initWithViewController:(OLAView *)context andViewXMLUrl:(NSString * )viewUrl
 {
     self=[super init];
-    self.ctx=bodyView;
+    self.ctx=context;
     self.viewUrl = viewUrl;
     [self create];
     return self;
@@ -41,8 +41,8 @@ OLAUIFactory * ui;
 }
 - (void) create
 {
-    
-    ui = [[OLAUIFactory alloc] initWithBodyView:ctx];
+
+    ui = [[OLAUIFactory alloc] initWithContext:self withContext:ctx];
     [[OLALuaContext getInstance] regist:ui withGlobalName:@"_ui"];
     [[OLALuaContext getInstance] doFile:@"OLAUIFactory.lua"];
     
@@ -50,6 +50,7 @@ OLAUIFactory * ui;
     [self loadLuaCode];
     
 }
+
 /*
 - (NSString *) getParameters
 {
@@ -119,12 +120,10 @@ OLAUIFactory * ui;
 - (void) executeLua
 {
     [self registReloadFun];
-
-    [[OLALuaContext getInstance] doString:LuaCode];
     
     // if database class is defined by Lua, create a database connection
     // and set it to lua global
-    lua_State * lua=[[OLALuaContext getInstance] getLuaState]; //LuaContext.getInstance().getLuaState();
+    //lua_State * lua=[[OLALuaContext getInstance] getLuaState]; //LuaContext.getInstance().getLuaState();
     /*
     lua_getglobal(lua, "database");
     if(lua_istable(lua, -1))
@@ -138,22 +137,44 @@ OLAUIFactory * ui;
      
     }
      */
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //dispatch_async(dispatch_get_main_queue(), ^{
+            //while(TRUE)
+            {
+                //NSLog(@"thread.....");
+                //@synchronized(lock)
+                {
+                    NSLog(@"lua code=%@",LuaCode);
+                    //if(LuaCode!=nil && [LuaCode compare:@""]!=NSOrderedSame)
+                    {
+                        [[OLALuaContext getInstance] doString:LuaCode];
+                    }
+                    [[OLALuaContext getInstance] doString:@"initiate()"];
+                    NSLog(@"execute lua finished.");
+                                       
+                }
+            }
+        //});
+        
+    });
+    
+    
 
-    [[OLALuaContext getInstance] doString:@"initiate()"];
+    
+    
 }
 
 - (void) show
 {
-    if(LuaCode!=nil && [LuaCode compare:@""]!=NSOrderedSame)[self executeLua];
-    //remove all the subviews from the view controller
-    
+        //remove all the subviews from the view controller
     for (UIView * subview in [ctx.v subviews])
     {
         [subview removeFromSuperview];
         
     }
-    NSLog(@"body show=%@",viewUrl);
     [ctx.v addSubview:bodyLayout.v];
+    
 
 }
 

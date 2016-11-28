@@ -28,9 +28,21 @@ static OLALuaContext * instance;
     
 }
 
-+(OLALuaContext *)getInstance{
++(OLALuaContext *)createInstance{
     
     @synchronized(self){  //为了确保多线程情况下，仍然确保实体的唯一性
+                
+            [[self alloc] init]; //该方法会调用 allocWithZone
+        
+    }
+    
+    return instance;
+    
+}
+
++(OLALuaContext *)getInstance{
+    
+    //@synchronized(self){  //为了确保多线程情况下，仍然确保实体的唯一性
         
         if (!instance) {
             
@@ -38,7 +50,7 @@ static OLALuaContext * instance;
             
         }
         
-    }
+    //}
     
     return instance;
     
@@ -48,7 +60,7 @@ static OLALuaContext * instance;
 
 +(id)allocWithZone:(NSZone *)zone{
     
-    @synchronized(self){
+   // @synchronized(self){
         
         if (!instance) {
             
@@ -58,7 +70,7 @@ static OLALuaContext * instance;
             
         }
         
-    }
+   // }
     
     return nil;
     

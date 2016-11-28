@@ -56,7 +56,8 @@
 - (void) startApp:(NSString *)name
 {
     //[self performSelectorOnMainThread:@selector(_startApp:)withObject:appName waitUntilDone:YES];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
     [self _startApp:name];
     });
 
@@ -66,8 +67,9 @@
 {
     OLAPortalProperties *properties=[OLAPortalProperties getInstance];
     //properties.currentApp=null;
+     properties.appName=appName;
     [properties reset];
-    
+   
     //NSString *packageName=Main.class.getPackage().getName();
     //properties.appPackage=packageName;
     
@@ -84,8 +86,9 @@
         //UIFactory.viewCache.clear();//
         //UIFactory.viewCache.put(name, v);
     }
-    NSLog(@"v show=%@",v.viewUrl);
+    NSLog(@"show body show=1");
     [v show];
+    [v executeLua];
 }
 
 @end

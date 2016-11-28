@@ -144,12 +144,15 @@ static id  instance;
     
     //appBase=[sandboxRoot stringByAppendingString: appBase];
     
+     NSFileManager *fileManager = [NSFileManager defaultManager];
+    
     
     OLA.appBase=[appBase stringByAppendingFormat:@"%@/",appName];
+    OLA.base=appBase;
     
     //sdcard dir
     fileBase=[lua getGlobalString:@"OLA.storage"];
-
+    
 
     //[lua setGlobal:[self getRootPath] withId:@"OLA.storage"];
     NSMutableString * tmp=[[NSMutableString alloc] initWithString:[self getRootPath]];
@@ -157,7 +160,11 @@ static id  instance;
     [tmp appendString:fileBase];
     fileBase=tmp;
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+   if(![fileManager fileExistsAtPath:fileBase])
+   {
+       [fileManager createDirectoryAtPath:fileBase withIntermediateDirectories:TRUE attributes:nil error:nil];
+   }
+    
     //Get documents directory
     //NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains  (NSDocumentDirectory, NSUserDomainMask, YES);
     //NSString *documentsDirectoryPath = [directoryPaths objectAtIndex:0];
@@ -169,6 +176,8 @@ static id  instance;
         }
     }
     
+    
+
     
     NSMutableString * storage=[[NSMutableString alloc] initWithString:@"OLA.storage='"];
     //[storage appendString:[self getRootPath]];
@@ -199,10 +208,13 @@ static id  instance;
     */
     lua_getfield(L, -1, "path");// L.getField(-1, "path");            // package path
     const char * value=lua_tostring(L, -1);
+    NSLog(@"app base=%@",appBase);
     NSLog(@"package.path=%s",value);
     NSMutableString *path= [[NSMutableString alloc] initWithString:@";"];
+    [path appendFormat:@"%@%@",sandboxRoot,@"/Ola.app/assets/lua/?.lua"];
     [path appendFormat:@"%@%@",sandboxRoot,@"/lua/?.lua"];
-    [path appendFormat:@";%@",@"assets/olaos/lua/?.lua"];
+    [path appendFormat:@";%@",@"assets/lua/?.lua"];
+
     //NSString *customPath =[@";" stringByAppendingFormat:@"%@%@",sandboxRoot,@"/lua/?.lua"];
     lua_pushstring(L, [path UTF8String]);// L.pushString(";" + customPath);    // package path custom
     lua_concat(L, 2);// L.concat(2);                       // package pathCustom

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "OLAView.h"
+#import "CorePlot-CocoaTouch.h"
 
-@interface OLAViewController : UIViewController<UIScrollViewDelegate>
+@interface OLAViewController : UIViewController<UIScrollViewDelegate,CPTPlotDataSource>
 {
     OLAViewController * viewController;
     OLAView * bodyView;

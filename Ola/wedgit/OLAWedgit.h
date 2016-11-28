@@ -15,9 +15,20 @@
 
 
 @interface OLAWedgit : OLAView<UIGestureRecognizerDelegate,IViewEvent>
+{
+    NSString * defaultCSSStyle;
+}
+
+@property (nonatomic)NSString * defaultCSSStyle;
 
 - (id) initWithParent:(OLAView *) viewParent  withXMLElement:(XMLElement *) xmlRoot;
+
+- (void) parseAttribute;
+- (void) parseCSS;
+- (void) addListner;
+//initiale inclue the above 3 methods
 - (void) initiate;
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;  //手指触摸屏幕时报告UITouchPhaseBegan事件
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event ;  //在手指在屏幕上移动时报告UITouchPhaseMoved事件
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event ;  //在手指离开屏幕时报告UITouchPhaseEnded事件

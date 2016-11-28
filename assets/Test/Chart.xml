@@ -1,0 +1,38 @@
+<html>
+<style>
+<!--
+.FrameLayout
+{
+	margin:0
+}
+-->
+</style>
+<body id="Main_body" layout="FrameLayout" style="orientation:vertical;">
+  <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;" >
+		<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
+				<div id="L_showpop" layout="LinearLayout" style="width:42px;height:36px;align:center;valign:middle;"  onclick="reload()">
+					<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(151).png)"  onclick="reload()" />
+				</div>
+				<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
+                    <button id="row1" style="width:32px;height:32px;background-image:url($/images/nav/(12).png);valign:middle" onclick="show('MainMenu')"></button>
+                </div>				
+				<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;">
+				<label style="weight:1px;height:auto;valign:middle;">OLA Test--Chart</label>
+				</div>
+				<div id="L_showpop" layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
+					<button style="width:6px;height:24px;background-image:url($/images/more.png)" onclick="ShowPopupMenu()"/>
+				</div>
+		</div>            
+        <div id="Main_body_Content" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;margin:3px;weight:1px;height:auto;valign:top;" >
+            <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
+                <div layout="LinearLayout" style="orientation:vertical;width:auto;">
+                    <linechart id="line_chart"  style="height:250px;width:auto;align:center;">   </linechart>
+                </div>
+            </scrollview>
+            
+        </div>
+</div>
+				
+</body>
+</html>
+

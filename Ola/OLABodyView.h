@@ -26,4 +26,5 @@
 - (id) initWithViewController:(OLAView *)bodyView andViewXMLUrl:(NSString * )viewUrl;
 - (void) show;
 - (void) execCallBack:(NSString *) callback;
+- (void) executeLua;
 @end

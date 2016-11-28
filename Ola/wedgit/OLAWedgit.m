@@ -21,10 +21,12 @@
 #import "Layout.h"
 #import "OLA.h"
 #import "QuartzCore/QuartzCore.h"
+#import "NSString+StringForJava.h"
+#import "OLAButton.h"
 
 @implementation OLAWedgit
 
-
+@synthesize defaultCSSStyle;
 
 //- abstract class IWedgit implements IView
 LayoutParams * param;
@@ -34,6 +36,7 @@ LayoutParams * param;
 {
     self.parent = viewParent;
     self.root = xmlRoot;
+    
     return self;
     
 }
@@ -81,11 +84,15 @@ LayoutParams * param;
 
 - (void) parseCSS
 {
+    
     // set attributes
     if (css == nil)
     {
+        NSString* cssStr=@"";
+        if(defaultCSSStyle!=nil)cssStr=[cssStr stringByAppendingString:defaultCSSStyle];
         NSString * cssNSString = (NSString *)[root.attributes objectForKey:@"style"];
-        css = [[CSS alloc] initWithStyles:cssNSString];
+        if(cssNSString!=nil)cssStr=[cssStr stringByAppendingString:cssNSString];
+        css = [[CSS alloc] initWithStyles:cssStr];
     }
     // table
     if ([self.root.tagName caseInsensitiveCompare:@"TR"]==NSOrderedSame)
@@ -196,10 +203,28 @@ LayoutParams * param;
     }
     */
     
-    if ((attr = [css getStyleValue:@"background-color"]) != nil)
+    //if([v isKindOfClass:[OLAButton class]])
     {
-        [self setBackgroundColor:attr];
+        //if has background image, do not render the background color and border
+        if ((attr = [css getStyleValue:@"background-image"]) == nil)
+        {
+            if ((attr = [css getStyleValue:@"background-color"]) != nil)
+            {
+                [self setBackgroundColor:attr];
+            }
+            [self setBorder];
+        }
     }
+    /*
+    else
+    {
+        if ((attr = [css getStyleValue:@"background-color"]) != nil)
+        {
+            [self setBackgroundColor:attr];
+        }
+        [self setBorder];
+    }
+     */
     /*
     if (css.color != 0)
         self.setColor(css.color);
@@ -282,7 +307,7 @@ LayoutParams * param;
     //NSLog(@"tag=%@, text=%@",self.root.tagName,text);
     }
     
-    [self setBorder];
+    
     [self setFont];
     /*
     else{
@@ -308,6 +333,10 @@ LayoutParams * param;
 {
     [[OLALuaContext getInstance] doString:str];
 }
+
+
+
+
 - (void) clicked
 {
     
@@ -742,7 +771,17 @@ LayoutParams * param;
 {
     //OLAProperties * param=[OLAProperties getInstance];
     //NSString * img =[param.appUrl stringByAppendingString:imageUrl];
+    
     NSString * img =[[OLA getAppBase] stringByAppendingString:imageUrl];
+    
+    if([imageUrl startsWith:@"$"])
+    {
+        img=[[OLA getBase] stringByAppendingString:[imageUrl substringFromIndex:1]];
+    }
+    
+    NSLog(@"img path=%@",img);
+    
+    
     if([self.v isKindOfClass:[UIButton class]])
     {
         //if not set frame size to "auto" or a number, set the view's size same to image's

@@ -16,6 +16,7 @@ function initiate()
 	local otherApps={}
 	local m=1
 	local n=1
+
 	for i=1, #apps do
 		if apps[i].state==1 then
 			Log:d('apps','installed='..apps[i].app )
@@ -40,7 +41,7 @@ function initiate()
 			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
 			local appPanel=lui.createView(viewStr)
 			_G[bar]:addView(appPanel)
-			viewStr='<button style="width:56px;height:56px;background-image:url('..apps[i].ico..');valign:middle;" onclick=\'startApplication("'..installedApps[i].app..'")\'></button>'
+			viewStr='<button style="width:50px;height:50px;background-image:url('..apps[i].ico..');valign:middle;" onclick=\'startApplication("'..installedApps[i].app..'")\'></button>'
 			local btn=lui.createView(viewStr)
 			_G[appPanel]:addView(btn)
 			viewStr='<label style="width:auto;align:center;" onclick=\'startApplication("'..installedApps[i].app..'")\'>'..installedApps[i].title..'</label>'
@@ -98,8 +99,12 @@ function initiate()
 	--clean vew cache pipe
 	lui.cleanViewCache()
 
+
+
+
 --lfs has been added as a inner lib, do not use: require "lfs", it is error and cannot be executed
-local path="/data/data/com.lohool.ola/apps/lua/"
+
+local path="./"
              local attr1 = lfs.attributes (path)
    for file in lfs.dir(path) do
         if file ~= "." and file ~= ".." then
@@ -113,6 +118,8 @@ local path="/data/data/com.lohool.ola/apps/lua/"
 		end
 	end
 
+str:fun_test("A1")
+
 end
 function initiate1()
     addUIWedgit()
@@ -120,6 +127,11 @@ end
 
 function back()
 	return 0;
+end
+
+function exit()
+Log:d("portl exit","exectued....")
+    lui.closeLoadingView()
 end
 
 function addUIWedgit()
@@ -156,10 +168,12 @@ function startApplication(appName)
 	--local view=lui.createLoadingView()
 	--body:addView(view)
 
-
-	lui.showLoadingView()
+    lui.showLoadingView()
+Log:d("portl loading","exectued....")
 	LMProperties:startApp(appName)
 	--load_wait_panel:setVisibility('hidden')
+    
+    
 end
 function displayInstallMenu(appName)
 		local menuStr="<div id='otherAppsMenu' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc'><label style='background-color:#ffffff'>The new app will provides new Enterprise services for employees.\nDownload and install the app, you will enjoy it.</label><button style='width:auto;align:center;'>Download</button><button  style='width:auto;align:center;' onclick='closeMenu()'>Cancel</button></div>"

@@ -29,6 +29,7 @@
 #import "OLAZipUtil.h"
 #import "OLAAbstractProperties.h"
 #import "OLA.h"
+#import "OLALineChart.h"
 
 @implementation OLAViewController
 
@@ -70,7 +71,12 @@
         //UIFactory.viewCache.put(name, v);
     }
     [v show];
+    [v executeLua];
     
+    //OLALineChart *lc=[[OLALineChart alloc]init];
+    //[self.view addSubview:lc.v];
+    
+   // [self initPlot];
     
     //[self testWriteFile];
     //[self.view addSubview:v.bodyLayout.v];
@@ -105,6 +111,14 @@
     
     //[self testDB];
 }
+
+
+
+
+
+
+
+
 /******************************************************************************
  函数名称 : + (NSData *)DESEncrypt:(NSData *)data WithKey:(NSString *)key 
  函数描述 : 文本数据进行DES加密 输入参数 : (NSData *)data              (NSString *)key 
