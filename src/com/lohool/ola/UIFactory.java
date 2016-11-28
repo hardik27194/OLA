@@ -86,7 +86,7 @@ public class UIFactory {
         String loadingXml=lobj.getString();
        System.out.println("loading view xml:"+loadingXml);
         IView loadingView=this.createViewByXml(loadingXml);
-        oldLayout.addView(loadingView);
+        oldLayout.addOlaView(loadingView);
         
        
         
@@ -156,7 +156,7 @@ public class UIFactory {
 		}
 		protected void onPostExecute(Layout layout) {
 			
-			oldLayout.removeView(loadingView);
+			oldLayout.removeOlaView(loadingView);
 			Main.activity.setContentView(layout.getView());
 			
 		}
@@ -173,7 +173,7 @@ public class UIFactory {
 	
 	public String getRootViewId()
 	{
-		return bodyView.layout.getObjectId();
+		return bodyView.layout.getId();
 	}
 	
 //	public  Layout loadXML(String url) 
@@ -234,7 +234,7 @@ public class UIFactory {
 	{
 		String id=null;
 		IView v= createViewByXml(xml);
-		id=v.getObjectId();
+		id=v.getId();
 		return id;
 	}
 

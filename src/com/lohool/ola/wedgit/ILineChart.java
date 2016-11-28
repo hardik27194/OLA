@@ -187,7 +187,7 @@ public class ILineChart extends IWedgit {
             //System.out.println(xv[i]);
         } 
 	}
-	public void addYValue(String label,String yValue)
+	public void addYValue_withLabel(String yValue,String label)
 	{
 		String yv[] =yValue.split(",");
 		ArrayList<Entry> yValues2 = new ArrayList<Entry>();  

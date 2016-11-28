@@ -85,10 +85,6 @@ public abstract class IWedgit implements IView
 
 	}
 
-	public String getObjectId()
-	{
-		return objId;
-	}
 	protected void initiate()
 	{
 		parseAttribute();
@@ -1274,7 +1270,7 @@ public abstract class IWedgit implements IView
 		this.parseCSS();
 
 	}
-	String getId()
+	public String getId()
 	{
 		return objId;
 	}

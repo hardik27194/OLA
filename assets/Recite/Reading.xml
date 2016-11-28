@@ -1,0 +1,181 @@
+<html>
+<head>
+	<style>
+		.button
+		{
+			orientation:vertical;
+			weight:1px;
+			margin:3px;
+			padding:15px;
+			align:center;
+			background-color:#3366FF;
+		}
+	</style>
+</head>
+<body id="body" layout="FrameLayout"  style="orientation:vertical;background-image:url($/images/bg-1.jpg)">
+     <div layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;valign:top;">
+			<div layout="LinearLayout" style="orientation:horizontal;width:auto;valign:middle;background-color:#99CCFF">
+			<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
+                <button style="width:32px;height:32px;background-image:url($/images/nav/(19).png);valign:middle" onclick="back()"></button>
+                <label style="width:auto;valign:middle;color:#ffffff;" onclick="back()">Back</label>
+            </div>				
+				
+					<button id="btn1" style="top:1px;margin:2px;weight:1px;height:36px;align:center;background-color:#99CCFF;border:solid 1px #99CCFF 5px;"  onclick="reload()" >Pocket Recite</button>
+				<div layout="LinearLayout" style="orientation:horizontal;width:48px;align:center">
+					<button id="btn1" style="top:1px;margin:2px;width:36px;height:36px;align:center;background-image:url($/images/nav/(68).png)" onclick="myInfo()" />
+				</div>
+			</div>
+		
+       <div layout="LinearLayout" style="orientation:horizontal;width:auto;height:150px;background-image:url(images/logo/2.jpg)">
+	   </div>
+<!--
+		<div layout="LinearLayout"  style="orientation:vertical;width:auto;height:auto;weight:1px;">
+            <div layout="LinearLayout" style="orientation:horizontal;width:auto;align:center;">
+                    <div layout="LinearLayout"  style="orientation:vertical;align:center;width:80px;margin:15px;">
+                        <div layout="LinearLayout"  style="orientation:vertical;width:80px;height:80px;align:center;valign:middle;background-image:url($/images/c3.png)">
+                            <button id="btn1"  style="width:48px;height:48px;background-image:url($/images/ico/1.png);valign:middle;" onclick='showFirstStudyView()' />>
+                        </div>
+                        <label id="label1" style="width:auto;align:center;color:#0000FF">预习</label>
+                    </div>
+
+                    <div layout="LinearLayout"  style="orientation:vertical;align:center;width:80px;margin:15px;">
+                        <div layout="LinearLayout"  style="orientation:vertical;width:80px;height:80px;align:center;valign:middle;background-image:url($/images/c3.png)">
+                            <button id="btn1"  style="width:70px;height:70px;background-image:url($/images/ico/2.png);valign:middle;" onclick='showReviewInfo()' />>
+                        </div>
+                        <label id="label1" style="width:auto;align:center;color:#0000FF">复习</label>
+                    </div>
+
+                 
+	                <div layout="LinearLayout"  style="orientation:vertical;align:center;width:80px;margin:15px;">
+                        <div layout="LinearLayout"  style="orientation:vertical;width:80px;height:80px;align:center;valign:middle;background-image:url($/images/c3.png)">
+                            <button id="btn1"  style="width:48px;height:48px;background-image:url($/images/ico/32.png);valign:middle;" onclick='showReviewInfo()' />>
+                        </div>
+                        <label id="label1" style="width:auto;align:center;color:#0000FF">学习情况</label>
+                    </div>
+            </div>
+
+            <div layout="LinearLayout" style="orientation:horizontal;width:auto;align:center;">
+						
+	                <div layout="LinearLayout"  style="orientation:vertical;align:center;width:80px;margin:15px;">
+                        <div layout="LinearLayout"  style="orientation:vertical;width:80px;height:80px;align:center;valign:middle;background-image:url($/images/c3.png)">
+                            <button id="btn1"  style="width:48px;height:48px;background-image:url($/images/ico/4.png);valign:middle;" onclick='showBooks()' />>
+                        </div>
+                        <label id="label1" style="width:auto;align:center;color:#0000FF">选择词库</label>
+                    </div>
+	                <div layout="LinearLayout"  style="orientation:vertical;align:center;width:80px;margin:15px;">
+                        <div layout="LinearLayout"  style="orientation:vertical;width:80px;height:80px;align:center;valign:middle;background-image:url($/images/c3.png)">
+                            <button id="btn1"  style="width:56px;height:56px;background-image:url($/images/ico/6.png);valign:middle;" onclick='showReviewInfo()' />>
+                        </div>
+                        <label id="label1" style="width:auto;align:center;color:#0000FF">语音库</label>
+                    </div>
+
+	                <div layout="LinearLayout"  style="orientation:vertical;align:center;width:80px;margin:15px;">
+                        <div layout="LinearLayout"  style="orientation:vertical;width:80px;height:80px;align:center;valign:middle;background-image:url($/images/c3.png)">
+                            <button id="btn1"  style="width:56px;height:56px;background-image:url($/images/ico/7-1.png);valign:middle;" onclick='showSettingView()' />>
+                        </div>
+                        <label id="label1" style="width:auto;align:center;color:#0000FF">设置</label>
+                    </div>
+
+            </div>
+
+		</div>
+-->
+           <div layout="LinearLayout" style="margin:3px;width:auto;background-color:#99CCFF">
+				<label id="news_panel_title" style="orientation:horizontal;weight:1px;color:#FFFFFF">Last Studied:</label>
+				<label  style="orientation:horizontal;weight:1px;align:right;color:#FFFFFF"></label>
+			</div>
+		<TABLE id="word_list" style="width:auto;background-color:#ffffFF">
+
+
+
+		</TABLE>
+           <div layout="LinearLayout" style="margin:3px;width:auto;background-color:#99CCFF">
+				<label id="news_panel_title" style="orientation:horizontal;weight:1px;color:#FFFFFF">Reading:</label>
+				<label  style="orientation:horizontal;weight:1px;align:right;color:#FFFFFF"></label>
+			</div>
+		<div id='news_panel' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;weight:1px;background-color:#FFFFFF'>
+		<scrollview style='width:auto;height:auto;weight:1px;'>
+ 		<div layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;weight:1px;'>
+
+           <div layout="LinearLayout" style="width:auto;background-color:#DFF4FF">
+				<label id="news_panel_title" style="orientation:horizontal;weight:1px;color:#660099">Simon Daily:</label>
+				<label  style="orientation:horizontal;weight:1px;align:right;color:#FFFFFF"></label>
+			</div>
+			<div layout="LinearLayout" style="orientation:vertical;margin:3px;padding:1px;width:auto;background-color:#DAF9FE">
+				<label id="Simon_1" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_1')" onrelease="layerOnRelease1('Simon_1')" onclick="showSimonDetail(1)"></label>
+				<label id="Simon_2"  style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_2')" onrelease="layerOnRelease1('Simon_2')" onclick="showSimonDetail(2)"></label>
+				<label id="Simon_3" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_3')" onrelease="layerOnRelease1('Simon_3')" onclick="showSimonDetail(3)"></label>
+				<label id="Simon_4" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_4')" onrelease="layerOnRelease1('Simon_4')" onclick="showSimonDetail(4)"></label>
+				<label id="Simon_5" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_5')" onrelease="layerOnRelease1('Simon_5')" onclick="showSimonDetail(5)"></label>
+				<label id="Simon_6" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_6')" onrelease="layerOnRelease1('Simon_6')" onclick="showSimonDetail(6)"></label>
+				<label id="Simon_7" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_7')" onrelease="layerOnRelease1('Simon_7')" onclick="showSimonDetail(7)"></label>
+				<label id="Simon_8" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_8')" onrelease="layerOnRelease1('Simon_8')" onclick="showSimonDetail(8)"></label>
+				<label id="Simon_9" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_9')" onrelease="layerOnRelease1('Simon_9')" onclick="showSimonDetail(9)"></label>
+				<label id="Simon_10" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('Simon_10')" onrelease="layerOnRelease1('Simon_10')" onclick="showSimonDetail(10)"></label>
+			</div>
+
+			
+			<div layout="LinearLayout" style="width:auto;background-color:#DFF4FF">
+				<label id="news_panel_title" style="orientation:horizontal;weight:1px;color:#660099">NewScientist news:</label>
+				<label  style="orientation:horizontal;weight:1px;align:right;color:#FFFFFF"></label>
+			</div>
+			<div layout="LinearLayout" style="orientation:vertical;margin:3px;padding:1px;width:auto;background-color:#DAF9FE">
+				<label id="NewScience_1" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_1')" onrelease="layerOnRelease1('NewScience_1')" onclick="showScienceNewsDetail(1)"></label>
+				<label id="NewScience_2" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_2')" onrelease="layerOnRelease1('NewScience_2')" onclick="showScienceNewsDetail(2)"></label>
+				<label id="NewScience_3" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_3')" onrelease="layerOnRelease1('NewScience_3')" onclick="showScienceNewsDetail(3)"></label>
+				<label id="NewScience_4" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_4')" onrelease="layerOnRelease1('NewScience_4')" onclick="showScienceNewsDetail(4)"></label>
+				<label id="NewScience_5" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_5')" onrelease="layerOnRelease1('NewScience_5')" onclick="showScienceNewsDetail(5)"></label>
+				<label id="NewScience_6" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_6')" onrelease="layerOnRelease1('NewScience_6')" onclick="showScienceNewsDetail(6)"></label>
+				<label id="NewScience_7" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_7')" onrelease="layerOnRelease1('NewScience_7')" onclick="showScienceNewsDetail(7)"></label>
+				<label id="NewScience_8" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_8')" onrelease="layerOnRelease1('NewScience_8')" onclick="showScienceNewsDetail(8)"></label>
+				<label id="NewScience_9" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_9')" onrelease="layerOnRelease1('NewScience_9')" onclick="showScienceNewsDetail(9)"></label>
+				<label id="NewScience_10" style="margin:1px;color:#0000FF;width:auto;background-color:#FFFFFF" onpress="layerOnPress('NewScience_10')" onrelease="layerOnRelease1('NewScience_10')" onclick="showScienceNewsDetail(10)"></label>
+			</div>
+
+		</div>
+		</scrollview>
+		</div>
+
+	<div layout="LinearLayout" style="width:auto;background-color:#99CCFF">
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;" >
+				<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(145).png)"  onclick="showReviewInfo()" />
+				<label style="color:#ffffff;" >复习</label>
+			</div>
+			<div layout="LinearLayout"  style="orientation:vertical;align:center;width:auto;weight:1px;background-color:#6699CC;">
+                <button style="width:36px;height:36px;background-image:url($/images/nav/(126).png);valign:middle"  onclick="reload()"/>
+				<label style="color:#00FF66">阅读</label>
+            </div>				
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;">
+				<button style="width:36px;height:36px;background-image:url($/images/nav/(146).png)" onclick="showBooks()"/>
+				<label style="color:#ffffff;">词汇书</label>
+			</div>
+			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;">
+				<button style="width:36px;height:36px;background-image:url($/images/nav/(68).png)" onclick="myInfo()" />
+				<label style="color:#ffffff">我的</label>
+			</div>
+	</div>            
+
+</div>
+<div id='news_dialog' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc;visibility:block;'>
+	<div  layout='LinearLayout'  style='margin:20px;padding:10px;orientation:vertical;width:auto;align:center;alpha:1;background-color:#FFFFFF'>
+		<label id="news_title" style='width:auto;background-image:url($/images/10.gif);'>News</label>
+		<scrollview id="scroll" style="width:auto;height:400px;weight:1px;">
+			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;">
+				<!--<label id="news_content" >Loading.</label>-->
+				<div id="news_content" layout="webview" ></div>
+			</div>
+		</scrollview>
+		<button onclick='closeDialog("news_dialog")'>Close</button>
+	</div>
+</div>
+	<!--
+	<div layout="LinearLayout" style="orientation:vertical;weight:1px;width:auto;height:auto;background-color:#cccccc">
+		<div layout="LinearLayout"  style="orientation:vertical;weight:1px;width:auto;height:auto;margin:10px;valign:middle;align:center;background-image:url($/images/pic-1.gif);">
+				<button id="row1" style="valign:middle;align:center">Exit</button>
+
+		</div>
+	</div>
+	-->
+</body>
+</html>
+
