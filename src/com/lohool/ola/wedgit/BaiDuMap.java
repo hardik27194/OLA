@@ -22,12 +22,13 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.lohool.ola.Main;
 import com.lohool.ola.R;
+import com.lohool.ola.UIFactory;
 
 public class BaiDuMap extends IWedgit
 {
-	public BaiDuMap(IView parent, Context context, Node root)
+	public BaiDuMap(IView parent, Context context, Node root,UIFactory ui)
 	{
-		super(parent, context, root);
+		super(parent, context, root,ui);
 		mapView =new MapView(Main.activity);
 		v=mapView;
 		super.initiate();

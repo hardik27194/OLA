@@ -18,6 +18,7 @@ import pl.droidsonroids.gif.GifImageButton;
 import com.lohool.ola.HTTP;
 import com.lohool.ola.Main;
 import com.lohool.ola.OLA;
+import com.lohool.ola.UIFactory;
 import com.lohool.ola.wedgit.IWedgit.ListenerHandler;
 
 import android.content.Context;
@@ -40,9 +41,9 @@ public class IGifView  extends IWedgit
 {
 	String gifFileName;
 	MyGifView t;
-	public IGifView(IView parent, Context context, Node root)
+	public IGifView(IView parent, Context context, Node root,UIFactory ui)
 	{
-		super(parent, context, root);
+		super(parent, context, root,ui);
 		t=new MyGifView(context);
 		//t=new GifImageButton(context);
 		v=t;

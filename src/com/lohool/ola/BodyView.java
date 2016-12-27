@@ -1,6 +1,5 @@
 package com.lohool.ola;
 
-
 import org.keplerproject.luajava.JavaFunction;
 import org.keplerproject.luajava.LuaException;
 import org.keplerproject.luajava.LuaObject;
@@ -99,7 +98,7 @@ public class BodyView {
 	void loadLuaCode() {
 
 //		if(this.LuaCode==null)
-			this.LuaCode = UIFactory.loadLayoutLuaCode(viewUrl);
+			this.LuaCode = ui.loadLayoutLuaCode(viewUrl);
 		// ctx.setContentView(bodyView.getView());
 	}
 

@@ -3,6 +3,8 @@ package com.lohool.ola.wedgit;
 
 import org.w3c.dom.Node;
 
+import com.lohool.ola.UIFactory;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -12,8 +14,8 @@ import android.widget.TextView;
 
 @SuppressLint("NewApi")
 public class ILabel  extends IWedgit {
-	public ILabel(IView parent,Context context,Node root) {
-		super(parent, context,  root);
+	public ILabel(IView parent,Context context,Node root,UIFactory ui) {
+		super(parent, context,  root,ui);
 		TextView t=new TextView(context);
 		
 		v=t;

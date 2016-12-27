@@ -20,22 +20,32 @@ import org.w3c.dom.NodeList;
 
 
 
+
+
+
+
+
 import com.lohool.ola.util.StackX;
 import com.lohool.ola.util.XMLProperties;
 import com.lohool.ola.wedgit.BaiDuMap;
+import com.lohool.ola.wedgit.CssClass;
 import com.lohool.ola.wedgit.IButton;
 import com.lohool.ola.wedgit.ICheckBox;
 import com.lohool.ola.wedgit.IContainer;
+import com.lohool.ola.wedgit.IFrameLayout;
 import com.lohool.ola.wedgit.IGifView;
 import com.lohool.ola.wedgit.ILabel;
 import com.lohool.ola.wedgit.ILineChart;
+import com.lohool.ola.wedgit.ILinearLayout;
 import com.lohool.ola.wedgit.IProgressBar;
+import com.lohool.ola.wedgit.IRelativeLayout;
 import com.lohool.ola.wedgit.IRoundImage;
 import com.lohool.ola.wedgit.IScrollView;
 import com.lohool.ola.wedgit.ITable;
 import com.lohool.ola.wedgit.ITableRow;
 import com.lohool.ola.wedgit.ITextField;
 import com.lohool.ola.wedgit.IView;
+import com.lohool.ola.wedgit.IWebView;
 import com.lohool.ola.wedgit.Layout;
 
 import android.content.Context;
@@ -48,7 +58,7 @@ public class UIFactory {
 	BodyView bodyView;
 	static HashMap<String, BodyView> viewCache= new HashMap();
 	static StackX<String> viewStack=new StackX();
-	
+	public CssClass cssClass=new CssClass();
 
 	
 	public UIFactory(BodyView bodyView,Context ctx )
@@ -257,17 +267,17 @@ public class UIFactory {
 			
 			if(root.getNodeName().equalsIgnoreCase("DIV"))
 			{
-				Layout layout= Layout.createLayout(null, ctx,  root);
+				Layout layout= createLayout(null, ctx,  root);
 				v=layout;
 			}
 			else if(root.getNodeName().equalsIgnoreCase("TR"))
 			{
-				v=new ITableRow(null, ctx,  root);
+				v=new ITableRow(null, ctx,  root,this);
 			}
 			else
 			{
 				
-				IView view=UIFactory.createView(null, ctx,  root);
+				IView view=createView(null, ctx,  root);
 				v=view;
 			}
 			LuaContext.getInstance().regist(v, id);
@@ -288,18 +298,25 @@ public class UIFactory {
 			for (int i = 0; i < nl.getLength(); i++) {
 
 				Node n = nl.item(i);
-				Node cssClass=null;
+				
 				if (n != null && n.getNodeType() == Node.ELEMENT_NODE
 						&& ((Element) n).getTagName().equalsIgnoreCase("head"))
 				{
-					cssClass=n;
+					parseXMLHeader(n);
+				}
+				else if (n != null && n.getNodeType() == Node.ELEMENT_NODE
+						&& ((Element) n).getTagName().equalsIgnoreCase("style"))
+				{
+					System.out.println("style value="+n.getTextContent().replaceAll("\n", " "));
+					cssClass.addStyle(n.getTextContent().replaceAll("\n", " "));
 				}
 				else if (n != null && n.getNodeType() == Node.ELEMENT_NODE
 						&& ((Element) n).getTagName().equalsIgnoreCase("body")) 
 				{
-					layout = Layout.createLayout(null, ctx, n);
+					layout = createLayout(null, ctx, n);
 					// this.setContentView(layout.getView());
 				}
+				
 			}
 			
 
@@ -310,7 +327,31 @@ public class UIFactory {
 
 		return layout;
 	}
-	public static String loadLayoutLuaCode(String xmlUrl)
+	
+	
+	void parseXMLHeader(Node header)
+	{
+		
+		try {
+			NodeList nl = header.getChildNodes();
+			for (int i = 0; i < nl.getLength(); i++) {
+
+				Node n = nl.item(i);
+				if (n != null && n.getNodeType() == Node.ELEMENT_NODE
+						&& ((Element) n).getTagName().equalsIgnoreCase("style"))
+				{
+					cssClass.addStyle(n.getTextContent().replace("\n", " "));
+				}
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public  String loadLayoutLuaCode(String xmlUrl)
 	{
 //		String temp = loadAssetsString("http://10.0.2.2:8080/test/lua/FileOpener.lua");
 //		lua.LdoString(temp);
@@ -320,66 +361,100 @@ public class UIFactory {
 		return temp;
 	}
 
-	
-	public static IView createView(IContainer rootView,Context context,Node n)
+	//public abstract void createView();
+	public  Layout createLayout(IView parent,Context context, Node root)
+	{
+		String name=root.getNodeName();
+    	//System.out.println("Tag name="+name);
+		String layoutName=((Element)root).getAttribute("layout").trim();
+		System.out.println("layout name ="+layoutName);
+		
+		Layout v=null;
+		if(layoutName==null || layoutName.equals(""))
+		{
+			v=new ILinearLayout(parent, context,  root,this);
+		}
+		else if(layoutName.equalsIgnoreCase("FrameLayout"))
+		{
+			v=new IFrameLayout(parent, context,root,this);
+		}
+		else if(layoutName.equalsIgnoreCase("LinearLayout"))
+		{
+			v=new ILinearLayout(parent, context,  root,this);
+		}
+		else if(layoutName.equalsIgnoreCase("RelativeLayout"))
+		{
+			v=new IRelativeLayout(parent, context,  root,this);
+			
+		}
+
+		
+		return v;
+	}
+
+	public  IView createView(IContainer rootView,Context context,Node n)
 	{
 		IView v=null;
 		String name=n.getNodeName();
     	if (name.equalsIgnoreCase("BUTTON"))
     	{
-    		v= new IButton(rootView,context,n);
+    		v= new IButton(rootView,context,n,this);
     		
     	}
     	else if (name.equalsIgnoreCase("LABEL"))
     	{
-    		v= new ILabel(rootView,context,n);
+    		v= new ILabel(rootView,context,n,this);
     	}
     	else if (name.equalsIgnoreCase("TEXTFIELD"))
     	{
-    		v= new ITextField(rootView,context,n);
+    		v= new ITextField(rootView,context,n,this);
     	}
     	else if (name.equalsIgnoreCase("PASSWORD"))
     	{
-    		ITextField t= new ITextField(rootView,context,n);
+    		ITextField t= new ITextField(rootView,context,n,this);
     		t.setInputType(ITextField.TYPE_MASK_FLAGS, ITextField.TYPE_TEXT_VARIATION_WEB_PASSWORD);
     		v=t;
     	}
     	else if (name.equalsIgnoreCase("TABLE"))
     	{
-    		v= new ITable(rootView,context,n);
+    		v= new ITable(rootView,context,n,this);
     	}
     	else if (name.equalsIgnoreCase("SCROLLVIEW"))
     	{
-    		v= new IScrollView(rootView,context,n);
+    		v= new IScrollView(rootView,context,n,this);
     	}
     	else if (name.equalsIgnoreCase("PROGRESSBAR"))
     	{
-    		v= new IProgressBar(rootView,context,n);
+    		v= new IProgressBar(rootView,context,n,this);
     	}
     	else if (name.equalsIgnoreCase("CHECKBOX"))
     	{
-    		v= new ICheckBox(rootView,context,n);
+    		v= new ICheckBox(rootView,context,n,this);
     	}
     	else if (name.equalsIgnoreCase("LINECHART"))
     	{
-    		v= new ILineChart(rootView,context,n);
+    		v= new ILineChart(rootView,context,n,this);
     	}
     	else if (name.equalsIgnoreCase("ROUNDIMAGE"))
     	{
-    		v= new IRoundImage(rootView,context,n);
+    		v= new IRoundImage(rootView,context,n,this);
     	}
     	else if (name.equalsIgnoreCase("MAP"))
     	{
-    		v= new BaiDuMap(rootView,context,n);
+    		v= new BaiDuMap(rootView,context,n,this);
+    	}
+    	else if (name.equalsIgnoreCase("WEBVIEW"))
+    	{
+    		v= new IWebView(rootView,context,n,this);
     	}
     	else if (name.equalsIgnoreCase("GIFVIEW"))
     	{
-    		v= new IGifView(rootView,context,n);
+    		v= new IGifView(rootView,context,n,this);
     	}
     	return v;
 	}
 //	static HttpURLConnection  urlConn =null;
-	 private static class DownloadTask extends AsyncTask<String, Integer, String> {
+	 private  class DownloadTask extends AsyncTask<String, Integer, String> {
 
 		 protected String doInBackground(String... urls)
 		 {
@@ -594,8 +669,9 @@ public class UIFactory {
 			return buf.toString();
 	}
 
-	// ����õ��������浽һ���ַ���
-	public static String loadAssetsString(String resPath) {
+
+
+	public  String loadAssetsString(String resPath) {
 		String code=null;
 		
 		if(resPath.startsWith("http://"))

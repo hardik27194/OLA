@@ -3,6 +3,8 @@ package com.lohool.ola.wedgit;
 
 import org.w3c.dom.Node;
 
+import com.lohool.ola.UIFactory;
+
 import android.content.Context;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
@@ -124,8 +126,8 @@ public class ITextField extends IWedgit {
 	  // Field descriptor #4 I
 	  public static final int TYPE_DATETIME_VARIATION_TIME = 32;
 
-	public ITextField(IView parent, Context context, Node root) {
-		super(parent, context, root);
+	public ITextField(IView parent, Context context, Node root,UIFactory ui) {
+		super(parent, context, root,ui);
 		EditText t = new EditText(context);
 		v=t;
 		super.initiate();

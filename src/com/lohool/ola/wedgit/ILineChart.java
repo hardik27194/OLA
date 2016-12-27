@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Color;
 
 
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;
@@ -15,6 +16,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.lohool.ola.UIFactory;
 
 /**
  * Line chart
@@ -28,8 +30,8 @@ public class ILineChart extends IWedgit {
 	ArrayList<LineDataSet> lineDataSets = new ArrayList<LineDataSet>(); 
 	
 	
-	public ILineChart(IView parent,Context context,Node root) {
-		super(parent, context,  root);
+	public ILineChart(IView parent,Context context,Node root,UIFactory ui) {
+		super(parent, context,  root,ui);
 		lc=new LineChart(context);
 		
 		v=lc;

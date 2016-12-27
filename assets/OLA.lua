@@ -14,13 +14,13 @@ OLA.base='apps/'
 
 --esb code base, check and download new versions from the base site
 --OLA.esb="http://10.0.2.2:8080/mesb/"  --localhost when use simulator
-OLA.esb="http://192.168.0.106:8080/mesb/"
+OLA.esb="http://192.168.0.107:8080/mesb/"
 
 --app executable resources path. if it is local path of Android,it is in Assets folder.
 --else runs on remote server, and the "reload" function is enabled
 --OLA.app_server="http://10.0.2.2:8080/"
---OLA.app_server="http://192.168.0.106:8080/"
---OLA.app_server="http://lohool.imwork.net/"
+--OLA.app_server="http://192.168.0.107:8080/"
+OLA.app_server="http://lohool.imwork.net/"
 --OLA.app_server="http://16.187.125.22:8080/"
  
 
@@ -35,4 +35,6 @@ OLA.base_dpi=160
 
 OLA.apps={}
 
+--based on current running app, for example, if olaos is running, its value is OLA.base..'/olaos/'
+OLA.appBase=''
 

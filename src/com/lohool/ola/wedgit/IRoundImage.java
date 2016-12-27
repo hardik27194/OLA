@@ -6,6 +6,7 @@ import java.io.InputStream;
 import org.w3c.dom.Node;
 
 import com.lohool.ola.OLA;
+import com.lohool.ola.UIFactory;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,8 +16,8 @@ import android.widget.TextView;
 
 public class IRoundImage  extends IWedgit {
 	RoundImage t;
-	public IRoundImage(IView parent,Context context,Node root) {
-		super(parent, context,  root);
+	public IRoundImage(IView parent,Context context,Node root,UIFactory ui) {
+		super(parent, context,  root,ui);
 		t=new RoundImage(context);
 		
 		v=t;

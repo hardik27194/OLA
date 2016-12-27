@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 
 import org.w3c.dom.*;
 
+import com.lohool.ola.UIFactory;
+
 import android.content.Context;
 import android.view.Gravity;
 import android.widget.LinearLayout;
@@ -23,8 +25,8 @@ public class ILinearLayout extends Layout
 		parseAlignment();
 	}
 	
-	public ILinearLayout(IView parent,Context context,Node root) {
-		super(parent, context,  root);
+	public ILinearLayout(IView parent,Context context,Node root,UIFactory ui) {
+		super(parent, context,  root,ui);
 		LinearLayout t=new LinearLayout(context);
 		
 		v=t;

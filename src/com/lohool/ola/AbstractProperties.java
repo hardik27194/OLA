@@ -49,11 +49,12 @@ import com.lohool.ola.wedgit.UIMessage;
 
 public abstract class AbstractProperties
 {
-	
+	/**
+	 * the root path where the view and lua script files are stored
+	 */
 	String appBase="apps/";
 	String appServer="";
 	String mode="developement";
-//	String platformApp="olaportal/";
 	public static String fileBase="";
 	//String appUrl="test/";
 	String appName;
@@ -137,7 +138,7 @@ public abstract class AbstractProperties
 		
 		System.out.println("lua file="+sandboxRoot+appBase+"OLA.lua");
 		//lua.doFile(sandboxRoot+appBase+"OLA.lua");
-		String olaLua=Main.loadAsset("OLA.lua");
+		String olaLua=Main.loadAssetText("OLA.lua");
 		lua.doString(olaLua);
 		
 		this.mode=lua.getGlobalString("OLA.mode");
@@ -167,7 +168,8 @@ public abstract class AbstractProperties
 			appServer="";
 		}
 		
-		if(!isAppServerAccessed || isPlatformApp || appServer==null || appServer.equals("") || !appServer.startsWith("http://"))	appBase=sandboxRoot+appBase;
+		if(!isAppServerAccessed || isPlatformApp || appServer==null || appServer.equals("") || !appServer.startsWith("http://"))	
+			appBase=sandboxRoot+appBase;
 		else appBase=appServer+"/"+appBase;
 		
 		OLA.base=appBase;
@@ -183,7 +185,7 @@ public abstract class AbstractProperties
 		fileBase=sdcardRoot+"/"+fileBase;
 		
 		File fileBaseDir=new File(fileBase+"/"+appName);
-		  if(!fileBaseDir.exists())fileBaseDir.mkdirs();
+		if(!fileBaseDir.exists())fileBaseDir.mkdirs();
 		  
 		lua.doString("OLA.storage='"+fileBase+"'");
 		
@@ -387,6 +389,10 @@ public abstract class AbstractProperties
 			}
 		}
 	}
+	/**
+	 * the absolute path of the  first view
+	 * @return
+	 */
 	public String getFirstViewName()
 	{
 		String name=null;

@@ -21,7 +21,7 @@ public class FileConnector extends Activity {
 	public static final int TYPE_DIRECTORY = 1;
 	public static final int TYPE_FILE = 2;
 	private int selectType = 2;
-	private ConfirmListener listener;
+
 	// private FileConnection fileConnection;
 	private String parent;
 	/**
@@ -118,14 +118,7 @@ public class FileConnector extends Activity {
 //    	Layout layout=ui.loadXML("http://10.0.2.2:8080/test/testLua1.xml");
 //    	this.setContentView(layout.getView());
     }
-    
-	// protected void keyPressed(int keyCode)
-	// {
-	//
-	// }
-	public void addListener(ConfirmListener listener) {
-		this.listener = listener;
-	}
+
 
 	private String preSelected = "..";
 /*

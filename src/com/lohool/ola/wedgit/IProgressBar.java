@@ -8,6 +8,7 @@ import java.io.InputStream;
 import org.w3c.dom.Node;
 
 import com.lohool.ola.OLA;
+import com.lohool.ola.UIFactory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -45,9 +46,9 @@ public class IProgressBar extends IWedgit
 
 	ProgressBar progressBar;
 
-	public IProgressBar(IView parent, Context context, Node root)
+	public IProgressBar(IView parent, Context context, Node root,UIFactory ui)
 	{
-		super(parent, context, root);
+		super(parent, context, root,ui);
 		progressBar = new ProgressBar(context);
 		progressBar.setMax(100);
 		progressBar.setMinimumHeight(20);
@@ -76,7 +77,7 @@ public class IProgressBar extends IWedgit
 		{
 			setIndeterminateOnly(Boolean.parseBoolean(attr));
 		}
-		if ((attr = css.getStyleValue("style")) != null)
+		if ((attr = css.getStyleValue("type")) != null)
 		{
 			setStyle(attr);
 		}
@@ -226,6 +227,13 @@ public class IProgressBar extends IWedgit
 
 			}
 		}
+	}
+	/**
+	 * keep same method to IOS
+	 */
+	public void start()
+	{
+		
 	}
 
 	private class DownloadImage extends AsyncTask<String, Integer, Drawable>

@@ -204,10 +204,13 @@ public class CSS
 			if (pos < 0)
 				continue;
 			String[] pair = s.split(":");
-			styles.put(s.substring(0, pos), s.substring(pos + 1));
+			styles.put(s.substring(0, pos).trim(), s.substring(pos + 1).trim());
 			// System.out.println("CSS:"+s.substring(0,pos)+"="+ s.substring(pos+1));
-			parse(s.substring(0, pos), s.substring(pos + 1));
+			parse(s.substring(0, pos).trim(), s.substring(pos + 1).trim());
+			
 		}
+		System.out.println("CSS:"+styles.toString());
+		System.out.println("orientation:"+this.orientation);
 	}
 
 	private void parse(String name, String value)

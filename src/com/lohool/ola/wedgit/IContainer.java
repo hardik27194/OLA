@@ -16,61 +16,49 @@ import android.widget.TableRow;
 
 public abstract class IContainer extends IWedgit{
 
-	
-	public IContainer(IView parent, Context context, Node root) {
-		super(parent, context, root);
+
+	//public UIFactory ui;
+	public IContainer(IView parent, Context context, Node root,UIFactory ui) {
+		super(parent, context, root,ui);
 		// TODO Auto-generated constructor stub
+		//this.ui=ui;
 	}
-//	public void addView(View child)
-//	{
-//		((ViewGroup)v).addView(child);
-//		//child.requestLayout();
-//	}
-//	void addView(IView child)
-//	{
-//		((ViewGroup)v).addView(child.getView());
-//		//child.getView().requestLayout();
-//	}
+
 	
-	 void parseChildren(IContainer rootView,Node root)
+	void parseChildren(IContainer rootView,Node root)
 	{
 		NodeList nl=root.getChildNodes();
 		for (int i = 0; i < nl.getLength(); i++)
-        {
+     {
 
-            Node n = nl.item(i);
-            if (n != null && n.getNodeType() == Node.ELEMENT_NODE)
-            {
-            	String name=n.getNodeName();
-            	if(name.equalsIgnoreCase("DIV"))
-            	{
-            		String layoutName=((Element)n).getAttribute("layout");
-            		if( layoutName.equalsIgnoreCase("FrameLayout") 
-            		   || layoutName.equalsIgnoreCase("LinearLayout")
-            		   || layoutName.equalsIgnoreCase("RelativeLayout")
-            		   || layoutName.equalsIgnoreCase("WebView")	   
-            				   )
-            		{
-            			Layout layout=Layout.createLayout(rootView,this.context,n);
-            			rootView.addOlaView(layout);
-            		}
-            	}
-            	else 
-            	{
-            		IView view=UIFactory.createView(rootView, context,   n);
-            		rootView.addOlaView(view);
-            	}
-            	
-                
-            }
-        }
+         Node n = nl.item(i);
+         if (n != null && n.getNodeType() == Node.ELEMENT_NODE)
+         {
+         	String name=n.getNodeName();
+         	
+         	if(name.equalsIgnoreCase("DIV"))
+         	{
+         		String layoutName=((Element)n).getAttribute("layout");
+//         		if( layoutName.equalsIgnoreCase("FrameLayout") 
+//         		   || layoutName.equalsIgnoreCase("LinearLayout")
+//         		   || layoutName.equalsIgnoreCase("RelativeLayout")	   
+//         				   )
+         		{
+         			Layout layout=ui.createLayout(rootView,context,n);
+         			rootView.addOlaView(layout);
+         		}
+         	}
+         	else 
+         	{
+         		IView view=ui.createView(rootView, context,   n);
+         		rootView.addOlaView(view);
+         	}
+
+             
+         }
+     }
 	}
-/*
-	public void addView(View child) {
-		((ViewGroup) v).addView(child);
-		child.requestLayout();
-	}
-*/
+	 
 	public void addOlaView(IView child) {
 
 		if(child.getParent()==null)
@@ -116,4 +104,5 @@ public abstract class IContainer extends IWedgit{
 	public void removeAllViews() {
 		((ViewGroup) v).removeAllViews();
 	}
+
 }

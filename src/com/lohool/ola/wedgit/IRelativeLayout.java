@@ -5,10 +5,11 @@ package com.lohool.ola.wedgit;
 
 import org.w3c.dom.*;
 
+import com.lohool.ola.UIFactory;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.Gravity;
-
 import android.widget.RelativeLayout;
 
 
@@ -24,7 +25,7 @@ public class IRelativeLayout extends Layout
 	
 	public IRelativeLayout(Context context) {
 		//super(context);
-		super(null,context,null);
+		super(null,context,null,null);
 		RelativeLayout t=new RelativeLayout(context);
 		v=t;
 		super.initiate();
@@ -33,8 +34,8 @@ public class IRelativeLayout extends Layout
 		
 	}
 	
-	public IRelativeLayout(IView parent,Context context,Node root) {
-		super(parent, context,  root);
+	public IRelativeLayout(IView parent,Context context,Node root,UIFactory ui) {
+		super(parent, context,  root,ui);
 		
 		RelativeLayout t=new RelativeLayout(context);
 		v=t;

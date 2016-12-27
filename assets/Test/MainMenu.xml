@@ -1,56 +1,69 @@
 <html>
 <style>
-<!--
-.FrameLayout
+
+.line
 {
-	margin:0
- 
+orientation:vertical;width:auto;align:center;margin:5px;
 }
--->
+.bar
+{
+height:auto;orientation:horizontal;width:auto;margin:1px;padding:3px;background-color:#ccffff;border:solid 2px #6699cc 5;
+}
+.lbl_ico
+{
+width:16px;height:16px;background-image:url($/images/icon/font.png);
+}
+.lbl_name
+{
+width:16px;height:16px;width:auto;height:auto;align:left;weight:1px;font:bold 14px Webdings
+}
+.lbl_right
+{
+background-image:url($/images/nav/(124).png);
+}
+label
+{
+valign:middle;
+}
+button
+{
+width:36px;height:36px;align:center;valign:middle;
+}
 </style>
-<body id="Main_body" layout="FrameLayout" style="orientation:vertical;">
-  <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;" >
-		<div id="Main_body_menu" layout="LinearLayout" class="LinearLayout" style="width:auto;align:center;background-color:#99CCFF">
-				<div id="L_showpop" layout="LinearLayout" style="width:42px;height:36px;align:center;valign:middle;"  onclick="reload()">
-					<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(151).png)"  onclick="reload()" />
-				</div>
-				<div layout="LinearLayout"  style="margin:3px;orientation:horizontal;align:center;">
-                    <button id="row1" style="width:32px;height:32px;background-image:url($/images/nav/(12).png);valign:middle" onclick="back2Portal()"></button>
-                </div>				
-				<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;">
-				<label style="weight:1px;height:auto;valign:middle;">OLA Test</label>
-				</div>
-				<div id="L_showpop" layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
-					<button style="width:6px;height:24px;background-image:url($/images/more.png)" onclick="ShowPopupMenu()"/>
-				</div>
+<body  layout="FrameLayout" style="orientation:vertical;">
+  <div style="orientation:vertical;width:auto;height:auto;weight:1px;" >
+		<div  style="width:auto;align:center;background-color:#99CCFF">
+			<button style="background-image:url($/images/nav/(151).png)"  onclick="reload()" />
+            <button style="background-image:url($/images/nav/(12).png);valign:middle" onclick="back2Portal()"></button>
+			<label style="weight:1px;height:auto;">OLA Test</label>
+			<button style="width:6px;height:24px;background-image:url($/images/more.png)" onclick="ShowPopupMenu()"/>
 		</div>            
-  	<div id="Main_body_Content" layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;" >
-  	<div  layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;" >
+  	<div  style="orientation:vertical;width:auto;height:auto;weight:1px;" >
+  	<div  style="orientation:vertical;width:auto;height:auto;weight:1px;" >
+     <div style="width:auto;height:auto;weight:1px;">
+	   <scrollview  style="width:auto;height:auto;weight:1px;">
+           <div style="orientation:vertical;width:auto;height:auto;weight:1px;">
 
-     <div layout="LinearLayout" class="LinearLayout" style="width:auto;height:auto;weight:1px;">
-	   <scrollview id="scroll" style="width:auto;height:auto;weight:1px;">
-           <div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;height:auto;weight:1px;">
-
-		   <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:5px;">
-			   <div layout="LinearLayout" style="height:auto;orientation:horizontal;width:auto;margin:1px;padding:3px;background-color:#e9c2a6;border:solid 2px #6699cc 5;">
-					<label style="width:16px;height:16px;background-image:url($/images/icon/font.png);"></label>
-					<label style="width:auto;height:auto;align:left;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Font")'>字体、字号</label>
-				   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url($/images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   <div class="line">
+			   <div class="bar" style="background-color:#e9c2a6;">
+					<label class="lbl_ico" />
+					<label class="lbl_name" onclick='show("Font")'>字体、字号</label>
+				   <button  class="lbl_right"  onclick='showAddLogView(0)'></button>
 			   </div>
 		   </div>
-		   <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:5px;">
-			   <div layout="LinearLayout" style="height:auto;orientation:horizontal;width:auto;margin:1px;padding:3px;background-color:#ccffff;border:solid 2px #6699cc 5;">
-					<label style="width:16px;height:16px;background-image:url($/images/icon/textfield.png);"></label>
-					<label style="width:auto;height:auto;align:left;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("TextField")'>文本框</label>
-				   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url($/images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+		   <div class="line">
+			   <div class="bar">
+					<label class="lbl_ico" />
+					<label class="lbl_name" onclick='show("TextField")'>文本框</label>
+				   <button  class="lbl_right"  onclick='showAddLogView(0)'></button>
 			   </div>
 		   </div>
            
-           <div layout="LinearLayout" style="orientation:vertical;width:auto;align:center;margin:5px;">
-			   <div layout="LinearLayout" style="height:auto;orientation:horizontal;width:auto;margin:1px;padding:3px;background-color:#ccffff;border:solid 2px #6699cc 5;">
-                   <label style="width:16px;height:16px;background-image:url($/images/icon/textfield.png);"></label>
-                   <label style="width:auto;height:auto;align:left;valign:middle;weight:1px;font:bold 14px Webdings" onclick='show("Chart")'>Chart</label>
-				   <button  style="width:36px;height:36px;align:center;valign:middle;background-image:url($/images/nav/(124).png)"  onclick='showAddLogView(0)'></button>
+           <div class="line">
+			   <div class="bar">
+                   <label class="lbl_ico" />
+                   <label class="lbl_name" onclick='show("Chart")'>Chart</label>
+				   <button  class="lbl_right"  onclick='showAddLogView(0)'></button>
 			   </div>
 		   </div>
        

@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.lohool.ola.Main;
+import com.lohool.ola.UIFactory;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -24,8 +25,8 @@ public class IButton extends IWedgit{
 	
 	String defaultStyle="width:auto;align:center;valign:middle;background-color:#FFFBF0;border:solid 1px #FFF0F0 5px;";
 	
-	public IButton(IView parent,Context context,Node root) {
-		super(parent, context, root);
+	public IButton(IView parent,Context context,Node root,UIFactory ui) {
+		super(parent, context, root,ui);
 		Button t=new Button(context);
 		v=t;
 		super.defaultCSSStyle=defaultStyle;

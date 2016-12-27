@@ -4,6 +4,8 @@ package com.lohool.ola.wedgit;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.lohool.ola.UIFactory;
+
 import android.content.Context;
 import android.view.Gravity;
 import android.widget.TableRow;
@@ -11,8 +13,8 @@ import android.widget.TableRow;
 
 public class ITableRow extends IContainer{
 
-	public ITableRow(IView parent, Context context,  Node root) {
-		super(parent, context, root);
+	public ITableRow(IView parent, Context context,  Node root,UIFactory ui) {
+		super(parent, context, root,ui);
 		TableRow t = new TableRow(context);
 		v=t;
 		//if parseCSS() was executed, the cell will not auto be set to equal width of the row

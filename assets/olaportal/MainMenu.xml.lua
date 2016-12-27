@@ -38,10 +38,10 @@ function initiate()
 		--	Log:d('OLA.apps','key='..key..'; value='..value)  
 		--end
 
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
+			viewStr='<div id="rap1"  class="app_ico_wraper"></div>'
 			local appPanel=lui.createView(viewStr)
 			_G[bar]:addView(appPanel)
-			viewStr='<button style="width:50px;height:50px;background-image:url('..apps[i].ico..');valign:middle;" onclick=\'startApplication("'..installedApps[i].app..'")\'></button>'
+			viewStr='<button class="app_ico_button" style="background-image:url('..apps[i].ico..');" onclick=\'startApplication("'..installedApps[i].app..'")\'></button>'
 			local btn=lui.createView(viewStr)
 			_G[appPanel]:addView(btn)
 			viewStr='<label style="width:auto;align:center;" onclick=\'startApplication("'..installedApps[i].app..'")\'>'..installedApps[i].title..'</label>'
@@ -54,10 +54,10 @@ function initiate()
 	if barCount==0 then barCount=4 end
 	barCount=4-barCount
 	for j=1,barCount do
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
+			viewStr='<div class="app_ico_wraper"></div>'
 			local appPanel=lui.createView(viewStr)
 			_G[bar]:addView(appPanel)
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;width:48px;height:48px;valign:middle;"></div>'
+			viewStr='<div class="app_ico_button" ></div>'
 			local btn=lui.createView(viewStr)
 			_G[appPanel]:addView(btn)
 	end
@@ -69,10 +69,10 @@ function initiate()
 			Apps_Other_Panel:addView(bar)
 		end 
 
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
+			viewStr='<div class="app_ico_wraper"></div>'
 			local appPanel=lui.createView(viewStr)
 			_G[bar]:addView(appPanel)
-			viewStr='<button style="width:48px;height:48px;background-image:url('..apps[i].ico..');valign:middle;" onclick=\'displayInstallMenu("'..otherApps[i].app..'")\'></button>'
+			viewStr='<button class="app_ico_button" style="background-image:url('..apps[i].ico..');" onclick=\'displayInstallMenu("'..otherApps[i].app..'")\'></button>'
 			local btn=lui.createView(viewStr)
 			_G[appPanel]:addView(btn)
 			viewStr='<label style="width:auto;align:center;">'..otherApps[i].title..'</label>'
@@ -85,10 +85,10 @@ function initiate()
 	if barCount==0 then barCount=4 end
 	barCount=4-barCount
 	for j=1,barCount do
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;weight:1px;margin:3px;padding:2px;align:center;"></div>'
+			viewStr='<div class="app_ico_wraper"></div>'
 			local appPanel=lui.createView(viewStr)
 			_G[bar]:addView(appPanel)
-			viewStr='<div layout="LinearLayout"  style="orientation:vertical;width:48px;height:48px;valign:middle;" />'
+			viewStr='<div class="app_ico_button" />'
 			local btn=lui.createView(viewStr)
 			_G[appPanel]:addView(btn)
 	end

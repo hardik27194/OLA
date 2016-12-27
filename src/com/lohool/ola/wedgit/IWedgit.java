@@ -71,17 +71,20 @@ public abstract class IWedgit implements IView
 	Context context;
 	Node root;
 	CSS css;
+	
+	UIFactory ui;
 
 	GestureDetector gesture;
 	
 	/**todo 45*/
 	String defaultCSSStyle="";
 
-	public IWedgit(IView parent, Context context, Node root)
+	public IWedgit(IView parent, Context context, Node root,UIFactory ui)
 	{
 		this.parent = parent;
 		this.context = context;
 		this.root = root;
+		this.ui=ui;
 
 	}
 
@@ -141,7 +144,13 @@ public abstract class IWedgit implements IView
 		// set attributes
 		if (css == null)
 		{
-			String cssString = defaultCSSStyle+((Element) root).getAttribute("style");
+			String cssString = defaultCSSStyle;
+			String cssClassName = ((Element) root).getAttribute("class");
+			String tagName=((Element) root).getTagName();
+			String cssClass=ui.cssClass.getStyle(tagName, cssClassName,this);
+			if(cssClass!=null)cssString+=cssClass;
+			cssString+=((Element) root).getAttribute("style");
+			System.out.println("id="+objId+";CSS="+cssString);
 			css = new CSS(cssString);
 		}
 
