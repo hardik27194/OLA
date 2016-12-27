@@ -13,9 +13,9 @@
 @implementation OLAScrollView
 
 @synthesize layout,children;
-- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootElement
+- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootElement andUIFactory:(OLAUIFactory *)uiFactory
 {
-    self = [super init];
+    self = [super initWithParent:parentView withXMLElement:rootElement andUIFactory:uiFactory];
     if (self) {
         // Initialization code
     }

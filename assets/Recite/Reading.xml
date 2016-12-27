@@ -156,15 +156,16 @@
 	</div>            
 
 </div>
-<div id='news_dialog' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc;visibility:block;'>
+<div id='news_dialog' layout='LinearLayout'  style='orientation:vertical;width:auto;height:auto;valign:middle;align:center;alpha:0.8;background-color:#cccccc;visibility:hidden;'>
 	<div  layout='LinearLayout'  style='margin:20px;padding:10px;orientation:vertical;width:auto;align:center;alpha:1;background-color:#FFFFFF'>
 		<label id="news_title" style='width:auto;background-image:url($/images/10.gif);'>News</label>
+        <div layout="LinearLayout" style="width:auto;height:auto;weight:1px;margin:5px;">
 		<scrollview id="scroll" style="width:auto;height:400px;weight:1px;">
 			<div layout="LinearLayout" class="LinearLayout" style="orientation:vertical;width:auto;align:center;">
-				<!--<label id="news_content" >Loading.</label>-->
-				<div id="news_content" layout="webview" ></div>
+				<webview id="news_content"  style='width:auto;height:400px;weight:1px;background-color:#cccccc;'>ddd</webview>
 			</div>
 		</scrollview>
+        </div>
 		<button onclick='closeDialog("news_dialog")'>Close</button>
 	</div>
 </div>

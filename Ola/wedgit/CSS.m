@@ -18,6 +18,10 @@
     verticalAlign=@"";
     alpha=1;
     
+    //if it is equals "-1", means that the value was not set
+    width=-1;
+    height=-1;
+    
     [self parse:cssStr];
     return self;
     

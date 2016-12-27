@@ -11,10 +11,11 @@
 @interface OLADatabase : NSObject
 
 - (id) init;
++(id)create;
 - (BOOL) isExist:(NSString *) dbName;
 - (void) open:(NSString *)databse;
 //- (int) openLocal:(NSString *) dbName;
-- (int) execSQL:(const char *)sql;
+- (int) execSQL:(NSString *)sql;
 - (NSString *)query:(NSString *)sql;
 - (void) close;
 @end

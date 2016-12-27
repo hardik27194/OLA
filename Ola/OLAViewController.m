@@ -322,9 +322,9 @@
 }
 - (void) testDB
 {
-    OLADatabase * db=[[OLADatabase alloc] init];
+    OLADatabase * db=[OLADatabase create];//[[OLADatabase alloc] init];
     [db open:@"test.db"];
-    [db execSQL:"CREATE TABLE IF NOT EXISTS test(id INT NOT NULL DEFAULT -1,name VARCHAR(32),UNIQUE(id))"];
+    [db execSQL:@"CREATE TABLE IF NOT EXISTS test(id INT NOT NULL DEFAULT -1,name VARCHAR(32),UNIQUE(id))"];
     //[db execSQL:"insert into test values('1','test1')"];
     //[db execSQL:"insert into test values('2','test2')"];
     NSString * list=[db query:@"select * from test"];

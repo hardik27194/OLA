@@ -23,7 +23,7 @@
 	<div layout="LinearLayout" style="width:auto;background-color:#99CCFF">
 			<div layout="LinearLayout" style="orientation:vertical;align:center;valign:middle;width:auto;weight:1px;background-color:#6699CC;" >
 				<button style="width:36px;height:36px;align:center;background-image:url($/images/nav/(145).png);"  onclick="reload()" />
-				<label style="color:#00FF66;" >复习</label>
+				<label id="lbl_review" style="color:#00FF66;" >复习</label>
 			</div>
 			<div layout="LinearLayout"  style="orientation:vertical;align:center;width:auto;weight:1px;">
                 <button style="width:36px;height:36px;background-image:url($/images/nav/(126).png);valign:middle"  onclick="showReading()"/>

@@ -11,9 +11,9 @@
 
 @implementation OLARelativeLayout
 @synthesize layout;
-- (id) initWithParent:(OLAView *)parentView andUIRoot:(XMLElement *) rootElement
+- (id) initWithParent:(OLAView *)parentView andUIRoot:(XMLElement *) rootElement andUIFactory:(OLAUIFactory *)uiFactory
 {
-    self = [super init];
+    self = [super initWithParent:parentView withXMLElement:rootElement andUIFactory:uiFactory];
     if (self) {
         // Initialization code
     }

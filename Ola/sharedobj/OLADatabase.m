@@ -38,7 +38,11 @@ int pParamIndex=1;
     }
     else return NO;
 }
-
++ (OLADatabase *)create
+{
+    NSLog(@"create database...");
+    return [[self alloc] init];
+}
 - (void) open:(NSString *)databse
 {
     //NSString *path=[[[OLAProperties getInstance] getRootPath] stringByAppendingString:databse];
@@ -53,10 +57,11 @@ int pParamIndex=1;
     NSLog(@"database path=%s",dbPath);
     return result;
 }
-- (int) execSQL:(const char *)sql
+- (int) execSQL:(NSString*)sql
 {
     char * errorMsg;
-    return sqlite3_exec(db, sql, NULL, NULL, &errorMsg);
+  
+    return sqlite3_exec(db, [sql UTF8String], NULL, NULL, &errorMsg);
 
 
 }
@@ -140,14 +145,18 @@ int pParamIndex=1;
                 if(i!=0)[buf appendString:@","];
                 [buf appendString:[NSString stringWithUTF8String:name]];
                 [buf appendString:@"=\""];
-                [buf appendString:[NSString stringWithUTF8String:value]];
+                NSString * v=[NSString stringWithUTF8String:value];
+                v= [v stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+                [buf appendString:v];
                 [buf appendString:@"\""];
             }
             [buf appendString:@"}"];
             [buf appendString:@","];
         }
     }
-    NSString *result=[ buf  substringToIndex:[buf length]-1];
+    int pos=0;
+    if(buf.length>0)pos=buf.length-1;
+    NSString *result=[ buf  substringToIndex:pos];
 
     return result;
 }

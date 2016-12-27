@@ -13,6 +13,6 @@
 
 }
 @property (nonatomic) float progressPercent;
-- (id) initWithParent:(OLAView *)parent withXMLElement:(XMLElement *) root;
+- (id) initWithParent:(OLAView *)parent withXMLElement:(XMLElement *) root andUIFactory:(OLAUIFactory *)uiFactory;
 - (void) setValue:(float) value;
 @end

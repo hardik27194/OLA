@@ -13,7 +13,7 @@
     LinearLayout * layout;
 }
 @property (nonatomic) LinearLayout * layout;
-- (id) initWithParent:(OLAView *)parentView andUIRoot:(XMLElement *) root;
+- (id) initWithParent:(OLAView *)parentView andUIRoot:(XMLElement *) root andUIFactory:(OLAUIFactory *)uiFactory;
 - (void) repaint;
 - (void) setFrameMinSize;
 @end

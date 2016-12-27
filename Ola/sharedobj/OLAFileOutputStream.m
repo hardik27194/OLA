@@ -314,7 +314,7 @@
 // used for external data
 - (NSString *)readString:(int) len
 {
-    NSData *data = [outFile readDataOfLength:len];
+    NSData *data = [outFile  readDataOfLength:len];
     Byte * readBuffer=(Byte * )[data bytes];
     
     NSString *readBufferString =[[NSString alloc] initWithBytes:readBuffer length:[data length] encoding:NSUTF8StringEncoding];

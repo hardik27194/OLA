@@ -18,7 +18,7 @@
 @property (nonatomic) ScrollerView * layout;
 @property (nonatomic) NSMutableArray * children;
 
-- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) root;
+- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) root andUIFactory:(OLAUIFactory *)uiFactory;
 -(void) resetContentSizeToFitChildren;
 - (void) repaint;
 -(void)setFrameMinSize;

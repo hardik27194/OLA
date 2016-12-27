@@ -383,7 +383,8 @@ CGFloat origionX,origionY;
              CGFloat w=self.frame.size.width-padding.left-padding.right-v.css.margin.left-v.css.margin.right;
              //NSLog(@"reset  label text,w=%f,h=%f",w, minSize.height);
              OLALabel * labelView= (OLALabel *)v;
-             [labelView adjustSize:w];
+
+             if(v.css.width==0)[labelView adjustSize:w];
              //[v.v setFrame:CGRectMake(v.v.frame.origin.x, v.v.frame.origin.y, v.v.frame.size.width, v.v.frame.size.height)];
              }
              
@@ -494,7 +495,10 @@ CGFloat origionX,origionY;
                 CGFloat w=self.frame.size.width-padding.left-padding.right-v.css.margin.left-v.css.margin.right;
                 NSLog(@"reset  label text,w=%f,h=%f",w, self.frame.size.height);
                 OLALabel * labelView= (OLALabel *)v;
-                [labelView adjustSize:w];
+                //CSS style "width:auto", so auto adjust it
+                NSLog(@"children size,w=%f,h=%f",v.v.frame.size.width,v.v.frame.size.height);
+                NSLog(@"LinearLayout label[id=%@] width=%d",v.objId,v.css.width);
+                if(v.css.width==0)[labelView adjustSize:w];
                 //[v.v setFrame:CGRectMake(v.v.frame.origin.x, v.v.frame.origin.y, v.v.frame.size.width, v.v.frame.size.height)];
             }
             if(v.css.weight<=0)fixedHeight+=v.v.frame.size.height;
@@ -513,6 +517,15 @@ CGFloat origionX,origionY;
             
             CGFloat w=self.frame.size.width-padding.left-padding.right-v.css.margin.left-v.css.margin.right;
             if(v.css.width>0)w=v.css.width;
+            else if(v.css.width==0)
+            {
+                
+            }
+            else
+            {
+                w=v.v.frame.size.width;
+            }
+            
             if(v.css.weight>0)
             {
                 CGFloat h=freeHeight *(v.css.weight/sumWeight);

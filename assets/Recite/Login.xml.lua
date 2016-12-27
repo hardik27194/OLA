@@ -31,6 +31,7 @@ function reload()
 end
 
 function refreshCode()
+    Log:d('code path',Global.server.."Security/SecurityCodeImageAction.action",Global.cookies)
 	code_lbl:setBackgroundImageUrl(Global.server.."Security/SecurityCodeImageAction.action",Global.cookies)
 end
 
@@ -39,20 +40,26 @@ function logon()
 	lui.showLoadingView()
 
 	
-
+Log:d('logon','start to logon')
 	local account=account_txt:getText()
 	local password=password_txt:getText()
 	local securityCode=code_txt:getText()
 	local url=Global.server.."CustomerLogin.action?account="..account.."&password="..password.."&securityCode="..securityCode.."&rt=1"
+    Log:d('logon','1')
 	local http=HTTP:create(url)
+    Log:d('logon','2')
 	http:setCookies(Global.cookies)
+    Log:d('logon','3')
 	http:setComplitedCallback("logonLisener")
+    Log:d('logon','4')
 	http:sendRequest()
 	--http:receive()
+    Log:d('logon','5')
 	
 end
 
 function logonLisener(response)
+Log:d("Logon response", "start")
 	local state=response:getState()
 	local rootViewId=ui:getRootViewId()
 	_G[rootViewId]:removeView("lui_loading_view")
@@ -87,8 +94,12 @@ function getCookies()
 	local url=Global.server
 	local http=HTTP:create(url)
 	http:sendRequest()
+    Log:d("cookie","1")
 	http:receive()
-	return http:getCookies()
+    Log:d("cookie","2")
+	local cookie= http:getCookies()
+    Log:d("cookie","3")
+    return cookie
 end
 
 

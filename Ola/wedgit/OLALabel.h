@@ -10,7 +10,7 @@
 #import "OLAView.h"
 #import "OLATextView.h"
 @interface OLALabel : OLATextView
-- (id) initWithParent:(OLAView *)parent withXMLElement:(XMLElement *) root;
+- (id) initWithParent:(OLAView *)parent withXMLElement:(XMLElement *) root andUIFactory:(OLAUIFactory *)uiFactory;
 -(void)setText:(NSString *) text;
 -(NSString *)getText;
 -(void)adjustSize:(CGFloat) width;

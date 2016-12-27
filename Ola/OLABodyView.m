@@ -110,7 +110,7 @@ OLAUIFactory * ui;
 - (void) loadLuaCode
 {
     
-    self.LuaCode = [OLAUIFactory loadLayoutLuaCode:viewUrl] ;//ui.loadLayoutLuaCode(viewUrl);
+    self.LuaCode = [ui loadLayoutLuaCode:viewUrl] ;//ui.loadLayoutLuaCode(viewUrl);
     // ctx.setContentView(bodyView.getView());
 }
 
@@ -138,14 +138,14 @@ OLAUIFactory * ui;
     }
      */
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         //dispatch_async(dispatch_get_main_queue(), ^{
             //while(TRUE)
             {
                 //NSLog(@"thread.....");
                 //@synchronized(lock)
                 {
-                    NSLog(@"lua code=%@",LuaCode);
+                    //NSLog(@"lua code=%@",LuaCode);
                     //if(LuaCode!=nil && [LuaCode compare:@""]!=NSOrderedSame)
                     {
                         [[OLALuaContext getInstance] doString:LuaCode];
@@ -157,7 +157,7 @@ OLAUIFactory * ui;
             }
         //});
         
-    });
+    //});
     
     
 

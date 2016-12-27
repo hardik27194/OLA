@@ -11,7 +11,7 @@
 #import "OLATextView.h"
 
 @interface OLAButton : OLATextView
-- (id) initWithParent:(OLAView *)parent withXMLElement:(XMLElement *) root;
+- (id) initWithParent:(OLAView *)parent withXMLElement:(XMLElement *) root andUIFactory:(OLAUIFactory *)uiFactory;
 -(void)setText:(NSString *) text;
 -(NSString *)getText;
 @end
