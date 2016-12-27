@@ -13,6 +13,8 @@
 #import "XMLDocument.h"
 #import "XMLElement.h"
 #import "OLALinearLayout.h"
+#import "OLAFrameLayout.h"
+#import "OLARelativeLayout.h"
 #import "OLALuaContext.h"
 #import "OLAButton.h"
 #import "OLATable.h"
@@ -27,14 +29,15 @@
 #import "OLA.h"
 #import "OLARoundImage.h"
 #import "OLALineChart.h"
+#import "OLAWebView.h"
 
 @implementation OLAUIFactory
 
 
-@synthesize  bodyView;
+@synthesize  ctx,bodyView;
 
 
-  static NSMutableDictionary * viewCache;
+static NSMutableDictionary * viewCache;
 	
 
 + (NSMutableDictionary * )getViewCache
@@ -157,6 +160,8 @@
     return timeNow;
 }
 
+
+
 	/**
 	 * create a dynamic view by Lua script
 	 * @param xml
@@ -185,19 +190,19 @@
 			OLAView *v=nil;
 			if([root.tagName caseInsensitiveCompare:@"DIV"]==NSOrderedSame)
 			{
-				OLALayout *layout= [OLALayout createLayout:nil withXMLElement:root];
+				OLALayout *layout= [self createLayout:nil withXMLElement:root ];
 				v=layout;
 			}
-        /*
+        
 			else if([root.tagName caseInsensitiveCompare:@"TR"]==NSOrderedSame)
 			{
-				v= [[OLATableRow alloc] initWithParent:nil andUIRoot:root];
+				v= [[OLATableRow alloc] initWithParent:nil andUIRoot:root andUIFactory:self];
 			}
-        */
+        
 			else
 			{
 				//TODO
-				OLAView *view= [OLAUIFactory createView:nil withXMLElement:root];
+				OLAView *view= [self createView:nil withXMLElement:root];
 				v=view;
 			}
         [[OLALuaContext getInstance] regist:v withGlobalName:objId];
@@ -230,7 +235,7 @@
                 //css=[[[css stringByAppendingString:@"height:"] stringByAppendingString:[NSString stringWithFormat:@"%g",viewParent.v.frame.size.height]] stringByAppendingString:@"px;"];
                 [n.attributes setObject:css forKey:@"style"];
                 
-                layout= [OLALayout createLayout:viewParent withXMLElement:n];
+                layout= [self createLayout:viewParent withXMLElement:n];
                 
                 NSLog(@"body start repaint");
                 //set min or max frame of subviews
@@ -245,57 +250,95 @@
         NSLog(@"end create active body view layout");
 		return layout;
 	}
-+ (NSString *) loadLayoutLuaCode:(NSString *) xmlUrl
+- (NSString *) loadLayoutLuaCode:(NSString *) xmlUrl
 	{
 		NSString * temp = [OLAUIFactory loadAssert:[xmlUrl stringByAppendingString:@".lua"]];
 		return temp;
 	}
+
+
+
+-  (OLALayout *) createLayout:(OLAView *)parentView  withXMLElement:(XMLElement *) root
+{
+    NSString * layoutName=trim([root.attributes objectForKey:@"layout"]);
     
+    OLALayout * v=nil;
+    NSLog(@"layoutName=%@",layoutName);
+    if([layoutName caseInsensitiveCompare:@"FrameLayout"]==NSOrderedSame)
+    {
+        v=[[OLAFrameLayout alloc] initWithParent:parentView andUIRoot:root andUIFactory:self];
+    }
+    else if([layoutName caseInsensitiveCompare:@"LinearLayout"]==NSOrderedSame)
+    {
+        v=[[OLALinearLayout alloc] initWithParent:parentView andUIRoot:root andUIFactory:self];
+    }
+    else if([layoutName caseInsensitiveCompare:@"RelativeLayout"]==NSOrderedSame)
+    {
+        v=[[OLARelativeLayout alloc] initWithParent:parentView andUIRoot:root andUIFactory:self];
+        
+    }
+    
+    
+    return v;
+}
+
+
+
 	
-+ (OLAView *) createView:(OLAContainer *) rootView withXMLElement:(XMLElement *) n
+- (OLAView *) createView:(OLAContainer *) rootView withXMLElement:(XMLElement *) n
 	{
 		OLAView *v=nil;
 		NSString * name=n.tagName;
     	if ([name caseInsensitiveCompare:@"BUTTON"]==NSOrderedSame )
     	{
-    		v= [[OLAButton alloc] initWithParent:rootView withXMLElement:n];
+    		v= [[OLAButton alloc] initWithParent:rootView withXMLElement:n andUIFactory:self];
     		
     	}
         
     	else if ([name caseInsensitiveCompare:@"LABEL"]==NSOrderedSame )
     	{
-    		v= [[OLALabel alloc] initWithParent:rootView withXMLElement:n];
+    		v= [[OLALabel alloc] initWithParent:rootView withXMLElement:n andUIFactory:self];
 
     	}
         
     	else if ([name caseInsensitiveCompare:@"TEXTFIELD"]==NSOrderedSame )
     	{
-    		v= [[OLATextField alloc] initWithParent:rootView withXMLElement:n];
+    		v= [[OLATextField alloc] initWithParent:rootView withXMLElement:n andUIFactory:self];
+    		//rootView.addView(text);
+    	}
+        
+        else if ([name caseInsensitiveCompare:@"PASSWORD"]==NSOrderedSame )
+    	{
+    		v= [[OLATextField alloc] initWithParent:rootView withXMLElement:n andUIFactory:self];
     		//rootView.addView(text);
     	}
         
     	else if ([name caseInsensitiveCompare:@"TABLE"]==NSOrderedSame )
     	{
-    		v= [[OLATable alloc] initWithParent:rootView andUIRoot:n];
+    		v= [[OLATable alloc] initWithParent:rootView andUIRoot:n andUIFactory:self];
     		//rootView.addView(text);
     	}
         
     	else if ([name caseInsensitiveCompare:@"SCROLLVIEW"]==NSOrderedSame )
     	{
-    		v= [[OLAScrollView alloc] initWithParent:rootView withXMLElement:n];
+    		v= [[OLAScrollView alloc] initWithParent:rootView withXMLElement:n andUIFactory:self];
     		//rootView.addView(text);
     	}
         else if ([name caseInsensitiveCompare:@"PROGRESSBAR"]==NSOrderedSame )
     	{
-    		v= [[OLAProgressBar alloc] initWithParent:rootView withXMLElement:n];
+    		v= [[OLAProgressBar alloc] initWithParent:rootView withXMLElement:n andUIFactory:self];
     	}
         else if ([name caseInsensitiveCompare:@"ROUNDIMAGE"]==NSOrderedSame )
     	{
-    		v= [[OLARoundImage alloc] initWithParent:rootView withXMLElement:n];
+    		v= [[OLARoundImage alloc] initWithParent:rootView withXMLElement:n andUIFactory:self];
     	}
         else if ([name caseInsensitiveCompare:@"LINECHART"]==NSOrderedSame )
     	{
-    		v= [[OLALineChart alloc] initWithParent:rootView withXMLElement:n];
+    		v= [[OLALineChart alloc] initWithParent:rootView withXMLElement:n andUIFactory:self];
+    	}
+        else if ([name caseInsensitiveCompare:@"WEBVIEW"]==NSOrderedSame )
+    	{
+    		v= [[OLAWebView alloc] initWithParent:rootView withXMLElement:n andUIFactory:self];
     	}
          
     	return v;

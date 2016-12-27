@@ -13,5 +13,5 @@
     FrameLayout * layout;
 }
 @property (nonatomic) FrameLayout * layout;
-- (id) initWithParent:(OLAView *)parentView andUIRoot:(XMLElement *) root;
+- (id) initWithParent:(OLAView *)parentView andUIRoot:(XMLElement *) root andUIFactory:(OLAUIFactory *)uiFactory;
 @end

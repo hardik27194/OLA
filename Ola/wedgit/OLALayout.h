@@ -10,6 +10,5 @@
 #import "OLAContainer.h"
 @interface OLALayout : OLAContainer
 
-+  (OLALayout *) createLayout:(OLAView *)parentView  withXMLElement:(XMLElement *) root;
-+  (OLALayout *) createLayout:(OLAView *)parentView  withXMLText:(NSString * ) xml;
+
 @end

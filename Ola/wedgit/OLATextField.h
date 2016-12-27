@@ -10,7 +10,7 @@
 #import "OLATextView.h"
 
 @interface OLATextField : OLATextView<UITextFieldDelegate>
-- (id) initWithParent:(OLAView *)parent withXMLElement:(XMLElement *) root;
+- (id) initWithParent:(OLAView *)parent withXMLElement:(XMLElement *) root andUIFactory:(OLAUIFactory *)uiFactory;
 -(void)setText:(NSString *) text;
 - (NSString *) getText;
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField;

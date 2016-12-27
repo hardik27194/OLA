@@ -11,9 +11,9 @@
 
 @implementation OLARoundImage
 
-- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootEle
+- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootEle andUIFactory:(OLAUIFactory *)uiFactory
 {
-    self=[super initWithParent:parentView withXMLElement:rootEle];
+    self=[super initWithParent:parentView withXMLElement:rootEle andUIFactory:uiFactory];
     
     int imgW=self.css.width;
     NSLog(@"OLARoundImage width=%d",imgW);

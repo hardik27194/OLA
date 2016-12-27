@@ -23,20 +23,21 @@
 #import "QuartzCore/QuartzCore.h"
 #import "NSString+StringForJava.h"
 #import "OLAButton.h"
+#import "OLAUIFactory.h"
 
 @implementation OLAWedgit
 
-@synthesize defaultCSSStyle;
+@synthesize defaultCSSStyle,ui;
 
 //- abstract class IWedgit implements IView
 LayoutParams * param;
 
 
-- (id) initWithParent:(OLAView *) viewParent  withXMLElement:(XMLElement *) xmlRoot
+- (id) initWithParent:(OLAView *) viewParent  withXMLElement:(XMLElement *) xmlRoot andUIFactory:(OLAUIFactory *)uiFactory
 {
     self.parent = viewParent;
     self.root = xmlRoot;
-    
+    self.ui=uiFactory;
     return self;
     
 }
@@ -774,18 +775,29 @@ LayoutParams * param;
     
     NSString * img =[[OLA getAppBase] stringByAppendingString:imageUrl];
     
+    NSLog(@"img path=%@",img);
+    UIImage * image;
+    
+    
     if([imageUrl startsWith:@"$"])
     {
         img=[[OLA getBase] stringByAppendingString:[imageUrl substringFromIndex:1]];
+        image=[UIImage imageNamed:img];
+    }
+    else if([[imageUrl toLowerCase] startsWith:@"http"])
+    {
+        image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
+    }
+    else
+    {
+        image=[UIImage imageNamed:img];
     }
     
-    NSLog(@"img path=%@",img);
-    
+   
     
     if([self.v isKindOfClass:[UIButton class]])
     {
         //if not set frame size to "auto" or a number, set the view's size same to image's
-        UIImage *image=[UIImage imageNamed:img];
         CGSize size= image.size;
         if([css getStyleValue:@"width"]==nil)
         {
@@ -819,9 +831,9 @@ LayoutParams * param;
     else
     
     {
-        UIImage * bg=[UIImage imageNamed:img];
-        bg=[OLAWedgit imageScale:bg toSize:self.v.frame.size];
-        UIColor *bgColor = [UIColor colorWithPatternImage: bg];
+        
+        image=[OLAWedgit imageScale:image toSize:self.v.frame.size];
+        UIColor *bgColor = [UIColor colorWithPatternImage: image];
         [self.v setBackgroundColor:bgColor];
     }
 }

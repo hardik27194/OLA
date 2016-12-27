@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OLALayout.h"
 #import "OLABodyView.h"
+@class OLAContainer;
+@class OLAView;
+@class OLALayout;
 
 @interface OLAUIFactory : NSObject
 {
@@ -22,11 +24,12 @@
 
 - (id) initWithContext:(OLABodyView *) olaBodyView withContext:(OLAView *) context;
 
-+  (NSString *) loadAssert:(NSString *) resPath;
+-  (NSString *) loadAssert:(NSString *) resPath;
 + (NSString *) loadResourceTextDirectly:(NSString *) resPath;
-+ (NSString *) loadLayoutLuaCode:(NSString *) xmlUrl;
-+ (OLAView *) createView:(OLAContainer *) rootView withXMLElement:(XMLElement *) n;
+- (NSString *) loadLayoutLuaCode:(NSString *) xmlUrl;
+- (OLAView *) createView:(OLAContainer *) rootView withXMLElement:(XMLElement *) n;
 -  (OLALayout *) createLayout:(OLAView *) parentView withXMLFile:(NSString *) url;
+-  (OLALayout *) createLayout:(OLAView *)parentView  withXMLElement:(XMLElement *) root;
 - (NSString *) createView:(NSString *) xml;
 - (void) switchView:(NSString *) name callback:(NSString *) callback  params:(NSString  *) params;
 - (NSString *) getParameters;

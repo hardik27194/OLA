@@ -5,14 +5,13 @@ function initiate()
 	--addUIWedgit()
 	--testProgressBar1()
 	createDatabase()
-
 	local currentTime=os.time()
 
 	listNews("Simon")
 	listNews("NewScience")
 
 	--every 1 hour, do not run it too frequently
-	if currentTime-Global.newsDownloadTime>=60*60 then 
+	if currentTime-Global.newsDownloadTime>=60*60 then
 		downloadSimon()
 		downloadNewScientist()
 		Global.newsDownloadTime=currentTime
@@ -20,13 +19,14 @@ function initiate()
 
 
 	local words=readLastStuiedWordList()
+    Log:d('Listwords','after')
 	showWordList(words)
+    Log:d('Listwords','after1')
 end
 	function back()
 		ui:switchView("StudyView.xml","callback('file opener returned param')","file opener params")
 		return 1
 	end
-
 
 
 function addUIWedgit()
@@ -205,8 +205,8 @@ function closeDialog(dilogId)
 	Log:d("Review Info","close end")
 end
 
-----线程函数测试-------------------------------------------
---被执行函数返回true时结束线程
+----Thread function-------------------------------------------
+--the method will be terminated when the invoked method returned True
 function threadMethodTest()
 	local thread=Thread:create(1000)
 	local s = os.date("%s", os.time())   
@@ -234,7 +234,8 @@ function threadMethod(s0)
 end
 ------------------------------------------------------------
 
------录音测试-----------------------------------------------
+----Audio record test-----------------------------------------------
+--[[
 local recorder=Recorder:create()
 function startRecorder()
 	recorder:startRecording()
@@ -243,12 +244,15 @@ end
 function stopRecorder()
 	recorder:stopRecording()
 end
+]]--
 --------------------------------------------------------------
 
 
------文章数据库公有函数---------------------------------------
+----database functions---------------------------------------
 function createDatabase()
+Log:d("database","crerate 1...")
 	local database=Database:new()
+    Log:d("database"," create 2...")
 	database:conn()
 	database:open("ProcketWords")
 	--database:exec("drop TABLE IF EXISTS NewScience;")
@@ -349,10 +353,10 @@ function showNewsTitle(newsType,id,title)
 	local titleLbl=_G[newsType.."_"..id];
 	if titleLbl~=nil then titleLbl:setText(nt) end
 end
------文章数据库公有函数--结束-------------------------------------
+----end database functions-------------------------------------
 
 
------News Scientist download---------------------------------------
+----News Scientist download---------------------------------------
 
 function downloadNewScientist()
 	Log:d("download","newscientist")
@@ -393,12 +397,14 @@ function downloadScienceDetail(href,title)
 		showDetail(title,h)
 		updateNews("NewScience",title,h)
 end
------Simon IELTS download---------------------------------------
+----Simon IELTS download---------------------------------------
 
 function showDetail(title,content)
 	local t=string.gsub(title,"&#8217;","'")
 		news_title:setText(t);
-		news_content:getView():loadData(content, "text/html", "UTF-8");  
+		--news_content:getView():loadData(content, "text/html", "UTF-8");
+        news_content:setContent(content)
+
 		--news_panel_title:setText("NewScientist news")
 		news_dialog:setVisibility('none');
 end
@@ -496,4 +502,5 @@ function readLastStuiedWordList()
 	Global.currentStudiedGroup =group
 	return words
 end
-Log:d("MainMenu","loaded Recite successfullly")
+Log:d("Reading","loaded Reading successfullly")
+

@@ -12,16 +12,18 @@
 #import "CSS.h"
 
 #import "IViewEvent.h"
-
+@class OLAUIFactory;
 
 @interface OLAWedgit : OLAView<UIGestureRecognizerDelegate,IViewEvent>
 {
     NSString * defaultCSSStyle;
+    OLAUIFactory * ui;
 }
 
 @property (nonatomic)NSString * defaultCSSStyle;
+@property (nonatomic)OLAUIFactory * ui;
 
-- (id) initWithParent:(OLAView *) viewParent  withXMLElement:(XMLElement *) xmlRoot;
+- (id) initWithParent:(OLAView *) viewParent  withXMLElement:(XMLElement *) xmlRoot andUIFactory:(OLAUIFactory *)uiFactory;
 
 - (void) parseAttribute;
 - (void) parseCSS;

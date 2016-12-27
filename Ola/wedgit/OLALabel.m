@@ -16,9 +16,9 @@
 UIFont *font ;
 
 
-- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootEle
+- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootEle andUIFactory:(OLAUIFactory *)uiFactory
 {
-    self=[super initWithParent:parentView withXMLElement:rootEle];
+    self=[super initWithParent:parentView withXMLElement:rootEle andUIFactory:uiFactory];
     
     
     UILabelEx *label = [[UILabelEx alloc] init];
@@ -133,9 +133,9 @@ UIFont *font ;
     }
     
     
-    label.backgroundImageUrl=css.backgroundImageURL;
-    label.backgroundAlpha=css.alpha;
-    label.backgroundColorString=css.backgroundColor;
+    //label.backgroundImageUrl=css.backgroundImageURL;
+    //label.backgroundAlpha=css.alpha;
+    //label.backgroundColorString=css.backgroundColor;
     
 }
 - (NSString *) getColor
@@ -166,6 +166,10 @@ UIFont *font ;
     UILabelEx * label=(UILabelEx *)(self.v);
     return label.text;
 }
+
+/*
+ set text and auto adjust the size of it 
+ */
 -(void)setText:(NSString *) text
 {
     text = [text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
@@ -200,6 +204,8 @@ UIFont *font ;
     
     
      NSLog(@"set label=%@",text);
+    
+    //not set a value to Css "Width", it is nil or "auto"
     if(initWidth<=0)
     {
         NSLog(@"set label size1");
@@ -212,13 +218,14 @@ UIFont *font ;
             CGSize size =CGSizeMake(initWidth,MAXFLOAT);
             CGSize  actualsize =[firstChar boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin  attributes:tdic context:nil].size;
             CGFloat w=0,h=0;
-            if(css.width>0)w=css.width;else w=actualsize.width;
+            if(css.width>0)w=css.width;else w=actualsize.width*[text length];
             if(css.height>0)h=css.height+css.border.width*2; else h=actualsize.height+css.border.width*2;
             [label setFrame:CGRectMake(label.frame.origin.x,label.frame.origin.y, w, h)];
             //if(w>origionSize.width || h!=origionSize.height)
             //    needRepaint=YES;
         }
     }
+    //set a value, it is like "111px"
     else
     {
         NSLog(@"set label size2");
@@ -319,8 +326,8 @@ UIFont *font ;
         }
         
         OLALayout *layout= (OLALayout *)containerParent;
-        NSLog(@"repaint id=%@",layout.objId);
-        NSLog(@"layout.description=%@",layout.description);
+        //NSLog(@"repaint id=%@",layout.objId);
+        //NSLog(@"layout.description=%@",layout.description);
         //set min or max frame of subviews
         //[(Layout *)layout.v repaint];
         //[(Layout *)layout.v setFrameMinSize];

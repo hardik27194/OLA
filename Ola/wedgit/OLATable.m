@@ -13,9 +13,9 @@
 @implementation OLATable
 
 @synthesize layout;
-- (id) initWithParent:(OLAView *)parentView andUIRoot:(XMLElement *) rootElement
+- (id) initWithParent:(OLAView *)parentView andUIRoot:(XMLElement *) rootElement andUIFactory:(OLAUIFactory *)uiFactory
 {
-    self = [super init];
+    self = [super initWithParent:parentView withXMLElement:rootElement andUIFactory:uiFactory];
     if (self) {
         // Initialization code
     }
@@ -112,7 +112,6 @@
 {
    for(XMLElement * n in root.children)
    {
-       NSLog(@"parse Table, tagType=%@, tagname=%@",[n class],n.tagName);
             NSString * name=n.tagName;
             if([name caseInsensitiveCompare:@"THEAD"]==NSOrderedSame || [name caseInsensitiveCompare:@"TBODY"]==NSOrderedSame)
             {
@@ -125,13 +124,13 @@
             }
     }
     [self repaint];
-     NSLog(@"create Table Layout: X=%f,Y=%f,w=%f,h=%f",self.v.frame.origin.x, self.v.frame.origin.y, self.v.frame.size.width, self.v.frame.size.height);
+
 }
 
 - (void) parseRow:(XMLElement *) node
 {
-     NSLog(@"create TableRow Layout 0: X=%f,Y=%f,w=%f,h=%f",self.v.frame.origin.x, self.v.frame.origin.y, self.v.frame.size.width, self.v.frame.size.height);
-    OLATableRow * row = [[OLATableRow alloc] initWithParent:self andUIRoot:node];
+
+    OLATableRow * row = [[OLATableRow alloc] initWithParent:self andUIRoot:node andUIFactory:ui];
     
     [self addSubview:row];
 }
@@ -150,8 +149,6 @@
         [layout setFrame:parent.v.frame];
         [layout repaint];
         OLAScrollView * sv=(OLAScrollView *) parent;
-        NSLog(@"OLAScrollView frame,w=%f,h=%f",v.frame.size.width,v.frame.size.height);
-        NSLog(@"OLAScrollView frame,X=%f,Y=%f",layout.frame.size.width,layout.frame.size.height);
         [sv resetContentSizeToFitChildren];
     }
     
@@ -160,8 +157,7 @@
         OLAContainer * container=(OLAContainer *)parent;
         [container repaint];
     }
-    
-    NSLog(@"OLALinear repaint=%f",layout.frame.size.height);
+
     //[layout repaint];
 }
 - (void) setFrameMinSize

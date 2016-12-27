@@ -7,9 +7,17 @@
 //
 
 #import "OLAWedgit.h"
+#import "OLAUIFactory.h"
 
-@interface OLAContainer : OLAWedgit
+@interface OLAContainer:OLAWedgit
+{
+    
+}
+
+- (id) initWithParent:(OLAView *) viewParent  withXMLElement:(XMLElement *) xmlRoot andUIFactory:(OLAUIFactory *)uiFactory;
+
 - (void) parseChildren:(OLAContainer *) rootView withXMLElement:(XMLElement *) root;
 - (void) repaint;
 - (void) setFrameMinSize;
+- (void) removeAllViews;
 @end

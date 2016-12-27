@@ -12,9 +12,9 @@
 UIFont *font ;
 
 
-- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootEle
+- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootEle andUIFactory:(OLAUIFactory *)uiFactory
 {
-    self=[super initWithParent:parentView withXMLElement:rootEle];
+    self=[super initWithParent:parentView withXMLElement:rootEle andUIFactory:uiFactory];
     
     
     UITextField *text = [[UITextField alloc] init];

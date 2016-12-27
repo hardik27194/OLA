@@ -10,13 +10,16 @@
 #import "ProgressBar.h"
 #import "OLAQueue.h"
 
-@interface HttpResponse : NSObject
+@interface OLAHttpResponse : NSObject
 {
     int state;
     NSString * content;
+    NSString * cookies;
 }
 @property (nonatomic) int state;
 @property (nonatomic,retain) NSString * content;
+@property (nonatomic,retain) NSString * cookies;
+-(NSString *) getContent;
 @end
 
 @interface OLAHTTP : NSObject
@@ -26,12 +29,15 @@
 	NSString *processingCallback;
 	NSString *complitedCallback;
     
+    
+    
     NSURL *currentUrl;
     NSString * content;
 @private
-    NSURLRequest * request;
+    NSMutableURLRequest * request;
     NSMutableData *receiveData;
     NSURLConnection *theConnection;
+    NSString *cookies;
     
     
     long long total;
@@ -58,6 +64,7 @@
 @property (nonatomic,retain) NSMutableData *receiveData;
 @property (nonatomic,retain) NSURLConnection *theConnection;
 
+@property (nonatomic,retain) NSString *cookies;
 
 @property (nonatomic) long long total;
 @property (nonatomic) long long process ;
@@ -75,9 +82,11 @@
 - (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection;
+
+- (int) getState;
 - (NSString *) getError;
 - (long long) getTotalSize;
 - (long long) getValue;
 - (NSString *) getUrl;
-
+- (NSString *) getContent;
 @end

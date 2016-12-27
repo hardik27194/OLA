@@ -7,7 +7,7 @@
 //
 
 #import "OLAWedgit.h"
-#import "OLALayout.h"
+@class OLALayout;
 
 @interface OLABodyView : NSObject
 {

@@ -13,18 +13,30 @@
 #import "OLAUIMessage.h"
 
 
-@implementation HttpResponse
-@synthesize state,content;
+@implementation OLAHttpResponse
+@synthesize state,content,cookies;
+-(NSString *) getContent
+{
+    return content;
+}
+-(int) getState
+{
+    return state;
+}
+-(NSString *) getCookies
+{
+    return cookies;
+}
 @end
 
 @implementation OLAHTTP
 
 
 @synthesize progressBar,complitedCallback,processingCallback;
-@synthesize currentUrl,request;
+@synthesize currentUrl,request,cookies;
 @synthesize receiveData,theConnection;
 
-@synthesize total,err,process,state;
+@synthesize total,err,process,state,content;
 @synthesize  finished;
 
 @synthesize startTime,speed;
@@ -37,6 +49,7 @@ long long tmpDataLength;
     self=[super init];
     self.currentUrl =  [[NSURL alloc] initWithString:urlString];
     self.state=-1;
+    
     return self;
 }
 
@@ -64,8 +77,9 @@ long long tmpDataLength;
     
     while(self.state!=2 && self.state>=-1)
     {
-        
+        //NSLog(@"HTTP waiting...");
         [NSThread sleepForTimeInterval:0.05];
+        
     }
 }
 
@@ -102,11 +116,13 @@ long long tmpDataLength;
 {
     
     //request=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy  timeoutInterval:60.0];
-    request=[NSURLRequest requestWithURL:url];
-    NSLog(@"http method=%@",request.HTTPMethod);
+    request=[NSMutableURLRequest requestWithURL:url];
+    NSLog(@"set cookie:%@", self.cookies);
+    if(self.cookies!=nil)[request setValue:self.cookies forHTTPHeaderField:@"Cookie"];
+    //NSLog(@"http method=%@",request.HTTPMethod);
     self.receiveData = [[NSMutableData alloc] init];
     self.theConnection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:YES];
-    NSLog(@"downloaded url=%@",theConnection.description);
+    //NSLog(@"downloaded url=%@",theConnection.description);
     //[self.theConnection start];
     
 }
@@ -116,6 +132,25 @@ long long tmpDataLength;
     state=1;
     total = [response expectedContentLength];
     NSLog(@"data length is %lli", total);
+    //get cookie method 1
+    // NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:fields forURL:url];
+                        
+    //get cookie method 2
+    NSHTTPURLResponse *a=(NSHTTPURLResponse *)response;
+    
+    NSString *cookietring = [[a allHeaderFields] valueForKey:@"Set-Cookie"];
+    NSLog(@"cookie 2=%@", cookietring);
+    if(cookietring!=Nil)self.cookies=cookietring;
+
+    /*
+    //get cookie method 3
+    NSHTTPCookieStorage * cookiear = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    //[cookiear cookiesForURL:[response URL]];
+    for (NSHTTPCookie * cookie in [cookiear cookies])
+    {
+     NSLog(@"cookie 3=%@", cookie);
+    }
+     */
 }
 
 //传输数据
@@ -123,6 +158,7 @@ long long tmpDataLength;
     
     process += data.length;
     [receiveData appendData:data];
+    //NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     if(self.processingCallback!=nil)
     {
         OLAUIMessage *msg=[[OLAUIMessage alloc] init];
@@ -188,11 +224,14 @@ long long tmpDataLength;
     if(self.complitedCallback!=nil)
     {
         
-        HttpResponse* res=[[HttpResponse alloc] init];
+        OLAHttpResponse* res=[[OLAHttpResponse alloc] init];
         res.state=self.state;
         res.content=self.content;
+        res.cookies=self.cookies;
+        
         OLALuaContext *lua= [OLALuaContext getInstance];
         [lua regist:res withGlobalName:@"HttpResponse"];
+       
         
         NSMutableString *luaCallback=[[NSMutableString alloc] initWithString:self.complitedCallback];
         [luaCallback appendString:@"(HttpResponse)"];
@@ -210,6 +249,7 @@ long long tmpDataLength;
         
         NSLog(@"callback=%@",luaCallback);
         [msg updateMessage:luaCallback];
+        NSLog(@"callback executed.");
         [lua remove:@"HttpResponse"];
     }
     [self releaseObjs];
@@ -221,12 +261,18 @@ long long tmpDataLength;
  *
  * @return
  */
-/*
- - (int) getState()
+
+ - (int) getState
  {
  return state;
  }
- */
+
+
+- (NSString *) getContent
+{
+    return content;
+}
+
 - (NSString *) getError
 {
     return err;
@@ -250,6 +296,10 @@ long long tmpDataLength;
         return @"";
 }
 
+- (NSString *) getCookies
+{
+    return cookies;
+}
 
 
 @end

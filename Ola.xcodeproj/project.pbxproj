@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27004ABB1DBA4DEA005C5310 /* ImgRotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27004ABA1DBA4DEA005C5310 /* ImgRotationView.m */; };
+		270643CA1DF56F8900BDCF59 /* OLAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270643C91DF56F8900BDCF59 /* OLAWebView.m */; };
 		270E52E91DBBC88600008758 /* OLAThreeDotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270E52E81DBBC88600008758 /* OLAThreeDotsView.m */; };
 		270E52EC1DBBC91200008758 /* UIColor+flat.m in Sources */ = {isa = PBXBuildFile; fileRef = 270E52EB1DBBC91200008758 /* UIColor+flat.m */; };
 		270E52EF1DBBDC9B00008758 /* NSString+StringForJava.m in Sources */ = {isa = PBXBuildFile; fileRef = 270E52EE1DBBDC9B00008758 /* NSString+StringForJava.m */; };
@@ -210,6 +211,8 @@
 /* Begin PBXFileReference section */
 		27004AB91DBA4DEA005C5310 /* ImgRotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgRotationView.h; path = Ola/view/ImgRotationView.h; sourceTree = SOURCE_ROOT; };
 		27004ABA1DBA4DEA005C5310 /* ImgRotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgRotationView.m; path = Ola/view/ImgRotationView.m; sourceTree = SOURCE_ROOT; };
+		270643C81DF56F8900BDCF59 /* OLAWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLAWebView.h; sourceTree = "<group>"; };
+		270643C91DF56F8900BDCF59 /* OLAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLAWebView.m; sourceTree = "<group>"; };
 		270E52E71DBBC88600008758 /* OLAThreeDotsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLAThreeDotsView.h; path = Ola/view/OLAThreeDotsView.h; sourceTree = SOURCE_ROOT; };
 		270E52E81DBBC88600008758 /* OLAThreeDotsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLAThreeDotsView.m; path = Ola/view/OLAThreeDotsView.m; sourceTree = SOURCE_ROOT; };
 		270E52EA1DBBC91200008758 /* UIColor+flat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+flat.h"; path = "Ola/view/UIColor+flat.h"; sourceTree = SOURCE_ROOT; };
@@ -1143,6 +1146,8 @@
 				849745A118FADD0F007A8D5C /* OLAContainer.m */,
 				849745A418FADD0F007A8D5C /* OLALabel.h */,
 				849745A518FADD0F007A8D5C /* OLALabel.m */,
+				270643C81DF56F8900BDCF59 /* OLAWebView.h */,
+				270643C91DF56F8900BDCF59 /* OLAWebView.m */,
 				849577681C858AA200CFF353 /* OLARoundImage.h */,
 				849577691C858AA200CFF353 /* OLARoundImage.m */,
 				849745A618FADD0F007A8D5C /* OLALayout.h */,
@@ -1484,6 +1489,7 @@
 				8497460318FADD0F007A8D5C /* lstring.c in Sources */,
 				849745D818FADD0F007A8D5C /* OLAStringUtil.m in Sources */,
 				849745D718FADD0F007A8D5C /* OLALog.m in Sources */,
+				270643CA1DF56F8900BDCF59 /* OLAWebView.m in Sources */,
 				8497463418FADD0F007A8D5C /* OLAScrollView.m in Sources */,
 				84967B121950A130002BEB73 /* compress.c in Sources */,
 				8497460718FADD0F007A8D5C /* ltm.c in Sources */,

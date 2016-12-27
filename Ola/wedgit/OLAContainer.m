@@ -23,11 +23,9 @@
 
 @implementation OLAContainer
 
-
-
-- (id):(OLAView *) parentView  withXMLElement:(XMLElement *) rootEle
+- (id) initWithParent:(OLAView *) viewParent  withXMLElement:(XMLElement *) xmlRoot andUIFactory:(OLAUIFactory *)uiFactory
 {
-    return [super initWithParent:parentView withXMLElement:rootEle];
+    return [super initWithParent:viewParent withXMLElement:xmlRoot andUIFactory:uiFactory];
     //return self;
 }
 //	- void addView(View child)
@@ -54,16 +52,21 @@
             if([name caseInsensitiveCompare:@"DIV"]==NSOrderedSame)
             {
                 NSString * layoutName=[n.attributes objectForKey:@"layout"];
+                /*
                 if([layoutName caseInsensitiveCompare:@"FrameLayout"]
-                   || ([layoutName caseInsensitiveCompare:@"LinearLayout"]) || ([layoutName caseInsensitiveCompare:@"RelativeLayout"]))
+                   || ([layoutName caseInsensitiveCompare:@"LinearLayout"])
+                   || ([layoutName caseInsensitiveCompare:@"RelativeLayout"])
+                   || ([layoutName caseInsensitiveCompare:@"WebView"])
+                   )
+                 */
                 {
-                    OLALayout * layout= [OLALayout createLayout:rootView withXMLElement:n];//Layout.createLayout(rootView,self.context,n);
+                    OLALayout * layout= [ui createLayout:rootView withXMLElement:n];//Layout.createLayout(rootView,self.context,n);
                     [rootView addSubview:layout];
                 }
             }
             else
             {
-                OLAView * view=[OLAUIFactory createView:rootView withXMLElement:n];//UIFactory.createView(rootView, context,   n);
+                OLAView * view=[ui createView:rootView withXMLElement:n];//UIFactory.createView(rootView, context,   n);
                 [rootView addSubview:view];
                 
             }
@@ -144,7 +147,7 @@
             containerParent=containerParent.parent;
         }
         OLALayout *layout1= (OLALayout *)containerParent;
-        [layout1 setFrameMinSize];
+        [layout1  setFrameMinSize];
         [layout1 repaint];
         //set min or max frame of subviews
         //[(Layout *)layout1.v setFrameMinSize];
@@ -169,7 +172,7 @@
  */
 - (void) addView:(NSString *) objLuaId
 {
-    CGRect size=self.v.frame;
+    //CGRect size=self.v.frame;
     //lua.getGlobal(id);
     OLAView * obj=[[OLALuaContext getInstance]  getObject:objLuaId];
     [self addOlaView:obj];
@@ -198,6 +201,16 @@
     {
         [view removeFromSuperview];
     }
+}
+
+
+- (void) repaint
+{
+    
+}
+- (void) setFrameMinSize
+{
+    
 }
 
 @end

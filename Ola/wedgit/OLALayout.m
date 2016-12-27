@@ -13,32 +13,12 @@
 #import "OLAFrameLayout.h"
 #import "OLARelativeLayout.h"
 #import "OLALongPressGestureRecognizer.h"
+#import "OLAWebView.h"
 
 @implementation OLALayout
 
-+  (OLALayout *) createLayout:(OLAView *)parentView  withXMLElement:(XMLElement *) root
-{
-    NSString * layoutName=[root.attributes objectForKey:@"layout"];
-    
-    OLALayout * v=nil;
-    NSLog(@"layoutName=%@",layoutName);
-    if([layoutName caseInsensitiveCompare:@"FrameLayout"]==NSOrderedSame)
-    {
-        v=[[OLAFrameLayout alloc] initWithParent:parentView andUIRoot:root];
-    }
-    else if([layoutName caseInsensitiveCompare:@"LinearLayout"]==NSOrderedSame)
-    {
-        v=[[OLALinearLayout alloc] initWithParent:parentView andUIRoot:root];
-    }
-    else if([layoutName caseInsensitiveCompare:@"RelativeLayout"]==NSOrderedSame)
-    {
-        v=[[OLARelativeLayout alloc] initWithParent:parentView andUIRoot:root];
-        
-    }
-    
-    return v;
-}
-+  (OLALayout *) createLayout:(OLAView *)parentView  withXMLText:(NSString * ) xml
+/*
+-  (OLALayout *) createLayout:(OLAView *)parentView  withXMLText:(NSString * ) xml
 {
     NSData * xmlData= [xml dataUsingEncoding:NSUTF8StringEncoding];
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:xmlData];
@@ -69,7 +49,7 @@
     
     return v;
 }
-
+*/
 - (void) _clicked:(UITapGestureRecognizer*)recognizer
 {
     NSLog(@"layout.view=%@,clicked=%@",[v class],onclick);

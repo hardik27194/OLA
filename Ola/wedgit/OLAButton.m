@@ -16,9 +16,9 @@
  //UIFont *font ;
 
 
-- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootEle
+- (id) initWithParent:(OLAView *)parentView withXMLElement:(XMLElement *) rootEle andUIFactory:(OLAUIFactory *)uiFactory
 {
-    self=[super initWithParent:parentView withXMLElement:rootEle];
+    self=[super initWithParent:parentView withXMLElement:rootEle andUIFactory:uiFactory];
     NSString* defaultStyle=@"width:auto;align:center;valign:middle;background-color:#FFFBF0;border:solid 1px #00F0F0 5px;";
     
     super.defaultCSSStyle=defaultStyle;
