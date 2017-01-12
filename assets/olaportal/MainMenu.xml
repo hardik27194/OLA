@@ -27,15 +27,15 @@ border:solid 2px #00ff00 8px;color:#ff0000;font:bold italic Courier 16px;
 }
 .test2
 {
-background-color:#00ff00;
+#background-color:#00ff00;
 }
 _label.test1
 {
-background-color:#0000ff;
+#background-color:#0000ff;
 }
 div .test1
 {
-background-color:#00cccc;
+#background-color:#00cccc;
 }
 </style>
 <body id="body" layout="FrameLayout"  style="orientation:vertical;">

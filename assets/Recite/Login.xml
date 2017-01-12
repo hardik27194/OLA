@@ -17,7 +17,7 @@
 
 				
 			<div id="L_reload" layout="LinearLayout" style="weight:1px;height:auto;">
-			<label style="weight:1px;height:auto;valign:middle;align:center;">Logon</label>
+			<label style="weight:1px;height:auto;valign:middle;align:center;" onclick="reload()">Logon</label>
 			</div>
 			<div layout="LinearLayout" style="width:36px;height:36px;align:center;valign:middle;"  onclick="ShowPopupMenu()">
 				<!--<button style="width:6px;height:24px;" onclick="ShowPopupMenu()"/>-->

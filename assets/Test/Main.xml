@@ -4,6 +4,7 @@
   <global>
   </global>
   <init>
+	<script src="init.lua"/>
   </init>
 
   <views>

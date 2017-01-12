@@ -19,8 +19,8 @@ OLA.esb="http://192.168.0.107:8080/mesb/"
 --app executable resources path. if it is local path of Android,it is in Assets folder.
 --else runs on remote server, and the "reload" function is enabled
 --OLA.app_server="http://10.0.2.2:8080/"
---OLA.app_server="http://192.168.0.107:8080/"
-OLA.app_server="http://lohool.imwork.net/"
+OLA.app_server="http://192.168.0.107:8080/"
+--OLA.app_server="http://lohool.imwork.net/"
 --OLA.app_server="http://16.187.125.22:8080/"
  
 

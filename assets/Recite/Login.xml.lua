@@ -5,6 +5,7 @@ require "lua_ui"
 function initiate()
 	Log:d('initiate','initiate execute...')
 	Log:d('initiate',Global.server)
+	Log:d('initiate',Global.cookies)
 	if Global.cookies==nil or Global.cookies=='' then
 		Global.cookies=getCookies()
 	end 
@@ -31,8 +32,10 @@ function reload()
 end
 
 function refreshCode()
-    Log:d('code path',Global.server.."Security/SecurityCodeImageAction.action",Global.cookies)
+    Log:d('code path',Global.server.."Security/SecurityCodeImageAction.action;"..Global.cookies)
 	code_lbl:setBackgroundImageUrl(Global.server.."Security/SecurityCodeImageAction.action",Global.cookies)
+	if Global.cookies==nil then code_lbl:setText("Server is unavailable") end
+	--code_txt:setText("Server is unavailable")
 end
 
 function logon()

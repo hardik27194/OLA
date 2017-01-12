@@ -13,9 +13,26 @@ import com.lohool.ola.wedgit.CssClass.CssClassAttr;
 
 public class CssClass
 {
+	
+	ArrayList<CssClassAttr> classesStyles=new ArrayList<CssClassAttr>();
+
+	/**
+	 * all of the  CSS styles of the whole page
+	 */
+	private String styles=null;
+	
+	
+	/**
+	 * a single CSS class
+	 * @author Terrence
+	 *
+	 */
 	class CssClassAttr
 	{
 		String className;
+		/**
+		 * the CSS styles defination
+		 */
 		String styles;
 		public CssClassAttr(String className,String styles){
 			this.className=className;
@@ -39,10 +56,7 @@ public class CssClass
 	}
 	
 
-	ArrayList<CssClassAttr> classesStyles=new ArrayList<CssClassAttr>();
 
-	
-	String styles=null;
 	
 	public CssClass()
 	{
@@ -53,7 +67,10 @@ public class CssClass
 		this.styles=styles.trim();
 		if(styles!=null && !this.styles.equals(""))parseStyles(this.styles);
 	}
-	
+	/**
+	 * append a CSS style string to the current styles
+	 * @param style
+	 */
 	public void addStyle(String style)
 	{
 		
@@ -68,6 +85,7 @@ public class CssClass
 	
 	private void parseStyles(String styles)
 	{
+		// to think the char "}" is the end signal of a CSS Class phrase
 		String[] classArray=styles.split("\\}");
 		for(String s:classArray)
 		{
@@ -91,11 +109,15 @@ public class CssClass
 			if(c=='{')preBracketPos=i;
 			else if(c=='}')postBracketPos=i;
 		}
+		
+		//the CSS Class's name, and remove redundant blank chars
 		if(preBracketPos>0)name=s.substring(0,preBracketPos).trim().replace(" +", " ");
 		s=s.substring(preBracketPos+1,postBracketPos).trim();
 		
 		CssClassAttr clz=new CssClassAttr(name,s);
 		CssClassAttr oldClz=null;
+		// does the new CSS Class exist in the current CSS Class pool
+		//if exist, append the new style string to the end of it, or put the new Class into the pool
 		for(CssClassAttr tmp:classesStyles)
 		{
 			if(tmp.equals(clz))
@@ -113,10 +135,16 @@ public class CssClass
 		{
 			classesStyles.add(clz);
 		}
-		System.out.println(name+":\n"+s);
+		//System.out.println(name+":\n"+s);
 	}
 
-	
+	/**
+	 * find a view's CSS style string from the CSS class pool
+	 * @param tag	view's dom tag name in the XML file
+	 * @param className	the view's class name in the XML file
+	 * @param view the view
+	 * @return
+	 */
 	public String getStyle(String tag, String className,IView view)
 	{
 		String v="";
@@ -133,9 +161,11 @@ public class CssClass
 		}
 		*/
 		//Iterator<String> keys=this.compositeClassesStyles.keySet().iterator();
+		
+		//multiple class names
 		String[] classes=className.split(" +");
 		
-		Node n=view.getRoot();
+		//Node n=view.getRoot();
 		for(CssClassAttr clz:classesStyles)
 		{
 			//DIV .class1 button .btn2
@@ -145,31 +175,33 @@ public class CssClass
 			
 			String[] clzs=key.split(" ");
 			
-			//from the end to start to match the class array
+			//from the end to first to match the class array
 			boolean isMatchTag=clzs[clzs.length-1].equalsIgnoreCase(tag);
 			//matches <TAG.CLZ> or <.CLZ>
 			boolean isMatchClass=false;
 			for(String s:classes)
 			{
 				isMatchClass=(clzs[clzs.length-1].equalsIgnoreCase("."+s) || clzs[clzs.length-1].equalsIgnoreCase(tag+"."+s));
-				System.out.println("CSS match class:"+clzs[clzs.length-1]+"=="+tag+"."+s+":"+isMatchClass);
+				//System.out.println("CSS match class:"+clzs[clzs.length-1]+"=="+tag+"."+s+":"+isMatchClass);
 				if(isMatchClass)break;
 			}
 			
 			if( isMatchTag || isMatchClass)
 			{
 				
-				IView cv=view.getParent();
+				IView parent=view.getParent();
 					//test to match previous class
 					boolean isMatch=true;
 					//from the parent
 					int i=clzs.length-2;
-					while(cv!=null && i>=0)
+					while(parent!=null && i>=0)
 					{
 						String previousClass=clzs[i];
-						Element parentNode=(Element)cv.getRoot();
-						String parentTagName=parentNode.getTagName();
-						String parentClz=parentNode.getAttribute("class");
+						Element parentnode=(Element)parent.getRoot();
+						String parentTagName=parentnode.getTagName();
+						String parentClz=parentnode.getAttribute("class");
+						//if previous class name matches parent's class
+						//by TAG==TAG or CLASS==CLASS or TAG.CLASS=TAG.CLASS
 						if( previousClass.equalsIgnoreCase(parentTagName)
 								|| previousClass.equalsIgnoreCase("."+parentClz)
 								|| previousClass.equalsIgnoreCase(parentTagName+"."+parentClz)
@@ -182,7 +214,7 @@ public class CssClass
 						{
 							isMatch=false;
 						}
-						System.out.println("CSS match:"+previousClass+"=="+parentTagName+"."+parentClz+":"+isMatch);
+						//System.out.println("CSS match:"+previousClass+"=="+parentTagName+"."+parentClz+":"+isMatch);
 						//the previous class does match the parent node, then test the parent's parent
 						//if match, test previous's previous with parent's parent
 						if(isMatch)
@@ -190,8 +222,7 @@ public class CssClass
 							i--;							
 						}
 						
-							IView parent=cv.getParent();
-							cv=parent;
+							parent=parent.getParent();
 
 					}
 					// the whole class path was tested withe the XML node tree

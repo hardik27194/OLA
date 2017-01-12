@@ -1,6 +1,6 @@
     Global = {}
 
-	--Global.server="http://192.168.0.106:8080/ct/"
+	--Global.server="http://192.168.0.107:8080/ct/"
 	Global.server="http://lohool.imwork.net/ct/"
 
 
@@ -171,13 +171,11 @@
 
 
 
-function loadingViewXml()
-		local viewXml=''
-		viewXml=viewXml..'<div id="lui_loading_view" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;background-color:#6699CC;alpha:0.8;">'
-		viewXml=viewXml..'	 <div layout="LinearLayout" style="orientation:vertical;width:auto;height:auto;align:center;valign:middle;">'
-		viewXml=viewXml..'			<ProgressBar style="style:rotate;progress-image:url($/images/loading.png);width:60px;height:60px;"></ProgressBar>'
-		viewXml=viewXml..'			<label style="margin:10px;align:center;"  onclick="reload()">   Loading...</label>'
-		viewXml=viewXml..'    </div>'
-		viewXml=viewXml..'</div>'
-		return viewXml
-end
+	local viewXml=''
+	viewXml=viewXml..'<div id="lui_loading_view" layout="LinearLayout" style="orientation:vertical;height:auto;width:auto;background-color:#6699CC;alpha:0.8;">'
+	viewXml=viewXml..'	 <div layout="LinearLayout" style="orientation:vertical;width:auto;height:auto;align:center;valign:middle;">'
+	viewXml=viewXml..'			<ProgressBar style="style:rotate;progress-image:url($/images/loading.png);width:60px;height:60px;"></ProgressBar>'
+	viewXml=viewXml..'			<label style="margin:10px;align:center;"  onclick="reload()">   Loading...</label>'
+	viewXml=viewXml..'    </div>'
+	viewXml=viewXml..'</div>'
+	Global.loadingViewXml=viewXml

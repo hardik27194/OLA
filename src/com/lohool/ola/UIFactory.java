@@ -69,36 +69,48 @@ public class UIFactory {
 	
 	public void switchView(String name)
 	{
-		switchView(name,null,null,false);
+		switchView(name,null,null,false,null);
 	}
 	
 	public void switchView(String name,String callback)
 	{
-		switchView(name,null,null,false);
+		switchView(name,null,null,false,null);
 	}
 	public void switchView(String name,String callback,String params)
 	{
-		switchView(name,callback,params,false);
+		switchView(name,callback,params,false,null);
 	}
 	
-	public void switchView(String pageName,String callback,String params,boolean needReload)
+	public void switchView(String name,String callback,String params,String loadingXml)
+	{
+		switchView(name,callback,params,false,loadingXml);
+	}
+	
+	public void switchView(String pageName,String callback,String params,boolean needReload,String loadingXml)
     {
 //		String name=AppProperties.getInstance().getAppBase()+pageName;
 		//show loading screen
 		Layout oldLayout=bodyView.layout;
 		
+		//try to add a "Loading..." view, but it needs to add function "loadingViewXmlStr()" to the global settings of the app
+	
 		LuaState lua=LuaContext.getInstance().getLuaState();
 		
+		/*
 		lua.getField(LuaState.LUA_GLOBALSINDEX, "loadingViewXml");		 
 		lua.call(0,1);
         lua.setField(LuaState.LUA_GLOBALSINDEX, "loadingViewXmlStr");   
         LuaObject lobj =lua.getLuaObject("loadingViewXmlStr");   
         String loadingXml=lobj.getString();
+        */
+		IView loadingView=null;
        System.out.println("loading view xml:"+loadingXml);
-        IView loadingView=this.createViewByXml(loadingXml);
-        oldLayout.addOlaView(loadingView);
-        
-       
+       if(loadingXml!=null && !loadingXml.trim().equals(""))
+       {
+    	   loadingView=this.createViewByXml(loadingXml);
+    	   oldLayout.addOlaView(loadingView);
+       }
+      
         
 		String name=OLA.appBase+pageName;
 		
@@ -120,6 +132,7 @@ public class UIFactory {
 		}
 		viewLoadTask task = new viewLoadTask();
 		task.execute(oldLayout,loadingView,v,params,callback);
+		//task.execute(oldLayout,null,v,params,callback);
 		
 		UIFactory.viewStack.push(name);
 		
@@ -166,7 +179,7 @@ public class UIFactory {
 		}
 		protected void onPostExecute(Layout layout) {
 			
-			oldLayout.removeOlaView(loadingView);
+			if(loadingView!=null)oldLayout.removeOlaView(loadingView);
 			Main.activity.setContentView(layout.getView());
 			
 		}

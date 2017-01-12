@@ -9,8 +9,10 @@ function reload()
 	 sys.reload()
 end
 
-function show(pageName)
-	ui:switchView(pageName..".xml","callback('file opener returned param')","file opener params")
+function showPage(pageName)
+Log:d("show",pageName)
+	ui:switchView("Font.xml","callback('file opener returned param')","file opener params")
+Log:d("show1",pageName)
 end
 
 function back2Portal()

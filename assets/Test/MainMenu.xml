@@ -15,7 +15,7 @@ width:16px;height:16px;background-image:url($/images/icon/font.png);
 }
 .lbl_name
 {
-width:16px;height:16px;width:auto;height:auto;align:left;weight:1px;font:bold 14px Webdings
+width:16px;height:16px;width:auto;height:auto;align:left;weight:1px;font:bold 14px Webdings;valign:middle;
 }
 .lbl_right
 {
@@ -47,14 +47,14 @@ width:36px;height:36px;align:center;valign:middle;
 		   <div class="line">
 			   <div class="bar" style="background-color:#e9c2a6;">
 					<label class="lbl_ico" />
-					<label class="lbl_name" onclick='show("Font")'>字体、字号</label>
+					<label class="lbl_name" onclick='showPage("Font")'>字体、字号</label>
 				   <button  class="lbl_right"  onclick='showAddLogView(0)'></button>
 			   </div>
 		   </div>
 		   <div class="line">
 			   <div class="bar">
 					<label class="lbl_ico" />
-					<label class="lbl_name" onclick='show("TextField")'>文本框</label>
+					<label class="lbl_name" onclick='showPage("TextField")'>文本框</label>
 				   <button  class="lbl_right"  onclick='showAddLogView(0)'></button>
 			   </div>
 		   </div>
@@ -62,7 +62,7 @@ width:36px;height:36px;align:center;valign:middle;
            <div class="line">
 			   <div class="bar">
                    <label class="lbl_ico" />
-                   <label class="lbl_name" onclick='show("Chart")'>Chart</label>
+                   <label class="lbl_name" onclick='showPage("Chart")'>Chart</label>
 				   <button  class="lbl_right"  onclick='showAddLogView(0)'></button>
 			   </div>
 		   </div>

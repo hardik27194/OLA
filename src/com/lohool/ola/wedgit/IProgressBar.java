@@ -85,9 +85,9 @@ public class IProgressBar extends IWedgit
 		if ((attr = css.getStyleValue("indeterminate-color")) != null)
 		{
 			
-			String style = css.getStyleValue("style");
+			String style = css.getStyleValue("type");
 			
-			if (style != null && style.equalsIgnoreCase("horizontal") || style.equalsIgnoreCase("bar"))
+			if (style != null && (style.equalsIgnoreCase("horizontal") || style.equalsIgnoreCase("bar")))
 			{
 				ColorDrawable cd = new ColorDrawable(CSS.parseColor(attr));
 				progressBar.setBackground(cd);
@@ -97,7 +97,7 @@ public class IProgressBar extends IWedgit
 						ClipDrawable.HORIZONTAL);
 				progressBar.setProgressDrawable(d);
 			} 
-			else if (style.equalsIgnoreCase("rotate"))
+			else if (style != null &&  style.equalsIgnoreCase("rotate"))
 			{
 				
 			}
